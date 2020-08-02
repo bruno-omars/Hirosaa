@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "migrate": "hasura migrate",
-    "metadata": "hasura metadata"
+    "metadata": "hasura metadata",
+    "console": "hasura console"
   }
 }
