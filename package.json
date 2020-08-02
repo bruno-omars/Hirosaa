@@ -1,0 +1,21 @@
+{
+  "name": "hirosaa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "hasura": "yarn workspace hasura"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**"
+    ]
+  },
+  "devDependencies": {
+    "hasura-cli": "1.3.0"
+  }
+}
