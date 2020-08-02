@@ -16,6 +16,7 @@ $ yarn hasura console
 ```
 
 - DevサーバにマイグレーションとメタデータをApplyする
+(これは一発で叩けるようにコマンド化します)
 
 ```
 yarn hasura migrate apply \
