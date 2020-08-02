@@ -23,6 +23,17 @@ services:
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
       # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+  web:
+    build:
+      context: ./packages/web
+      dockerfile: Dockerfile.dev
+    environment:
+      REACT_APP_BACKEND_URL: localhost:8080
+    ports:
+      - 3000:3000
+    volumes:
+      - ./packages/web/src:/app/src
+      - ./packages/web/public:/app/public
+    stdin_open: true
 volumes:
   db_data:
-
