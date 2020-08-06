@@ -1,9 +1,9 @@
 - table:
     schema: public
-    name: messages
+    name: Message
 - table:
     schema: public
-    name: rooms
+    name: Room
 - table:
     schema: public
-    name: users
+    name: User
