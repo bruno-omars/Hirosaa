@@ -10,21 +10,15 @@ $ docker-compose up -d # 起動
 
 - コンソールでテーブル作成など作業する。
 この時、以下のコマンドでコンソールを立ち上げる
+このやり方でコンソールを立ちあげてから作業しないと、テーブルの変更が追従されない
+なので、hasura cloudのdevサーバのconsoleも立ち上げられないようにしています
 
 ```
 $ yarn hasura console
 ```
 
 - DevサーバにマイグレーションとメタデータをApplyする
-(これは一発で叩けるようにコマンド化します)
 
 ```
-yarn hasura migrate apply \
-  --version "<version>" \
-  --admin-secret "<admin-secret>" \
-  --endpoint "https://crack-pheasant-27.hasura.app"
-  
-yarn hasura metadata apply \
-  --admin-secret "<admin-secret>" \
-  --endpoint "https://crack-pheasant-27.hasura.app"
+bin/hasura-apply <バージョン指定>
 ```
