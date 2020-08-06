@@ -1,0 +1,7 @@
+yarn hasura migrate apply \
+  --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
+  --endpoint "https://crack-pheasant-27.hasura.app"
+
+yarn hasura metadata apply \
+  --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
+  --endpoint "https://crack-pheasant-27.hasura.app"
