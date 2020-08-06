@@ -1,3 +1,5 @@
+. .env
+
 yarn hasura migrate apply \
   --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
   --endpoint "https://allowed-herring-99.hasura.app"

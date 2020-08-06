@@ -1,6 +1,6 @@
 - table:
     schema: public
-    name: Messages
+    name: messages
 - table:
     schema: public
     name: rooms
