@@ -1,0 +1,2 @@
+ALTER TABLE "public"."User" ALTER COLUMN "id" TYPE text;
+ALTER TABLE "public"."User" ALTER COLUMN "id" DROP DEFAULT;

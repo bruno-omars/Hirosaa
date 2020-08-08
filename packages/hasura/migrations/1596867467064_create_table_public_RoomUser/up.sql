@@ -1,0 +1,1 @@
+CREATE TABLE "public"."RoomUser"("id" serial NOT NULL, "room_id" integer NOT NULL, "user_id" text NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."User"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("room_id") REFERENCES "public"."Room"("id") ON UPDATE restrict ON DELETE restrict);
