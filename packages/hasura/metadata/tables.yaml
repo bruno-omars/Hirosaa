@@ -15,14 +15,9 @@
   - name: Organization
     using:
       foreign_key_constraint_on: organization_id
-  - name: SubCategory
+  - name: User
     using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: SubCategory
-        column_mapping:
-          id: circle_id
+      foreign_key_constraint_on: owner_id
   array_relationships:
   - name: CicleSkills
     using:
@@ -45,6 +40,55 @@
         table:
           schema: public
           name: Message
+  - name: SubCategories
+    using:
+      foreign_key_constraint_on:
+        column: circle_id
+        table:
+          schema: public
+          name: SubCategory
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        owner_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - avatar
+      - name
+      - to_be_required
+      - what_we_will_do
+      backend_only: false
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - organization_id
+      - avatar
+      - name
+      - owner_id
+      - to_be_required
+      - what_we_will_do
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - avatar
+      - name
+      - to_be_required
+      - what_we_will_do
+      filter:
+        owner_id:
+          _eq: X-Hasura-User-Id
+      check: {}
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        owner_id:
+          _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: CircleUser
@@ -65,6 +109,23 @@
   - name: User
     using:
       foreign_key_constraint_on: user_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - text
+      - user_id
+      - circle_id
+      - timestamp
+      filter:
+        _or:
+        - Circle:
+            CircleUsers:
+              user_id:
+                _eq: X-Hasura-User-Id
+        - user_id:
+            _eq: X-Hasura-User-Id
 - table:
     schema: public
     name: Organization
@@ -76,6 +137,13 @@
         table:
           schema: public
           name: Circle
+  - name: Users
+    using:
+      foreign_key_constraint_on:
+        column: organization_id
+        table:
+          schema: public
+          name: User
 - table:
     schema: public
     name: ParentCategory
@@ -87,6 +155,13 @@
         table:
           schema: public
           name: SubCategory
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - name
+      filter: {}
 - table:
     schema: public
     name: Skill
@@ -105,6 +180,14 @@
         table:
           schema: public
           name: UserSkill
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - avatar
+      - name
+      filter: {}
 - table:
     schema: public
     name: SubCategory
@@ -115,9 +198,30 @@
   - name: ParentCategory
     using:
       foreign_key_constraint_on: parent_category_id
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - circle_id
+      - parent_category_id
+      - name
+      filter: {}
 - table:
     schema: public
     name: User
+  object_relationships:
+  - name: Organization
+    using:
+      foreign_key_constraint_on: organization_id
+  - name: User
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: Circle
+        column_mapping:
+          id: owner_id
   array_relationships:
   - name: CircleUsers
     using:
@@ -140,6 +244,39 @@
         table:
           schema: public
           name: UserSkill
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - avatar
+      - email
+      - id
+      - interested_in
+      - introduction
+      - last_seen
+      - name
+      - organization_id
+      filter:
+        _or:
+        - id:
+            _eq: X-Hasura-User-Id
+        - CircleUsers:
+            Circle:
+              CircleUsers:
+                user_id:
+                  _eq: X-Hasura-User-Id
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - avatar
+      - interested_in
+      - introduction
+      - name
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
 - table:
     schema: public
     name: UserSkill
