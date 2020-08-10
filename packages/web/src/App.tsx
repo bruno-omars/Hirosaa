@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import { User } from './generated/graphql';
+import styled from 'styled-components';
 
-function App() {
+const GET_USERS = gql`
+  query {
+    User {
+      id
+      name
+    }
+  }
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+const App: FC = () => {
+  const { loading, error, data } = useQuery(GET_USERS);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! ${error.message}</p>;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Title>
+        Users
+      </Title>
+      {data.User.map((user: User) => {
+        return <p key={user.id}>{user.name}</p>
+      })}
     </div>
   );
 }

@@ -1,12 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+
+const adminSecret = process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET;
+
+const client = new ApolloClient({
+  uri: 'https://allowed-herring-99.hasura.app/v1/graphql',
+  cache: new InMemoryCache(),
+  headers: {
+    'x-hasura-admin-secret': adminSecret || '',
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
