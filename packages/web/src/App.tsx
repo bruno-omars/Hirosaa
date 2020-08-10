@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-import './App.css';
 import { gql, useQuery } from '@apollo/client';
-import { 
-  User
-} from './generated/graphql';
+import { User } from './generated/graphql';
+import styled from 'styled-components';
+
 const GET_USERS = gql`
   query {
     User {
@@ -11,6 +10,12 @@ const GET_USERS = gql`
       name
     }
   }
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
 `;
 
 const App: FC = () => {
@@ -21,6 +26,9 @@ const App: FC = () => {
 
   return (
     <div className="App">
+      <Title>
+        Users
+      </Title>
       {data.User.map((user: User) => {
         return <p key={user.id}>{user.name}</p>
       })}
