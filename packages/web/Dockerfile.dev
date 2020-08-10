@@ -3,7 +3,7 @@ FROM node:12-alpine
 ENV NODE_ENV=development
 WORKDIR /app
 
-COPY package.json yarn.lock tsconfig.json ./
+COPY package.json ../../yarn.lock tsconfig.json ./
 RUN yarn install
 
 CMD ["yarn", "start"]
