@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { gql, useQuery } from '@apollo/client';
-
+import { 
+  User
+} from './generated/graphql';
 const GET_USERS = gql`
   query {
     User {
@@ -20,7 +21,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      {data.User.map((user: any) => {
+      {data.User.map((user: User) => {
         return <p key={user.id}>{user.name}</p>
       })}
     </div>
