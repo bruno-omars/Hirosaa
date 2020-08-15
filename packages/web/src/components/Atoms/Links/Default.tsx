@@ -21,16 +21,20 @@ export type Props = {
 };
 
 export const StyledLink = styled(Link)<Omit<Props, 'to'>>`
-  background-color: ${({bgColor = 'LIGHT_GREEN'}) => COLOR[bgColor]};
+  background-color: ${({bgColor = 'DARK_GREEN'}) => COLOR[bgColor]};
   border-radius: 50px 0 0 50px;
-  color: ${({bgColor = 'LIGHT_GREEN'}) => bgColor === 'LIGHT_GREEN' ? COLOR['WHITE'] : COLOR['LIGHT_GREEN']};
+  color: ${({bgColor = 'DARK_GREEN'}) => bgColor === 'DARK_GREEN' ? COLOR['WHITE'] : COLOR['DARK_GREEN']};
   display: inline-block;
-  fill: ${({bgColor = 'LIGHT_GREEN'}) => bgColor === 'LIGHT_GREEN' ? COLOR['WHITE'] : COLOR['LIGHT_GREEN']};
+  fill: ${({bgColor = 'DARK_GREEN'}) => bgColor === 'DARK_GREEN' ? COLOR['WHITE'] : COLOR['DARK_GREEN']};
   height: ${({size = 'BASE'}) => BUTTON_SIZE[size].H};
   line-height: ${({size = 'BASE'}) => BUTTON_SIZE[size].H};
   padding-left: 20px;
   text-decoration: none;
   width: ${({size = 'BASE'}) => BUTTON_SIZE[size].W};
+
+  :hover {
+    background-color: ${COLOR['LIGHT_GREEN']};
+  }
 `;
 
 const DefaultLink: FC<Props> = (props) => {

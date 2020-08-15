@@ -23,7 +23,7 @@ const LoginSidebar: FC = () => {
   return (
     <StyledSidebar>
       <Me />
-      <IconLink to="#" text="サークル一覧"><Circleci /></IconLink>
+      <IconLink to="#" text="サークル一覧" bgColor={'WHITE'}><Circleci /></IconLink>
       <IconLink to="#" text="トークルーム"><Chat /></IconLink>
       <IconLink to="#" text="プロフィール"><Person /></IconLink>
     </StyledSidebar>

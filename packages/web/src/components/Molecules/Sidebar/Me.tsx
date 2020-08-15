@@ -6,10 +6,12 @@ import { ReactComponent as DownArrow } from '../../../assets/icons/down-arrow.sv
 import { COLOR } from '../../../constants/color';
 
 const StyledMe = styled.div`
-  display: grid;
-  grid-template-columns: 30% 50% 20%;
   align-items: center;
   color: ${COLOR['WHITE']};
+  cursor: pointer;
+  display: grid;
+  fill: white;
+  grid-template-columns: 30% 50% 20%;
   height: 80px;
 
   :hover {

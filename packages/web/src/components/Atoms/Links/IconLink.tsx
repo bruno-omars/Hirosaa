@@ -20,6 +20,8 @@ const Center = styled.div`
 const IconLink: FC<IconLinkProps> = (props) => {
   return (
     <StyledIconLink 
+      bgColor={props.bgColor}
+      size={props.size}
       to={props.to}
     >
       <Center>
