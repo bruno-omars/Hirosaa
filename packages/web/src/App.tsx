@@ -4,12 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { User } from './generated/graphql';
 import styled from 'styled-components';
 
-import Default from './components/Atoms/Buttons/Default';
-import RoundedButton from './components/Atoms/Buttons/RoundedButton';
-import CircleButton from './components/Atoms/Buttons/CircleButton';
-import DefaultLink from './components/Atoms/Links/Default';
-import IconLink from './components/Atoms/Links/IconLink';
-import { ReactComponent as Chat } from './assets/icons/chat.svg';
+import Sidebar from './components/Organisms/Sidebar';
 
 const GET_USERS = gql`
   query {
@@ -34,12 +29,8 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <Default clickHandler={() => {}}>ログイン</Default>
-      <RoundedButton clickHandler={() => {}}>ログイン</RoundedButton>
-      <CircleButton clickHandler={() => {}}>a</CircleButton>
       <Router>
-        <DefaultLink to="#">HELLO</DefaultLink>
-        <IconLink to="#" text="HELLO"><Chat /></IconLink>
+        <Sidebar />
       </Router>
       <Title>
         Users

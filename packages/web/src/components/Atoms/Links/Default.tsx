@@ -26,6 +26,7 @@ export const StyledLink = styled(Link)<Omit<Props, 'to'>>`
   color: ${({bgColor = 'LIGHT_GREEN'}) => bgColor === 'LIGHT_GREEN' ? COLOR['WHITE'] : COLOR['LIGHT_GREEN']};
   display: inline-block;
   fill: ${({bgColor = 'LIGHT_GREEN'}) => bgColor === 'LIGHT_GREEN' ? COLOR['WHITE'] : COLOR['LIGHT_GREEN']};
+  height: ${({size = 'BASE'}) => BUTTON_SIZE[size].H};
   line-height: ${({size = 'BASE'}) => BUTTON_SIZE[size].H};
   padding-left: 20px;
   text-decoration: none;

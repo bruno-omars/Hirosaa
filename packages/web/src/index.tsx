@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import styled from 'styled-components';
+
+import './index.css';
 
 const client = new ApolloClient({
   link: new HttpLink({
