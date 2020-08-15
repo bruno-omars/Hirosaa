@@ -1,10 +1,10 @@
 module.exports = {
   schema: [
     {
-      'https://allowed-herring-99.hasura.app/v1/graphql': {
-          headers: {
-              Authorization: 'Bearer ' + process.env.AUTH_TOKEN
-          },
+      [`${process.env.HASURA_GRAPHQL_ENDPOINT}`]: {
+        headers: {
+          'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET,
+        },
       },
     },
   ],
