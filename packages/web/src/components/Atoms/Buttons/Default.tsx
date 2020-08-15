@@ -14,6 +14,7 @@ export const SHADOW_DEPTH = {
   MIDIUM: css`box-shadow: 0 2px 7px rgba(0, 0, 0, 0.26)`,
   BASE: css`box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18)`,
   SMALL: css`box-shadow: 0 2px 0.3px rgba(0, 0, 0, 0.10)`,
+  NONE: css`box-shadow: none`,
 };
 
 export const COLOR = {
@@ -33,9 +34,7 @@ export type Props = {
   shadowDepth?: ShadowDepth;
 };
 
-export type StyledProps = Omit<Props, 'clickHandler'>;
-
-export const StyledButton = styled.button<StyledProps>`
+export const StyledButton = styled.button<Omit<Props, 'clickHandler'>>`
   background-color: ${({bgColor = 'LIGHT_GREEN'}) => COLOR[bgColor]};
   border: none;
   color: white;
