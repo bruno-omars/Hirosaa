@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 
-import IconLink from '../Atoms/Links/IconLink';
-import { ReactComponent as Login } from '../../assets/icons/login.svg';
-import { ReactComponent as Pen } from '../../assets/icons/pen.svg';
+import IconLink from '../../Atoms/Links/IconLink';
+import { ReactComponent as Login } from '../../../assets/icons/login.svg';
+import { ReactComponent as Pen } from '../../../assets/icons/pen.svg';
 import styled from 'styled-components';
-import { COLOR } from '../../constants/color';
+import { COLOR } from '../../../constants/color';
 
 const StyledSidebar = styled.div`
   background-color: ${COLOR['DARK_GREEN']};
@@ -17,7 +17,7 @@ const StyledSidebar = styled.div`
   width: 20%;
 `;
 
-const Sidebar: FC = () => {
+const GuestSidebar: FC = () => {
   return (
     <StyledSidebar>
       <IconLink to="#" text="ログイン"><Login /></IconLink>
@@ -26,4 +26,4 @@ const Sidebar: FC = () => {
   );
 };
 
-export default Sidebar;
+export default GuestSidebar;

@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { User } from './generated/graphql';
 import styled from 'styled-components';
 
-import Sidebar from './components/Organisms/Sidebar';
+import GuestSidebar from './components/Organisms/Sidebar/GuestSidebar';
+import LoginSidebar from './components/Organisms/Sidebar/LoginSidebar';
 
 const GET_USERS = gql`
   query {
@@ -30,7 +31,8 @@ const App: FC = () => {
   return (
     <div className="App">
       <Router>
-        <Sidebar />
+        {/* <GuestSidebar /> */}
+        <LoginSidebar />
       </Router>
       <Title>
         Users
