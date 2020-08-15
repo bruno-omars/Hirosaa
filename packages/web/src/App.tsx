@@ -2,6 +2,9 @@ import React, { FC } from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { User } from './generated/graphql';
 import styled from 'styled-components';
+import Default from './components/Atoms/Buttons/Default';
+import RoundedButton from './components/Atoms/Buttons/RoundedButton';
+import CircleButton from './components/Atoms/Buttons/CircleButton';
 
 const GET_USERS = gql`
   query {
@@ -26,6 +29,9 @@ const App: FC = () => {
 
   return (
     <div className="App">
+      <Default clickHandler={() => {}}>ログイン</Default>
+      <RoundedButton clickHandler={() => {}}>ログイン</RoundedButton>
+      <CircleButton clickHandler={() => {}}>a</CircleButton>
       <Title>
         Users
       </Title>
