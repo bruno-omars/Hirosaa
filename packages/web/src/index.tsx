@@ -2,16 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-
-const adminSecret = process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET;
+import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://allowed-herring-99.hasura.app/v1/graphql',
+  link: new HttpLink({
+    uri: 'https://allowed-herring-99.hasura.app/v1/graphql',
+    headers: {
+      // Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+      'x-hasura-admin-secret': process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
+    }
+  }),
   cache: new InMemoryCache(),
-  headers: {
-    'x-hasura-admin-secret': adminSecret || '',
-  },
 });
 
 ReactDOM.render(
