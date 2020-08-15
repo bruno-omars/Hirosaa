@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styled, { css } from 'styled-components';
 
+import { COLOR } from '../../../constants/color';
+
 export const BUTTON_SIZE = {
   LARGE: { H: '60px', W: '400px' },
   MEDIUM: { H: '60px', W: '380px' },
@@ -15,12 +17,6 @@ export const SHADOW_DEPTH = {
   BASE: css`box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18)`,
   SMALL: css`box-shadow: 0 2px 0.3px rgba(0, 0, 0, 0.10)`,
   NONE: css`box-shadow: none`,
-};
-
-export const COLOR = {
-  DARK_GREEN: '#45969B',
-  LIGHT_GREEN: '#50B6BB',
-  ORANGE: '#F96D15',
 };
 
 export type ButtonSize = keyof typeof BUTTON_SIZE;

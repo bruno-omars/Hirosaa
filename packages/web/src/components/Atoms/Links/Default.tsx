@@ -2,12 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const COLOR = {
-  DARK_GREEN: '#45969B',
-  LIGHT_GREEN: '#50B6BB',
-  ORANGE: '#F96D15',
-  WHITE: '#FFFFFF',
-};
+import { COLOR } from '../../../constants/color';
 
 export const BUTTON_SIZE = {
   LARGE: { H: '60px', W: '400px' },
