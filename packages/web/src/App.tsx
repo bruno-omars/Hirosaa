@@ -24,10 +24,10 @@ const Title = styled.h1`
 `;
 
 const App: FC = () => {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const { loading, error, data } = useQuery(GET_USERS);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading || isLoading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
 
   console.log(isAuthenticated);
