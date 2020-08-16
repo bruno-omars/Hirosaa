@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import { gql, useQuery } from '@apollo/client';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { User } from './generated/graphql';
 import styled from 'styled-components';
+
+import GuestSidebar from './components/Organisms/Sidebar/GuestSidebar';
+import LoginSidebar from './components/Organisms/Sidebar/LoginSidebar';
 
 const GET_USERS = gql`
   query {
@@ -26,6 +30,10 @@ const App: FC = () => {
 
   return (
     <div className="App">
+      <Router>
+        {/* <GuestSidebar /> */}
+        <LoginSidebar />
+      </Router>
       <Title>
         Users
       </Title>
