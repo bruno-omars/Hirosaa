@@ -21,10 +21,10 @@ const StyledSidebar = styled.div`
 `;
 
 const LoginSidebar: FC = () => {
-  const { logout } = useAuth0();
+  const { logout, user } = useAuth0();
   return (
     <StyledSidebar>
-      <Me />
+      <Me user={user}/>
       <IconLink to="#" text="サークル一覧" bgColor={'WHITE'}><Circleci /></IconLink>
       <IconLink to="#" text="トークルーム"><Chat /></IconLink>
       <IconLink to="#" text="プロフィール"><Person /></IconLink>

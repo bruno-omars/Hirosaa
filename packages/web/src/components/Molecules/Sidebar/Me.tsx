@@ -24,12 +24,25 @@ const StyledText = styled.p`
   font-size: 1.3em;
 `;
 
-const Me: FC = () => {
+const StyledImage = styled.img`
+  border-radius: 50px;
+  height: 100%;
+  width: 100%;
+`;
+
+type Props = {
+  user: any;
+};
+
+const Me: FC<Props> = ({ user }) => {
   return (
     <StyledMe>
-      <CircleButton clickHandler={() => {}} shadowDepth={'NONE'}>img</CircleButton>
+      <CircleButton clickHandler={() => {}} shadowDepth={'NONE'}>
+        <StyledImage src={user.picture} />
+      </CircleButton>
       <div>
-        <StyledText>ロピタル</StyledText>
+        <StyledText>{user.nickname}</StyledText>
+        {/* {user['https://hasura.io/jwt/claims']['x-hasura-user-id']} */}
         @ropital
       </div>
       <DownArrow />
