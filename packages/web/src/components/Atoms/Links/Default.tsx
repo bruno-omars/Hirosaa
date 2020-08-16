@@ -17,6 +17,7 @@ type Color = keyof typeof COLOR;
 export type Props = {
   to: string;
   bgColor?: Color;
+  clickHandler?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   size?: ButtonSize;
 };
 
@@ -42,6 +43,7 @@ const DefaultLink: FC<Props> = (props) => {
     <StyledLink
       bgColor={props.bgColor}
       size={props.size}
+      onClick={props.clickHandler}
       to={props.to}
     >
       {props.children}

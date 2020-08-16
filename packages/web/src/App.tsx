@@ -3,6 +3,7 @@ import { gql, useQuery } from '@apollo/client';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { User } from './generated/graphql';
 import styled from 'styled-components';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import GuestSidebar from './components/Organisms/Sidebar/GuestSidebar';
 import LoginSidebar from './components/Organisms/Sidebar/LoginSidebar';
@@ -23,16 +24,19 @@ const Title = styled.h1`
 `;
 
 const App: FC = () => {
+  const { isAuthenticated, user } = useAuth0();
   const { loading, error, data } = useQuery(GET_USERS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
 
+  console.log(isAuthenticated);
+  console.log(user);
+
   return (
     <div className="App">
       <Router>
-        {/* <GuestSidebar /> */}
-        <LoginSidebar />
+        {isAuthenticated ? <LoginSidebar /> : <GuestSidebar />}
       </Router>
       <Title>
         Users

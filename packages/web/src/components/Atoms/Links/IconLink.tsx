@@ -23,6 +23,7 @@ const IconLink: FC<IconLinkProps> = (props) => {
       bgColor={props.bgColor}
       size={props.size}
       to={props.to}
+      onClick={props.clickHandler}
     >
       <Center>
         {props.children}
