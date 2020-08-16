@@ -1,0 +1,6 @@
+export const COLOR = {
+  DARK_GREEN: '#45969B',
+  LIGHT_GREEN: '#50B6BB',
+  ORANGE: '#F96D15',
+  WHITE: '#FFFFFF',
+};
