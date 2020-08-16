@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useAuth0 } from "@auth0/auth0-react";
 
 import IconLink from '../../Atoms/Links/IconLink';
@@ -8,6 +8,7 @@ import { ReactComponent as Person } from '../../../assets/icons/person.svg';
 import styled from 'styled-components';
 import { COLOR } from '../../../constants/color';
 import Me from '../../Molecules/Sidebar/Me';
+import { useAuthContext } from '../../../provider/AuthContextProvider';
 
 const StyledSidebar = styled.div`
   background-color: ${COLOR['DARK_GREEN']};
@@ -31,6 +32,14 @@ const StyledMe = styled.div`
 
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
+  const { useCase, setMe, me } = useAuthContext();
+
+  useEffect(() => {
+    setMe(useCase.setMe(user))
+  }, []);
+
+  console.log(me);
+  
   return (
     <StyledSidebar>
       <StyledMe><Me user={user}/></StyledMe>
