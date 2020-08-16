@@ -35,6 +35,8 @@ export const StyledLink = styled(Link)<Omit<Props, 'to'>>`
 
   :hover {
     background-color: ${COLOR['LIGHT_GREEN']};
+    color: ${COLOR['WHITE']};
+    fill: ${COLOR['WHITE']};
   }
 `;
 
