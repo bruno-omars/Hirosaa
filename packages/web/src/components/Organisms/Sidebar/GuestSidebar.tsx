@@ -24,7 +24,16 @@ const GuestSidebar: FC = () => {
   return (
     <StyledSidebar>
       <IconLink to="#" text="ログイン" clickHandler={loginWithRedirect}><Login /></IconLink>
-      <IconLink to="#" text="新規登録"><Pen /></IconLink>
+      <IconLink 
+        to="#" 
+        text="新規登録" 
+        clickHandler={() =>
+          loginWithRedirect({
+            screen_hint: "signup",
+          })}
+        >
+        <Pen />
+      </IconLink>
     </StyledSidebar>
   );
 };
