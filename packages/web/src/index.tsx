@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
-import { Auth0Provider } from "@auth0/auth0-react";
+import Auth0ProviderWithHistory from './provider/Auth0ProviderWithHistory';
 
 import './index.css';
 
@@ -21,13 +21,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <Auth0Provider
-        domain="dev-ln5xv29l.us.auth0.com"
-        clientId="0k3UZsiJifdOlHJ0u00g672Ch1jzstxR"
-        redirectUri={'http://localhost:3000/callback'}
-      >
+      <Auth0ProviderWithHistory>
         <App />
-      </Auth0Provider>
+      </Auth0ProviderWithHistory>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
