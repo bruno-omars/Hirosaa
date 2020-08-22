@@ -3,6 +3,7 @@ import styled from "styled-components";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
+import FileInput from "../../Atoms/Inputs/FileInput";
 
 const Card = styled.div`
   margin: 60px 0;
@@ -32,9 +33,9 @@ const CircleCreateCard: FC = () => {
     <Card>
       <StyledForm>
         <Top>
-          <input type="file" />
+          <FileInput />
           <DefaultInput handleChange={() => {}} placeholder="サークル名" />
-          <DefaultInput handleChange={() => {}} placeholder="サークル名" />
+          <DefaultInput handleChange={() => {}} placeholder="募集の題名" />
           <DefaultTag name="アプリ" />
         </Top>
         <hr />
