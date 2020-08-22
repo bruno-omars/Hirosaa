@@ -6,16 +6,17 @@ import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
 
 const StyledCard = styled.div`
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  border-radius: 7px;
   cursor: pointer;
   display: grid;
   grid-template-rows: 30% 70%;
   grid-template-columns: 50px 0.9fr 70px;
-  height: 200px;
+  height: 180px;
   justify-content: center;
   margin-bottom: 50px;
   place-items: center;
-  width: 400px;
+  width: 500px;
 `;
 
 const CardTitle = styled.h3`
