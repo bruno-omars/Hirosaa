@@ -1,6 +1,16 @@
 query Users {
-  User{
+  User {
     id
     name
+  }
+}
+
+query Circles {
+  Circle {
+    id
+    name
+    avatar
+    what_we_will_do
+    to_be_required
   }
 }

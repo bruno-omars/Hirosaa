@@ -8,7 +8,6 @@ import {
 import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { useUsersQuery } from "./generated/graphql";
 import CircleListPage from "./components/Pages/CircleListPage";
 import AboutPage from "./components/Pages/AboutPage";
 import TwoColumn from "./components/Templates/TwoColumn";
@@ -23,10 +22,8 @@ const Title = styled.h1`
 
 const App: FC = () => {
   const { isAuthenticated, isLoading } = useAuth0();
-  const { loading, error, data } = useUsersQuery();
 
-  if (loading || isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error! ${error.message}</p>;
+  if (isLoading) return <p>Loading...</p>;
 
   console.log(isAuthenticated);
 
@@ -51,9 +48,6 @@ const App: FC = () => {
         </Switch>
       </Router>
       <Title>Users</Title>
-      {data?.User.map((user) => {
-        return <p key={user.id}>{user.name}</p>;
-      })}
     </div>
   );
 };
