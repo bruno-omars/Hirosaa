@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import { Props, StyledLink } from './Default';
+import { Props, StyledLink } from "./Default";
 
 type IconLinkProps = Props & {
   text: string;
@@ -19,14 +19,13 @@ const Center = styled.div`
 
 const IconLink: FC<IconLinkProps> = (props) => {
   return (
-    <StyledIconLink 
-      bgColor={props.bgColor}
+    <StyledIconLink
+      bgcolor={props.bgcolor}
       size={props.size}
       to={props.to}
+      onClick={props.clickHandler}
     >
-      <Center>
-        {props.children}
-      </Center>
+      <Center>{props.children}</Center>
       {props.text}
     </StyledIconLink>
   );

@@ -25,10 +25,10 @@ const StyledCircleButton = styled(StyledButton)<Omit<CircleButtonProps, 'clickHa
 const CircleButton: FC<CircleButtonProps> = (props) => {
   return (
     <StyledCircleButton
-      onClick={props.clickHandler}
-      buttonSize={props.buttonSize}
-      shadowDepth={props.shadowDepth}
       bgColor={props.bgColor}
+      buttonSize={props.buttonSize}
+      onClick={props.clickHandler}
+      shadowDepth={props.shadowDepth}
     >
       {props.children}
     </StyledCircleButton>

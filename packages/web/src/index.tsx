@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
+import Auth0ProviderWithHistory from './provider/Auth0ProviderWithHistory';
+import AuthContextProvider from './provider/AuthContextProvider';
 
 import './index.css';
 
@@ -20,7 +22,11 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <Auth0ProviderWithHistory>
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
+      </Auth0ProviderWithHistory>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')

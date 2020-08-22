@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import IconLink from '../../Atoms/Links/IconLink';
 import { ReactComponent as Login } from '../../../assets/icons/login.svg';
@@ -18,10 +19,21 @@ const StyledSidebar = styled.div`
 `;
 
 const GuestSidebar: FC = () => {
+  const { loginWithRedirect } = useAuth0();
+
   return (
     <StyledSidebar>
-      <IconLink to="#" text="ログイン"><Login /></IconLink>
-      <IconLink to="#" text="新規登録"><Pen /></IconLink>
+      <IconLink to="#" text="ログイン" clickHandler={loginWithRedirect}><Login /></IconLink>
+      <IconLink 
+        to="#" 
+        text="新規登録" 
+        clickHandler={() =>
+          loginWithRedirect({
+            screen_hint: "signup",
+          })}
+        >
+        <Pen />
+      </IconLink>
     </StyledSidebar>
   );
 };
