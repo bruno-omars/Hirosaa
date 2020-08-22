@@ -21,6 +21,7 @@ const StyledInput = styled.input<Omit<Props, "handleChange">>`
   border-radius: 4px;
   color: #00000f;
   font: 15px/24px sans-serif;
+  height: 40px;
   letter-spacing: 1px;
   padding: 0.3em;
   transition: 0.3s;
