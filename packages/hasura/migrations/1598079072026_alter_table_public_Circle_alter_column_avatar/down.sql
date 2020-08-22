@@ -1,0 +1,1 @@
+ALTER TABLE ONLY "public"."Circle" ALTER COLUMN "avatar" DROP DEFAULT;
