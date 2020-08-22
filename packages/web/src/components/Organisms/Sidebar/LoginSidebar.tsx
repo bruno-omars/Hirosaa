@@ -13,7 +13,6 @@ import { useAuthContext } from "../../../provider/AuthContextProvider";
 const StyledSidebar = styled.div`
   background-color: ${COLOR["DARK_GREEN"]};
   border-radius: 0 50px 50px 0;
-  height: 100vh;
   padding-top: 50px;
   width: 100%;
 `;

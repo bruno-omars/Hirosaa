@@ -12,7 +12,6 @@ const StyledSidebar = styled.div`
   border-radius: 0 50px 50px 0;
   display: grid;
   grid-template-rows: 80px 80px;
-  height: 100vh;
   justify-content: right;
   padding-top: 50px;
   width: 100%;
