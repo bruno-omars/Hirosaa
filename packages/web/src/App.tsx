@@ -12,7 +12,6 @@ import { useUsersQuery } from "./generated/graphql";
 import CircleListPage from "./components/Pages/CircleListPage";
 import AboutPage from "./components/Pages/AboutPage";
 import TwoColumn from "./components/Templates/TwoColumn";
-import LoginSidebar from "./components/Organisms/Sidebar/LoginSidebar";
 import GuestSidebar from "./components/Organisms/Sidebar/GuestSidebar";
 import PrivateRoute from "./PrivateRoute";
 

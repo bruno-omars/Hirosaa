@@ -15,6 +15,7 @@ const StyledSidebar = styled.div`
   height: 100vh;
   justify-content: right;
   padding-top: 50px;
+  width: 100%;
 `;
 
 const GuestSidebar: FC = () => {
