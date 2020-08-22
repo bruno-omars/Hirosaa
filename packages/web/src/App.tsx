@@ -44,7 +44,9 @@ const App: FC = () => {
           <PrivateRoute path="/circle" component={CircleListPage} exact />
 
           <Route path="*">
-            <Redirect to={{ pathname: "/login" }} />
+            <Redirect
+              to={{ pathname: isAuthenticated ? "/circle" : "/login" }}
+            />
           </Route>
         </Switch>
       </Router>
