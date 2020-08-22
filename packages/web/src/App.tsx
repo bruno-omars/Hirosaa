@@ -14,12 +14,6 @@ import TwoColumn from "./components/Templates/TwoColumn";
 import GuestSidebar from "./components/Organisms/Sidebar/GuestSidebar";
 import PrivateRoute from "./PrivateRoute";
 
-const Title = styled.h1`
-  font-size: 1.5em;
-  text-align: center;
-  color: palevioletred;
-`;
-
 const App: FC = () => {
   const { isAuthenticated, isLoading } = useAuth0();
 
@@ -47,7 +41,6 @@ const App: FC = () => {
           </Route>
         </Switch>
       </Router>
-      <Title>Users</Title>
     </div>
   );
 };
