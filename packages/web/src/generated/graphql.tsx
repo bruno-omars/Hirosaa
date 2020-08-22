@@ -4645,6 +4645,21 @@ export type Timestamptz_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
+export type InsertCircleMutationVariables = Exact<{
+  name?: Maybe<Scalars['String']>;
+  mainRole?: Maybe<Scalars['String']>;
+  whatWeWillDo?: Maybe<Scalars['String']>;
+}>;
+
+
+export type InsertCircleMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_Circle?: Maybe<(
+    { __typename?: 'Circle_mutation_response' }
+    & Pick<Circle_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4668,6 +4683,40 @@ export type CirclesQuery = (
 );
 
 
+export const InsertCircleDocument = gql`
+    mutation InsertCircle($name: String, $mainRole: String, $whatWeWillDo: String) {
+  insert_Circle(objects: {name: $name, to_be_required: $mainRole, what_we_will_do: $whatWeWillDo}) {
+    affected_rows
+  }
+}
+    `;
+export type InsertCircleMutationFn = Apollo.MutationFunction<InsertCircleMutation, InsertCircleMutationVariables>;
+
+/**
+ * __useInsertCircleMutation__
+ *
+ * To run a mutation, you first call `useInsertCircleMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertCircleMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertCircleMutation, { data, loading, error }] = useInsertCircleMutation({
+ *   variables: {
+ *      name: // value for 'name'
+ *      mainRole: // value for 'mainRole'
+ *      whatWeWillDo: // value for 'whatWeWillDo'
+ *   },
+ * });
+ */
+export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions<InsertCircleMutation, InsertCircleMutationVariables>) {
+        return Apollo.useMutation<InsertCircleMutation, InsertCircleMutationVariables>(InsertCircleDocument, baseOptions);
+      }
+export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
+export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
+export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
 export const UsersDocument = gql`
     query Users {
   User {

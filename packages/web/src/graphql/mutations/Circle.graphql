@@ -1,0 +1,11 @@
+mutation InsertCircle($name: String, $mainRole: String, $whatWeWillDo: String) {
+  insert_Circle(
+    objects: {
+      name: $name
+      to_be_required: $mainRole
+      what_we_will_do: $whatWeWillDo
+    }
+  ) {
+    affected_rows
+  }
+}

@@ -5,7 +5,6 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import styled from "styled-components";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import CircleListPage from "./components/Pages/CircleListPage";
@@ -13,6 +12,7 @@ import AboutPage from "./components/Pages/AboutPage";
 import TwoColumn from "./components/Templates/TwoColumn";
 import GuestSidebar from "./components/Organisms/Sidebar/GuestSidebar";
 import PrivateRoute from "./PrivateRoute";
+import CircleCreatePage from "./components/Pages/CircleCreatePage";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -33,6 +33,7 @@ const App: FC = () => {
           </Route>
 
           <PrivateRoute path="/circle" component={CircleListPage} exact />
+          <PrivateRoute path="/circle-new" component={CircleCreatePage} exact />
 
           <Route path="*">
             <Redirect
