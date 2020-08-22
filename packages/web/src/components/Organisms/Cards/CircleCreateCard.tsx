@@ -4,6 +4,7 @@ import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import FileInput from "../../Atoms/Inputs/FileInput";
+import { Input } from "../../Pages/CircleCreatePage";
 
 const Card = styled.div`
   padding: 40px;
@@ -33,14 +34,34 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
-const CircleCreateCard: FC = () => {
+type Props = {
+  inputs: Input;
+  setInputs: React.Dispatch<React.SetStateAction<Input>>;
+};
+
+const CircleCreateCard: FC<Props> = (props) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
+  };
+
   return (
     <Card>
       <StyledForm>
         <Top>
           <FileInput />
-          <DefaultInput handleChange={() => {}} placeholder="サークル名" />
-          <DefaultInput handleChange={() => {}} placeholder="募集の題名" />
+          <DefaultInput
+            handleChange={handleChange}
+            placeholder="サークル名"
+            name="name"
+          />
+          <DefaultInput
+            handleChange={() => {}}
+            placeholder="募集の題名"
+            name="title"
+          />
           <DefaultTag name="アプリ" />
         </Top>
         <hr />
@@ -48,15 +69,17 @@ const CircleCreateCard: FC = () => {
           <Block>
             <StyledSubTitle>何をするのか</StyledSubTitle>
             <DefaultTextArea
-              handleChange={() => {}}
+              handleChange={handleChange}
               placeholder="あなたのサークルでやることを記入してください"
+              name="whatWeWillDo"
             />
           </Block>
           <Block>
             <StyledSubTitle>主な役割</StyledSubTitle>
             <DefaultTextArea
-              handleChange={() => {}}
+              handleChange={handleChange}
               placeholder="歓迎条件をご記入ください"
+              name="mainRole"
             />
           </Block>
           <Block>
