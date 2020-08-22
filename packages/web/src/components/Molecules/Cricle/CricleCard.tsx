@@ -10,7 +10,7 @@ const StyledCard = styled.div`
   border-radius: 7px;
   cursor: pointer;
   display: grid;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 40% 60%;
   grid-template-columns: 50px 0.9fr 70px;
   height: 180px;
   justify-content: center;
