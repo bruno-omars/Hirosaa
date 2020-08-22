@@ -15,7 +15,7 @@ const StyledSidebar = styled.div`
   border-radius: 0 50px 50px 0;
   height: 100vh;
   padding-top: 50px;
-  width: 20%;
+  width: 100%;
 `;
 
 const StyledList = styled.div`
