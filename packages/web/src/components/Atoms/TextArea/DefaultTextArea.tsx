@@ -13,6 +13,7 @@ type Props = {
   handleChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
   areaSize?: keyof typeof SIZE;
+  name?: string;
 };
 
 const StyledTextArea = styled.textarea<Omit<Props, "handleChange">>`
@@ -40,6 +41,7 @@ const DefaultTextArea: FC<Props> = (props) => {
       areaSize={props.areaSize}
       onChange={props.handleChange}
       placeholder={props.placeholder}
+      name={props.name}
     />
   );
 };

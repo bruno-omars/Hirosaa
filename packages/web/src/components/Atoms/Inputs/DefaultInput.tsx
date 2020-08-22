@@ -13,6 +13,7 @@ type Props = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   inputSize?: keyof typeof SIZE;
+  name?: string;
 };
 
 const StyledInput = styled.input<Omit<Props, "handleChange">>`
@@ -39,6 +40,7 @@ const DefaultInput: FC<Props> = (props) => {
       onChange={props.handleChange}
       placeholder={props.placeholder}
       inputSize={props.inputSize}
+      name={props.name}
     />
   );
 };
