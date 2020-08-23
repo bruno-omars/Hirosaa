@@ -11,6 +11,6 @@ query Circles {
     name
     avatar
     what_we_will_do
-    to_be_required
+    main_role
   }
 }

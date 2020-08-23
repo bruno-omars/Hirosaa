@@ -42,7 +42,7 @@
       columns:
       - avatar
       - name
-      - to_be_required
+      - main_role
       - what_we_will_do
       backend_only: false
   select_permissions:
@@ -54,7 +54,7 @@
       - avatar
       - name
       - owner_id
-      - to_be_required
+      - main_role
       - what_we_will_do
       filter: {}
   update_permissions:
@@ -63,7 +63,7 @@
       columns:
       - avatar
       - name
-      - to_be_required
+      - main_role
       - what_we_will_do
       filter:
         owner_id:

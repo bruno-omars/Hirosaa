@@ -2,7 +2,7 @@ mutation InsertCircle($name: String, $mainRole: String, $whatWeWillDo: String) {
   insert_Circle(
     objects: {
       name: $name
-      to_be_required: $mainRole
+      main_role: $mainRole
       what_we_will_do: $whatWeWillDo
     }
   ) {
