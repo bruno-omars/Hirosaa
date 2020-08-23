@@ -37,7 +37,7 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
-const StyledCategories = styled.div`
+const StyledGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(30px, max-content);
@@ -75,9 +75,9 @@ const CircleCreateCard: FC<Props> = (props) => {
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
-            <StyledCategories>
+            <StyledGrid>
               <SubCategoryTags subCategories={data?.SubCategory} />
-            </StyledCategories>
+            </StyledGrid>
           </div>
         </Top>
         <hr />
@@ -100,9 +100,9 @@ const CircleCreateCard: FC<Props> = (props) => {
           </Block>
           <Block>
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-            <StyledCategories>
+            <StyledGrid>
               <SkillCards skills={data?.Skill} />
-            </StyledCategories>
+            </StyledGrid>
           </Block>
         </Buttom>
       </StyledForm>
