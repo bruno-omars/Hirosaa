@@ -5,11 +5,13 @@ import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import { Input } from "../../Pages/CircleCreatePage";
+import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 
 const Card = styled.div`
   padding: 40px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
   width: 70%;
+  margin-bottom: 40px;
 `;
 
 const Block = styled.div`
@@ -34,18 +36,34 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
+const StyledCategories = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(30px, max-content);
+`;
+
 type Props = {
   inputs: Input;
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
 };
 
 const CircleCreateCard: FC<Props> = (props) => {
+  const { data, loading, error } = useSkillAndSubCategoryQuery();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     e.preventDefault();
     props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
   };
+
+  const categories = data?.SubCategory.map((subCategory) => {
+    return <DefaultTag name={subCategory.name} key={subCategory.id} />;
+  });
+
+  const skills = data?.Skill.map((skill) => {
+    return <img height="50px" src={skill.avatar} key={skill.id} />;
+  });
 
   return (
     <Card>
@@ -62,7 +80,10 @@ const CircleCreateCard: FC<Props> = (props) => {
             placeholder="募集の題名"
             name="recruitTitle"
           />
-          <DefaultTag name="アプリ" />
+          <div>
+            <StyledSubTitle>カテゴリを選択</StyledSubTitle>
+            <StyledCategories>{categories}</StyledCategories>
+          </div>
         </Top>
         <hr />
         <Buttom>
@@ -84,10 +105,7 @@ const CircleCreateCard: FC<Props> = (props) => {
           </Block>
           <Block>
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-            <DefaultTextArea
-              handleChange={() => {}}
-              placeholder="使用する技術やアプリをご記入ください"
-            />
+            {skills}
           </Block>
         </Buttom>
       </StyledForm>

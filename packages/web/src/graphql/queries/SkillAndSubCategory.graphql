@@ -1,0 +1,11 @@
+query SkillAndSubCategory {
+  Skill {
+    id
+    avatar
+    name
+  }
+  SubCategory {
+    id
+    name
+  }
+}

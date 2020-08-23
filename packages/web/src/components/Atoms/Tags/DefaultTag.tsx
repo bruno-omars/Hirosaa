@@ -13,7 +13,7 @@ const Tag = styled.span`
   font-size: 10px;
   height: 10px;
   line-height: 10px;
-  max-width: 50px;
+  width: 70px;
   text-align: center;
   padding: 4px 20px;
 `;
