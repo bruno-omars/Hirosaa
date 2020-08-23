@@ -58,9 +58,9 @@ const CircleCreateCard: FC<Props> = (props) => {
             name="name"
           />
           <DefaultInput
-            handleChange={() => {}}
+            handleChange={handleChange}
             placeholder="募集の題名"
-            name="title"
+            name="recruitTitle"
           />
           <DefaultTag name="アプリ" />
         </Top>

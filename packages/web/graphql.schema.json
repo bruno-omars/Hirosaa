@@ -659,6 +659,18 @@
             "deprecationReason": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "args": [],
@@ -4978,6 +4990,16 @@
             "defaultValue": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "type": {
@@ -5187,6 +5209,16 @@
             "defaultValue": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "type": {
@@ -5289,6 +5321,18 @@
             "deprecationReason": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "args": [],
@@ -5376,6 +5420,16 @@
           },
           {
             "name": "owner_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "recruit_title",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -5487,6 +5541,18 @@
             "deprecationReason": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "args": [],
@@ -5574,6 +5640,16 @@
           },
           {
             "name": "owner_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "recruit_title",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -5877,6 +5953,16 @@
             "defaultValue": null
           },
           {
+            "name": "recruit_title",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "sub_category_id",
             "description": null,
             "type": {
@@ -5971,6 +6057,12 @@
             "deprecationReason": null
           },
           {
+            "name": "recruit_title",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sub_category_id",
             "description": "column name",
             "isDeprecated": false,
@@ -6043,6 +6135,16 @@
           },
           {
             "name": "owner_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "recruit_title",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -6468,6 +6570,12 @@
           },
           {
             "name": "owner_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "recruit_title",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null

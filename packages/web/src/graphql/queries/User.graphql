@@ -9,6 +9,7 @@ query Circles {
   Circle {
     id
     name
+    recruit_title
     avatar
     what_we_will_do
     main_role

@@ -39,6 +39,7 @@ export type Circle = {
   name: Scalars['String'];
   organization_id?: Maybe<Scalars['Int']>;
   owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
   sub_category_id?: Maybe<Scalars['Int']>;
   what_we_will_do?: Maybe<Scalars['String']>;
 };
@@ -789,6 +790,7 @@ export type Circle_Bool_Exp = {
   name?: Maybe<String_Comparison_Exp>;
   organization_id?: Maybe<Int_Comparison_Exp>;
   owner_id?: Maybe<String_Comparison_Exp>;
+  recruit_title?: Maybe<String_Comparison_Exp>;
   sub_category_id?: Maybe<Int_Comparison_Exp>;
   what_we_will_do?: Maybe<String_Comparison_Exp>;
 };
@@ -820,6 +822,7 @@ export type Circle_Insert_Input = {
   name?: Maybe<Scalars['String']>;
   organization_id?: Maybe<Scalars['Int']>;
   owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
   sub_category_id?: Maybe<Scalars['Int']>;
   what_we_will_do?: Maybe<Scalars['String']>;
 };
@@ -833,6 +836,7 @@ export type Circle_Max_Fields = {
   name?: Maybe<Scalars['String']>;
   organization_id?: Maybe<Scalars['Int']>;
   owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
   sub_category_id?: Maybe<Scalars['Int']>;
   what_we_will_do?: Maybe<Scalars['String']>;
 };
@@ -845,6 +849,7 @@ export type Circle_Max_Order_By = {
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
   owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
   sub_category_id?: Maybe<Order_By>;
   what_we_will_do?: Maybe<Order_By>;
 };
@@ -858,6 +863,7 @@ export type Circle_Min_Fields = {
   name?: Maybe<Scalars['String']>;
   organization_id?: Maybe<Scalars['Int']>;
   owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
   sub_category_id?: Maybe<Scalars['Int']>;
   what_we_will_do?: Maybe<Scalars['String']>;
 };
@@ -870,6 +876,7 @@ export type Circle_Min_Order_By = {
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
   owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
   sub_category_id?: Maybe<Order_By>;
   what_we_will_do?: Maybe<Order_By>;
 };
@@ -910,6 +917,7 @@ export type Circle_Order_By = {
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
   owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
   sub_category_id?: Maybe<Order_By>;
   what_we_will_do?: Maybe<Order_By>;
 };
@@ -934,6 +942,8 @@ export enum Circle_Select_Column {
   /** column name */
   OwnerId = 'owner_id',
   /** column name */
+  RecruitTitle = 'recruit_title',
+  /** column name */
   SubCategoryId = 'sub_category_id',
   /** column name */
   WhatWeWillDo = 'what_we_will_do'
@@ -947,6 +957,7 @@ export type Circle_Set_Input = {
   name?: Maybe<Scalars['String']>;
   organization_id?: Maybe<Scalars['Int']>;
   owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
   sub_category_id?: Maybe<Scalars['Int']>;
   what_we_will_do?: Maybe<Scalars['String']>;
 };
@@ -1025,6 +1036,8 @@ export enum Circle_Update_Column {
   OrganizationId = 'organization_id',
   /** column name */
   OwnerId = 'owner_id',
+  /** column name */
+  RecruitTitle = 'recruit_title',
   /** column name */
   SubCategoryId = 'sub_category_id',
   /** column name */
@@ -4625,6 +4638,7 @@ export type Timestamptz_Comparison_Exp = {
 
 export type InsertCircleMutationVariables = Exact<{
   name?: Maybe<Scalars['String']>;
+  recruitTitle?: Maybe<Scalars['String']>;
   mainRole?: Maybe<Scalars['String']>;
   whatWeWillDo?: Maybe<Scalars['String']>;
 }>;
@@ -4656,14 +4670,14 @@ export type CirclesQuery = (
   { __typename?: 'query_root' }
   & { Circle: Array<(
     { __typename?: 'Circle' }
-    & Pick<Circle, 'id' | 'name' | 'avatar' | 'what_we_will_do' | 'main_role'>
+    & Pick<Circle, 'id' | 'name' | 'recruit_title' | 'avatar' | 'what_we_will_do' | 'main_role'>
   )> }
 );
 
 
 export const InsertCircleDocument = gql`
-    mutation InsertCircle($name: String, $mainRole: String, $whatWeWillDo: String) {
-  insert_Circle(objects: {name: $name, main_role: $mainRole, what_we_will_do: $whatWeWillDo}) {
+    mutation InsertCircle($name: String, $recruitTitle: String, $mainRole: String, $whatWeWillDo: String) {
+  insert_Circle(objects: {name: $name, recruit_title: $recruitTitle, main_role: $mainRole, what_we_will_do: $whatWeWillDo}) {
     affected_rows
   }
 }
@@ -4684,6 +4698,7 @@ export type InsertCircleMutationFn = Apollo.MutationFunction<InsertCircleMutatio
  * const [insertCircleMutation, { data, loading, error }] = useInsertCircleMutation({
  *   variables: {
  *      name: // value for 'name'
+ *      recruitTitle: // value for 'recruitTitle'
  *      mainRole: // value for 'mainRole'
  *      whatWeWillDo: // value for 'whatWeWillDo'
  *   },
@@ -4733,6 +4748,7 @@ export const CirclesDocument = gql`
   Circle {
     id
     name
+    recruit_title
     avatar
     what_we_will_do
     main_role
