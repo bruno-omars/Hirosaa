@@ -17,7 +17,7 @@ const RightButton = styled.div`
 
 export type Input = {
   name: string;
-  // title: string;
+  recruitTitle: string;
   whatWeWillDo: string;
   mainRole: string;
 };
@@ -25,7 +25,7 @@ export type Input = {
 const CircleCreatePage: FC = () => {
   const [inputs, setInputs] = useState<Input>({
     name: "",
-    // title: "",
+    recruitTitle: "",
     whatWeWillDo: "",
     mainRole: "",
   });

@@ -53,7 +53,7 @@ type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
   circle: Pick<
     Circle,
-    "id" | "name" | "avatar" | "what_we_will_do" | "to_be_required"
+    "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
   >;
 };
 

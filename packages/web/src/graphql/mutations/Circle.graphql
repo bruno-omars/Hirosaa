@@ -1,8 +1,14 @@
-mutation InsertCircle($name: String, $mainRole: String, $whatWeWillDo: String) {
+mutation InsertCircle(
+  $name: String
+  $recruitTitle: String
+  $mainRole: String
+  $whatWeWillDo: String
+) {
   insert_Circle(
     objects: {
       name: $name
-      to_be_required: $mainRole
+      recruit_title: $recruitTitle
+      main_role: $mainRole
       what_we_will_do: $whatWeWillDo
     }
   ) {

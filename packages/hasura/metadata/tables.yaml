@@ -1,20 +1,13 @@
 - table:
     schema: public
-    name: CicleSkill
-  object_relationships:
-  - name: Circle
-    using:
-      foreign_key_constraint_on: circle_id
-  - name: Skill
-    using:
-      foreign_key_constraint_on: skill_id
-- table:
-    schema: public
     name: Circle
   object_relationships:
   - name: Organization
     using:
       foreign_key_constraint_on: organization_id
+  - name: SubCategory
+    using:
+      foreign_key_constraint_on: sub_category_id
   - name: User
     using:
       foreign_key_constraint_on: owner_id
@@ -25,7 +18,7 @@
         column: circle_id
         table:
           schema: public
-          name: CicleSkill
+          name: CircleSkill
   - name: CircleUsers
     using:
       foreign_key_constraint_on:
@@ -40,13 +33,6 @@
         table:
           schema: public
           name: Message
-  - name: SubCategories
-    using:
-      foreign_key_constraint_on:
-        column: circle_id
-        table:
-          schema: public
-          name: SubCategory
   insert_permissions:
   - role: user
     permission:
@@ -56,7 +42,7 @@
       columns:
       - avatar
       - name
-      - to_be_required
+      - main_role
       - what_we_will_do
       backend_only: false
   select_permissions:
@@ -68,7 +54,7 @@
       - avatar
       - name
       - owner_id
-      - to_be_required
+      - main_role
       - what_we_will_do
       filter: {}
   update_permissions:
@@ -77,7 +63,7 @@
       columns:
       - avatar
       - name
-      - to_be_required
+      - main_role
       - what_we_will_do
       filter:
         owner_id:
@@ -89,6 +75,16 @@
       filter:
         owner_id:
           _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: CircleSkill
+  object_relationships:
+  - name: Circle
+    using:
+      foreign_key_constraint_on: circle_id
+  - name: Skill
+    using:
+      foreign_key_constraint_on: skill_id
 - table:
     schema: public
     name: CircleUser
@@ -172,7 +168,7 @@
         column: skill_id
         table:
           schema: public
-          name: CicleSkill
+          name: CircleSkill
   - name: UserSkills
     using:
       foreign_key_constraint_on:
@@ -192,20 +188,24 @@
     schema: public
     name: SubCategory
   object_relationships:
-  - name: Circle
-    using:
-      foreign_key_constraint_on: circle_id
   - name: ParentCategory
     using:
       foreign_key_constraint_on: parent_category_id
+  - name: SubCategory
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: Circle
+        column_mapping:
+          id: sub_category_id
   select_permissions:
   - role: user
     permission:
       columns:
       - id
-      - circle_id
-      - parent_category_id
       - name
+      - parent_category_id
       filter: {}
 - table:
     schema: public
