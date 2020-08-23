@@ -49,7 +49,7 @@ type Props = {
 };
 
 const CircleCreateCard: FC<Props> = (props) => {
-  const { data, loading, error } = useSkillAndSubCategoryQuery();
+  const { data, error } = useSkillAndSubCategoryQuery();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -75,9 +75,13 @@ const CircleCreateCard: FC<Props> = (props) => {
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
-            <StyledGrid>
-              <SubCategoryTags subCategories={data?.SubCategory} />
-            </StyledGrid>
+            {error ? (
+              "カテゴリーの読み込みに失敗しました。リロードしてください。"
+            ) : (
+              <StyledGrid>
+                <SubCategoryTags subCategories={data?.SubCategory} />
+              </StyledGrid>
+            )}
           </div>
         </Top>
         <hr />
@@ -100,9 +104,13 @@ const CircleCreateCard: FC<Props> = (props) => {
           </Block>
           <Block>
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-            <StyledGrid>
-              <SkillCards skills={data?.Skill} />
-            </StyledGrid>
+            {error ? (
+              "スキルカードの読み込みに失敗しました。リロードしてください。"
+            ) : (
+              <StyledGrid>
+                <SkillCards skills={data?.Skill} />
+              </StyledGrid>
+            )}
           </Block>
         </Buttom>
       </StyledForm>
