@@ -2,10 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
-import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
+import SkillCards from "./SkillCards";
+import SubCategoryTags from "../Tags/ SubCategoryTags";
 
 const Card = styled.div`
   padding: 40px;
@@ -57,14 +58,6 @@ const CircleCreateCard: FC<Props> = (props) => {
     props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
   };
 
-  const categories = data?.SubCategory.map((subCategory) => {
-    return <DefaultTag name={subCategory.name} key={subCategory.id} />;
-  });
-
-  const skills = data?.Skill.map((skill) => {
-    return <img height="50px" src={skill.avatar} key={skill.id} />;
-  });
-
   return (
     <Card>
       <StyledForm>
@@ -82,7 +75,9 @@ const CircleCreateCard: FC<Props> = (props) => {
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
-            <StyledCategories>{categories}</StyledCategories>
+            <StyledCategories>
+              <SubCategoryTags subCategories={data?.SubCategory} />
+            </StyledCategories>
           </div>
         </Top>
         <hr />
@@ -105,7 +100,9 @@ const CircleCreateCard: FC<Props> = (props) => {
           </Block>
           <Block>
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-            {skills}
+            <StyledCategories>
+              <SkillCards skills={data?.Skill} />
+            </StyledCategories>
           </Block>
         </Buttom>
       </StyledForm>

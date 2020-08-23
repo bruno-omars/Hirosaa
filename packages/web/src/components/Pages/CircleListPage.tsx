@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useCirclesQuery } from "../../generated/graphql";
-import CircleCard from "../Molecules/Cricle/CricleCard";
+import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
 
 const StyledTitle = styled.h1`
