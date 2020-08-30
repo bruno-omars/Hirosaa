@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-
+import { useHistory } from "react-router-dom";
 import { Circle } from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
@@ -58,8 +58,16 @@ type Props = {
 };
 
 const CircleCard: FC<Props> = ({ circle }) => {
+  let history = useHistory();
+  const handleToDetail = () => {
+    history.push({
+      pathname: "/circle-detail",
+      state: { circleId: circle.id },
+    });
+  };
+
   return (
-    <StyledCard>
+    <StyledCard onClick={handleToDetail}>
       <CircleButton clickHandler={() => {}} shadowDepth={"NONE"}>
         <StyledImage src={circle.avatar} />
       </CircleButton>
