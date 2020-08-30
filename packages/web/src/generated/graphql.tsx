@@ -2368,7 +2368,7 @@ export type SubCategory = {
   /** An object relationship */
   SubCategory?: Maybe<Circle>;
   id: Scalars['Int'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   parent_category_id: Scalars['Int'];
 };
 
@@ -4652,6 +4652,20 @@ export type InsertCircleMutation = (
   )> }
 );
 
+export type SkillAndSubCategoryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SkillAndSubCategoryQuery = (
+  { __typename?: 'query_root' }
+  & { Skill: Array<(
+    { __typename?: 'Skill' }
+    & Pick<Skill, 'id' | 'avatar' | 'name'>
+  )>, SubCategory: Array<(
+    { __typename?: 'SubCategory' }
+    & Pick<SubCategory, 'id' | 'name'>
+  )> }
+);
+
 export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4677,7 +4691,7 @@ export type CirclesQuery = (
 
 export const InsertCircleDocument = gql`
     mutation InsertCircle($name: String, $recruitTitle: String, $mainRole: String, $whatWeWillDo: String) {
-  insert_Circle(objects: {name: $name, recruit_title: $recruitTitle, main_role: $mainRole, what_we_will_do: $whatWeWillDo}) {
+  insert_Circle(objects: {main_role: $mainRole, name: $name, recruit_title: $recruitTitle, what_we_will_do: $whatWeWillDo, CicleSkills: {data: {Skill: {data: {id: 1, avatar: "", name: ""}, on_conflict: {constraint: Skill_pkey, update_columns: id}}}}}) {
     affected_rows
   }
 }
@@ -4710,6 +4724,44 @@ export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions
 export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
 export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
+export const SkillAndSubCategoryDocument = gql`
+    query SkillAndSubCategory {
+  Skill {
+    id
+    avatar
+    name
+  }
+  SubCategory {
+    id
+    name
+  }
+}
+    `;
+
+/**
+ * __useSkillAndSubCategoryQuery__
+ *
+ * To run a query within a React component, call `useSkillAndSubCategoryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSkillAndSubCategoryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSkillAndSubCategoryQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useSkillAndSubCategoryQuery(baseOptions?: Apollo.QueryHookOptions<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>) {
+        return Apollo.useQuery<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>(SkillAndSubCategoryDocument, baseOptions);
+      }
+export function useSkillAndSubCategoryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>) {
+          return Apollo.useLazyQuery<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>(SkillAndSubCategoryDocument, baseOptions);
+        }
+export type SkillAndSubCategoryQueryHookResult = ReturnType<typeof useSkillAndSubCategoryQuery>;
+export type SkillAndSubCategoryLazyQueryHookResult = ReturnType<typeof useSkillAndSubCategoryLazyQuery>;
+export type SkillAndSubCategoryQueryResult = Apollo.QueryResult<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>;
 export const UsersDocument = gql`
     query Users {
   User {

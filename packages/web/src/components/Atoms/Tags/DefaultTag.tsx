@@ -10,10 +10,11 @@ type Props = {
 const Tag = styled.span`
   border-radius: 50px;
   background-color: ${COLOR["ORANGE"]}77;
+  cursor: pointer;
   font-size: 10px;
   height: 10px;
   line-height: 10px;
-  max-width: 50px;
+  width: 70px;
   text-align: center;
   padding: 4px 20px;
 `;

@@ -2,14 +2,17 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
-import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import { Input } from "../../Pages/CircleCreatePage";
+import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
+import SkillCards from "./SkillCards";
+import SubCategoryTags from "../Tags/ SubCategoryTags";
 
 const Card = styled.div`
   padding: 40px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
   width: 70%;
+  margin-bottom: 40px;
 `;
 
 const Block = styled.div`
@@ -34,12 +37,23 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
+const StyledGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(30px, max-content);
+`;
+
 type Props = {
   inputs: Input;
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
+  selectedSkills: number[];
+  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const CircleCreateCard: FC<Props> = (props) => {
+  const { data, error } = useSkillAndSubCategoryQuery();
+
+  console.log(data);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -62,7 +76,16 @@ const CircleCreateCard: FC<Props> = (props) => {
             placeholder="募集の題名"
             name="recruitTitle"
           />
-          <DefaultTag name="アプリ" />
+          <div>
+            <StyledSubTitle>カテゴリを選択</StyledSubTitle>
+            {error ? (
+              "カテゴリーの読み込みに失敗しました。リロードしてください。"
+            ) : (
+              <StyledGrid>
+                <SubCategoryTags subCategories={data?.SubCategory} />
+              </StyledGrid>
+            )}
+          </div>
         </Top>
         <hr />
         <Buttom>
@@ -84,10 +107,17 @@ const CircleCreateCard: FC<Props> = (props) => {
           </Block>
           <Block>
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-            <DefaultTextArea
-              handleChange={() => {}}
-              placeholder="使用する技術やアプリをご記入ください"
-            />
+            {error ? (
+              "スキルカードの読み込みに失敗しました。リロードしてください。"
+            ) : (
+              <StyledGrid>
+                <SkillCards
+                  skills={data?.Skill}
+                  selectedSkills={props.selectedSkills}
+                  setSkills={props.setSkills}
+                />
+              </StyledGrid>
+            )}
           </Block>
         </Buttom>
       </StyledForm>

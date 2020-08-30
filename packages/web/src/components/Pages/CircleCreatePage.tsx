@@ -29,6 +29,8 @@ const CircleCreatePage: FC = () => {
     whatWeWillDo: "",
     mainRole: "",
   });
+  const [selectedSkills, setSkills] = useState<number[]>([]);
+
   const [buttonText, setText] = useState("作成する");
 
   const [insertCircle, { data }] = useInsertCircleMutation();
@@ -49,7 +51,12 @@ const CircleCreatePage: FC = () => {
 
   return (
     <StyledPage>
-      <CircleCreateCard inputs={inputs} setInputs={setInputs} />
+      <CircleCreateCard
+        inputs={inputs}
+        setInputs={setInputs}
+        selectedSkills={selectedSkills}
+        setSkills={setSkills}
+      />
       <RightButton>
         <RoundedButton clickHandler={handleClick} buttonSize="SMALL">
           {buttonText}
