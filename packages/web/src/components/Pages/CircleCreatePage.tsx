@@ -2,7 +2,11 @@ import React, { FC, useState, useEffect } from "react";
 import CircleCreateCard from "../Organisms/Cards/CircleCreateCard";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
-import { useInsertCircleMutation } from "../../generated/graphql";
+import {
+  useInsertCircleMutation,
+  Skill_Constraint,
+  Skill_Update_Column,
+} from "../../generated/graphql";
 
 const StyledPage = styled.div`
   display: grid;
@@ -17,28 +21,45 @@ const RightButton = styled.div`
 
 export type Input = {
   name: string;
-  recruitTitle: string;
-  whatWeWillDo: string;
-  mainRole: string;
+  recruit_title: string;
+  what_we_will_do: string;
+  main_role: string;
 };
 
 const CircleCreatePage: FC = () => {
   const [inputs, setInputs] = useState<Input>({
     name: "",
-    recruitTitle: "",
-    whatWeWillDo: "",
-    mainRole: "",
+    recruit_title: "",
+    what_we_will_do: "",
+    main_role: "",
   });
   const [selectedSkills, setSkills] = useState<number[]>([]);
 
   const [buttonText, setText] = useState("作成する");
+
+  const Skills = selectedSkills.map((skill: number) => ({
+    Skill: {
+      data: { id: skill, avatar: "", name: "" },
+      on_conflict: {
+        constraint: Skill_Constraint.SkillPkey,
+        update_columns: [Skill_Update_Column.Id],
+      },
+    },
+  }));
 
   const [insertCircle, { data }] = useInsertCircleMutation();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     insertCircle({
       variables: {
-        ...inputs,
+        objects: [
+          {
+            ...inputs,
+            CicleSkills: {
+              data: [...Skills],
+            },
+          },
+        ],
       },
     });
   };
