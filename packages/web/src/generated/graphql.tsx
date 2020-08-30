@@ -4637,10 +4637,7 @@ export type Timestamptz_Comparison_Exp = {
 };
 
 export type InsertCircleMutationVariables = Exact<{
-  name?: Maybe<Scalars['String']>;
-  recruitTitle?: Maybe<Scalars['String']>;
-  mainRole?: Maybe<Scalars['String']>;
-  whatWeWillDo?: Maybe<Scalars['String']>;
+  objects: Array<Circle_Insert_Input>;
 }>;
 
 
@@ -4690,8 +4687,8 @@ export type CirclesQuery = (
 
 
 export const InsertCircleDocument = gql`
-    mutation InsertCircle($name: String, $recruitTitle: String, $mainRole: String, $whatWeWillDo: String) {
-  insert_Circle(objects: {main_role: $mainRole, name: $name, recruit_title: $recruitTitle, what_we_will_do: $whatWeWillDo, CicleSkills: {data: {Skill: {data: {id: 1, avatar: "", name: ""}, on_conflict: {constraint: Skill_pkey, update_columns: id}}}}}) {
+    mutation InsertCircle($objects: [Circle_insert_input!]!) {
+  insert_Circle(objects: $objects) {
     affected_rows
   }
 }
@@ -4711,10 +4708,7 @@ export type InsertCircleMutationFn = Apollo.MutationFunction<InsertCircleMutatio
  * @example
  * const [insertCircleMutation, { data, loading, error }] = useInsertCircleMutation({
  *   variables: {
- *      name: // value for 'name'
- *      recruitTitle: // value for 'recruitTitle'
- *      mainRole: // value for 'mainRole'
- *      whatWeWillDo: // value for 'whatWeWillDo'
+ *      objects: // value for 'objects'
  *   },
  * });
  */

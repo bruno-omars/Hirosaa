@@ -37,10 +37,14 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
-const StyledGrid = styled.div`
+type StyleGrid = {
+  height: number;
+};
+
+const StyledGrid = styled.div<StyleGrid>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(30px, max-content);
+  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
 type Props = {
@@ -48,12 +52,12 @@ type Props = {
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
   selectedSkills: number[];
   setSkills: React.Dispatch<React.SetStateAction<number[]>>;
+  setCategory: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
-  console.log(data);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -74,15 +78,18 @@ const CircleCreateCard: FC<Props> = (props) => {
           <DefaultInput
             handleChange={handleChange}
             placeholder="募集の題名"
-            name="recruitTitle"
+            name="recruit_title"
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
             {error ? (
               "カテゴリーの読み込みに失敗しました。リロードしてください。"
             ) : (
-              <StyledGrid>
-                <SubCategoryTags subCategories={data?.SubCategory} />
+              <StyledGrid height={30}>
+                <SubCategoryTags
+                  subCategories={data?.SubCategory}
+                  setCategory={props.setCategory}
+                />
               </StyledGrid>
             )}
           </div>
@@ -94,7 +101,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             <DefaultTextArea
               handleChange={handleChange}
               placeholder="あなたのサークルでやることを記入してください"
-              name="whatWeWillDo"
+              name="what_we_will_do"
             />
           </Block>
           <Block>
@@ -102,7 +109,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             <DefaultTextArea
               handleChange={handleChange}
               placeholder="歓迎条件をご記入ください"
-              name="mainRole"
+              name="main_role"
             />
           </Block>
           <Block>
@@ -110,7 +117,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             {error ? (
               "スキルカードの読み込みに失敗しました。リロードしてください。"
             ) : (
-              <StyledGrid>
+              <StyledGrid height={170}>
                 <SkillCards
                   skills={data?.Skill}
                   selectedSkills={props.selectedSkills}
