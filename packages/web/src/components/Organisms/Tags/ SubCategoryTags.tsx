@@ -8,6 +8,7 @@ type Props = {
         __typename?: "SubCategory" | undefined;
       } & Pick<SubCategory, "name" | "id">)[]
     | undefined;
+  selectedCategory: number;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -26,6 +27,9 @@ const SubCategoryTags: FC<Props> = (props) => {
           key={subCategory.id}
           id={subCategory.id.toString()}
           handleClick={handleClick}
+          bgColor={
+            props.selectedCategory === subCategory.id ? "ORANGE" : "WHITE"
+          }
         />
       );
     });

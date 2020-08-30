@@ -4,13 +4,16 @@ import { COLOR } from "../../../constants/color";
 
 type Props = {
   handleClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
+  bgColor?: keyof typeof COLOR;
   name: string;
   id: string;
 };
 
-const Tag = styled.span`
+const Tag = styled.span<Omit<Props, "handleClick" | "name" | "id">>`
   border-radius: 50px;
-  background-color: ${COLOR["ORANGE"]}77;
+  background-color: ${({ bgColor = "ORANGE" }) => COLOR[bgColor]}77;
+  ${({ bgColor = "ORANGE" }) =>
+    bgColor === "WHITE" ? "border: 1px solid rgba(0, 0, 0, 0.4)" : ""};
   cursor: pointer;
   font-size: 10px;
   height: 10px;
@@ -22,7 +25,7 @@ const Tag = styled.span`
 
 const DefaultTag: FC<Props> = (props) => {
   return (
-    <Tag id={props.id} onClick={props.handleClick}>
+    <Tag id={props.id} onClick={props.handleClick} bgColor={props.bgColor}>
       {props.name}
     </Tag>
   );

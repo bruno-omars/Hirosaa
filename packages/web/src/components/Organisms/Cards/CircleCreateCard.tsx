@@ -52,6 +52,7 @@ type Props = {
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
   selectedSkills: number[];
   setSkills: React.Dispatch<React.SetStateAction<number[]>>;
+  selectedCategory: number;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -88,6 +89,7 @@ const CircleCreateCard: FC<Props> = (props) => {
               <StyledGrid height={30}>
                 <SubCategoryTags
                   subCategories={data?.SubCategory}
+                  selectedCategory={props.selectedCategory}
                   setCategory={props.setCategory}
                 />
               </StyledGrid>
