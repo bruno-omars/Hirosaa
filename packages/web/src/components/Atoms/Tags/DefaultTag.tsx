@@ -5,6 +5,7 @@ import { COLOR } from "../../../constants/color";
 type Props = {
   handleClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   name: string;
+  id: string;
 };
 
 const Tag = styled.span`
@@ -20,7 +21,11 @@ const Tag = styled.span`
 `;
 
 const DefaultTag: FC<Props> = (props) => {
-  return <Tag onClick={props.handleClick}>{props.name}</Tag>;
+  return (
+    <Tag id={props.id} onClick={props.handleClick}>
+      {props.name}
+    </Tag>
+  );
 };
 
 export default DefaultTag;

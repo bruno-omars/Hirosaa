@@ -27,13 +27,14 @@ export type Input = {
 };
 
 const CircleCreatePage: FC = () => {
+  const [selectedSkills, setSkills] = useState<number[]>([]);
+  const [selectedCategory, setCategory] = useState<number>(0);
   const [inputs, setInputs] = useState<Input>({
     name: "",
     recruit_title: "",
     what_we_will_do: "",
     main_role: "",
   });
-  const [selectedSkills, setSkills] = useState<number[]>([]);
 
   const [buttonText, setText] = useState("作成する");
 
@@ -55,6 +56,7 @@ const CircleCreatePage: FC = () => {
         objects: [
           {
             ...inputs,
+            sub_category_id: selectedCategory,
             CicleSkills: {
               data: [...Skills],
             },
@@ -77,6 +79,7 @@ const CircleCreatePage: FC = () => {
         setInputs={setInputs}
         selectedSkills={selectedSkills}
         setSkills={setSkills}
+        setCategory={setCategory}
       />
       <RightButton>
         <RoundedButton clickHandler={handleClick} buttonSize="SMALL">

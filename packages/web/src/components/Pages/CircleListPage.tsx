@@ -17,7 +17,6 @@ const CircleListPage: FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
 
-  console.log(data);
   const circles = data?.Circle.map((circle) => {
     return <CircleCard key={circle.id} circle={circle} />;
   });
