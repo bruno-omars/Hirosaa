@@ -45,7 +45,7 @@ const LoginSidebar: FC = () => {
         <Me user={user} />
       </StyledMe>
       <StyledList>
-        <IconLink to="#" text="サークル一覧" bgcolor={"WHITE"}>
+        <IconLink to="/circle" text="サークル一覧" bgcolor={"WHITE"}>
           <Circleci />
         </IconLink>
         <IconLink to="#" text="トークルーム">
