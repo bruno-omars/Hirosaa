@@ -4691,7 +4691,7 @@ export type CirclesQuery = (
 
 export const InsertCircleDocument = gql`
     mutation InsertCircle($name: String, $recruitTitle: String, $mainRole: String, $whatWeWillDo: String) {
-  insert_Circle(objects: {name: $name, recruit_title: $recruitTitle, main_role: $mainRole, what_we_will_do: $whatWeWillDo}) {
+  insert_Circle(objects: {main_role: $mainRole, name: $name, recruit_title: $recruitTitle, what_we_will_do: $whatWeWillDo, CicleSkills: {data: {Skill: {data: {id: 1, avatar: "", name: ""}, on_conflict: {constraint: Skill_pkey, update_columns: id}}}}}) {
     affected_rows
   }
 }

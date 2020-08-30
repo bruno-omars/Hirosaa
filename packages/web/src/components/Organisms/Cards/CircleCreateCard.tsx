@@ -46,11 +46,14 @@ const StyledGrid = styled.div`
 type Props = {
   inputs: Input;
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
+  selectedSkills: number[];
+  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
+  console.log(data);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -108,7 +111,11 @@ const CircleCreateCard: FC<Props> = (props) => {
               "スキルカードの読み込みに失敗しました。リロードしてください。"
             ) : (
               <StyledGrid>
-                <SkillCards skills={data?.Skill} />
+                <SkillCards
+                  skills={data?.Skill}
+                  selectedSkills={props.selectedSkills}
+                  setSkills={props.setSkills}
+                />
               </StyledGrid>
             )}
           </Block>

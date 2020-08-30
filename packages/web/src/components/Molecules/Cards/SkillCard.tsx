@@ -13,12 +13,14 @@ const StyledSkillCard = styled.div`
 `;
 
 type Props = {
+  handleClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   name: string;
+  id: string;
 };
 
 const SkillCard: FC<Props> = (props) => {
   return (
-    <StyledSkillCard>
+    <StyledSkillCard onClick={props.handleClick} id={props.id}>
       {props.children}
       {props.name}
     </StyledSkillCard>

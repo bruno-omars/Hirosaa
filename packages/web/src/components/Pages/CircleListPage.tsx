@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useCirclesQuery } from "../../generated/graphql";
+import { useCirclesQuery, useUsersQuery } from "../../generated/graphql";
 import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
 
