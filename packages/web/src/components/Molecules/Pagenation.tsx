@@ -8,15 +8,54 @@ type Props = {
   setPagination: React.Dispatch<React.SetStateAction<Pagination>>;
 };
 
+type PaginationAction = number | "pre" | "next";
+
 const Pagenation: FC<Props> = (props) => {
+  const { maxPage, pagination, setPagination } = props;
   const setNewPage = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    moveNum: number
+    action: PaginationAction
   ) => {
     e.preventDefault();
-    const newPage = props.pagination.currentPage + moveNum;
-    props.setPagination({ ...props.pagination, currentPage: newPage });
+    if (action === "pre") {
+      const newPage = pagination.currentPage - 1;
+      setPagination({ ...pagination, currentPage: newPage });
+    } else if (action === "next") {
+      const newPage = pagination.currentPage + 1;
+      setPagination({ ...pagination, currentPage: newPage });
+    } else {
+      setPagination({ ...pagination, currentPage: action });
+    }
   };
+
+  const getPageListNum = () => {
+    if (maxPage > 8) return 8;
+    return maxPage;
+  };
+
+  const pages = [...Array(getPageListNum())]
+    .map((_, i) => {
+      if (pagination.currentPage <= maxPage / 2) {
+        return i + 1;
+      } else if (pagination.currentPage > maxPage / 2) {
+        return i + maxPage - 4 + 1;
+      } else {
+        return i + pagination.currentPage - maxPage / 2;
+      }
+    })
+    .map((pageNum) => {
+      return (
+        <Default
+          clickHandler={(e) => setNewPage(e, pageNum)}
+          buttonSize="MINI"
+          shadowDepth="NONE"
+          bgColor={pageNum === pagination.currentPage ? "LIGHT_GREEN" : "WHITE"}
+          key={pageNum}
+        >
+          {pageNum}
+        </Default>
+      );
+    });
 
   return (
     <>
@@ -25,16 +64,17 @@ const Pagenation: FC<Props> = (props) => {
         buttonSize="MINI"
         shadowDepth="NONE"
         bgColor="WHITE"
-        disabled={props.pagination.currentPage <= 1}
+        disabled={pagination.currentPage <= 1}
       >
         {"<"}
       </Default>
+      {pages}
       <Default
         clickHandler={(e) => setNewPage(e, 1)}
         buttonSize="MINI"
         shadowDepth="NONE"
         bgColor="WHITE"
-        disabled={props.pagination.currentPage >= props.maxPage}
+        disabled={pagination.currentPage >= maxPage}
       >
         {">"}
       </Default>
