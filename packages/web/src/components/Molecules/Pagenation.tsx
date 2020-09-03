@@ -14,6 +14,9 @@ const maxPageListNum = 8;
 
 const Pagenation: FC<Props> = (props) => {
   const { maxPage, pagination, setPagination } = props;
+  const pageListNum = maxPage > maxPageListNum ? maxPageListNum : maxPage;
+  const middlePage = maxPage / 2;
+
   const setNewPage = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     action: PaginationAction
@@ -30,16 +33,14 @@ const Pagenation: FC<Props> = (props) => {
     }
   };
 
-  const pageListNum = maxPage > maxPageListNum ? maxPageListNum : maxPage;
-
   const pages = [...Array(pageListNum)]
     .map((_, i) => {
-      if (pagination.currentPage <= maxPage / 2) {
+      if (pagination.currentPage <= middlePage) {
         return i + 1;
-      } else if (pagination.currentPage > maxPage / 2) {
+      } else if (pagination.currentPage > middlePage) {
         return i + maxPage - pageListNum + 1;
       } else {
-        return i + pagination.currentPage - maxPage / 2;
+        return i + pagination.currentPage - middlePage;
       }
     })
     .map((pageNum) => {
