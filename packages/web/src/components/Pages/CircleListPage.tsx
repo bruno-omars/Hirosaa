@@ -3,7 +3,7 @@ import { useCirclesQuery } from "../../generated/graphql";
 import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
 
-import Pagenation from "../Molecules/Pagenation";
+import Pagenation from "../Molecules/Pagenition";
 
 const StyledTitle = styled.h1`
   color: #292929;
