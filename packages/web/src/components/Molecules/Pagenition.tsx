@@ -59,25 +59,33 @@ const Pagenation: FC<Props> = (props) => {
 
   return (
     <>
-      <Default
-        clickHandler={(e) => setNewPage(e, "pre")}
-        buttonSize="MINI"
-        shadowDepth="NONE"
-        bgColor="WHITE"
-        disabled={pagination.currentPage <= 1}
-      >
-        {"<"}
-      </Default>
+      {pagination.currentPage === 1 ? (
+        ""
+      ) : (
+        <Default
+          clickHandler={(e) => setNewPage(e, "pre")}
+          buttonSize="MINI"
+          shadowDepth="NONE"
+          bgColor="WHITE"
+          disabled={pagination.currentPage <= 1}
+        >
+          {"<"}
+        </Default>
+      )}
       {pages}
-      <Default
-        clickHandler={(e) => setNewPage(e, "next")}
-        buttonSize="MINI"
-        shadowDepth="NONE"
-        bgColor="WHITE"
-        disabled={pagination.currentPage >= maxPage}
-      >
-        {">"}
-      </Default>
+      {pagination.currentPage === maxPage ? (
+        ""
+      ) : (
+        <Default
+          clickHandler={(e) => setNewPage(e, "next")}
+          buttonSize="MINI"
+          shadowDepth="NONE"
+          bgColor="WHITE"
+          disabled={pagination.currentPage >= maxPage}
+        >
+          {">"}
+        </Default>
+      )}
     </>
   );
 };
