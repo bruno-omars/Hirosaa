@@ -4,6 +4,7 @@ import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
 
 import Pagenation from "../Molecules/Pagenition";
+import SelectCategoryCard from "../Molecules/Cards/SelectCategoryCard";
 
 const StyledTitle = styled.h1`
   color: #292929;
@@ -11,6 +12,11 @@ const StyledTitle = styled.h1`
   font-weight: normal;
   margin: 20px 0px;
   text-align: center;
+`;
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 0.6fr;
 `;
 
 export type Pagination = {
@@ -50,15 +56,20 @@ const CircleListPage: FC = () => {
   });
 
   return (
-    <div>
+    <>
       <StyledTitle>サークル一覧</StyledTitle>
-      {circles}
-      <Pagenation
-        maxPage={getMaxPage()}
-        setPagination={setPagination}
-        pagination={pagination}
-      />
-    </div>
+      <Grid>
+        <div>
+          {circles}
+          <Pagenation
+            maxPage={getMaxPage()}
+            setPagination={setPagination}
+            pagination={pagination}
+          />
+        </div>
+        <SelectCategoryCard />
+      </Grid>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ import { ReactComponent as People } from "../../../assets/icons/people.svg";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  border-radius: 7px;
+  border-radius: 3px;
   cursor: pointer;
   display: grid;
   grid-template-rows: 40% 60%;
