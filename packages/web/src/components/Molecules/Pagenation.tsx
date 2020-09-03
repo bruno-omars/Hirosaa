@@ -10,6 +10,8 @@ type Props = {
 
 type PaginationAction = number | "pre" | "next";
 
+const maxPageListNum = 8;
+
 const Pagenation: FC<Props> = (props) => {
   const { maxPage, pagination, setPagination } = props;
   const setNewPage = (
@@ -28,17 +30,14 @@ const Pagenation: FC<Props> = (props) => {
     }
   };
 
-  const getPageListNum = () => {
-    if (maxPage > 8) return 8;
-    return maxPage;
-  };
+  const pageListNum = maxPage > maxPageListNum ? maxPageListNum : maxPage;
 
-  const pages = [...Array(getPageListNum())]
+  const pages = [...Array(pageListNum)]
     .map((_, i) => {
       if (pagination.currentPage <= maxPage / 2) {
         return i + 1;
       } else if (pagination.currentPage > maxPage / 2) {
-        return i + maxPage - 4 + 1;
+        return i + maxPage - pageListNum + 1;
       } else {
         return i + pagination.currentPage - maxPage / 2;
       }
@@ -60,7 +59,7 @@ const Pagenation: FC<Props> = (props) => {
   return (
     <>
       <Default
-        clickHandler={(e) => setNewPage(e, -1)}
+        clickHandler={(e) => setNewPage(e, "pre")}
         buttonSize="MINI"
         shadowDepth="NONE"
         bgColor="WHITE"
@@ -70,7 +69,7 @@ const Pagenation: FC<Props> = (props) => {
       </Default>
       {pages}
       <Default
-        clickHandler={(e) => setNewPage(e, 1)}
+        clickHandler={(e) => setNewPage(e, "next")}
         buttonSize="MINI"
         shadowDepth="NONE"
         bgColor="WHITE"
