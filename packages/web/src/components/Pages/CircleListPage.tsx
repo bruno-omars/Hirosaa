@@ -13,13 +13,9 @@ const StyledTitle = styled.h1`
   text-align: center;
 `;
 
-export type Pagination = {
-  limit: number;
-  currentPage: number;
-};
+const pageLimit = 10;
 
 const CircleListPage: FC = () => {
-  const pageLimit = 10;
   const [currentPage, setCurrentPage] = useState(1);
 
   const getCirclesQueryVal = () => ({
