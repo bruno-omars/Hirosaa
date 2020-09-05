@@ -118,14 +118,16 @@ const CircleCreateCard: FC<Props> = (props) => {
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
             {error ? (
               "スキルカードの読み込みに失敗しました。リロードしてください。"
-            ) : (
-              <StyledGrid height={170}>
+            ) : data?.Skill ? (
+              <StyledGrid height={Math.ceil(data.Skill.length / 4) * 85}>
                 <SkillCards
                   skills={data?.Skill}
                   selectedSkills={props.selectedSkills}
                   setSkills={props.setSkills}
                 />
               </StyledGrid>
+            ) : (
+              <></>
             )}
           </Block>
         </Buttom>

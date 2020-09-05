@@ -36,9 +36,8 @@ const SkillCards: FC<Props> = (props) => {
           key={skill.id}
           name={skill.name}
           bgColor={selectedSkills.includes(skill.id) ? "LIGHT_GREEN" : "WHITE"}
-        >
-          <img height="50px" src={skill.avatar} />
-        </SkillCard>
+          avatar={skill.avatar}
+        />
       );
     });
 

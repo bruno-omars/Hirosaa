@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Circle, Skill, SubCategory, User } from "../../../generated/graphql";
-import SkillCards from "./SkillCards";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
+import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
+import SkillCard from "../../Molecules/Cards/SkillCard";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -81,6 +82,16 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
+type StyleGrid = {
+  height: number;
+};
+
+const StyledGrid = styled.div<StyleGrid>`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
+`;
+
 type Props = {
   circle: Pick<
     Circle,
@@ -91,6 +102,8 @@ type Props = {
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
+  const { data, error } = useSkillAndSubCategoryQuery();
+
   return (
     <StyledCard>
       <StyledTop>
@@ -124,6 +137,21 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
+        {error ? (
+          "スキルカードの読み込みに失敗しました。リロードしてください。"
+        ) : data?.Skill ? (
+          <StyledGrid height={Math.ceil(data.Skill.length / 4) * 85}>
+            {data?.Skill?.map((skill) => (
+              <SkillCard
+                name={skill.name}
+                id={skill.id.toString()}
+                avatar={skill.avatar}
+              />
+            ))}
+          </StyledGrid>
+        ) : (
+          <></>
+        )}
       </StyledBlock>
     </StyledCard>
   );
