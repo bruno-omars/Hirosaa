@@ -37,7 +37,7 @@ const StyledTitle = styled.h1`
 `;
 
 const StyledCaption = styled.h2`
-  margin-left: 12px;
+  margin: 0 12px;
   font-weight: normal;
   display: inline-block;
 `;
@@ -120,7 +120,6 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
 
         <StyledLeaderWrapper>
           <StyledLeaderLabel>リーダー</StyledLeaderLabel>
-
           <Avatar src={circle.User?.avatar ?? ""} size={30} />
           <StyledLeaderName>{circle.User?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
