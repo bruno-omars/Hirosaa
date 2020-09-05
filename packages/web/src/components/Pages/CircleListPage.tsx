@@ -4,7 +4,7 @@ import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
 
 import Pagenation from "../Molecules/Pagenition";
-import SelectCategoryCard from "../Molecules/Cards/SelectCategoryCard";
+import SelectCategoryCard from "../Organisms/Cards/SelectCategoryCard";
 
 const StyledTitle = styled.h1`
   color: #292929;

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import CheckBoxParentList from "../Lists/CheckBoxParentList";
+import CheckBoxParentList from "../../Molecules/Lists/CheckBoxParentList";
 import { useCategoriesQuery } from "../../../generated/graphql";
 
 const StyledCard = styled.div`
@@ -9,13 +9,14 @@ const StyledCard = styled.div`
   display: grid;
   grid-template-rows: 50px 1fr;
   grid-template-columns: 1fr;
-  height: 300px;
+  height: 330px;
   padding: 30px;
   width: 80%;
 `;
 
 const StyledH3 = styled.h3`
   text-align: center;
+  font-weight: 100;
 `;
 
 const SelectCategoryCard: FC = () => {
