@@ -6,7 +6,7 @@ import FileInput from "../../Atoms/Inputs/FileInput";
 import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillCards from "./SkillCards";
-import SubCategoryTags from "../Tags/ SubCategoryTags";
+import SubCategoryTags from "../Tags/SubCategoryTags";
 
 const Card = styled.div`
   padding: 40px;
