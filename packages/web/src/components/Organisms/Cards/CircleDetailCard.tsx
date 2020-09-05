@@ -5,7 +5,6 @@ import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
-import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 
 const StyledCard = styled.div`
@@ -96,14 +95,12 @@ type Props = {
   circle: Pick<
     Circle,
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { CicleSkills: { Skill: Pick<Skill, "name"> }[] } & {
+  > & { CicleSkills: { Skill: Pick<Skill, "id" | "name" | "avatar"> }[] } & {
     SubCategory?: Pick<SubCategory, "name"> | null;
   } & { User?: Pick<User, "name" | "avatar"> | null };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
-  const { data, error } = useSkillAndSubCategoryQuery();
-
   return (
     <StyledCard>
       <StyledTop>
@@ -136,21 +133,15 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        {error ? (
-          "スキルカードの読み込みに失敗しました。リロードしてください。"
-        ) : data?.Skill ? (
-          <StyledGrid height={Math.ceil(data.Skill.length / 4) * 85}>
-            {data?.Skill?.map((skill) => (
-              <SkillCard
-                name={skill.name}
-                id={skill.id.toString()}
-                avatar={skill.avatar}
-              />
-            ))}
-          </StyledGrid>
-        ) : (
-          <></>
-        )}
+        <StyledGrid height={Math.ceil(circle.CicleSkills.length / 4) * 85}>
+          {circle.CicleSkills?.map((circleSkill) => (
+            <SkillCard
+              name={circleSkill.Skill.name}
+              id={circleSkill.Skill.id.toString()}
+              avatar={circleSkill.Skill.avatar}
+            />
+          ))}
+        </StyledGrid>
       </StyledBlock>
     </StyledCard>
   );

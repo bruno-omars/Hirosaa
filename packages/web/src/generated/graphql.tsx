@@ -4669,7 +4669,7 @@ export type CircleQuery = (
       { __typename?: 'CircleSkill' }
       & { Skill: (
         { __typename?: 'Skill' }
-        & Pick<Skill, 'id' | 'name'>
+        & Pick<Skill, 'id' | 'name' | 'avatar'>
       ) }
     )> }
   )> }
@@ -4775,6 +4775,7 @@ export const CircleDocument = gql`
       Skill {
         id
         name
+        avatar
       }
     }
   }

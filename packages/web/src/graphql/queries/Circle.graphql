@@ -19,6 +19,7 @@ query Circle($id: Int!) {
       Skill {
         id
         name
+        avatar
       }
     }
   }
