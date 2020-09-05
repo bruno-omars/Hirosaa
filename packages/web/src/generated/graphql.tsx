@@ -4675,6 +4675,26 @@ export type CircleQuery = (
   )> }
 );
 
+export type CirclesQueryVariables = Exact<{
+  limit: Scalars['Int'];
+  offset: Scalars['Int'];
+}>;
+
+
+export type CirclesQuery = (
+  { __typename?: 'query_root' }
+  & { Circle: Array<(
+    { __typename?: 'Circle' }
+    & Pick<Circle, 'id' | 'name' | 'recruit_title' | 'avatar' | 'what_we_will_do' | 'main_role'>
+  )>, Circle_aggregate: (
+    { __typename?: 'Circle_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename?: 'Circle_aggregate_fields' }
+      & Pick<Circle_Aggregate_Fields, 'count'>
+    )> }
+  ) }
+);
+
 export type SkillAndSubCategoryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4697,17 +4717,6 @@ export type UsersQuery = (
   & { User: Array<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'name'>
-  )> }
-);
-
-export type CirclesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CirclesQuery = (
-  { __typename?: 'query_root' }
-  & { Circle: Array<(
-    { __typename?: 'Circle' }
-    & Pick<Circle, 'id' | 'name' | 'recruit_title' | 'avatar' | 'what_we_will_do' | 'main_role'>
   )> }
 );
 
@@ -4797,6 +4806,50 @@ export function useCircleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Cir
 export type CircleQueryHookResult = ReturnType<typeof useCircleQuery>;
 export type CircleLazyQueryHookResult = ReturnType<typeof useCircleLazyQuery>;
 export type CircleQueryResult = Apollo.QueryResult<CircleQuery, CircleQueryVariables>;
+export const CirclesDocument = gql`
+    query Circles($limit: Int!, $offset: Int!) {
+  Circle(limit: $limit, offset: $offset) {
+    id
+    name
+    recruit_title
+    avatar
+    what_we_will_do
+    main_role
+  }
+  Circle_aggregate {
+    aggregate {
+      count(columns: avatar)
+    }
+  }
+}
+    `;
+
+/**
+ * __useCirclesQuery__
+ *
+ * To run a query within a React component, call `useCirclesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCirclesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCirclesQuery({
+ *   variables: {
+ *      limit: // value for 'limit'
+ *      offset: // value for 'offset'
+ *   },
+ * });
+ */
+export function useCirclesQuery(baseOptions?: Apollo.QueryHookOptions<CirclesQuery, CirclesQueryVariables>) {
+        return Apollo.useQuery<CirclesQuery, CirclesQueryVariables>(CirclesDocument, baseOptions);
+      }
+export function useCirclesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CirclesQuery, CirclesQueryVariables>) {
+          return Apollo.useLazyQuery<CirclesQuery, CirclesQueryVariables>(CirclesDocument, baseOptions);
+        }
+export type CirclesQueryHookResult = ReturnType<typeof useCirclesQuery>;
+export type CirclesLazyQueryHookResult = ReturnType<typeof useCirclesLazyQuery>;
+export type CirclesQueryResult = Apollo.QueryResult<CirclesQuery, CirclesQueryVariables>;
 export const SkillAndSubCategoryDocument = gql`
     query SkillAndSubCategory {
   Skill {
@@ -4868,40 +4921,3 @@ export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<User
 export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
-export const CirclesDocument = gql`
-    query Circles {
-  Circle {
-    id
-    name
-    recruit_title
-    avatar
-    what_we_will_do
-    main_role
-  }
-}
-    `;
-
-/**
- * __useCirclesQuery__
- *
- * To run a query within a React component, call `useCirclesQuery` and pass it any options that fit your needs.
- * When your component renders, `useCirclesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCirclesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useCirclesQuery(baseOptions?: Apollo.QueryHookOptions<CirclesQuery, CirclesQueryVariables>) {
-        return Apollo.useQuery<CirclesQuery, CirclesQueryVariables>(CirclesDocument, baseOptions);
-      }
-export function useCirclesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CirclesQuery, CirclesQueryVariables>) {
-          return Apollo.useLazyQuery<CirclesQuery, CirclesQueryVariables>(CirclesDocument, baseOptions);
-        }
-export type CirclesQueryHookResult = ReturnType<typeof useCirclesQuery>;
-export type CirclesLazyQueryHookResult = ReturnType<typeof useCirclesLazyQuery>;
-export type CirclesQueryResult = Apollo.QueryResult<CirclesQuery, CirclesQueryVariables>;

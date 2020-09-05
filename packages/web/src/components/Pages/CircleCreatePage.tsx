@@ -79,6 +79,7 @@ const CircleCreatePage: FC = () => {
         setInputs={setInputs}
         selectedSkills={selectedSkills}
         setSkills={setSkills}
+        selectedCategory={selectedCategory}
         setCategory={setCategory}
       />
       <RightButton>
