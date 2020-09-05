@@ -5,7 +5,7 @@ import { COLOR } from "../../../constants/color";
 type Props = {
   handleClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   name: string;
-  id: string;
+  id?: string;
 };
 
 const Tag = styled.span`

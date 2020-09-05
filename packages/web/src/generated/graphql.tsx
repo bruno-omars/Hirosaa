@@ -4656,15 +4656,21 @@ export type CircleQueryVariables = Exact<{
 
 export type CircleQuery = (
   { __typename?: 'query_root' }
-  & { Circle_by_pk?: Maybe<(
+  & { circle?: Maybe<(
     { __typename?: 'Circle' }
     & Pick<Circle, 'id' | 'avatar' | 'name' | 'main_role' | 'what_we_will_do' | 'recruit_title'>
     & { User?: Maybe<(
       { __typename?: 'User' }
-      & Pick<User, 'id'>
+      & Pick<User, 'id' | 'name' | 'avatar'>
     )>, SubCategory?: Maybe<(
       { __typename?: 'SubCategory' }
-      & Pick<SubCategory, 'name' | 'id'>
+      & Pick<SubCategory, 'id' | 'name'>
+    )>, CicleSkills: Array<(
+      { __typename?: 'CircleSkill' }
+      & { Skill: (
+        { __typename?: 'Skill' }
+        & Pick<Skill, 'id' | 'name'>
+      ) }
     )> }
   )> }
 );
@@ -4740,7 +4746,7 @@ export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutat
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
 export const CircleDocument = gql`
     query Circle($id: Int!) {
-  Circle_by_pk(id: $id) {
+  circle: Circle_by_pk(id: $id) {
     id
     avatar
     name
@@ -4749,10 +4755,18 @@ export const CircleDocument = gql`
     recruit_title
     User {
       id
+      name
+      avatar
     }
     SubCategory {
-      name
       id
+      name
+    }
+    CicleSkills {
+      Skill {
+        id
+        name
+      }
     }
   }
 }

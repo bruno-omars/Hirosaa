@@ -1,5 +1,5 @@
 query Circle($id: Int!) {
-  Circle_by_pk(id: $id) {
+  circle: Circle_by_pk(id: $id) {
     id
     avatar
     name
@@ -8,10 +8,18 @@ query Circle($id: Int!) {
     recruit_title
     User {
       id
+      name
+      avatar
     }
     SubCategory {
-      name
       id
+      name
+    }
+    CicleSkills {
+      Skill {
+        id
+        name
+      }
     }
   }
 }
