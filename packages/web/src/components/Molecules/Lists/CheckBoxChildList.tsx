@@ -1,7 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
-import { SubCategory } from "../../../generated/graphql";
+import {
+  SubCategory,
+  SubCategory_Update_Column,
+} from "../../../generated/graphql";
 
 const ChildUl = styled.ul`
   margin-left: 20px;
@@ -14,15 +17,19 @@ const StyledLi = styled.li`
 `;
 
 type Props = {
-  subCategory: Pick<SubCategory, "id" | "name">;
+  subCategories: ({
+    __typename?: "SubCategory" | undefined;
+  } & Pick<SubCategory, "id" | "name">)[];
 };
 
 const CheckBoxChildList: FC<Props> = (props) => {
   return (
     <ChildUl>
-      <StyledLi>
-        <CheckBoxWithText text={props.subCategory.name} />
-      </StyledLi>
+      {props.subCategories.map((subCategory) => (
+        <StyledLi key={subCategory.id}>
+          <CheckBoxWithText text={subCategory.name} />
+        </StyledLi>
+      ))}
     </ChildUl>
   );
 };

@@ -29,7 +29,12 @@ const SelectCategoryCard: FC = () => {
     <StyledCard>
       <StyledH3>カテゴリー選択</StyledH3>
       {data?.ParentCategory.map((parentCategory) => {
-        return <CheckBoxParentList parentCategory={parentCategory} />;
+        return (
+          <CheckBoxParentList
+            parentCategory={parentCategory}
+            key={parentCategory.id}
+          />
+        );
       })}
     </StyledCard>
   );

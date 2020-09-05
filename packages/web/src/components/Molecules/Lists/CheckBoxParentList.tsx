@@ -2,11 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
 import CheckBoxChildList from "./CheckBoxChildList";
-import {
-  ParentCategory,
-  SubCategory,
-  CategoriesQueryResult,
-} from "../../../generated/graphql";
+import { ParentCategory, SubCategory } from "../../../generated/graphql";
 
 const ParentUl = styled.ul`
   list-style: none;
@@ -32,9 +28,7 @@ const CheckBoxParentList: FC<Props> = (props) => {
       <StyledLi>
         <CheckBoxWithText text={props.parentCategory.name} />
       </StyledLi>
-      {props.parentCategory.SubCategories.map((subCategory) => {
-        return <CheckBoxChildList subCategory={subCategory} />;
-      })}
+      <CheckBoxChildList subCategories={props.parentCategory.SubCategories} />
     </ParentUl>
   );
 };
