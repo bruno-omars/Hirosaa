@@ -13,20 +13,14 @@ const StyledTitle = styled.h1`
   text-align: center;
 `;
 
-export type Pagination = {
-  limit: number;
-  currentPage: number;
-};
+const pageLimit = 10;
 
 const CircleListPage: FC = () => {
-  const [pagination, setPagination] = useState<Pagination>({
-    limit: 10,
-    currentPage: 1,
-  });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const getCirclesQueryVal = () => ({
-    limit: 10,
-    offset: (pagination.currentPage - 1) * pagination.limit,
+    limit: pageLimit,
+    offset: (currentPage - 1) * pageLimit,
   });
 
   const { data, loading, error } = useCirclesQuery({
@@ -35,9 +29,7 @@ const CircleListPage: FC = () => {
 
   const getMaxPage = () => {
     if (data?.Circle_aggregate.aggregate?.count) {
-      return Math.ceil(
-        data?.Circle_aggregate.aggregate?.count / pagination.limit
-      );
+      return Math.ceil(data?.Circle_aggregate.aggregate?.count / pageLimit);
     }
     return 1;
   };
@@ -55,8 +47,8 @@ const CircleListPage: FC = () => {
       {circles}
       <Pagenation
         maxPage={getMaxPage()}
-        setPagination={setPagination}
-        pagination={pagination}
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
       />
     </div>
   );
