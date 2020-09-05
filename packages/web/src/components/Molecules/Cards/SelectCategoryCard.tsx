@@ -1,10 +1,9 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
+import CheckBoxParentList from "../Lists/CheckBoxParentList";
+import { useCategoriesQuery } from "../../../generated/graphql";
 
-type Props = {};
-
-const StyledCard = styled.div<Props>`
+const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
   border-radius: 3px;
   display: grid;
@@ -15,47 +14,22 @@ const StyledCard = styled.div<Props>`
   width: 80%;
 `;
 
-const ParentUl = styled.ul`
-  list-style: none;
-`;
-
-const ChildUl = styled.ul`
-  margin-left: 20px;
-  margin-top: 10px;
-  list-style: none;
-`;
-
-const StyledLi = styled.li`
-  margin-top: 10px;
-`;
-
 const StyledH3 = styled.h3`
   text-align: center;
 `;
 
-const SelectCategoryCard: FC<Props> = () => {
+const SelectCategoryCard: FC = () => {
+  const { data, loading, error } = useCategoriesQuery();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error! ${error.message}</p>;
+
   return (
     <StyledCard>
       <StyledH3>カテゴリー選択</StyledH3>
-      <ParentUl>
-        <StyledLi>
-          <CheckBoxWithText text="hello" />
-        </StyledLi>
-        <ChildUl>
-          <StyledLi>
-            <CheckBoxWithText text="hello" />
-          </StyledLi>
-          <StyledLi>
-            <CheckBoxWithText text="hello" />
-          </StyledLi>
-        </ChildUl>
-        <StyledLi>
-          <CheckBoxWithText text="hello" />
-        </StyledLi>
-        <StyledLi>
-          <CheckBoxWithText text="hello" />
-        </StyledLi>
-      </ParentUl>
+      {data?.ParentCategory.map((parentCategory) => {
+        return <CheckBoxParentList parentCategory={parentCategory} />;
+      })}
     </StyledCard>
   );
 };

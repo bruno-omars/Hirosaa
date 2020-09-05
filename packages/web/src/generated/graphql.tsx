@@ -4649,6 +4649,21 @@ export type InsertCircleMutation = (
   )> }
 );
 
+export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoriesQuery = (
+  { __typename?: 'query_root' }
+  & { ParentCategory: Array<(
+    { __typename?: 'ParentCategory' }
+    & Pick<ParentCategory, 'id' | 'name'>
+    & { SubCategories: Array<(
+      { __typename?: 'SubCategory' }
+      & Pick<SubCategory, 'id' | 'name'>
+    )> }
+  )> }
+);
+
 export type CirclesQueryVariables = Exact<{
   limit: Scalars['Int'];
   offset: Scalars['Int'];
@@ -4727,6 +4742,43 @@ export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions
 export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
 export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
+export const CategoriesDocument = gql`
+    query Categories {
+  ParentCategory {
+    id
+    name
+    SubCategories {
+      id
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useCategoriesQuery__
+ *
+ * To run a query within a React component, call `useCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategoriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<CategoriesQuery, CategoriesQueryVariables>) {
+        return Apollo.useQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, baseOptions);
+      }
+export function useCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoriesQuery, CategoriesQueryVariables>) {
+          return Apollo.useLazyQuery<CategoriesQuery, CategoriesQueryVariables>(CategoriesDocument, baseOptions);
+        }
+export type CategoriesQueryHookResult = ReturnType<typeof useCategoriesQuery>;
+export type CategoriesLazyQueryHookResult = ReturnType<typeof useCategoriesLazyQuery>;
+export type CategoriesQueryResult = Apollo.QueryResult<CategoriesQuery, CategoriesQueryVariables>;
 export const CirclesDocument = gql`
     query Circles($limit: Int!, $offset: Int!) {
   Circle(limit: $limit, offset: $offset) {

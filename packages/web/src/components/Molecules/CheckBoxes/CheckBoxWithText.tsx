@@ -8,8 +8,9 @@ type Props = {
 
 const StyledDiv = styled.div`
   display: grid;
-  grid-template-columns: 0.5fr 1fr;
-  width: 100px;
+  grid-template-columns: 0.3fr 1fr;
+  width: 140px;
+  font-size: 12px;
   line-height: 18px;
 `;
 
