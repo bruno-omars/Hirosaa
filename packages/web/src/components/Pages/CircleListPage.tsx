@@ -43,7 +43,7 @@ const CircleListPage: FC = () => {
       : {};
   }, [selectedSubcategories]);
 
-  const circlesQueryVal = useMemo(() => {
+  const variables = useMemo(() => {
     return {
       limit: 10,
       offset: (currentPage - 1) * pageLimit,
@@ -52,7 +52,7 @@ const CircleListPage: FC = () => {
   }, [where, currentPage]);
 
   const { data, error } = useCirclesQuery({
-    variables: circlesQueryVal,
+    variables: variables,
   });
 
   const maxPage = useMemo(() => {
