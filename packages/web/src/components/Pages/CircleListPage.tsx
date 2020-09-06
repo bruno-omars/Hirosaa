@@ -31,8 +31,8 @@ const CircleListPage: FC = () => {
 
   const [selectedSubcategories, setSubCategories] = useState<number[]>([]);
 
-  const getCirclesQueryVal = () => {
-    const where = selectedSubcategories.length
+  const where = useMemo(() => {
+    return selectedSubcategories.length
       ? {
           SubCategory: {
             id: {
@@ -41,23 +41,26 @@ const CircleListPage: FC = () => {
           },
         }
       : {};
+  }, [selectedSubcategories]);
+
+  const circlesQueryVal = useMemo(() => {
     return {
       limit: 10,
       offset: (currentPage - 1) * pageLimit,
       where: where,
     };
-  };
+  }, [where, currentPage]);
 
   const { data, error } = useCirclesQuery({
-    variables: getCirclesQueryVal(),
+    variables: circlesQueryVal,
   });
 
-  const getMaxPage = useMemo(() => {
+  const maxPage = useMemo(() => {
     if (data?.Circle_aggregate.aggregate?.count) {
       return Math.ceil(data?.Circle_aggregate.aggregate?.count / pageLimit);
     }
     return 1;
-  }, [data, pageLimit]);
+  }, [data]);
 
   if (error) return <p>Error! ${error.message}</p>;
 
@@ -72,7 +75,7 @@ const CircleListPage: FC = () => {
         <div>
           {circles}
           <Pagenation
-            maxPage={getMaxPage}
+            maxPage={maxPage}
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
           />
