@@ -1,4 +1,4 @@
-import React, { FC, useState, useReducer, useEffect, useMemo } from "react";
+import React, { FC, useState, useMemo } from "react";
 import { useCirclesQuery } from "../../generated/graphql";
 import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
@@ -49,7 +49,7 @@ const CircleListPage: FC = () => {
     };
   };
 
-  const { data, loading, error } = useCirclesQuery({
+  const { data, error } = useCirclesQuery({
     variables: getCirclesQueryVal(),
   });
 
@@ -60,7 +60,7 @@ const CircleListPage: FC = () => {
       );
     }
     return 1;
-  }, [data?.Circle_aggregate.aggregate?.count]);
+  }, [data, pagination.limit]);
 
   if (error) return <p>Error! ${error.message}</p>;
 

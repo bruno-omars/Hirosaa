@@ -47,7 +47,6 @@ const CheckBoxParentList: FC<Props> = ({
         return;
       }
     });
-    console.log(selectedSubcategories);
   };
 
   return (
