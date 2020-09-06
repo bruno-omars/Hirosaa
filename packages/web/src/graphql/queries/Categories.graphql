@@ -1,0 +1,10 @@
+query Categories {
+  ParentCategory {
+    id
+    name
+    SubCategories {
+      id
+      name
+    }
+  }
+}

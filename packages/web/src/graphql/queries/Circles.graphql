@@ -1,5 +1,5 @@
-query Circles($limit: Int!, $offset: Int!) {
-  Circle(limit: $limit, offset: $offset) {
+query Circles($limit: Int!, $offset: Int!, $where: Circle_bool_exp) {
+  Circle(limit: $limit, offset: $offset, where: $where) {
     id
     name
     recruit_title
@@ -7,7 +7,7 @@ query Circles($limit: Int!, $offset: Int!) {
     what_we_will_do
     main_role
   }
-  Circle_aggregate {
+  Circle_aggregate(where: $where) {
     aggregate {
       count(columns: avatar)
     }
