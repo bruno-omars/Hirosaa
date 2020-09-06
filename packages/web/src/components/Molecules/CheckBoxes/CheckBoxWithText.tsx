@@ -2,7 +2,9 @@ import React, { FC } from "react";
 import DefaultCheckBox from "../../Atoms/CheckBoxes/DefaultCheckBox";
 import styled from "styled-components";
 
-type Props = {
+import { Props as DefaultProps } from "../../Atoms/CheckBoxes/DefaultCheckBox";
+
+type Props = DefaultProps & {
   text: string;
 };
 
@@ -17,7 +19,7 @@ const StyledDiv = styled.div`
 const CheckBoxWithText: FC<Props> = (props) => {
   return (
     <StyledDiv>
-      <DefaultCheckBox />
+      <DefaultCheckBox handleClick={props.handleClick} />
       {props.text}
     </StyledDiv>
   );

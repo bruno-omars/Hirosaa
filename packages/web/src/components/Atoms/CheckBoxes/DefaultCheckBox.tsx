@@ -1,10 +1,11 @@
+import React, { FC } from "react";
 import styled from "styled-components";
 
-type Props = {
-  handleClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+export type Props = {
+  handleClick: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 };
 
-const DefaultCheckBox = styled.input.attrs({ type: "checkbox" })<Props>`
+const StyledCheckBox = styled.input.attrs({ type: "checkbox" })`
   position: relative;
   cursor: pointer;
   margin: 0;
@@ -44,5 +45,9 @@ const DefaultCheckBox = styled.input.attrs({ type: "checkbox" })<Props>`
     background: #ffffff;
   }
 `;
+
+const DefaultCheckBox: FC<Props> = ({ handleClick }) => {
+  return <StyledCheckBox onClick={handleClick} />;
+};
 
 export default DefaultCheckBox;

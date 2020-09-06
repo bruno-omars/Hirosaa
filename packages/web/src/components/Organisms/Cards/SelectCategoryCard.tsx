@@ -19,7 +19,15 @@ const StyledH3 = styled.h3`
   font-weight: 100;
 `;
 
-const SelectCategoryCard: FC = () => {
+type Props = {
+  selectedSubcategories: number[];
+  setSubCategories: React.Dispatch<React.SetStateAction<number[]>>;
+};
+
+const SelectCategoryCard: FC<Props> = ({
+  selectedSubcategories,
+  setSubCategories,
+}) => {
   const { data, loading, error } = useCategoriesQuery();
 
   if (loading) return <p>Loading...</p>;
@@ -33,6 +41,8 @@ const SelectCategoryCard: FC = () => {
           <CheckBoxParentList
             parentCategory={parentCategory}
             key={parentCategory.id}
+            selectedSubcategories={selectedSubcategories}
+            setSubCategories={setSubCategories}
           />
         );
       })}

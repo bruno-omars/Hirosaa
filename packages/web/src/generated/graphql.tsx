@@ -4667,6 +4667,7 @@ export type CategoriesQuery = (
 export type CirclesQueryVariables = Exact<{
   limit: Scalars['Int'];
   offset: Scalars['Int'];
+  where?: Maybe<Circle_Bool_Exp>;
 }>;
 
 
@@ -4780,8 +4781,8 @@ export type CategoriesQueryHookResult = ReturnType<typeof useCategoriesQuery>;
 export type CategoriesLazyQueryHookResult = ReturnType<typeof useCategoriesLazyQuery>;
 export type CategoriesQueryResult = Apollo.QueryResult<CategoriesQuery, CategoriesQueryVariables>;
 export const CirclesDocument = gql`
-    query Circles($limit: Int!, $offset: Int!) {
-  Circle(limit: $limit, offset: $offset) {
+    query Circles($limit: Int!, $offset: Int!, $where: Circle_bool_exp) {
+  Circle(limit: $limit, offset: $offset, where: $where) {
     id
     name
     recruit_title
@@ -4789,7 +4790,7 @@ export const CirclesDocument = gql`
     what_we_will_do
     main_role
   }
-  Circle_aggregate {
+  Circle_aggregate(where: $where) {
     aggregate {
       count(columns: avatar)
     }
@@ -4811,6 +4812,7 @@ export const CirclesDocument = gql`
  *   variables: {
  *      limit: // value for 'limit'
  *      offset: // value for 'offset'
+ *      where: // value for 'where'
  *   },
  * });
  */

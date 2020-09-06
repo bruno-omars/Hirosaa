@@ -20,15 +20,25 @@ type Props = {
         __typename?: "SubCategory" | undefined;
       } & Pick<SubCategory, "id" | "name">)[];
     };
+  selectedSubcategories: number[];
+  setSubCategories: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
-const CheckBoxParentList: FC<Props> = (props) => {
+const CheckBoxParentList: FC<Props> = ({
+  parentCategory,
+  selectedSubcategories,
+  setSubCategories,
+}) => {
   return (
     <ParentUl>
       <StyledLi>
-        <CheckBoxWithText text={props.parentCategory.name} />
+        <CheckBoxWithText text={parentCategory.name} handleClick={() => {}} />
       </StyledLi>
-      <CheckBoxChildList subCategories={props.parentCategory.SubCategories} />
+      <CheckBoxChildList
+        subCategories={parentCategory.SubCategories}
+        selectedSubcategories={selectedSubcategories}
+        setSubCategories={setSubCategories}
+      />
     </ParentUl>
   );
 };

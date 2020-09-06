@@ -1,4 +1,4 @@
-import React, { FC, useState, useReducer, useEffect } from "react";
+import React, { FC, useState, useReducer, useEffect, useMemo } from "react";
 import { useCirclesQuery } from "../../generated/graphql";
 import CircleCard from "../Molecules/Cards/CricleCard";
 import styled from "styled-components";
@@ -30,23 +30,37 @@ const CircleListPage: FC = () => {
     currentPage: 1,
   });
 
-  const getCirclesQueryVal = () => ({
-    limit: 10,
-    offset: (pagination.currentPage - 1) * pagination.limit,
-  });
+  const [selectedSubcategories, setSubCategories] = useState<number[]>([]);
+
+  const getCirclesQueryVal = () => {
+    const where = selectedSubcategories.length
+      ? {
+          SubCategory: {
+            id: {
+              _in: selectedSubcategories,
+            },
+          },
+        }
+      : {};
+    return {
+      limit: 10,
+      offset: (pagination.currentPage - 1) * pagination.limit,
+      where: where,
+    };
+  };
 
   const { data, loading, error } = useCirclesQuery({
     variables: getCirclesQueryVal(),
   });
 
-  const getMaxPage = () => {
+  const getMaxPage = useMemo(() => {
     if (data?.Circle_aggregate.aggregate?.count) {
       return Math.ceil(
         data?.Circle_aggregate.aggregate?.count / pagination.limit
       );
     }
     return 1;
-  };
+  }, [data?.Circle_aggregate.aggregate?.count]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
@@ -62,12 +76,15 @@ const CircleListPage: FC = () => {
         <div>
           {circles}
           <Pagenation
-            maxPage={getMaxPage()}
+            maxPage={getMaxPage}
             setPagination={setPagination}
             pagination={pagination}
           />
         </div>
-        <SelectCategoryCard />
+        <SelectCategoryCard
+          selectedSubcategories={selectedSubcategories}
+          setSubCategories={setSubCategories}
+        />
       </Grid>
     </>
   );
