@@ -30,7 +30,6 @@ const CheckBoxChildList: FC<Props> = ({
     e: React.MouseEvent<HTMLInputElement, MouseEvent>,
     id: number
   ) => {
-    e.preventDefault();
     let newSelectedSubcategories: number[];
     if (selectedSubcategories.includes(id)) {
       newSelectedSubcategories = selectedSubcategories.filter(

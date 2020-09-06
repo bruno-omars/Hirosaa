@@ -62,7 +62,6 @@ const CircleListPage: FC = () => {
     return 1;
   }, [data?.Circle_aggregate.aggregate?.count]);
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
 
   const circles = data?.Circle.map((circle) => {
