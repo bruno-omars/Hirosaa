@@ -27,7 +27,7 @@ const CheckBoxChildList: FC<Props> = ({
   setSubCategories,
 }) => {
   const handleSubCategorySet = (
-    e: React.MouseEvent<HTMLInputElement, MouseEvent>,
+    e: React.ChangeEvent<HTMLInputElement>,
     id: number
   ) => {
     let newSelectedSubcategories: number[];
@@ -48,7 +48,8 @@ const CheckBoxChildList: FC<Props> = ({
         <StyledLi key={subCategory.id}>
           <CheckBoxWithText
             text={subCategory.name}
-            handleClick={(e) => handleSubCategorySet(e, subCategory.id)}
+            onChange={(e) => handleSubCategorySet(e, subCategory.id)}
+            checked={selectedSubcategories.includes(subCategory.id)}
           />
         </StyledLi>
       ))}

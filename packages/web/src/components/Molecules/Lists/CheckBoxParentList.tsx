@@ -29,10 +29,39 @@ const CheckBoxParentList: FC<Props> = ({
   selectedSubcategories,
   setSubCategories,
 }) => {
+  const handleParentCategorySet = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    childrenIds: number[]
+  ) => {
+    let newSelectedSubcategories: number[];
+    childrenIds.forEach((id) => {
+      if (selectedSubcategories.includes(id)) {
+        newSelectedSubcategories = selectedSubcategories.filter(
+          (num) => !childrenIds.includes(num)
+        );
+        setSubCategories(newSelectedSubcategories);
+        return;
+      } else {
+        newSelectedSubcategories = [...selectedSubcategories, ...childrenIds];
+        setSubCategories(newSelectedSubcategories);
+        return;
+      }
+    });
+    console.log(selectedSubcategories);
+  };
+
   return (
     <ParentUl>
       <StyledLi>
-        <CheckBoxWithText text={parentCategory.name} handleClick={() => {}} />
+        <CheckBoxWithText
+          text={parentCategory.name}
+          onChange={(e) =>
+            handleParentCategorySet(
+              e,
+              parentCategory.SubCategories.map((subCategory) => subCategory.id)
+            )
+          }
+        />
       </StyledLi>
       <CheckBoxChildList
         subCategories={parentCategory.SubCategories}

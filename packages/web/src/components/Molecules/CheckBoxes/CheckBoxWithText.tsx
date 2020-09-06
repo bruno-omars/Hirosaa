@@ -19,7 +19,7 @@ const StyledDiv = styled.div`
 const CheckBoxWithText: FC<Props> = (props) => {
   return (
     <StyledDiv>
-      <DefaultCheckBox handleClick={props.handleClick} />
+      <DefaultCheckBox {...props} />
       {props.text}
     </StyledDiv>
   );
