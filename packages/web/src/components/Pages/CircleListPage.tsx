@@ -24,11 +24,10 @@ export type Pagination = {
   currentPage: number;
 };
 
+const pageLimit = 10;
+
 const CircleListPage: FC = () => {
-  const [pagination, setPagination] = useState<Pagination>({
-    limit: 10,
-    currentPage: 1,
-  });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedSubcategories, setSubCategories] = useState<number[]>([]);
 
@@ -44,7 +43,7 @@ const CircleListPage: FC = () => {
       : {};
     return {
       limit: 10,
-      offset: (pagination.currentPage - 1) * pagination.limit,
+      offset: (currentPage - 1) * pageLimit,
       where: where,
     };
   };
@@ -55,12 +54,10 @@ const CircleListPage: FC = () => {
 
   const getMaxPage = useMemo(() => {
     if (data?.Circle_aggregate.aggregate?.count) {
-      return Math.ceil(
-        data?.Circle_aggregate.aggregate?.count / pagination.limit
-      );
+      return Math.ceil(data?.Circle_aggregate.aggregate?.count / pageLimit);
     }
     return 1;
-  }, [data, pagination.limit]);
+  }, [data, pageLimit]);
 
   if (error) return <p>Error! ${error.message}</p>;
 
@@ -76,8 +73,8 @@ const CircleListPage: FC = () => {
           {circles}
           <Pagenation
             maxPage={getMaxPage}
-            setPagination={setPagination}
-            pagination={pagination}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
           />
         </div>
         <SelectCategoryCard

@@ -13,6 +13,7 @@ import TwoColumn from "./components/Templates/TwoColumn";
 import GuestSidebar from "./components/Organisms/Sidebar/GuestSidebar";
 import PrivateRoute from "./PrivateRoute";
 import CircleCreatePage from "./components/Pages/CircleCreatePage";
+import CircleDetailPage from "./components/Pages/CircleDetailPage";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading } = useAuth0();
@@ -34,6 +35,7 @@ const App: FC = () => {
 
           <PrivateRoute path="/circle" component={CircleListPage} exact />
           <PrivateRoute path="/circle-new" component={CircleCreatePage} exact />
+          <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
 
           <Route path="*">
             <Redirect

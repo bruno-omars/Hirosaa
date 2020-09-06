@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
 
 type Props = {
-  handleClick: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  handleClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   bgColor?: keyof typeof COLOR;
   name: string;
   id: string;
+  avatar?: string;
 };
 
 const StyledSkillCard = styled.div<Pick<Props, "bgColor">>`
@@ -28,7 +29,7 @@ const SkillCard: FC<Props> = (props) => {
       id={props.id}
       bgColor={props.bgColor}
     >
-      {props.children}
+      <img height="50px" src={props.avatar} />
       {props.name}
     </StyledSkillCard>
   );

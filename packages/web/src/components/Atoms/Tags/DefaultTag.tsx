@@ -6,12 +6,12 @@ type Props = {
   handleClick?: (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => void;
   bgColor?: keyof typeof COLOR;
   name: string;
-  id: string;
+  id?: string;
 };
 
 const Tag = styled.span<Omit<Props, "handleClick" | "name" | "id">>`
   border-radius: 50px;
-  background-color: ${({ bgColor = "ORANGE" }) => COLOR[bgColor]}77;
+  background-color: ${({ bgColor = "ORANGE" }) => COLOR[bgColor]};
   ${({ bgColor = "ORANGE" }) =>
     bgColor === "WHITE" ? "border: 1px solid rgba(0, 0, 0, 0.4)" : ""};
   cursor: pointer;

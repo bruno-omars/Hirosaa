@@ -1,0 +1,26 @@
+query Circle($id: Int!) {
+  circle: Circle_by_pk(id: $id) {
+    id
+    avatar
+    name
+    main_role
+    what_we_will_do
+    recruit_title
+    User {
+      id
+      name
+      avatar
+    }
+    SubCategory {
+      id
+      name
+    }
+    CicleSkills {
+      Skill {
+        id
+        name
+        avatar
+      }
+    }
+  }
+}
