@@ -19,7 +19,7 @@ const StyledSidebar = styled.div`
 
 const StyledList = styled.div`
   display: grid;
-  grid-template-rows: 80px 80px 80px 80px;
+  grid-template-rows: 80px 80px 80px 80px 80px;
   justify-content: right;
 `;
 
@@ -46,6 +46,9 @@ const LoginSidebar: FC = () => {
       </StyledMe>
       <StyledList>
         <IconLink to="/circle" text="サークル一覧" bgcolor={"WHITE"}>
+          <Circleci />
+        </IconLink>
+        <IconLink to="/circle-new" text="サークル作成">
           <Circleci />
         </IconLink>
         <IconLink to="#" text="トークルーム">
