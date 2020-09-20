@@ -1,0 +1,12 @@
+query UserCircles($id: String!) {
+  User(where: { id: { _eq: $id } }) {
+    id
+    CircleUsers {
+      Circle {
+        id
+        name
+        avatar
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+subscription Messages($circleId: Int!) {
+  Message(where: { Circle: { id: { _eq: $circleId } } }) {
+    timestamp
+    text
+    id
+    User {
+      id
+      avatar
+      name
+    }
+  }
+}

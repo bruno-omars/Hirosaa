@@ -37,8 +37,6 @@ const LoginSidebar: FC = () => {
     setMe(useCase.setMe(user));
   }, [user, setMe, useCase]);
 
-  console.log(me);
-
   return (
     <StyledSidebar>
       <StyledMe>
@@ -51,7 +49,7 @@ const LoginSidebar: FC = () => {
         <IconLink to="/circle-new" text="サークル作成">
           <Circleci />
         </IconLink>
-        <IconLink to="#" text="トークルーム">
+        <IconLink to="/chat" text="トークルーム">
           <Chat />
         </IconLink>
         <IconLink to="#" text="プロフィール">

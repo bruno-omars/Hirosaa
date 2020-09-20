@@ -4736,6 +4736,43 @@ export type UsersQuery = (
   )> }
 );
 
+export type UserCirclesQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type UserCirclesQuery = (
+  { __typename?: 'query_root' }
+  & { User: Array<(
+    { __typename?: 'User' }
+    & Pick<User, 'id'>
+    & { CircleUsers: Array<(
+      { __typename?: 'CircleUser' }
+      & { Circle: (
+        { __typename?: 'Circle' }
+        & Pick<Circle, 'id' | 'name' | 'avatar'>
+      ) }
+    )> }
+  )> }
+);
+
+export type MessagesSubscriptionVariables = Exact<{
+  circleId: Scalars['Int'];
+}>;
+
+
+export type MessagesSubscription = (
+  { __typename?: 'subscription_root' }
+  & { Message: Array<(
+    { __typename?: 'Message' }
+    & Pick<Message, 'timestamp' | 'text' | 'id'>
+    & { User: (
+      { __typename?: 'User' }
+      & Pick<User, 'id' | 'avatar' | 'name'>
+    ) }
+  )> }
+);
+
 
 export const InsertCircleDocument = gql`
     mutation InsertCircle($objects: [Circle_insert_input!]!) {
@@ -4976,3 +5013,79 @@ export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<User
 export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
+export const UserCirclesDocument = gql`
+    query UserCircles($id: String!) {
+  User(where: {id: {_eq: $id}}) {
+    id
+    CircleUsers {
+      Circle {
+        id
+        name
+        avatar
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useUserCirclesQuery__
+ *
+ * To run a query within a React component, call `useUserCirclesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserCirclesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserCirclesQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUserCirclesQuery(baseOptions?: Apollo.QueryHookOptions<UserCirclesQuery, UserCirclesQueryVariables>) {
+        return Apollo.useQuery<UserCirclesQuery, UserCirclesQueryVariables>(UserCirclesDocument, baseOptions);
+      }
+export function useUserCirclesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserCirclesQuery, UserCirclesQueryVariables>) {
+          return Apollo.useLazyQuery<UserCirclesQuery, UserCirclesQueryVariables>(UserCirclesDocument, baseOptions);
+        }
+export type UserCirclesQueryHookResult = ReturnType<typeof useUserCirclesQuery>;
+export type UserCirclesLazyQueryHookResult = ReturnType<typeof useUserCirclesLazyQuery>;
+export type UserCirclesQueryResult = Apollo.QueryResult<UserCirclesQuery, UserCirclesQueryVariables>;
+export const MessagesDocument = gql`
+    subscription Messages($circleId: Int!) {
+  Message(where: {Circle: {id: {_eq: $circleId}}}) {
+    timestamp
+    text
+    id
+    User {
+      id
+      avatar
+      name
+    }
+  }
+}
+    `;
+
+/**
+ * __useMessagesSubscription__
+ *
+ * To run a query within a React component, call `useMessagesSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useMessagesSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMessagesSubscription({
+ *   variables: {
+ *      circleId: // value for 'circleId'
+ *   },
+ * });
+ */
+export function useMessagesSubscription(baseOptions?: Apollo.SubscriptionHookOptions<MessagesSubscription, MessagesSubscriptionVariables>) {
+        return Apollo.useSubscription<MessagesSubscription, MessagesSubscriptionVariables>(MessagesDocument, baseOptions);
+      }
+export type MessagesSubscriptionHookResult = ReturnType<typeof useMessagesSubscription>;
+export type MessagesSubscriptionResult = Apollo.SubscriptionResult<MessagesSubscription>;
