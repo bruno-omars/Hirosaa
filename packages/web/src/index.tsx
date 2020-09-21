@@ -1,21 +1,53 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { ApolloProvider, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
-import Auth0ProviderWithHistory from './provider/Auth0ProviderWithHistory';
-import AuthContextProvider from './provider/AuthContextProvider';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { split, HttpLink } from "@apollo/client";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
+import AuthContextProvider from "./provider/AuthContextProvider";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
-import './index.css';
+import "./index.css";
+
+const httpLink = new HttpLink({
+  uri: "http://localhost:8080/v1/graphql",
+  headers: {
+    // Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+    "x-hasura-admin-secret": process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
+  },
+});
+
+const wsLink = new WebSocketLink({
+  uri: "ws://localhost:8080/v1/graphql",
+  options: {
+    reconnect: true,
+    connectionParams: {
+      headers: {
+        // Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
+        "x-hasura-admin-secret":
+          process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
+      },
+    },
+  },
+});
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === "OperationDefinition" &&
+      definition.operation === "subscription"
+    );
+  },
+  wsLink,
+  httpLink
+);
 
 const client = new ApolloClient({
-  link: new HttpLink({
-    uri: 'https://allowed-herring-99.hasura.app/v1/graphql',
-    headers: {
-      // Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-      'x-hasura-admin-secret': process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
-    }
-  }),
+  link,
   cache: new InMemoryCache(),
 });
 
@@ -29,7 +61,7 @@ ReactDOM.render(
       </Auth0ProviderWithHistory>
     </ApolloProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
