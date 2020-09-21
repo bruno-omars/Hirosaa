@@ -4649,6 +4649,22 @@ export type InsertCircleMutation = (
   )> }
 );
 
+export type InsertMessageMutationVariables = Exact<{
+  objects: Array<Message_Insert_Input>;
+}>;
+
+
+export type InsertMessageMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_Message?: Maybe<(
+    { __typename?: 'Message_mutation_response' }
+    & { returning: Array<(
+      { __typename?: 'Message' }
+      & Pick<Message, 'id'>
+    )> }
+  )> }
+);
+
 export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4743,11 +4759,12 @@ export type UserCirclesQueryVariables = Exact<{
 
 export type UserCirclesQuery = (
   { __typename?: 'query_root' }
-  & { User: Array<(
+  & { user?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id'>
     & { CircleUsers: Array<(
       { __typename?: 'CircleUser' }
+      & Pick<CircleUser, 'id'>
       & { Circle: (
         { __typename?: 'Circle' }
         & Pick<Circle, 'id' | 'name' | 'avatar'>
@@ -4806,6 +4823,40 @@ export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions
 export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
 export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
+export const InsertMessageDocument = gql`
+    mutation InsertMessage($objects: [Message_insert_input!]!) {
+  insert_Message(objects: $objects) {
+    returning {
+      id
+    }
+  }
+}
+    `;
+export type InsertMessageMutationFn = Apollo.MutationFunction<InsertMessageMutation, InsertMessageMutationVariables>;
+
+/**
+ * __useInsertMessageMutation__
+ *
+ * To run a mutation, you first call `useInsertMessageMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertMessageMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertMessageMutation, { data, loading, error }] = useInsertMessageMutation({
+ *   variables: {
+ *      objects: // value for 'objects'
+ *   },
+ * });
+ */
+export function useInsertMessageMutation(baseOptions?: Apollo.MutationHookOptions<InsertMessageMutation, InsertMessageMutationVariables>) {
+        return Apollo.useMutation<InsertMessageMutation, InsertMessageMutationVariables>(InsertMessageDocument, baseOptions);
+      }
+export type InsertMessageMutationHookResult = ReturnType<typeof useInsertMessageMutation>;
+export type InsertMessageMutationResult = Apollo.MutationResult<InsertMessageMutation>;
+export type InsertMessageMutationOptions = Apollo.BaseMutationOptions<InsertMessageMutation, InsertMessageMutationVariables>;
 export const CategoriesDocument = gql`
     query Categories {
   ParentCategory {
@@ -5015,9 +5066,10 @@ export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
 export const UserCirclesDocument = gql`
     query UserCircles($id: String!) {
-  User(where: {id: {_eq: $id}}) {
+  user: User_by_pk(id: $id) {
     id
     CircleUsers {
+      id
       Circle {
         id
         name
@@ -5055,7 +5107,7 @@ export type UserCirclesLazyQueryHookResult = ReturnType<typeof useUserCirclesLaz
 export type UserCirclesQueryResult = Apollo.QueryResult<UserCirclesQuery, UserCirclesQueryVariables>;
 export const MessagesDocument = gql`
     subscription Messages($circleId: Int!) {
-  Message(where: {Circle: {id: {_eq: $circleId}}}) {
+  Message(where: {Circle: {id: {_eq: $circleId}}}, order_by: {timestamp: desc}) {
     timestamp
     text
     id

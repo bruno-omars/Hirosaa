@@ -1,7 +1,8 @@
 query UserCircles($id: String!) {
-  User(where: { id: { _eq: $id } }) {
+  user: User_by_pk(id: $id) {
     id
     CircleUsers {
+      id
       Circle {
         id
         name
