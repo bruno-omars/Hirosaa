@@ -8,6 +8,7 @@ import {
   useUserCirclesQuery,
   useInsertMessageMutation,
 } from "../../generated/graphql";
+import ChatCard from "../Organisms/Cards/ChatCard";
 
 export type Input = {
   text: string;
@@ -20,7 +21,7 @@ const INITIAL_INPUT = {
 };
 
 const ChatPage: FC = () => {
-  const [circleId, setCircleId] = useState<number>();
+  const [activeCircleId, setActiveCircleId] = useState<number>();
   const [inputs, setInputs] = useState<Input>(INITIAL_INPUT);
 
   const { me } = useAuthContext();
@@ -28,28 +29,26 @@ const ChatPage: FC = () => {
     variables: { id: me?.id! },
     skip: !me?.id,
   });
-
-  const [insertMessage] = useInsertMessageMutation();
-
-  useEffect(() => {
-    //最初は一番上のcircleIdをセット
-    if (!circleId && !userLoading) {
-      setCircleId(userData?.user?.CircleUsers[0]?.Circle.id);
-    }
-  }, [userLoading, userData]);
-
   const { data: messageData, loading, error } = useMessagesSubscription({
     variables: {
-      circleId: circleId!,
+      circleId: activeCircleId!,
     },
-    skip: !circleId,
+    skip: !activeCircleId,
   });
+  const [insertMessage] = useInsertMessageMutation();
+
+  const activeCircle = userData?.user?.CircleUsers.find(
+    (circleUser) => circleUser.Circle.id === activeCircleId
+  )?.Circle;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     e.preventDefault();
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
+    const targetInput = { [e.target.name]: e.target.value };
+    setInputs((prevInputs) => {
+      return { ...prevInputs, ...targetInput };
+    });
   };
 
   const handleSubmit = async (
@@ -62,7 +61,7 @@ const ChatPage: FC = () => {
           objects: [
             {
               ...inputs,
-              circle_id: circleId,
+              circle_id: activeCircleId,
               user_id: me?.id,
             },
           ],
@@ -74,10 +73,17 @@ const ChatPage: FC = () => {
     }
   };
 
+  useEffect(() => {
+    //最初は一番上のcircleIdをセット
+    if (!activeCircleId && !userLoading) {
+      setActiveCircleId(userData?.user?.CircleUsers[0]?.Circle.id);
+    }
+  }, [userLoading, userData]);
+
   if (userLoading) return <>loading</>;
   return (
     <>
-      <h1>チャットページ</h1>
+      <ChatCard setActiveCircleId={setActiveCircleId} circle={activeCircle} />
       {messageData?.Message?.map((message) => (
         <div>{message.text}</div>
       ))}
@@ -85,6 +91,7 @@ const ChatPage: FC = () => {
         handleChange={handleChange}
         placeholder="コメントを入力"
         name="text"
+        value={inputs.text}
       />
       <Default clickHandler={handleSubmit}>送信</Default>
     </>

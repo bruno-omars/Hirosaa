@@ -18,7 +18,7 @@ type Props = {
 
 const StyledTextArea = styled.textarea<Omit<Props, "handleChange">>`
   box-sizing: border-box;
-  border: 1px solid #707070;
+  border: 1px solid ${COLOR["BORDER_TEXT_INPUT"]};
   border-radius: 4px;
   color: #00000f;
   font: 15px/24px sans-serif;
