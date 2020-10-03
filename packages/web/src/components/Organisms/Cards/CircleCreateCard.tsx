@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import styled from "styled-components";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
@@ -58,6 +58,11 @@ type Props = {
 
 const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
+
+  const skillCardHeight = useMemo(
+    () => data && Math.ceil(data.Skill.length / 4) * 75,
+    [data]
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -119,7 +124,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             {error ? (
               "スキルカードの読み込みに失敗しました。リロードしてください。"
             ) : data?.Skill ? (
-              <StyledGrid height={Math.ceil(data.Skill.length / 4) * 85}>
+              <StyledGrid height={skillCardHeight || 75}>
                 <SkillCards
                   skills={data?.Skill}
                   selectedSkills={props.selectedSkills}

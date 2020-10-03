@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import styled from "styled-components";
-import { User, UserQuery } from "../../../generated/graphql";
+import { UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
@@ -49,7 +49,13 @@ const StyledGrid = styled.div<StyleGrid>`
 `;
 
 const UserDetailCard: FC<Props> = ({ data }) => {
+  const skillCardHeight = useMemo(
+    () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
+    [data]
+  );
+
   if (!data.user) return <p>ユーザーが存在しません</p>;
+
   const user = data.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
 
@@ -70,7 +76,7 @@ const UserDetailCard: FC<Props> = ({ data }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <StyledGrid height={Math.ceil(skills.length / 4) * 75}>
+        <StyledGrid height={skillCardHeight || 75}>
           <SkillCards skills={skills} />
         </StyledGrid>
       </StyledBlock>
