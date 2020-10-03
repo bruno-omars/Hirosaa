@@ -28,6 +28,9 @@ const ChatPage: FC = () => {
   const { data: userData, loading: userLoading } = useUserCirclesQuery({
     variables: { id: me?.id! },
     skip: !me?.id,
+    onCompleted: (data) => {
+      setActiveCircleId(data?.user?.CircleUsers[0]?.Circle.id);
+    },
   });
   const { data: messageData, loading, error } = useMessagesSubscription({
     variables: {
@@ -72,13 +75,6 @@ const ChatPage: FC = () => {
       console.warn(e);
     }
   };
-
-  useEffect(() => {
-    //最初は一番上のcircleIdをセット
-    if (!activeCircleId && !userLoading) {
-      setActiveCircleId(userData?.user?.CircleUsers[0]?.Circle.id);
-    }
-  }, [userLoading, userData]);
 
   if (userLoading) return <>loading</>;
   return (
