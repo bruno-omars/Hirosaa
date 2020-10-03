@@ -6,6 +6,7 @@ import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
+import { useHistory } from "react-router-dom";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -23,6 +24,7 @@ const StyledTop = styled.div`
 const StyledCircleAvatar = styled(Avatar)`
   grid-row: 1/3;
   align-self: center;
+  cursor: default;
 `;
 
 const StyledHeader = styled.div`
@@ -97,10 +99,18 @@ type Props = {
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
   > & { CicleSkills: { Skill: Pick<Skill, "id" | "name" | "avatar"> }[] } & {
     SubCategory?: Pick<SubCategory, "name"> | null;
-  } & { User?: Pick<User, "name" | "avatar"> | null };
+  } & { User?: Pick<User, "id" | "name" | "avatar"> | null };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
+  let history = useHistory();
+  const handleToDetail = () => {
+    history.push({
+      pathname: "/user-detail",
+      state: { userId: circle.User?.id },
+    });
+  };
+
   return (
     <StyledCard>
       <StyledTop>
@@ -117,7 +127,11 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
 
         <StyledLeaderWrapper>
           <StyledLeaderLabel>リーダー</StyledLeaderLabel>
-          <Avatar src={circle.User?.avatar ?? ""} size={30} />
+          <Avatar
+            onClick={handleToDetail}
+            src={circle.User?.avatar ?? ""}
+            size={30}
+          />
           <StyledLeaderName>{circle.User?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
       </StyledTop>
