@@ -24,6 +24,7 @@ const StyledTop = styled.div`
 const StyledCircleAvatar = styled(Avatar)`
   grid-row: 1/3;
   align-self: center;
+  cursor: default;
 `;
 
 const StyledHeader = styled.div`

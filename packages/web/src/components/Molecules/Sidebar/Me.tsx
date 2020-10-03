@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import CircleButton from '../../Atoms/Buttons/CircleButton';
-import { ReactComponent as DownArrow } from '../../../assets/icons/down-arrow.svg';
-import { COLOR } from '../../../constants/color';
+import CircleButton from "../../Atoms/Buttons/CircleButton";
+import { ReactComponent as DownArrow } from "../../../assets/icons/down-arrow.svg";
+import { COLOR } from "../../../constants/color";
 
 const StyledMe = styled.div`
-  color: ${COLOR['WHITE']};
+  color: ${COLOR["WHITE"]};
   cursor: pointer;
   display: grid;
   fill: white;
@@ -15,7 +15,7 @@ const StyledMe = styled.div`
   place-items: center;
 
   :hover {
-    background-color: ${COLOR['LIGHT_GREEN']};
+    background-color: ${COLOR["LIGHT_GREEN"]};
     border-radius: 50px;
   }
 `;
@@ -32,12 +32,13 @@ const StyledImage = styled.img`
 
 type Props = {
   user: any;
+  onRedirectDetail: () => void;
 };
 
-const Me: FC<Props> = ({ user }) => {
+const Me: FC<Props> = ({ user, onRedirectDetail }) => {
   return (
     <StyledMe>
-      <CircleButton clickHandler={() => {}} shadowDepth={'NONE'}>
+      <CircleButton clickHandler={onRedirectDetail} shadowDepth={"NONE"}>
         <StyledImage src={user.picture} />
       </CircleButton>
       <div>

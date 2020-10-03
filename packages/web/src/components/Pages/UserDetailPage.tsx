@@ -35,28 +35,25 @@ const UserDetailPage: FC = () => {
     },
   });
 
-  console.warn("data.", data?.user);
+  console.log("data.", data?.user);
   if (!data?.user || loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
-  const handleClickJoin = () => {};
+  const onEditMe = () => {};
 
-  const handleClickEdit = () => {};
+  const onSubmitMessage = () => {};
 
   return (
     <StyledPage>
       <UserDetailCard user={data.user} />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton clickHandler={handleClickJoin} buttonSize="BASE">
-            メッセージを送信する
+          <StyledRoundedButton clickHandler={onEditMe} buttonSize="SMALL">
+            編集する
           </StyledRoundedButton>
         ) : (
-          <StyledRoundedButton
-            clickHandler={handleClickEdit}
-            buttonSize="SMALL"
-          >
-            編集する
+          <StyledRoundedButton clickHandler={onSubmitMessage} buttonSize="BASE">
+            メッセージを送信する
           </StyledRoundedButton>
         )}
       </StyledRightButtons>
