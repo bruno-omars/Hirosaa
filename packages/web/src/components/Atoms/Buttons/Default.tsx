@@ -6,7 +6,7 @@ import { COLOR } from "../../../constants/color";
 export const BUTTON_SIZE = {
   LARGE: { H: "60px", W: "400px" },
   MEDIUM: { H: "60px", W: "380px" },
-  BASE: { H: "60px", W: "260px" },
+  BASE: { H: "40px", W: "220px" },
   SMALL: { H: "40px", W: "150px" },
   MINI: { H: "52px", W: "45px" },
 };

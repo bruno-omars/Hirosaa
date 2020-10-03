@@ -21,7 +21,7 @@ const App: FC = () => {
 
   if (isLoading) return <p>Loading...</p>;
 
-  console.log(isAuthenticated);
+  console.log("Login", isAuthenticated);
 
   return (
     <div className="App">

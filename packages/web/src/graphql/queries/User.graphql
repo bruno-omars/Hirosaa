@@ -1,6 +1,9 @@
-query Users {
-  User {
+query User($id: String!) {
+  user: User_by_pk(id: $id) {
     id
+    avatar
     name
+    introduction
+    interested_in
   }
 }
