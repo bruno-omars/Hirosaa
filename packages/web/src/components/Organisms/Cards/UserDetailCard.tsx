@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { User } from "../../../generated/graphql";
+import { User, UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
+import SkillCards from "./SkillCards";
 
 type Props = {
-  user: {
-    __typename?: "User" | undefined;
-  } & Pick<User, "id" | "avatar" | "name" | "introduction" | "interested_in">;
+  data: UserQuery;
 };
 
 const StyledCard = styled.div`
@@ -38,11 +37,26 @@ const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
 `;
 
-const UserDetailCard: FC<Props> = ({ user }) => {
+type StyleGrid = {
+  height: number;
+};
+
+const StyledGrid = styled.div<StyleGrid>`
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
+`;
+
+const UserDetailCard: FC<Props> = ({ data }) => {
+  if (!data.user) return <p>ユーザーが存在しません</p>;
+  const user = data.user;
+  const skills = user.UserSkills.map((skill) => skill.Skill);
+
   return (
     <StyledCard>
       <StyledTop>
-        <Avatar src={user.avatar || ""} size={66} />
+        <Avatar src={(user && user.avatar) || ""} size={66} />
         <h2>{user.name}</h2>
       </StyledTop>
       <hr />
@@ -53,6 +67,12 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
         <StyledDesc>{user.interested_in}</StyledDesc>
+      </StyledBlock>
+      <StyledBlock>
+        <StyledSubTitle>スキル一覧</StyledSubTitle>
+        <StyledGrid height={Math.ceil(skills.length / 4) * 75}>
+          <SkillCards skills={skills} />
+        </StyledGrid>
       </StyledBlock>
     </StyledCard>
   );

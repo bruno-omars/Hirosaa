@@ -4735,6 +4735,13 @@ export type UserQuery = (
   & { user?: Maybe<(
     { __typename?: 'User' }
     & Pick<User, 'id' | 'avatar' | 'name' | 'introduction' | 'interested_in'>
+    & { UserSkills: Array<(
+      { __typename?: 'UserSkill' }
+      & { Skill: (
+        { __typename?: 'Skill' }
+        & Pick<Skill, 'id' | 'avatar' | 'name'>
+      ) }
+    )> }
   )> }
 );
 
@@ -4953,6 +4960,13 @@ export const UserDocument = gql`
     name
     introduction
     interested_in
+    UserSkills {
+      Skill {
+        id
+        avatar
+        name
+      }
+    }
   }
 }
     `;

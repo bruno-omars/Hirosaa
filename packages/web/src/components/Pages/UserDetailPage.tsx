@@ -45,7 +45,7 @@ const UserDetailPage: FC = () => {
 
   return (
     <StyledPage>
-      <UserDetailCard user={data.user} />
+      <UserDetailCard data={data} />
       <StyledRightButtons>
         {me.id === userId ? (
           <StyledRoundedButton clickHandler={onEditMe} buttonSize="SMALL">
