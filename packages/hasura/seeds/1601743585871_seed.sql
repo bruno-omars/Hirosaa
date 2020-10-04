@@ -1,11 +1,12 @@
 INSERT INTO public."ParentCategory" (id, name) VALUES (1, 'cate');
 INSERT INTO public."SubCategory" (id, parent_category_id, name) VALUES (1, 1, 'hoge11');
 INSERT INTO public."SubCategory" (id, parent_category_id, name) VALUES (2, 1, 'ああああ');
+INSERT INTO public."Organization" (id, name, domain) VALUES (1, 'Google', '@gmail.com');
 INSERT INTO public."User" (id, avatar, name, email, introduction, interested_in, last_seen, created_at, organization_id) VALUES ('1', 'a', 'a', 'aa', '', NULL, NULL, NULL, NULL);
-INSERT INTO public."User" (id, avatar, name, email, introduction, interested_in, last_seen, created_at, organization_id) VALUES ('auth0|5f4b51e2e9ef5f0067b5b0cf', NULL, 'marina', 'k810marina@gmail.com', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO public."Circle" (id, avatar, name, organization_id, what_we_will_do, main_role, owner_id, sub_category_id, recruit_title) VALUES (3, 'aaa', 'aaa', 1, 'aaaaa', '', '1', 1, NULL);
+INSERT INTO public."User" (id, avatar, name, email, introduction, interested_in, last_seen, created_at, organization_id) VALUES ('auth0|5f4b51e2e9ef5f0067b5b0cf', NULL, 'marina', 'k810marina@gmail.com', NULL, NULL, NULL, NULL, 1);
+INSERT INTO public."Circle" (id, avatar, name, organization_id, what_we_will_do, main_role, owner_id, sub_category_id, recruit_title) VALUES (3, 'https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin5-300x300.png', 'aaa', 1, 'aaaaa', '', '1', 1, NULL);
 INSERT INTO public."Circle" (id, avatar, name, organization_id, what_we_will_do, main_role, owner_id, sub_category_id, recruit_title) VALUES (4, 'http://illustrain.com/img/work/2016/illustrain01-tori01.png', 'あああ', NULL, NULL, NULL, NULL, 2, NULL);
-INSERT INTO public."Circle" (id, avatar, name, organization_id, what_we_will_do, main_role, owner_id, sub_category_id, recruit_title) VALUES (5, '', 'いいいい', NULL, NULL, NULL, NULL, 1, NULL);
+INSERT INTO public."Circle" (id, avatar, name, organization_id, what_we_will_do, main_role, owner_id, sub_category_id, recruit_title) VALUES (5, 'https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin3-300x300.png', 'いいいい', NULL, NULL, NULL, NULL, 1, NULL);
 INSERT INTO public."CircleUser" (id, circle_id, user_id) VALUES (3, 3, '1');
 INSERT INTO public."CircleUser" (id, circle_id, user_id) VALUES (4, 4, '1');
 INSERT INTO public."CircleUser" (id, circle_id, user_id) VALUES (5, 3, 'auth0|5f4b51e2e9ef5f0067b5b0cf');

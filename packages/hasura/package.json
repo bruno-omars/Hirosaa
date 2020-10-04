@@ -6,6 +6,7 @@
   "scripts": {
     "migrate": "hasura migrate",
     "metadata": "hasura metadata",
-    "console": "hasura console"
+    "console": "hasura console",
+    "seeds": "hasura seeds"
   }
 }
