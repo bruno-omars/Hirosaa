@@ -15,6 +15,9 @@ $ docker-compose up -d
 $ yarn hasura seeds apply
 ```
 
+- ログイン
+  Slack に貼ってあるメールアドレスとパスワードを使用してログイン
+
 - コンソールを起動
   クエリを試す時やテーブル作成・認可の設定などする場合
 
