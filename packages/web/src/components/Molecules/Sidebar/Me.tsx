@@ -43,8 +43,7 @@ const Me: FC<Props> = ({ user, onRedirectDetail }) => {
       </CircleButton>
       <div>
         <StyledText>{user.nickname}</StyledText>
-        {/* {user['https://hasura.io/jwt/claims']['x-hasura-user-id']} */}
-        @ropital
+        @{user['https://hasura.io/jwt/claims']['x-hasura-user-id'].slice(-7)}
       </div>
       <DownArrow />
     </StyledMe>
