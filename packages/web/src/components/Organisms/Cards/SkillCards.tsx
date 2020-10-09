@@ -8,23 +8,12 @@ type Props = {
         __typename?: "Skill" | undefined;
       } & Pick<Skill, "id" | "name" | "avatar">)[]
     | undefined;
-  selectedSkills: number[];
-  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
+  selectedSkills?: number[];
+  handleClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 const SkillCards: FC<Props> = (props) => {
-  const { selectedSkills, setSkills } = props;
-  const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    let newSelectedSkills: number[];
-    const id = Number(e.currentTarget.id);
-    if (selectedSkills.includes(id)) {
-      newSelectedSkills = selectedSkills.filter((num) => num !== id);
-    } else {
-      newSelectedSkills = [...selectedSkills, id];
-    }
-    setSkills(newSelectedSkills);
-  };
+  const { handleClick, selectedSkills } = props;
 
   const skills = props.skills?.map((skill) => {
     return (

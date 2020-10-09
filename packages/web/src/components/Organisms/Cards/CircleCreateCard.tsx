@@ -7,6 +7,7 @@ import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillCards from "./SkillCards";
 import SubCategoryTags from "../Tags/SubCategoryTags";
+import { selectItems } from "../../../utils/selectItems";
 
 const Card = styled.div`
   padding: 40px;
@@ -128,7 +129,9 @@ const CircleCreateCard: FC<Props> = (props) => {
                 <SkillCards
                   skills={data?.Skill}
                   selectedSkills={props.selectedSkills}
-                  setSkills={props.setSkills}
+                  handleClick={(e) =>
+                    selectItems(e, props.selectedSkills, props.setSkills)
+                  }
                 />
               </StyledGrid>
             ) : (
