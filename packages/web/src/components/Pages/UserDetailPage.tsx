@@ -44,7 +44,7 @@ const UserDetailPage: FC = () => {
 
   return (
     <TwoColumn defaultStyle>
-      <UserDetailCard data={data} />
+      <UserDetailCard user={data.user} />
       <StyledRightButtons>
         {isMe ? (
           <StyledRoundedButton onClick={toEditPage} buttonSize="SMALL">
