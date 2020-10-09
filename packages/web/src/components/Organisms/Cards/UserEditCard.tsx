@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import styled from "styled-components";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
-import SkillCards from "./SkillCards";
+import SkillPicker from "./SkillPicker";
 import { UserEditInput } from "../../Pages/UserEditPage";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
@@ -105,7 +105,7 @@ const UserEditCard: FC<Props> = (props) => {
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards
+          <SkillPicker
             skills={data?.skills}
             selectedSkills={props.selectedSkills}
             setSkills={props.setSkills}

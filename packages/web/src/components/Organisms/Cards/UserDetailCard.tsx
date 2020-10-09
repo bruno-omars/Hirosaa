@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Users, Skills, Circles } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
-import SkillCards from "./SkillCards";
 import { CircleList } from "../CircleList";
+import SkillCard from "../../Molecules/Cards/SkillCard";
 
 type Props = {
   user?: Pick<Users, "avatar" | "introduction" | "name" | "interestedIn"> & {
@@ -85,7 +85,13 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards skills={skills} />
+          {skills?.map((skill) => (
+            <SkillCard
+              name={skill.name}
+              id={skill.id.toString()}
+              avatar={skill.avatar}
+            />
+          ))}
         </StyledGrid>
       </StyledBlock>
       <StyledBlock>
