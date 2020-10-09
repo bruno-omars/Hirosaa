@@ -1,12 +1,14 @@
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";
-import { UserQuery } from "../../../generated/graphql";
+import { User, Skill } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
 
 type Props = {
-  data: UserQuery;
+  user?: Pick<User, "avatar" | "introduction" | "name" | "interested_in"> & {
+    UserSkills: { Skill: Pick<Skill, "id" | "name" | "avatar"> }[];
+  };
 };
 
 const StyledCard = styled.div`
@@ -48,15 +50,14 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const UserDetailCard: FC<Props> = ({ data }) => {
+const UserDetailCard: FC<Props> = ({ user }) => {
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
-    [data]
+    () => user && Math.ceil(user?.UserSkills.length / 4) * 75,
+    [user]
   );
 
-  if (!data.user) return <p>ユーザーが存在しません</p>;
+  if (!user) return <p>ユーザーが存在しません</p>;
 
-  const user = data.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
 
   return (
