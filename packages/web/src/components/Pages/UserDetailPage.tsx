@@ -1,10 +1,10 @@
-import React, { FC , useState, useCallback } from "react"
-import { useLocation } from "react-router-dom"
-import { useUserQuery } from "../../generated/graphql"
-import styled from "styled-components"
-import RoundedButton from "../Atoms/Buttons/RoundedButton"
-import UserDetailCard from "../Organisms/Cards/UserDetailCard"
-import { useAuthContext } from "../../provider/AuthContextProvider"
+import React, { FC, useState, useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import { useUserQuery } from "../../generated/graphql";
+import styled from "styled-components";
+import RoundedButton from "../Atoms/Buttons/RoundedButton";
+import UserDetailCard from "../Organisms/Cards/UserDetailCard";
+import { useAuthContext } from "../../provider/AuthContextProvider";
 
 type Params = {
   userId: string;
@@ -40,20 +40,21 @@ const UserDetailPage: FC = () => {
   if (!data?.user || loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
-  const onEditMe = ()=> {
-      setIsEditing(false)
-  }
+  const onEditMe = () => {
+    setIsEditing(false);
+  };
 
   const onSubmitMessage = () => {};
 
   return (
     <StyledPage>
-      <UserDetailCard data={data} isEditing={isEditing}/>
+      <UserDetailCard data={data} isEditing={isEditing} />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton   
-              clickHandler={onSubmitMessage}
-              buttonSize="SMALL">
+          <StyledRoundedButton
+            clickHandler={onSubmitMessage}
+            buttonSize="SMALL"
+          >
             編集する
           </StyledRoundedButton>
         ) : (

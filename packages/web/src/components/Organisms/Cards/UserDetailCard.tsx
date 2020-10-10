@@ -1,13 +1,13 @@
-import React, { FC, useMemo } from "react"
-import styled from "styled-components"
-import { UserQuery } from "../../../generated/graphql"
-import Avatar from "../../Atoms/Avatar/Default"
-import { COLOR } from "../../../constants/color"
-import SkillCards from "./SkillCards"
+import React, { FC, useMemo } from "react";
+import styled from "styled-components";
+import { UserQuery } from "../../../generated/graphql";
+import Avatar from "../../Atoms/Avatar/Default";
+import { COLOR } from "../../../constants/color";
+import SkillCards from "./SkillCards";
 
 type Props = {
   data: UserQuery;
-  isEditing:boolean;
+  isEditing: boolean;
 };
 
 const StyledCard = styled.div`
@@ -49,7 +49,24 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const UserDetailCard: FC<Props> = ({ data ,isEditing }) => {
+const StyledEditableInput = styled.textarea`
+  width: 100%;
+  height:80px;
+  resize: none;
+  border: 1px solid #707070;
+  border-radius: 4px;
+  transition: 0.3s;
+  letter-spacing: 1px;
+  color: #00000f;
+  padding: 0.3em;
+  margin-top:20px
+   &:focus {
+    border: 1px solid ${COLOR["LIGHT_GREEN"]}
+        outline: none;
+  }
+`;
+
+const UserDetailCard: FC<Props> = ({ data, isEditing }) => {
   const skillCardHeight = useMemo(
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
     [data]
@@ -59,7 +76,7 @@ const UserDetailCard: FC<Props> = ({ data ,isEditing }) => {
 
   const user = data.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-
+  console.log(data);
   return (
     <StyledCard>
       <StyledTop>
@@ -68,19 +85,36 @@ const UserDetailCard: FC<Props> = ({ data ,isEditing }) => {
       </StyledTop>
       <hr />
       <StyledBlock>
-         <StyledSubTitle>自己紹介</StyledSubTitle>
-        {
-          isEditing ? <input />: <StyledDesc>{user.introduction}</StyledDesc>
-        }
+        <StyledSubTitle>自己紹介</StyledSubTitle>
+        {!isEditing ? (
+          <StyledEditableInput placeholder="入力する" />
+        ) : (
+          <StyledDesc>{user.introduction}</StyledDesc>
+        )}
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        <StyledDesc>{user.interested_in}</StyledDesc>
+        {!isEditing ? (
+          <StyledEditableInput placeholder="入力する" />
+        ) : (
+          <StyledDesc>{user.introduction}</StyledDesc>
+        )}
+        {/*  <StyledDesc>{user.interested_in}</StyledDesc> */}
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards skills={skills} />
+          {isEditing ? null : (
+            /*          circle.CicleSkills?.map((circleSkill) => (
+            <SkillCard
+              name={circleSkill.Skill.name}
+              id={circleSkill.Skill.id.toString()}
+              avatar={circleSkill.Skill.avatar}
+            />
+          )) */
+            <SkillCards skills={skills} />
+          )}
+          {/* <SkillCards skills={skills} /> */}
         </StyledGrid>
       </StyledBlock>
     </StyledCard>
