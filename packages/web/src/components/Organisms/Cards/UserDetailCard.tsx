@@ -47,7 +47,8 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
-
+const dumyyhoge = "kaikai";
+//きちんとprettierが効いてるか
 const UserDetailCard: FC<Props> = ({ data }) => {
   const skillCardHeight = useMemo(
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
