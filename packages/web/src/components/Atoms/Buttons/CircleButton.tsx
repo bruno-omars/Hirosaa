@@ -1,7 +1,7 @@
-import React, { FC } from "react";
+import React, { FC } from "react"
 
-import { StyledButton, Props } from "./Default";
-import styled from "styled-components";
+import { StyledButton, Props } from "./Default"
+import styled from "styled-components"
 
 const BUTTON_SIZE = {
   LARGE: "60px",

@@ -1,12 +1,13 @@
-import React, { FC, useMemo } from "react";
-import styled from "styled-components";
-import { UserQuery } from "../../../generated/graphql";
-import Avatar from "../../Atoms/Avatar/Default";
-import { COLOR } from "../../../constants/color";
-import SkillCards from "./SkillCards";
+import React, { FC, useMemo } from "react"
+import styled from "styled-components"
+import { UserQuery } from "../../../generated/graphql"
+import Avatar from "../../Atoms/Avatar/Default"
+import { COLOR } from "../../../constants/color"
+import SkillCards from "./SkillCards"
 
 type Props = {
   data: UserQuery;
+  isEditing:boolean;
 };
 
 const StyledCard = styled.div`
@@ -48,7 +49,7 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const UserDetailCard: FC<Props> = ({ data }) => {
+const UserDetailCard: FC<Props> = ({ data ,isEditing }) => {
   const skillCardHeight = useMemo(
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
     [data]
@@ -67,8 +68,10 @@ const UserDetailCard: FC<Props> = ({ data }) => {
       </StyledTop>
       <hr />
       <StyledBlock>
-        <StyledSubTitle>自己紹介</StyledSubTitle>
-        <StyledDesc>{user.introduction}</StyledDesc>
+         <StyledSubTitle>自己紹介</StyledSubTitle>
+        {
+          isEditing ? <input />: <StyledDesc>{user.introduction}</StyledDesc>
+        }
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
