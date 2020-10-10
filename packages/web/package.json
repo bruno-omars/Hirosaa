@@ -20,8 +20,11 @@
     "@types/styled-components": "^5.1.2",
     "elliptic": "^6.5.3",
     "graphql": "^15.3.0",
+    "husky": "^4.3.0",
     "install": "^0.13.0",
+    "lint-staged": "^10.4.0",
     "npm": "^6.14.7",
+    "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
@@ -53,5 +56,16 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.5"
+  },
+  "lint-staged": {
+    "*.{html,css,md,json,yaml}": "prettier --write",
+    "*.{js,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
