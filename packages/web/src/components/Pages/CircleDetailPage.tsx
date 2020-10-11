@@ -38,12 +38,6 @@ const CircleDetailPage: FC = (props) => {
   const handleClickJoin = () => {};
 
   const handleClickEdit = () => {};
-  {
-    if (data) {
-      alert("hoge");
-      console.log(data.circle);
-    }
-  }
   return (
     <StyledPage>
       <CircleDetailCard circle={data.circle} />

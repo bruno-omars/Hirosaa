@@ -10,6 +10,12 @@ type Params = {
   userId: string;
 };
 
+type handleClick = {
+  children: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  buttonSize: string;
+};
+
 const StyledPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.2fr;
@@ -21,14 +27,14 @@ const StyledRightButtons = styled.div`
   align-self: start;
 `;
 
-const StyledRoundedButton = styled(RoundedButton)`
+const StyledRoundedButton = styled(RoundedButton)<handleClick>`
   margin-bottom: 24px;
 `;
 
 const UserDetailPage: FC = () => {
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const userId = state.userId;
   const { data, loading, error } = useUserQuery({
     variables: {
@@ -40,10 +46,10 @@ const UserDetailPage: FC = () => {
   if (!data?.user || loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
-  const onEditMe = () => {
-    setIsEditing(false);
+  const handleEdit = () => {
+    alert("hoge");
+    setIsEditing(true);
   };
-
   const onSubmitMessage = () => {};
 
   return (
@@ -51,10 +57,7 @@ const UserDetailPage: FC = () => {
       <UserDetailCard data={data} isEditing={isEditing} />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton
-            clickHandler={onSubmitMessage}
-            buttonSize="SMALL"
-          >
+          <StyledRoundedButton clickHandler={handleEdit} buttonSize="SMALL">
             編集する
           </StyledRoundedButton>
         ) : (
