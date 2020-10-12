@@ -53,23 +53,6 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const StyledEditableInput = styled.textarea`
-  width: 100%;
-  height:80px;
-  resize: none;
-  border: 1px solid #707070;
-  border-radius: 4px;
-  transition: 0.3s;
-  letter-spacing: 1px;
-  color: #00000f;
-  padding: 0.3em;
-  margin-top:20px
-   &:focus {
-    border: 1px solid ${COLOR["LIGHT_GREEN"]}
-    outline: none;
-  }
-`;
-
 const UserDetailCard: FC<Props> = ({
   data,
   isEditing,
