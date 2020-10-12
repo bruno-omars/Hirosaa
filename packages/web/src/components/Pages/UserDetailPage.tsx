@@ -30,11 +30,18 @@ const StyledRightButtons = styled.div`
 const StyledRoundedButton = styled(RoundedButton)<handleClick>`
   margin-bottom: 24px;
 `;
-
+export type Textarea = {
+  introduction: string;
+  interested_in: string;
+};
 const UserDetailPage: FC = () => {
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [textareas, setTextareas] = useState<Textarea>({
+    introduction: "",
+    interested_in: "",
+  });
   const userId = state.userId;
   const { data, loading, error } = useUserQuery({
     variables: {
@@ -47,19 +54,34 @@ const UserDetailPage: FC = () => {
   if (error) return <p>{error.message}</p>;
 
   const handleEdit = () => {
-    alert("hoge");
     setIsEditing(true);
   };
+
+  const saveEdit = () => {
+    setIsEditing(false);
+  };
+
   const onSubmitMessage = () => {};
 
   return (
     <StyledPage>
-      <UserDetailCard data={data} isEditing={isEditing} />
+      <UserDetailCard
+        data={data}
+        isEditing={isEditing}
+        textareas={textareas}
+        setTextareas={setTextareas}
+      />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton clickHandler={handleEdit} buttonSize="SMALL">
-            編集する
-          </StyledRoundedButton>
+          !isEditing ? (
+            <StyledRoundedButton clickHandler={handleEdit} buttonSize="SMALL">
+              編集する
+            </StyledRoundedButton>
+          ) : (
+            <StyledRoundedButton clickHandler={saveEdit} buttonSize="SMALL">
+              保存する
+            </StyledRoundedButton>
+          )
         ) : (
           <StyledRoundedButton clickHandler={onSubmitMessage} buttonSize="BASE">
             メッセージを送信する

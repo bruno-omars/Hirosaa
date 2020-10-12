@@ -4,10 +4,13 @@ import { UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
-
+import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
+import { Textarea } from "../../Pages/UserDetailPage";
 type Props = {
   data: UserQuery;
   isEditing: boolean;
+  textareas: Textarea;
+  setTextareas: React.Dispatch<React.SetStateAction<Textarea>>;
 };
 
 const StyledCard = styled.div`
@@ -62,16 +65,24 @@ const StyledEditableInput = styled.textarea`
   margin-top:20px
    &:focus {
     border: 1px solid ${COLOR["LIGHT_GREEN"]}
-        outline: none;
+    outline: none;
   }
 `;
 
-const UserDetailCard: FC<Props> = ({ data, isEditing }) => {
+const UserDetailCard: FC<Props> = ({
+  data,
+  isEditing,
+  setTextareas,
+  textareas,
+}) => {
   const skillCardHeight = useMemo(
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
     [data]
   );
-
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+    setTextareas({ ...textareas, [e.target.name]: e.target.value });
+  };
   if (!data.user) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
@@ -86,16 +97,26 @@ const UserDetailCard: FC<Props> = ({ data, isEditing }) => {
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
-        {!isEditing ? (
-          <StyledEditableInput placeholder="入力する" />
+        {isEditing ? (
+          <DefaultTextArea
+            name="introduction"
+            handleChange={handleChange}
+            placeholder="入力する"
+            areaSize="LARGE"
+          />
         ) : (
           <StyledDesc>{user.introduction}</StyledDesc>
         )}
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        {!isEditing ? (
-          <StyledEditableInput placeholder="入力する" />
+        {isEditing ? (
+          <DefaultTextArea
+            name="interested_in"
+            handleChange={handleChange}
+            placeholder="入力する"
+            areaSize="LARGE"
+          />
         ) : (
           <StyledDesc>{user.introduction}</StyledDesc>
         )}
