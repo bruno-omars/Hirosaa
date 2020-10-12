@@ -6,6 +6,7 @@ import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import { Textarea } from "../../Pages/UserDetailPage";
+import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 type Props = {
   data: UserQuery;
   isEditing: boolean;
@@ -79,7 +80,9 @@ const UserDetailCard: FC<Props> = ({
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
     [data]
   );
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
+  ) => {
     e.preventDefault();
     setTextareas({ ...textareas, [e.target.name]: e.target.value });
   };
@@ -92,7 +95,15 @@ const UserDetailCard: FC<Props> = ({
     <StyledCard>
       <StyledTop>
         <Avatar src={(user && user.avatar) || ""} size={66} />
-        <h2>{user.name}</h2>
+        {isEditing ? (
+          <DefaultInput
+            name="name"
+            handleChange={handleChange}
+            placeholder="名前"
+          />
+        ) : (
+          <h2>{user.name}</h2>
+        )}
       </StyledTop>
       <hr />
       <StyledBlock>
