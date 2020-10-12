@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useMemo, Fragment } from "react";
 import styled from "styled-components";
 import { UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
@@ -7,6 +7,8 @@ import SkillCards from "./SkillCards";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import { Textarea } from "../../Pages/UserDetailPage";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
+import UserFileInput from "../../Atoms/Inputs/UserFileInput";
+import { ReactComponent as Person } from "../../../assets/icons/person.svg";
 type Props = {
   data: UserQuery;
   isEditing: boolean;
@@ -77,7 +79,18 @@ const UserDetailCard: FC<Props> = ({
   return (
     <StyledCard>
       <StyledTop>
-        <Avatar src={(user && user.avatar) || ""} size={66} />
+        {isEditing ? (
+          <UserFileInput
+            name="avatar"
+            handleChange={handleChange}
+            accept="image/png,image/jpeg,image/gif"
+            type="file"
+            hidden="hidden"
+            placeholder="画像を選択してください"
+          />
+        ) : (
+          <Avatar src={(user && user.avatar) || ""} size={66} />
+        )}
         {isEditing ? (
           <DefaultInput
             name="name"
@@ -96,7 +109,7 @@ const UserDetailCard: FC<Props> = ({
             name="introduction"
             handleChange={handleChange}
             placeholder="入力する"
-            areaSize="LARGE"
+            areaSize="BASE"
           />
         ) : (
           <StyledDesc>{user.introduction}</StyledDesc>
@@ -109,7 +122,7 @@ const UserDetailCard: FC<Props> = ({
             name="interested_in"
             handleChange={handleChange}
             placeholder="入力する"
-            areaSize="LARGE"
+            areaSize="BASE"
           />
         ) : (
           <StyledDesc>{user.introduction}</StyledDesc>

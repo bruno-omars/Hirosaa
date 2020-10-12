@@ -31,6 +31,7 @@ const StyledRoundedButton = styled(RoundedButton)<handleClick>`
   margin-bottom: 24px;
 `;
 export type Textarea = {
+  avatar: string;
   name: string;
   introduction: string;
   interested_in: string;
@@ -40,6 +41,7 @@ const UserDetailPage: FC = () => {
   const { me } = useAuthContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [textareas, setTextareas] = useState<Textarea>({
+    avatar: "",
     name: "",
     introduction: "",
     interested_in: "",
@@ -64,7 +66,7 @@ const UserDetailPage: FC = () => {
   };
 
   const onSubmitMessage = () => {};
-  console.log({ textareas });
+
   return (
     <StyledPage>
       <UserDetailCard
