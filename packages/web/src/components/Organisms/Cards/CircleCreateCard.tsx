@@ -70,7 +70,7 @@ const CircleCreateCard: FC<Props> = (props) => {
     e.preventDefault();
     props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
   };
-
+  console.log(data);
   return (
     <Card>
       <StyledForm>

@@ -9,6 +9,8 @@ import { Textarea } from "../../Pages/UserDetailPage";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import UserFileInput from "../../Atoms/Inputs/UserFileInput";
 import { ReactComponent as Person } from "../../../assets/icons/person.svg";
+import SubCategoryTags from "../Tags/SubCategoryTags";
+import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 type Props = {
   data: UserQuery;
   isEditing: boolean;
@@ -125,24 +127,25 @@ const UserDetailCard: FC<Props> = ({
             areaSize="BASE"
           />
         ) : (
-          <StyledDesc>{user.introduction}</StyledDesc>
+          <StyledDesc>{user.interested_in}</StyledDesc>
         )}
-        {/*  <StyledDesc>{user.interested_in}</StyledDesc> */}
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          {isEditing ? null : (
-            /*          circle.CicleSkills?.map((circleSkill) => (
-            <SkillCard
-              name={circleSkill.Skill.name}
-              id={circleSkill.Skill.id.toString()}
-              avatar={circleSkill.Skill.avatar}
-            />
-          )) */
+          {isEditing ? (
+            data?.skills ? (
+              <StyledGrid height={skillCardHeight || 75}>
+                <SkillCards
+                  skills={data?.skills}
+                  selectedSkills={props.selectedSkills}
+                  setSkills={props.setSkills}
+                />
+              </StyledGrid>
+            ) : null
+          ) : (
             <SkillCards skills={skills} />
           )}
-          {/* <SkillCards skills={skills} /> */}
         </StyledGrid>
       </StyledBlock>
     </StyledCard>
