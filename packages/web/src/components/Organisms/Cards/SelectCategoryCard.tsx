@@ -32,10 +32,7 @@ const SelectCategoryCard: FC<Props> = ({
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
-  if (data) {
-    alert("hoge");
-  }
-  console.log({ data });
+
   return (
     <StyledCard>
       <StyledH3>カテゴリー選択</StyledH3>

@@ -81,7 +81,52 @@ const UserDetailCard: FC<Props> = ({
 
   const user = data.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-  console.log(user);
+  const Skill = [
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin3-300x300.png",
+      id: 2,
+      name: "GraphQL",
+      __typename: "Skill",
+    },
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin2-300x300.png",
+      id: 6,
+      name: "Golang",
+      __typename: "Skill",
+    },
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin4-300x300.png",
+      id: 3,
+      name: "Javascript",
+      __typename: "Skill",
+    },
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain01-tori031-300x300.png",
+      id: 1,
+      name: "React",
+      __typename: "Skill",
+    },
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-kujirairuka1-300x300.png",
+      id: 4,
+      name: "Docker",
+      __typename: "Skill",
+    },
+    {
+      avatar:
+        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-ryouseirui1-300x300.png",
+      id: 10,
+      name: "Vue",
+      __typename: "Skill",
+    },
+  ];
+  console.log(Skill);
+
   return (
     <StyledCard>
       <StyledTop>
@@ -138,10 +183,10 @@ const UserDetailCard: FC<Props> = ({
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
           {isEditing ? (
-            skills ? (
+            !Skill ? (
               <StyledGrid height={skillCardHeight || 75}>
                 <SkillCards
-                  skills={skills}
+                  skills={Skill}
                   selectedSkills={selectedSkills}
                   setSkills={setSkills}
                 />

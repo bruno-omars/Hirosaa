@@ -27,7 +27,7 @@ const SkillCards: FC<Props> = (props) => {
       setSkills(newSelectedSkills);
     }
   };
-
+  console.log(props.skills);
   const skills =
     props.skills &&
     props.skills.map((skill) => {
