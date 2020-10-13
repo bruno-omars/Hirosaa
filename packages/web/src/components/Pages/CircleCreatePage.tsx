@@ -47,7 +47,7 @@ const CircleCreatePage: FC = () => {
       },
     },
   }));
-
+  console.log({ Skills });
   const [insertCircle, { data }] = useInsertCircleMutation();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();

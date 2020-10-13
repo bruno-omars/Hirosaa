@@ -40,6 +40,7 @@ const UserDetailPage: FC = () => {
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [selectedSkills, setSkills] = useState<number[]>([]);
   const [textareas, setTextareas] = useState<Textarea>({
     avatar: "",
     name: "",
@@ -74,6 +75,8 @@ const UserDetailPage: FC = () => {
         isEditing={isEditing}
         textareas={textareas}
         setTextareas={setTextareas}
+        setSkills={setSkills}
+        selectedSkills={selectedSkills}
       />
       <StyledRightButtons>
         {me.id === userId ? (

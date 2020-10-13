@@ -16,6 +16,8 @@ type Props = {
   isEditing: boolean;
   textareas: Textarea;
   setTextareas: React.Dispatch<React.SetStateAction<Textarea>>;
+  selectedSkills: number[];
+  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const StyledCard = styled.div`
@@ -62,6 +64,8 @@ const UserDetailCard: FC<Props> = ({
   isEditing,
   setTextareas,
   textareas,
+  selectedSkills,
+  setSkills,
 }) => {
   const skillCardHeight = useMemo(
     () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
@@ -77,7 +81,7 @@ const UserDetailCard: FC<Props> = ({
 
   const user = data.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-  console.log(data);
+  console.log(user);
   return (
     <StyledCard>
       <StyledTop>
@@ -134,12 +138,12 @@ const UserDetailCard: FC<Props> = ({
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
           {isEditing ? (
-            data?.skills ? (
+            skills ? (
               <StyledGrid height={skillCardHeight || 75}>
                 <SkillCards
-                  skills={data?.skills}
-                  selectedSkills={props.selectedSkills}
-                  setSkills={props.setSkills}
+                  skills={skills}
+                  selectedSkills={selectedSkills}
+                  setSkills={setSkills}
                 />
               </StyledGrid>
             ) : null
