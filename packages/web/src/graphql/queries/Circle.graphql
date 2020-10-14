@@ -3,7 +3,7 @@ query Circle($id: Int!) {
     id
     avatar
     name
-    
+    main_role
     what_we_will_do
     recruit_title
     User {
