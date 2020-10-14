@@ -126,6 +126,8 @@ const UserDetailCard: FC<Props> = ({
     },
   ];
 
+  console.log({ skillCardHeight });
+
   return (
     <StyledCard>
       <StyledTop>
@@ -180,17 +182,20 @@ const UserDetailCard: FC<Props> = ({
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <StyledGrid height={skillCardHeight || 75}>
-          {isEditing ? (
+
+        {isEditing ? (
+          <StyledGrid height={150 || 75}>
             <SkillCards
               skills={Skills}
               selectedSkills={selectedSkills}
               setSkills={setSkills}
             />
-          ) : (
+          </StyledGrid>
+        ) : (
+          <StyledGrid height={skillCardHeight || 75}>
             <SkillCards skills={skills} />
-          )}
-        </StyledGrid>
+          </StyledGrid>
+        )}
       </StyledBlock>
     </StyledCard>
   );
