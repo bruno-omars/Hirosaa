@@ -5,7 +5,7 @@ import { Skill } from "../../../generated/graphql";
 type Props = {
   skills:
     | ({
-        __typename?: "Skill";
+        __typename?: "Skill" | undefined | string;
       } & Pick<Skill, "id" | "name" | "avatar">)[]
     | undefined;
   selectedSkills?: number[];

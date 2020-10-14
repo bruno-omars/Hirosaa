@@ -80,7 +80,7 @@ const UserDetailCard: FC<Props> = ({
   if (!data.user) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
-  /*  const skills = user.UserSkills.map((skill) => skill.Skill); */
+  const skills = user.UserSkills.map((skill) => skill.Skill);
   const Skills = [
     {
       __typename: "Skill",
@@ -106,7 +106,7 @@ const UserDetailCard: FC<Props> = ({
     {
       __typename: "Skill",
       name: "React",
-      id: "1",
+      id: 1,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain01-tori031-300x300.png",
     },
@@ -188,8 +188,7 @@ const UserDetailCard: FC<Props> = ({
               setSkills={setSkills}
             />
           ) : (
-            <p>hoge</p>
-            /*  <SkillCards skills={skills} /> */
+            <SkillCards skills={skills} />
           )}
         </StyledGrid>
       </StyledBlock>
