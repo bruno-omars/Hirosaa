@@ -80,52 +80,51 @@ const UserDetailCard: FC<Props> = ({
   if (!data.user) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
-  const skills = user.UserSkills.map((skill) => skill.Skill);
-  const Skill = [
+  /*  const skills = user.UserSkills.map((skill) => skill.Skill); */
+  const Skills = [
     {
+      __typename: "Skill",
+      name: "GraphQL",
+      id: 2,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin3-300x300.png",
-      id: 2,
-      name: "GraphQL",
-      __typename: "Skill",
     },
     {
+      __typename: "Skill",
+      name: "Golang",
+      id: 6,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin2-300x300.png",
-      id: 6,
-      name: "Golang",
-      __typename: "Skill",
     },
     {
+      __typename: "Skill",
+      name: "Javascript",
+      id: 3,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin4-300x300.png",
-      id: 3,
-      name: "Javascript",
-      __typename: "Skill",
     },
     {
+      __typename: "Skill",
+      name: "React",
+      id: "1",
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain01-tori031-300x300.png",
-      id: 1,
-      name: "React",
-      __typename: "Skill",
     },
     {
+      __typename: "Skill",
+      name: "Docker",
+      id: 4,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-kujirairuka1-300x300.png",
-      id: 4,
-      name: "Docker",
-      __typename: "Skill",
     },
     {
+      __typename: "Skill",
+      name: "Vue",
+      id: 10,
       avatar:
         "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-ryouseirui1-300x300.png",
-      id: 10,
-      name: "Vue",
-      __typename: "Skill",
     },
   ];
-  console.log(Skill);
 
   return (
     <StyledCard>
@@ -183,17 +182,14 @@ const UserDetailCard: FC<Props> = ({
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
           {isEditing ? (
-            !Skill ? (
-              <StyledGrid height={skillCardHeight || 75}>
-                <SkillCards
-                  skills={Skill}
-                  selectedSkills={selectedSkills}
-                  setSkills={setSkills}
-                />
-              </StyledGrid>
-            ) : null
+            <SkillCards
+              skills={Skills}
+              selectedSkills={selectedSkills}
+              setSkills={setSkills}
+            />
           ) : (
-            <SkillCards skills={skills} />
+            <p>hoge</p>
+            /*  <SkillCards skills={skills} /> */
           )}
         </StyledGrid>
       </StyledBlock>

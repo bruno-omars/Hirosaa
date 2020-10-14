@@ -5,7 +5,7 @@ import { Skill } from "../../../generated/graphql";
 type Props = {
   skills:
     | ({
-        __typename?: "Skill" | undefined;
+        __typename?: "Skill";
       } & Pick<Skill, "id" | "name" | "avatar">)[]
     | undefined;
   selectedSkills?: number[];
@@ -27,7 +27,12 @@ const SkillCards: FC<Props> = (props) => {
       setSkills(newSelectedSkills);
     }
   };
-  console.log(props.skills);
+  if (props.skills) {
+    const currentID = props.skills.map((e) => {
+      console.log(typeof e.id);
+    });
+  }
+
   const skills =
     props.skills &&
     props.skills.map((skill) => {
