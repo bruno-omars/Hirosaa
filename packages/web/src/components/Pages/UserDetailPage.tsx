@@ -1,6 +1,10 @@
 import React, { FC, useState, useCallback } from "react";
 import { useLocation } from "react-router-dom";
-import { useUserQuery } from "../../generated/graphql";
+import {
+  useUserQuery,
+  Skill_Constraint,
+  Skill_Update_Column,
+} from "../../generated/graphql";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
@@ -47,14 +51,23 @@ const UserDetailPage: FC = () => {
     introduction: "",
     interested_in: "",
   });
+  console.log(textareas);
   const userId = state.userId;
   const { data, loading, error } = useUserQuery({
     variables: {
       id: userId,
     },
   });
-
-  console.log("data.", data?.user);
+  const Skills = selectedSkills.map((skill: number) => ({
+    Skill: {
+      data: { id: skill, avatar: "", name: "" },
+      on_conflict: {
+        constraint: Skill_Constraint.SkillPkey,
+        update_columns: [Skill_Update_Column.Id],
+      },
+    },
+  }));
+  console.log(Skills);
   if (!data?.user || loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
@@ -63,6 +76,7 @@ const UserDetailPage: FC = () => {
   };
 
   const saveEdit = () => {
+    //処理を走らせたい。。。
     setIsEditing(false);
   };
 

@@ -65,7 +65,7 @@ const CircleCreatePage: FC = () => {
       },
     });
   };
-
+  console.log(data);
   useEffect(() => {
     if (data?.insert_Circle) {
       setText("作成しました");
