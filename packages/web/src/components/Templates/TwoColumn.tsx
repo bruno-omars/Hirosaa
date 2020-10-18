@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from "react";
-import styled from "styled-components";
+import React, { FC, ReactNode } from "react"
+import styled from "styled-components"
 
 const StyledDiv = styled.div`
   display: grid;
