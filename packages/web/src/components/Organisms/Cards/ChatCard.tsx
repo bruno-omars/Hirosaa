@@ -12,8 +12,9 @@ const Card = styled.div`
   display: grid;
   grid-template-columns: 15% 85%;
   grid-template-rows: 100%;
-  width: 70%;
-  height: 70%;
+  width: 90%;
+  height: 90vh;
+  margin-top: 20px;
 `;
 
 const Right = styled.div`
