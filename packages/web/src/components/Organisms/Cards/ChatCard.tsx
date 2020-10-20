@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Circle } from "../../../generated/graphql";
+import { Circle, Message, User } from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
@@ -9,14 +9,25 @@ import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
+  display: grid;
+  grid-template-columns: 15% 85%;
+  grid-template-rows: 100%;
   width: 70%;
   height: 70%;
-  display: flex;
+`;
+
+const Right = styled.div`
+  height: 100%;
+  width: 100%;
 `;
 
 const Top = styled.div`
-  padding: 8px 20px;
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
+  width: 100%;
+`;
+
+const Buttom = styled.div`
+  height: 20%;
 `;
 
 const StyledTitle = styled.h2`
@@ -29,28 +40,50 @@ const StyledSendIcon = styled(MessageSendIcon)`
   margin: auto;
 `;
 
+const Messages = styled.div`
+  width: 100%;
+  height: 70%;
+  padding: 10px 0;
+  overflow: scroll;
+`;
+
 type Props = {
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
   circle?: Pick<Circle, "id" | "name" | "avatar">;
+  messeges:
+    | ({
+        __typename?: "Message" | undefined;
+      } & Pick<Message, "timestamp" | "text" | "id"> & {
+          User: {
+            __typename?: "User" | undefined;
+          } & Pick<User, "id" | "avatar" | "name">;
+        })[]
+    | undefined;
 };
 
-const ChatCard: FC<Props> = (props) => {
+const ChatCard: FC<Props> = ({ messeges, ...rest }) => {
   return (
     <Card>
-      <ChatSidebar setActiveCircleId={props.setActiveCircleId} />
-      <div>
+      <ChatSidebar setActiveCircleId={rest.setActiveCircleId} />
+      <Right>
         <Top>
-          <StyledTitle>{props.circle?.name}</StyledTitle>
+          <StyledTitle>{rest.circle?.name}</StyledTitle>
           <PeopleNum count={30} />
         </Top>
-
-        <IconRightInput
-          icon={<StyledSendIcon />}
-          iconClickHandler={() => {}}
-          handleChange={() => {}}
-          placeholder=""
-        />
-      </div>
+        <Messages>
+          {messeges
+            ? messeges.map((message) => <div>{message.text}</div>)
+            : "やりとりがありません。何かメッセージを送ってみましょう"}
+        </Messages>
+        <Buttom>
+          <IconRightInput
+            icon={<StyledSendIcon />}
+            iconClickHandler={() => {}}
+            handleChange={() => {}}
+            placeholder=""
+          />
+        </Buttom>
+      </Right>
     </Card>
   );
 };

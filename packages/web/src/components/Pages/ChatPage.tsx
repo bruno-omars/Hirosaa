@@ -79,10 +79,11 @@ const ChatPage: FC = () => {
   if (userLoading) return <>loading</>;
   return (
     <>
-      <ChatCard setActiveCircleId={setActiveCircleId} circle={activeCircle} />
-      {messageData?.Message?.map((message) => (
-        <div>{message.text}</div>
-      ))}
+      <ChatCard
+        setActiveCircleId={setActiveCircleId}
+        circle={activeCircle}
+        messeges={messageData?.Message}
+      />
       <DefaultInput
         handleChange={handleChange}
         placeholder="コメントを入力"

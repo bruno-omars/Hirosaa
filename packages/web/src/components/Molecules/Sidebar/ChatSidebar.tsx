@@ -5,7 +5,6 @@ import { useAuthContext } from "../../../provider/AuthContextProvider";
 import { useUserCirclesQuery } from "../../../generated/graphql";
 
 const StyledSidebar = styled.div`
-  width: 80px;
   border-right: 1px solid ${COLOR["BORDER_DIVIDER"]};
   height: 100%;
 `;

@@ -4,6 +4,7 @@ import DefaultInput from "./DefaultInput";
 
 export const StyledInput = styled(DefaultInput)`
   padding-right: 20px;
+  width: 100%;
 `; //TODO: iconの大きさによって変える
 
 const Wrapper = styled.div`
