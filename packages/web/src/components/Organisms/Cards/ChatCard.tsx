@@ -17,17 +17,21 @@ const Card = styled.div`
 `;
 
 const Right = styled.div`
+  display: grid;
+  grid-template-rows: 10% 80% 10%;
   height: 100%;
   width: 100%;
 `;
 
 const Top = styled.div`
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
-  width: 100%;
 `;
 
 const Buttom = styled.div`
-  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 5px;
 `;
 
 const StyledTitle = styled.h2`
@@ -40,11 +44,42 @@ const StyledSendIcon = styled(MessageSendIcon)`
   margin: auto;
 `;
 
-const Messages = styled.div`
+const Messages = styled.ul`
   width: 100%;
-  height: 70%;
+  height: 100%;
   padding: 10px 0;
   overflow: scroll;
+`;
+
+const MessageLi = styled.li`
+  margin-bottom: 4px;
+`;
+
+const MessageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const ConversationItem = styled.div`
+  margin-left: 8px;
+  max-width: 85%;
+`;
+
+const MessageContent = styled.div`
+  background-color: #f7f7f7;
+  box-sizing: border-box;
+  max-width: 100%;
+  border-radius: 20px;
+  padding: 8px 16px;
+`;
+
+const Typography = styled.div`
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  white-space: pre-wrap;
+  word-break: break-all;
 `;
 
 type Props = {
@@ -72,7 +107,17 @@ const ChatCard: FC<Props> = ({ messeges, ...rest }) => {
         </Top>
         <Messages>
           {messeges
-            ? messeges.map((message) => <div>{message.text}</div>)
+            ? messeges.map((message) => (
+                <MessageLi>
+                  <MessageWrapper>
+                    <ConversationItem>
+                      <MessageContent>
+                        <Typography>{message.text}</Typography>
+                      </MessageContent>
+                    </ConversationItem>
+                  </MessageWrapper>
+                </MessageLi>
+              ))
             : "やりとりがありません。何かメッセージを送ってみましょう"}
         </Messages>
         <Buttom>
