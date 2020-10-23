@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
 import styled from "styled-components";
 import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
 import CheckBoxList from "./CheckBoxList";
@@ -29,37 +29,44 @@ const CheckBoxStagesList: FC<Props> = ({
   selectedChildrenItems,
   setChildrendCategories,
 }) => {
-  const handleParentCategorySet = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    childrenIds: number[]
-  ) => {
-    let newSelectedChildrenItems: number[];
-    childrenIds.forEach((id) => {
-      if (selectedChildrenItems.includes(id)) {
-        newSelectedChildrenItems = selectedChildrenItems.filter(
-          (num) => !childrenIds.includes(num)
-        );
-        setChildrendCategories(newSelectedChildrenItems);
-        return;
-      } else {
-        newSelectedChildrenItems = [...selectedChildrenItems, ...childrenIds];
-        setChildrendCategories(newSelectedChildrenItems);
-        return;
-      }
-    });
+  const [parentIsSelected, setParent] = useState(false);
+
+  const okay = () => {
+    const childrenIds = childrenItems.map((childItem) => childItem.id);
+    return childrenIds.every((id) => selectedChildrenItems.includes(id));
   };
+
+  const handleClickParent = () => {
+    const childrenIds = childrenItems.map((childItem) => childItem.id);
+    if (okay()) {
+      setChildrendCategories((selectedChildren) =>
+        selectedChildren.filter((child) => !childrenIds.includes(child))
+      );
+      setParent(false);
+    } else {
+      setChildrendCategories((selectedChildren) => [
+        ...selectedChildren,
+        ...childrenIds,
+      ]);
+      setParent(true);
+    }
+  };
+
+  useEffect(() => {
+    if (okay()) {
+      setParent(true);
+    } else {
+      setParent(false);
+    }
+  }, [selectedChildrenItems]);
 
   return (
     <ParentUl>
       <StyledLi>
         <CheckBoxWithText
+          checked={parentIsSelected}
           text={parentItem.name}
-          onChange={(e) =>
-            handleParentCategorySet(
-              e,
-              childrenItems.map((childItem) => childItem.id)
-            )
-          }
+          onChange={handleClickParent}
         />
       </StyledLi>
       <CheckBoxList

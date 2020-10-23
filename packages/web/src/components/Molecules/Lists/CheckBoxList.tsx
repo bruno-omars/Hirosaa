@@ -39,7 +39,6 @@ const CheckBoxList: FC<Props> = ({
       newSelectedItems = [...selectedItems, id];
     }
     setSelectedItems(newSelectedItems);
-    console.log(selectedItems);
   };
 
   return (
