@@ -42,8 +42,8 @@ const SelectCategoryCard: FC<Props> = ({
             parentItem={parentCategory}
             childrenItems={parentCategory.SubCategories}
             key={parentCategory.id}
-            selectedChildrenItems={selectedSubcategories}
-            setChildrendCategories={setSubCategories}
+            selectedChildrenIds={selectedSubcategories}
+            setChildrenIds={setSubCategories}
           />
         );
       })}

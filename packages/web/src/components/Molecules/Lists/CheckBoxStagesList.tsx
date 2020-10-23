@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
 import CheckBoxList from "./CheckBoxList";
@@ -19,46 +19,49 @@ type Item = {
 type Props = {
   parentItem: Item;
   childrenItems: Item[];
-  selectedChildrenItems: number[];
-  setChildrendCategories: React.Dispatch<React.SetStateAction<number[]>>;
+  selectedChildrenIds: number[];
+  setChildrenIds: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const CheckBoxStagesList: FC<Props> = ({
   parentItem,
   childrenItems,
-  selectedChildrenItems,
-  setChildrendCategories,
+  selectedChildrenIds,
+  setChildrenIds,
 }) => {
   const [parentIsSelected, setParent] = useState(false);
+  const childrenIds = useMemo(
+    () => childrenItems.map((childItem) => childItem.id),
+    [childrenItems]
+  );
 
-  const okay = () => {
-    const childrenIds = childrenItems.map((childItem) => childItem.id);
-    return childrenIds.every((id) => selectedChildrenItems.includes(id));
-  };
+  const allChildrenSelected = useCallback(
+    () => childrenIds.every((id) => selectedChildrenIds.includes(id)),
+    [childrenIds, selectedChildrenIds]
+  );
 
-  const handleClickParent = () => {
-    const childrenIds = childrenItems.map((childItem) => childItem.id);
-    if (okay()) {
-      setChildrendCategories((selectedChildren) =>
-        selectedChildren.filter((child) => !childrenIds.includes(child))
+  const handleClickParent = useCallback(() => {
+    if (allChildrenSelected()) {
+      setChildrenIds((selectedChildrenIds) =>
+        selectedChildrenIds.filter((child) => !childrenIds.includes(child))
       );
       setParent(false);
     } else {
-      setChildrendCategories((selectedChildren) => [
-        ...selectedChildren,
+      setChildrenIds((selectedChildrenIds) => [
+        ...selectedChildrenIds,
         ...childrenIds,
       ]);
       setParent(true);
     }
-  };
+  }, [allChildrenSelected]);
 
   useEffect(() => {
-    if (okay()) {
+    if (allChildrenSelected()) {
       setParent(true);
     } else {
       setParent(false);
     }
-  }, [selectedChildrenItems]);
+  }, [selectedChildrenIds]);
 
   return (
     <ParentUl>
@@ -71,8 +74,8 @@ const CheckBoxStagesList: FC<Props> = ({
       </StyledLi>
       <CheckBoxList
         items={childrenItems}
-        selectedItems={selectedChildrenItems}
-        setSelectedItems={setChildrendCategories}
+        selectedItems={selectedChildrenIds}
+        setSelectedItems={setChildrenIds}
       />
     </ParentUl>
   );
