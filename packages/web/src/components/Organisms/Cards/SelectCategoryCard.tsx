@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import CheckBoxParentList from "../../Molecules/Lists/CheckBoxParentList";
+import CheckBoxStagesList from "../../Molecules/Lists/CheckBoxStagesList";
 import { useCategoriesQuery } from "../../../generated/graphql";
 
 const StyledCard = styled.div`
@@ -38,11 +38,12 @@ const SelectCategoryCard: FC<Props> = ({
       <StyledH3>カテゴリー選択</StyledH3>
       {data?.ParentCategory.map((parentCategory) => {
         return (
-          <CheckBoxParentList
-            parentCategory={parentCategory}
+          <CheckBoxStagesList
+            parentItem={parentCategory}
+            childrenItems={parentCategory.SubCategories}
             key={parentCategory.id}
-            selectedSubcategories={selectedSubcategories}
-            setSubCategories={setSubCategories}
+            selectedChildrenIds={selectedSubcategories}
+            setChildrenIds={setSubCategories}
           />
         );
       })}

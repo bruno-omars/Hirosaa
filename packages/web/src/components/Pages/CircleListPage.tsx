@@ -28,7 +28,6 @@ const pageLimit = 10;
 
 const CircleListPage: FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [selectedSubcategories, setSubCategories] = useState<number[]>([]);
 
   const where = useMemo(() => {
