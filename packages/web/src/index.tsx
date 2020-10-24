@@ -2,38 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import {
-  ApolloProvider,
-  ApolloClient,
-  InMemoryCache,
-  HttpLink,
-} from "@apollo/client";
+
+import "./index.css";
 import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
 import AuthContextProvider from "./provider/AuthContextProvider";
 
-import "./index.css";
-
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: "https://allowed-herring-99.hasura.app/v1/graphql",
-    headers: {
-      // Authorization: `Bearer ${process.env.REACT_APP_AUTH_TOKEN}`,
-      "x-hasura-admin-secret":
-        process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
-    },
-  }),
-  cache: new InMemoryCache(),
-});
-
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Auth0ProviderWithHistory>
-        <AuthContextProvider>
-          <App />
-        </AuthContextProvider>
-      </Auth0ProviderWithHistory>
-    </ApolloProvider>
+    <Auth0ProviderWithHistory>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </Auth0ProviderWithHistory>
   </React.StrictMode>,
   document.getElementById("root")
 );
