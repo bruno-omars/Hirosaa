@@ -85,7 +85,7 @@ const UserDetailPage: FC = () => {
   return (
     <StyledPage>
       <UserDetailCard
-        data={data}
+        userData={data}
         isEditing={isEditing}
         textareas={textareas}
         setTextareas={setTextareas}

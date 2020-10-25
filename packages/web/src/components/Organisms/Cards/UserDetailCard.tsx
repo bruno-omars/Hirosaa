@@ -8,11 +8,9 @@ import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import { Textarea } from "../../Pages/UserDetailPage";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import UserFileInput from "../../Atoms/Inputs/UserFileInput";
-import { ReactComponent as Person } from "../../../assets/icons/person.svg";
-import SubCategoryTags from "../Tags/SubCategoryTags";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 type Props = {
-  data: UserQuery;
+  userData: UserQuery;
   isEditing: boolean;
   textareas: Textarea;
   setTextareas: React.Dispatch<React.SetStateAction<Textarea>>;
@@ -60,15 +58,16 @@ const StyledGrid = styled.div<StyleGrid>`
 `;
 
 const UserDetailCard: FC<Props> = ({
-  data,
+  userData,
   isEditing,
   setTextareas,
   textareas,
   selectedSkills,
   setSkills,
 }) => {
+  const { data, error } = useSkillAndSubCategoryQuery();
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
+    () => data && Math.ceil(data.Skill.length / 4) * 75,
     [data]
   );
   const handleChange = (
@@ -77,56 +76,10 @@ const UserDetailCard: FC<Props> = ({
     e.preventDefault();
     setTextareas({ ...textareas, [e.target.name]: e.target.value });
   };
-  if (!data.user) return <p>ユーザーが存在しません</p>;
+  if (!userData.user) return <p>ユーザーが存在しません</p>;
 
-  const user = data.user;
+  const user = userData.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-  const Skills = [
-    {
-      __typename: "Skill",
-      name: "GraphQL",
-      id: 2,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin3-300x300.png",
-    },
-    {
-      __typename: "Skill",
-      name: "Golang",
-      id: 6,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin2-300x300.png",
-    },
-    {
-      __typename: "Skill",
-      name: "Javascript",
-      id: 3,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-pengin4-300x300.png",
-    },
-    {
-      __typename: "Skill",
-      name: "React",
-      id: 1,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain01-tori031-300x300.png",
-    },
-    {
-      __typename: "Skill",
-      name: "Docker",
-      id: 4,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-kujirairuka1-300x300.png",
-    },
-    {
-      __typename: "Skill",
-      name: "Vue",
-      id: 10,
-      avatar:
-        "https://illustrain.com/wp-content/uploads/2016/12/illustrain09-ryouseirui1-300x300.png",
-    },
-  ];
-
-  console.log({ skillCardHeight });
 
   return (
     <StyledCard>
@@ -186,7 +139,7 @@ const UserDetailCard: FC<Props> = ({
         {isEditing ? (
           <StyledGrid height={150 || 75}>
             <SkillCards
-              skills={Skills}
+              skills={data?.Skill}
               selectedSkills={selectedSkills}
               setSkills={setSkills}
             />
