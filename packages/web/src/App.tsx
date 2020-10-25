@@ -43,7 +43,7 @@ const App: FC = () => {
 
   const client = new ApolloClient({
     link: new HttpLink({
-      uri: "https://allowed-herring-99.hasura.app/v1/graphql",
+      uri: `${process.env.REACT_APP_BACKEND_URL}/v1/graphql`,
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "x-hasura-admin-secret":

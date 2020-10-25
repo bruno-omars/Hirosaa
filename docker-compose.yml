@@ -31,7 +31,7 @@ services:
       context: ./packages/web
       dockerfile: Dockerfile.dev
     environment:
-      REACT_APP_BACKEND_URL: localhost:8080
+      REACT_APP_BACKEND_URL: http://localhost:8080
     ports:
       - 3000:3000
     volumes:
