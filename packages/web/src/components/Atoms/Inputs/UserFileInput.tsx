@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { ReactComponent as Person } from "../../../assets/icons/person.svg";
+import { ReactComponent as Img } from "../../../assets/icons/img.svg";
 type Props = {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
@@ -21,6 +21,9 @@ const StyledDiv = styled.div`
   flex-shrink: 0;
 
   border-radius: 100%;
+  :hover {
+    background-color: rgba(26, 26, 26, 0.15);
+  }
 `;
 
 const StyledAvatarButton = styled.label`
@@ -41,18 +44,24 @@ const StyledAvatarButton = styled.label`
 
   background-color: #dedede66;
   color: #fff;
+  :hover {
+    background-color: rgba(26, 26, 26, 0.15);
+  }
 `;
 
 const StyledFileInput = styled.input`
   height: 30px;
   width: 400px;
+  :hover {
+    background-color: rgba(26, 26, 26, 0.15);
+  }
 `;
 
 const UserFileInput: FC<Props> = (props) => {
   return (
     <StyledDiv>
       <StyledAvatarButton>
-        <Person />
+        <Img />
         <StyledFileInput
           type={props.type}
           placeholder={props.placeholder}
