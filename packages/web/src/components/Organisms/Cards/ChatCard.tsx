@@ -110,14 +110,16 @@ const ChatCard: FC<Props> = ({
   inputs,
   onChange,
   handleSubmit,
+  setActiveCircleId,
+  circle,
   ...rest
 }) => {
   return (
     <Card>
-      <ChatSidebar setActiveCircleId={rest.setActiveCircleId} />
+      <ChatSidebar setActiveCircleId={setActiveCircleId} />
       <Right>
         <Top>
-          <StyledTitle>{rest.circle?.name}</StyledTitle>
+          <StyledTitle>{circle?.name}</StyledTitle>
           <PeopleNum count={30} />
         </Top>
         <Messages>

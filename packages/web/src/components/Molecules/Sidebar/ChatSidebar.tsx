@@ -28,14 +28,16 @@ const ChatSidebar: FC<Props> = (props) => {
     skip: !me?.id,
   });
 
-  const handleClickCircle = () => {};
+  const handleClickCircle = (id: number) => {
+    props.setActiveCircleId(id);
+  };
 
   return (
     <StyledSidebar>
       {data?.user?.CircleUsers.map((circleUser) => {
         const circle = circleUser.Circle;
         return (
-          <StyledCircleIcon onClick={handleClickCircle}>
+          <StyledCircleIcon onClick={() => handleClickCircle(circle.id)}>
             <img height="64px" src={circle.avatar || ""} />
           </StyledCircleIcon>
         );
