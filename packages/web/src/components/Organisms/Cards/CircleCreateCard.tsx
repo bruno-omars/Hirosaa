@@ -72,12 +72,12 @@ const CircleCreateCard: FC<Props> = (props) => {
         <Top>
           <FileInput />
           <DefaultInput
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="サークル名"
             name="name"
           />
           <DefaultInput
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="募集の題名"
             name="recruit_title"
           />

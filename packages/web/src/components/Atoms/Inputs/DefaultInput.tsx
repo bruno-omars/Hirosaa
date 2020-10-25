@@ -10,14 +10,14 @@ const SIZE = {
 };
 
 type Props = {
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   inputSize?: keyof typeof SIZE;
   name?: string;
   value?: string;
 };
 
-const StyledInput = styled.input<Omit<Props, "handleChange">>`
+const StyledInput = styled.input<Omit<Props, "onChange">>`
   box-sizing: border-box;
   border: 1px solid ${COLOR["BORDER_TEXT_INPUT"]};
   border-radius: 4px;

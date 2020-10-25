@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import styled from 'styled-components';
+import React, { FC } from "react";
+import styled from "styled-components";
 
-import CircleButton from '../../Atoms/Buttons/CircleButton';
-import { ReactComponent as DownArrow } from '../../../assets/icons/down-arrow.svg';
-import { COLOR } from '../../../constants/color';
+import CircleButton from "../../Atoms/Buttons/CircleButton";
+import { ReactComponent as DownArrow } from "../../../assets/icons/down-arrow.svg";
+import { COLOR } from "../../../constants/color";
 
 const StyledMe = styled.div`
-  color: ${COLOR['WHITE']};
+  color: ${COLOR["WHITE"]};
   cursor: pointer;
   display: grid;
   fill: white;
@@ -15,7 +15,7 @@ const StyledMe = styled.div`
   place-items: center;
 
   :hover {
-    background-color: ${COLOR['LIGHT_GREEN']};
+    background-color: ${COLOR["LIGHT_GREEN"]};
     border-radius: 50px;
   }
 `;
@@ -37,8 +37,8 @@ type Props = {
 const Me: FC<Props> = ({ user }) => {
   return (
     <StyledMe>
-      <CircleButton clickHandler={() => {}} shadowDepth={'NONE'}>
-        <StyledImage src={user.picture} />
+      <CircleButton clickHandler={() => {}} shadowDepth={"NONE"}>
+        <StyledImage src={user.picture || ""} />
       </CircleButton>
       <div>
         <StyledText>{user.nickname}</StyledText>

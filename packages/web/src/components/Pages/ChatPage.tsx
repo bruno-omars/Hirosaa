@@ -1,8 +1,5 @@
-import React, { FC, useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { FC, useState, ComponentProps } from "react";
 import { useAuthContext } from "../../provider/AuthContextProvider";
-import DefaultInput from "../Atoms/Inputs/DefaultInput";
-import Default from "../Atoms/Buttons/Default";
 import {
   useMessagesSubscription,
   useUserCirclesQuery,
@@ -10,19 +7,15 @@ import {
 } from "../../generated/graphql";
 import ChatCard from "../Organisms/Cards/ChatCard";
 
-export type Input = {
-  text: string;
-};
-
-const StyledForm = styled.form``;
-
 const INITIAL_INPUT = {
   text: "",
 };
 
 const ChatPage: FC = () => {
   const [activeCircleId, setActiveCircleId] = useState<number>();
-  const [inputs, setInputs] = useState<Input>(INITIAL_INPUT);
+  const [inputs, setInputs] = useState<
+    ComponentProps<typeof ChatCard>["inputs"]
+  >(INITIAL_INPUT);
 
   const { me } = useAuthContext();
   const { data: userData, loading: userLoading } = useUserCirclesQuery({
@@ -44,18 +37,16 @@ const ChatPage: FC = () => {
     (circleUser) => circleUser.Circle.id === activeCircleId
   )?.Circle;
 
-  const handleChange = (
+  const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     e.preventDefault();
     const targetInput = { [e.target.name]: e.target.value };
-    setInputs((prevInputs) => {
-      return { ...prevInputs, ...targetInput };
-    });
+    setInputs({ ...inputs, ...targetInput });
   };
 
   const handleSubmit = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     e.preventDefault();
     try {
@@ -78,20 +69,15 @@ const ChatPage: FC = () => {
 
   if (userLoading) return <>loading</>;
   return (
-    <>
-      <ChatCard
-        setActiveCircleId={setActiveCircleId}
-        circle={activeCircle}
-        messeges={messageData?.Message}
-      />
-      <DefaultInput
-        handleChange={handleChange}
-        placeholder="コメントを入力"
-        name="text"
-        value={inputs.text}
-      />
-      <Default clickHandler={handleSubmit}>送信</Default>
-    </>
+    <ChatCard
+      setActiveCircleId={setActiveCircleId}
+      circle={activeCircle}
+      messeges={messageData?.Message}
+      inputs={inputs}
+      setInputs={setInputs}
+      onChange={onChange}
+      handleSubmit={handleSubmit}
+    />
   );
 };
 

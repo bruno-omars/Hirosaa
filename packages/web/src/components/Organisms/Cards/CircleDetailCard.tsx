@@ -104,7 +104,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   return (
     <StyledCard>
       <StyledTop>
-        <StyledCircleAvatar src={circle.avatar} size={66} />
+        <StyledCircleAvatar src={circle.avatar || ""} size={66} />
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
           <StyledCaption>{circle.recruit_title}</StyledCaption>

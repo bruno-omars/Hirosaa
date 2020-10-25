@@ -29,7 +29,7 @@ const SkillCard: FC<Props> = (props) => {
       id={props.id}
       bgColor={props.bgColor}
     >
-      <img height="50px" src={props.avatar} />
+      <img height="50px" src={props.avatar || ""} />
       {props.name}
     </StyledSkillCard>
   );

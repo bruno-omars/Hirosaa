@@ -33,7 +33,7 @@ export type Circle = {
   SubCategory?: Maybe<SubCategory>;
   /** An object relationship */
   User?: Maybe<User>;
-  avatar: Scalars['String'];
+  avatar?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   main_role?: Maybe<Scalars['String']>;
   name: Scalars['String'];
@@ -5107,7 +5107,7 @@ export type UserCirclesLazyQueryHookResult = ReturnType<typeof useUserCirclesLaz
 export type UserCirclesQueryResult = Apollo.QueryResult<UserCirclesQuery, UserCirclesQueryVariables>;
 export const MessagesDocument = gql`
     subscription Messages($circleId: Int!) {
-  Message(where: {Circle: {id: {_eq: $circleId}}}, order_by: {timestamp: desc}) {
+  Message(where: {Circle: {id: {_eq: $circleId}}}, order_by: {timestamp: asc}) {
     timestamp
     text
     id

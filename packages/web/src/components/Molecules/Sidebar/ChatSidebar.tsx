@@ -36,7 +36,7 @@ const ChatSidebar: FC<Props> = (props) => {
         const circle = circleUser.Circle;
         return (
           <StyledCircleIcon onClick={handleClickCircle}>
-            <img height="64px" src={circle.avatar} />
+            <img height="64px" src={circle.avatar || ""} />
           </StyledCircleIcon>
         );
       })}

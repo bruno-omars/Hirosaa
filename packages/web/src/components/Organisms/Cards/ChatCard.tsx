@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, ComponentProps } from "react";
 import styled from "styled-components";
 import { Circle, Message, User } from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
@@ -28,7 +28,7 @@ const Top = styled.div`
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
 `;
 
-const Buttom = styled.div`
+const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -79,9 +79,13 @@ const Typography = styled.div`
   font-size: 16px;
   line-height: 24px;
   font-weight: 500;
-  white-space: pre-wrap;
+  white-space: pre-wap;
   word-break: break-all;
 `;
+
+export type Input = {
+  text: string;
+};
 
 type Props = {
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -95,9 +99,13 @@ type Props = {
           } & Pick<User, "id" | "avatar" | "name">;
         })[]
     | undefined;
+  inputs: Input;
+  setInputs: React.Dispatch<Input>;
+  handleSubmit: ComponentProps<typeof IconRightInput>["iconClickHandler"];
+  onChange: ComponentProps<typeof IconRightInput>["onChange"];
 };
 
-const ChatCard: FC<Props> = ({ messeges, ...rest }) => {
+const ChatCard: FC<Props> = ({ messeges, onChange, handleSubmit, ...rest }) => {
   return (
     <Card>
       <ChatSidebar setActiveCircleId={rest.setActiveCircleId} />
@@ -121,14 +129,15 @@ const ChatCard: FC<Props> = ({ messeges, ...rest }) => {
               ))
             : "やりとりがありません。何かメッセージを送ってみましょう"}
         </Messages>
-        <Buttom>
+        <Bottom>
           <IconRightInput
             icon={<StyledSendIcon />}
-            iconClickHandler={() => {}}
-            handleChange={() => {}}
+            iconClickHandler={handleSubmit}
+            onChange={onChange}
             placeholder=""
+            name="text"
           />
-        </Buttom>
+        </Bottom>
       </Right>
     </Card>
   );
