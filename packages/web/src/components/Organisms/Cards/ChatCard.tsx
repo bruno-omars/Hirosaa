@@ -105,7 +105,13 @@ type Props = {
   onChange: ComponentProps<typeof IconRightInput>["onChange"];
 };
 
-const ChatCard: FC<Props> = ({ messeges, onChange, handleSubmit, ...rest }) => {
+const ChatCard: FC<Props> = ({
+  messeges,
+  inputs,
+  onChange,
+  handleSubmit,
+  ...rest
+}) => {
   return (
     <Card>
       <ChatSidebar setActiveCircleId={rest.setActiveCircleId} />
@@ -131,9 +137,14 @@ const ChatCard: FC<Props> = ({ messeges, onChange, handleSubmit, ...rest }) => {
         </Messages>
         <Bottom>
           <IconRightInput
-            icon={<StyledSendIcon />}
+            icon={
+              <StyledSendIcon
+                fill={inputs.text ? COLOR.LIGHT_GREEN : COLOR.BORDER_TEXT_INPUT}
+              />
+            }
             iconClickHandler={handleSubmit}
             onChange={onChange}
+            value={inputs.text}
             placeholder=""
             name="text"
           />

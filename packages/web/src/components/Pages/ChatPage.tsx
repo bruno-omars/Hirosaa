@@ -49,6 +49,7 @@ const ChatPage: FC = () => {
     e: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
     e.preventDefault();
+    if (!inputs.text) return;
     try {
       await insertMessage({
         variables: {
