@@ -9,6 +9,9 @@ import { Textarea } from "../../Pages/UserDetailPage";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import UserFileInput from "../../Atoms/Inputs/UserFileInput";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
+import ImgCrop from "antd-img-crop";
+
+// import { Upload } from "antd";
 type Props = {
   userData: UserQuery;
   isEditing: boolean;
@@ -66,6 +69,7 @@ const UserDetailCard: FC<Props> = ({
   setSkills,
 }) => {
   const { data, error } = useSkillAndSubCategoryQuery();
+
   const skillCardHeight = useMemo(
     () => data && Math.ceil(data.Skill.length / 4) * 75,
     [data]
@@ -85,14 +89,19 @@ const UserDetailCard: FC<Props> = ({
     <StyledCard>
       <StyledTop>
         {isEditing ? (
-          <UserFileInput
-            name="avatar"
-            handleChange={handleChange}
-            accept="image/png,image/jpeg,image/gif"
-            type="file"
-            hidden="hidden"
-            placeholder="画像を選択してください"
-          />
+          <>
+            <ImgCrop modalTitle="アイコンの範囲を指定する" grid>
+              {/* <Upload>+ Add image</Upload> */}
+            </ImgCrop>
+            <UserFileInput
+              name="avatar"
+              handleChange={handleChange}
+              accept="image/png,image/jpeg,image/gif"
+              type="file"
+              hidden="hidden"
+              placeholder="画像を選択してください"
+            />
+          </>
         ) : (
           <Avatar src={(user && user.avatar) || ""} size={66} />
         )}

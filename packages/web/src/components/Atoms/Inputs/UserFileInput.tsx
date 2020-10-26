@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import styled from "styled-components";
 import { ReactComponent as Img } from "../../../assets/icons/img.svg";
 type Props = {
@@ -19,16 +19,12 @@ const StyledDiv = styled.div`
   width: var(--avatar-size);
   height: var(--avatar-size);
   flex-shrink: 0;
-
+  background-color:: f5f5f5;
   border-radius: 100%;
-  :hover {
-    background-color: rgba(26, 26, 26, 0.15);
-  }
 `;
 
 const StyledAvatarButton = styled.label`
   appearance: none;
-
   position: absolute;
   top: 0;
   right: 0;
@@ -41,20 +37,15 @@ const StyledAvatarButton = styled.label`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color: #dedede66;
-  color: #fff;
+  background-color: f5f5f5;
   :hover {
-    background-color: rgba(26, 26, 26, 0.15);
+    opacity: 0.7;
   }
 `;
 
 const StyledFileInput = styled.input`
   height: 30px;
   width: 400px;
-  :hover {
-    background-color: rgba(26, 26, 26, 0.15);
-  }
 `;
 
 const UserFileInput: FC<Props> = (props) => {
