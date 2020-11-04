@@ -83,7 +83,7 @@ const CircleCreatePage: FC = () => {
         setCategory={setCategory}
       />
       <RightButton>
-        <RoundedButton clickHandler={handleClick} buttonSize="SMALL">
+        <RoundedButton onClick={handleClick} buttonSize="SMALL">
           {buttonText}
         </RoundedButton>
       </RightButton>

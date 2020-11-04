@@ -1,0 +1,7 @@
+mutation DeleteCircleSkill($circleId: Int!, $skillId: Int!) {
+  delete_CircleSkill(
+    where: { circle_id: { _eq: $circleId }, skill_id: { _eq: $skillId } }
+  ) {
+    affected_rows
+  }
+}

@@ -77,14 +77,16 @@ const CircleCreateCard: FC<Props> = (props) => {
         <Top>
           <FileInput />
           <DefaultInput
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="サークル名"
             name="name"
+            value={props.inputs.name}
           />
           <DefaultInput
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="募集の題名"
             name="recruit_title"
+            value={props.inputs.recruit_title}
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
@@ -106,17 +108,19 @@ const CircleCreateCard: FC<Props> = (props) => {
           <Block>
             <StyledSubTitle>何をするのか</StyledSubTitle>
             <DefaultTextArea
-              handleChange={handleChange}
+              onChange={handleChange}
               placeholder="あなたのサークルでやることを記入してください"
               name="what_we_will_do"
+              value={props.inputs.what_we_will_do}
             />
           </Block>
           <Block>
             <StyledSubTitle>主な役割</StyledSubTitle>
             <DefaultTextArea
-              handleChange={handleChange}
+              onChange={handleChange}
               placeholder="歓迎条件をご記入ください"
               name="main_role"
+              value={props.inputs.main_role}
             />
           </Block>
           <Block>

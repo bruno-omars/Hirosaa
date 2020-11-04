@@ -3,7 +3,7 @@ import { useCircleQuery } from "../../generated/graphql";
 import CircleDetailCard from "../Organisms/Cards/CircleDetailCard";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 type Params = {
   circleId: number;
@@ -27,6 +27,14 @@ const StyledPage = styled.div`
 const CircleDetailPage: FC = (props) => {
   const { state } = useLocation<Params>();
   const circleId = state.circleId;
+  const history = useHistory();
+
+  const handleClickEdit = () => {
+    history.push({
+      pathname: "/circle-edit",
+      state: { circleId },
+    });
+  };
 
   const { data, loading, error } = useCircleQuery({
     variables: { id: circleId },
@@ -37,16 +45,17 @@ const CircleDetailPage: FC = (props) => {
 
   const handleClickJoin = () => {};
 
-  const handleClickEdit = () => {};
-
   return (
     <StyledPage>
       <CircleDetailCard circle={data.circle} />
       <StyledRightButtons>
-        <StyledRoundedButton clickHandler={handleClickJoin} buttonSize="SMALL">
+        <StyledRoundedButton onClick={handleClickJoin} buttonSize="SMALL">
           応募する
         </StyledRoundedButton>
-        <StyledRoundedButton clickHandler={handleClickEdit} buttonSize="SMALL">
+        <StyledRoundedButton
+          onClick={() => handleClickEdit()}
+          buttonSize="SMALL"
+        >
           編集する
         </StyledRoundedButton>
       </StyledRightButtons>

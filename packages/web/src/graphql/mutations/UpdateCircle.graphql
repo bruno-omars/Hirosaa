@@ -1,0 +1,5 @@
+mutation UpdateCirlce($id: Int!, $inputs: Circle_set_input) {
+  update_Circle(where: { id: { _eq: $id } }, _set: $inputs) {
+    affected_rows
+  }
+}

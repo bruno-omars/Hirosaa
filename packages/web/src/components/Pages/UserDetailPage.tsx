@@ -48,11 +48,11 @@ const UserDetailPage: FC = () => {
       <UserDetailCard data={data} />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton clickHandler={onEditMe} buttonSize="SMALL">
+          <StyledRoundedButton onClick={onEditMe} buttonSize="SMALL">
             編集する
           </StyledRoundedButton>
         ) : (
-          <StyledRoundedButton clickHandler={onSubmitMessage} buttonSize="BASE">
+          <StyledRoundedButton onClick={onSubmitMessage} buttonSize="BASE">
             メッセージを送信する
           </StyledRoundedButton>
         )}

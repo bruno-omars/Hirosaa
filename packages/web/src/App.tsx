@@ -23,6 +23,7 @@ import PrivateRoute from "./PrivateRoute";
 import CircleCreatePage from "./components/Pages/CircleCreatePage";
 import CircleDetailPage from "./components/Pages/CircleDetailPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
+import CircleEditPage from "./components/Pages/CircleEditPage";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -74,6 +75,7 @@ const App: FC = () => {
               exact
             />
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
+            <PrivateRoute path="/circle-edit" component={CircleEditPage} />
             <PrivateRoute path="/user-detail" component={UserDetailPage} />
 
             <Route path="*">
