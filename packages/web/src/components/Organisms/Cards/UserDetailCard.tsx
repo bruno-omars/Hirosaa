@@ -9,9 +9,7 @@ import { Textarea } from "../../Pages/UserDetailPage";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import UserFileInput from "../../Atoms/Inputs/UserFileInput";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
-import ImgCrop from "antd-img-crop";
 
-// import { Upload } from "antd";
 type Props = {
   userData: UserQuery;
   isEditing: boolean;
@@ -84,15 +82,12 @@ const UserDetailCard: FC<Props> = ({
 
   const user = userData.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-
+  console.log(user.name);
   return (
     <StyledCard>
       <StyledTop>
         {isEditing ? (
           <>
-            <ImgCrop modalTitle="アイコンの範囲を指定する" grid>
-              {/* <Upload>+ Add image</Upload> */}
-            </ImgCrop>
             <UserFileInput
               name="avatar"
               handleChange={handleChange}

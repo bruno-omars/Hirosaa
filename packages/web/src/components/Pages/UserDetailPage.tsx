@@ -1,9 +1,10 @@
-import React, { FC, useState, useCallback } from "react";
+import React, { FC, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {
   useUserQuery,
   Skill_Constraint,
   Skill_Update_Column,
+  useUpdateUserMutation,
 } from "../../generated/graphql";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
@@ -41,6 +42,7 @@ export type Textarea = {
   interested_in: string;
 };
 const UserDetailPage: FC = () => {
+  const [updateUser] = useUpdateUserMutation();
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -58,6 +60,7 @@ const UserDetailPage: FC = () => {
       id: userId,
     },
   });
+  console.log(userId);
   const Skills = selectedSkills.map((skill: number) => ({
     Skill: {
       data: { id: skill, avatar: "", name: "" },
@@ -76,7 +79,13 @@ const UserDetailPage: FC = () => {
   };
 
   const saveEdit = () => {
-    //処理を走らせたい。。。
+    updateUser({
+      variables: {
+        _set: { ...textareas },
+        where: { id: { _eq: userId } },
+      },
+    });
+    window.location.reload();
     setIsEditing(false);
   };
 
