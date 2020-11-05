@@ -49,8 +49,7 @@ const UserDetailPage: FC = () => {
   const [isSaving, setIsSaving] = useState<boolean>(true);
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [textareas, setTextareas] = useState<Textarea>({
-    avatar:
-      "https://pbs.twimg.com/profile_images/742364379098669056/oM_Rvhlo_400x400.jpg",
+    avatar: "",
     name: "",
     introduction: "",
     interested_in: "",
