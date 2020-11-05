@@ -3,7 +3,7 @@
 
 
 # dependencies
-/.vscode/settings.json
+
 /node_modules
 /.pnp
 .pnp.js
