@@ -46,31 +46,23 @@ const UserDetailPage: FC = () => {
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  const [isSaving, setIsSaving] = useState<boolean>(true);
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [textareas, setTextareas] = useState<Textarea>({
-    avatar: "",
+    avatar:
+      "https://pbs.twimg.com/profile_images/742364379098669056/oM_Rvhlo_400x400.jpg",
     name: "",
     introduction: "",
     interested_in: "",
   });
-  console.log(textareas);
+
   const userId = state.userId;
   const { data, loading, error } = useUserQuery({
     variables: {
       id: userId,
     },
   });
-  console.log(userId);
-  const Skills = selectedSkills.map((skill: number) => ({
-    Skill: {
-      data: { id: skill, avatar: "", name: "" },
-      on_conflict: {
-        constraint: Skill_Constraint.SkillPkey,
-        update_columns: [Skill_Update_Column.Id],
-      },
-    },
-  }));
-  console.log(Skills);
+
   if (!data?.user || loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
@@ -78,15 +70,15 @@ const UserDetailPage: FC = () => {
     setIsEditing(true);
   };
 
-  const saveEdit = () => {
-    updateUser({
+  const saveEdit = async () => {
+    await updateUser({
       variables: {
         _set: { ...textareas },
         where: { id: { _eq: userId } },
       },
     });
+    setIsSaving(false);
     window.location.reload();
-    setIsEditing(false);
   };
 
   const onSubmitMessage = () => {};
@@ -109,7 +101,7 @@ const UserDetailPage: FC = () => {
             </StyledRoundedButton>
           ) : (
             <StyledRoundedButton clickHandler={saveEdit} buttonSize="SMALL">
-              保存する
+              {isSaving ? "保存する" : "保存しました"}
             </StyledRoundedButton>
           )
         ) : (

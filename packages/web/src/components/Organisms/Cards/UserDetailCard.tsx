@@ -82,7 +82,7 @@ const UserDetailCard: FC<Props> = ({
 
   const user = userData.user;
   const skills = user.UserSkills.map((skill) => skill.Skill);
-  console.log(user.name);
+
   return (
     <StyledCard>
       <StyledTop>
