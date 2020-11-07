@@ -87,16 +87,14 @@ const UserDetailCard: FC<Props> = ({
     <StyledCard>
       <StyledTop>
         {isEditing ? (
-          <>
-            <UserFileInput
-              name="avatar"
-              handleChange={handleChange}
-              accept="image/png,image/jpeg,image/gif"
-              type="file"
-              hidden="hidden"
-              placeholder="画像を選択してください"
-            />
-          </>
+          <UserFileInput
+            name="avatar"
+            handleChange={handleChange}
+            accept="image/png,image/jpeg,image/gif"
+            type="file"
+            hidden="hidden"
+            placeholder="画像を選択してください"
+          />
         ) : (
           <Avatar src={(user && user.avatar) || ""} size={66} />
         )}

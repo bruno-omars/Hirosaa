@@ -1,11 +1,6 @@
 import React, { FC, useState } from "react";
 import { useLocation } from "react-router-dom";
-import {
-  useUserQuery,
-  Skill_Constraint,
-  Skill_Update_Column,
-  useUpdateUserMutation,
-} from "../../generated/graphql";
+import { useUserQuery, useUpdateUserMutation } from "../../generated/graphql";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
@@ -19,6 +14,12 @@ type handleClick = {
   children: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   buttonSize: string;
+};
+export type Textarea = {
+  avatar: string;
+  name: string;
+  introduction: string;
+  interested_in: string;
 };
 
 const StyledPage = styled.div`
@@ -35,12 +36,7 @@ const StyledRightButtons = styled.div`
 const StyledRoundedButton = styled(RoundedButton)<handleClick>`
   margin-bottom: 24px;
 `;
-export type Textarea = {
-  avatar: string;
-  name: string;
-  introduction: string;
-  interested_in: string;
-};
+
 const UserDetailPage: FC = () => {
   const [updateUser] = useUpdateUserMutation();
   const { state } = useLocation<Params>();
