@@ -10,6 +10,7 @@ import {
 } from "../../generated/graphql";
 import { useLocation, useHistory } from "react-router-dom";
 import TwoColumn from "../Templates/TwoColumn";
+import { extractAdded, extractRemoved } from "../../utils/filtering";
 
 const RightButton = styled.div`
   align-self: start;
@@ -104,10 +105,8 @@ const CircleEditPage: React.FC = () => {
 
   const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const deletedSkills = initSkills.filter(
-      (id) => !selectedSkills.includes(id)
-    );
-    const addedSkills = selectedSkills.filter((id) => !initSkills.includes(id));
+    const deletedSkills = extractRemoved(initSkills, selectedSkills);
+    const addedSkills = extractAdded(initSkills, selectedSkills);
     addedSkills.forEach((id) => {
       insertCircleSkill({
         variables: {
