@@ -56,7 +56,9 @@
       - owner_id
       - main_role
       - what_we_will_do
-      filter: {}
+      filter:
+        organization_id:
+          _eq: X-Hasura-Domain
   update_permissions:
   - role: user
     permission:
@@ -199,6 +201,14 @@
           name: Circle
         column_mapping:
           id: sub_category_id
+  array_relationships:
+  - name: Circles
+    using:
+      foreign_key_constraint_on:
+        column: sub_category_id
+        table:
+          schema: public
+          name: Circle
   select_permissions:
   - role: user
     permission:
@@ -223,6 +233,13 @@
         column_mapping:
           id: owner_id
   array_relationships:
+  - name: Circles
+    using:
+      foreign_key_constraint_on:
+        column: owner_id
+        table:
+          schema: public
+          name: Circle
   - name: CircleUsers
     using:
       foreign_key_constraint_on:
