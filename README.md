@@ -8,12 +8,6 @@
 $ docker-compose up -d
 ```
 
-- seeds の作成
-
-```bash
-$ hasura seeds create sample_seed --from-table Message --from-table User --from-table Organization --from-table Circle --from-table CircleSkill --from-table CircleUser --from-table ParentCategory --from-table Skill --from-table SubCategory --from-table UserSkill  --endpoint https://allowed-herring-99.hasura.app --admin-secret dvakve53oeo2q
-```
-
 - seeds の適応
 
 最初にサーバを起動した時と、`hasura/seeds`が変更された場合に必要。
