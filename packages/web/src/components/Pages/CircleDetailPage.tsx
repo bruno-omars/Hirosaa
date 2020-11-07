@@ -32,6 +32,7 @@ const CircleDetailPage: FC = (props) => {
 
   const { data, loading, error } = useCircleQuery({
     variables: { id: circleId },
+    pollInterval: 500,
   });
   console.warn("data.", data?.circle);
   if (!data?.circle || loading) return <p>Loading...</p>;
