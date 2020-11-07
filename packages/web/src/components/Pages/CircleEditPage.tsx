@@ -30,16 +30,6 @@ const CircleEditPage: React.FC = () => {
   const { state } = useLocation<Params>();
   const circleId = state.circleId;
   const history = useHistory();
-
-  const redirectToDetail = () => {
-    setTimeout(() => {
-      history.push({
-        pathname: "/circle-detail",
-        state: { circleId },
-      });
-    }, 2000);
-  };
-
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [initSkills, setInitSkills] = useState<number[]>([]);
   const [selectedCategory, setCategory] = useState<number>(0);
@@ -57,6 +47,7 @@ const CircleEditPage: React.FC = () => {
     },
   });
 
+  // 現在のサークルの情報を格納
   useEffect(() => {
     if (!loading && !error) {
       const circle = circleData?.circle;
@@ -73,13 +64,22 @@ const CircleEditPage: React.FC = () => {
         setInitSkills(skills);
         console.log(category);
         if (!category) {
-          console.log("categoryが選択されていません。選択してください");
-          return;
+          console.log("必須項目カテゴリーが選択されていません。選択してください");
+        } else {
+          setCategory(category);
         }
-        setCategory(category);
       }
     }
   }, [circleData]);
+
+  const redirectToDetail = () => {
+    setTimeout(() => {
+      history.push({
+        pathname: "/circle-detail",
+        state: { circleId },
+      });
+    }, 2000);
+  };
 
   const [updateCircle, { data: updateCircleData }] = useUpdateCirlceMutation();
   const [
