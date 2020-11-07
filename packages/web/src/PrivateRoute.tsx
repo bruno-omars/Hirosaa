@@ -21,7 +21,7 @@ const PrivateRoute: FC<Props> = (props) => {
 
   return isAuthenticated ? (
     <Route path={props.path} exact={props.exact}>
-      <TwoColumn>
+      <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
         <LoginSidebar />
         <StyledDiv>
           <props.component />

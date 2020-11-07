@@ -62,7 +62,7 @@ const App: FC = () => {
         <Router>
           <Switch>
             <Route path="/login" component={GuestSidebar}>
-              <TwoColumn>
+              <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
                 <GuestSidebar />
                 <AboutPage />
               </TwoColumn>

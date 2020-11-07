@@ -4,6 +4,7 @@ import CircleDetailCard from "../Organisms/Cards/CircleDetailCard";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import { useLocation, useHistory } from "react-router-dom";
+import TwoColumn from "../Templates/TwoColumn";
 
 type Params = {
   circleId: number;
@@ -15,13 +16,6 @@ const StyledRightButtons = styled.div`
 
 const StyledRoundedButton = styled(RoundedButton)`
   margin-bottom: 24px;
-`;
-
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0.2fr;
-  place-items: center;
-  padding-top: 60px;
 `;
 
 const CircleDetailPage: FC = (props) => {
@@ -46,7 +40,7 @@ const CircleDetailPage: FC = (props) => {
   const handleClickJoin = () => {};
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <CircleDetailCard circle={data.circle} />
       <StyledRightButtons>
         <StyledRoundedButton onClick={handleClickJoin} buttonSize="SMALL">
@@ -59,7 +53,7 @@ const CircleDetailPage: FC = (props) => {
           編集する
         </StyledRoundedButton>
       </StyledRightButtons>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 

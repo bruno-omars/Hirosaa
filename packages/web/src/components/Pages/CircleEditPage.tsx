@@ -9,13 +9,7 @@ import {
   useDeleteCircleSkillMutation,
 } from "../../generated/graphql";
 import { useLocation, useHistory } from "react-router-dom";
-
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0.2fr;
-  place-items: center;
-  padding-top: 60px;
-`;
+import TwoColumn from "../Templates/TwoColumn";
 
 const RightButton = styled.div`
   align-self: start;
@@ -144,7 +138,7 @@ const CircleEditPage: React.FC = () => {
   };
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <CircleCreateCard
         inputs={inputs}
         setInputs={setInputs}
@@ -158,7 +152,7 @@ const CircleEditPage: React.FC = () => {
           {buttonText}
         </RoundedButton>
       </RightButton>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 
