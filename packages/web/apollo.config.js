@@ -7,6 +7,6 @@ module.exports = {
         "x-hasura-admin-secret": process.env.HASURA_GRAPHQL_ADMIN_SECRET
       },
     },
-    includes: ['src/graphql/**/*.{gql,graphql}','./src/graphql/**/*.{gql,graphql}'], 
+    includes: ['src/graphql/**/*.{gql,graphql}'], 
   }
 };
