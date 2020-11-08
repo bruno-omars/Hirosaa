@@ -2,8 +2,8 @@
 
 yarn hasura migrate apply \
   --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
-  --endpoint "http://localhost:8080"
+  --endpoint "https://hirosaa-staging.hasura.app"
 
 yarn hasura metadata apply \
   --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
-  --endpoint "http://localhost:8080"
+  --endpoint "https://hirosaa-staging.hasura.app"
