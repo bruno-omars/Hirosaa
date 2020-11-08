@@ -15,7 +15,7 @@ query Circle($id: Int!) {
       id
       name
     }
-    cicle_skills {
+    circle_skills {
       skills {
         id
         name

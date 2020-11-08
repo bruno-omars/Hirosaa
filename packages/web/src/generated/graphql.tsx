@@ -137,7 +137,7 @@ export type Circle_Skills_Bool_Exp = {
 /** unique or primary key constraints on table "circle_skills" */
 export enum Circle_Skills_Constraint {
   /** unique or primary key constraint */
-  CicleSkillPkey = 'CicleSkill_pkey'
+  CircleSkillsPkey = 'circle_skills_pkey'
 }
 
 /** input type for incrementing integer column in table "circle_skills" */
@@ -652,9 +652,9 @@ export type Circles = {
   __typename?: 'circles';
   avatar: Scalars['String'];
   /** An array relationship */
-  cicle_skills: Array<Circle_Skills>;
+  circle_skills: Array<Circle_Skills>;
   /** An aggregated array relationship */
-  cicle_skills_aggregate: Circle_Skills_Aggregate;
+  circle_skills_aggregate: Circle_Skills_Aggregate;
   /** An array relationship */
   circle_users: Array<Circle_Users>;
   /** An aggregated array relationship */
@@ -681,7 +681,7 @@ export type Circles = {
 
 
 /** columns and relationships of "circles" */
-export type CirclesCicle_SkillsArgs = {
+export type CirclesCircle_SkillsArgs = {
   distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -691,7 +691,7 @@ export type CirclesCicle_SkillsArgs = {
 
 
 /** columns and relationships of "circles" */
-export type CirclesCicle_Skills_AggregateArgs = {
+export type CirclesCircle_Skills_AggregateArgs = {
   distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
@@ -809,7 +809,7 @@ export type Circles_Bool_Exp = {
   _not?: Maybe<Circles_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Circles_Bool_Exp>>>;
   avatar?: Maybe<String_Comparison_Exp>;
-  cicle_skills?: Maybe<Circle_Skills_Bool_Exp>;
+  circle_skills?: Maybe<Circle_Skills_Bool_Exp>;
   circle_users?: Maybe<Circle_Users_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
   main_role?: Maybe<String_Comparison_Exp>;
@@ -840,7 +840,7 @@ export type Circles_Inc_Input = {
 /** input type for inserting data into table "circles" */
 export type Circles_Insert_Input = {
   avatar?: Maybe<Scalars['String']>;
-  cicle_skills?: Maybe<Circle_Skills_Arr_Rel_Insert_Input>;
+  circle_skills?: Maybe<Circle_Skills_Arr_Rel_Insert_Input>;
   circle_users?: Maybe<Circle_Users_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
   main_role?: Maybe<Scalars['String']>;
@@ -935,7 +935,7 @@ export type Circles_On_Conflict = {
 /** ordering options when selecting data from "circles" */
 export type Circles_Order_By = {
   avatar?: Maybe<Order_By>;
-  cicle_skills_aggregate?: Maybe<Circle_Skills_Aggregate_Order_By>;
+  circle_skills_aggregate?: Maybe<Circle_Skills_Aggregate_Order_By>;
   circle_users_aggregate?: Maybe<Circle_Users_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   main_role?: Maybe<Order_By>;
@@ -4482,7 +4482,7 @@ export type CircleQuery = (
     )>, sub_categories?: Maybe<(
       { __typename?: 'sub_categories' }
       & Pick<Sub_Categories, 'id' | 'name'>
-    )>, cicle_skills: Array<(
+    )>, circle_skills: Array<(
       { __typename?: 'circle_skills' }
       & { skills: (
         { __typename?: 'skills' }
@@ -4635,7 +4635,7 @@ export const CircleDocument = gql`
       id
       name
     }
-    cicle_skills {
+    circle_skills {
       skills {
         id
         name
