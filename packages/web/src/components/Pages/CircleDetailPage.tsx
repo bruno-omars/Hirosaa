@@ -31,12 +31,11 @@ const CircleDetailPage: FC = (props) => {
   const { data, loading, error } = useCircleQuery({
     variables: { id: circleId },
   });
-  console.warn("data.", data?.circle);
+
   if (!data?.circle || loading) return <p>Loading...</p>;
   if (error) return <p>Error! ${error.message}</p>;
 
   const handleClickJoin = () => {};
-
   const handleClickEdit = () => {};
 
   return (

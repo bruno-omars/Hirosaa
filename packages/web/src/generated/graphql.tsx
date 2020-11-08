@@ -4476,7 +4476,7 @@ export type CircleQuery = (
   & { circle?: Maybe<(
     { __typename?: 'circles' }
     & Pick<Circles, 'id' | 'avatar' | 'name' | 'main_role' | 'what_we_will_do' | 'recruit_title'>
-    & { users?: Maybe<(
+    & { owner?: Maybe<(
       { __typename?: 'users' }
       & Pick<Users, 'id' | 'name' | 'avatar'>
     )>, sub_categories?: Maybe<(
@@ -4626,7 +4626,7 @@ export const CircleDocument = gql`
     main_role
     what_we_will_do
     recruit_title
-    users {
+    owner: users {
       id
       name
       avatar

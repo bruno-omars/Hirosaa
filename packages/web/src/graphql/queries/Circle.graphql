@@ -6,7 +6,7 @@ query Circle($id: Int!) {
     main_role
     what_we_will_do
     recruit_title
-    users {
+    owner: users {
       id
       name
       avatar

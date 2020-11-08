@@ -33,7 +33,7 @@ const CircleListPage: FC = () => {
   const where = useMemo(() => {
     return selectedSubcategories.length
       ? {
-          SubCategory: {
+          sub_categories: {
             id: {
               _in: selectedSubcategories,
             },
@@ -55,15 +55,15 @@ const CircleListPage: FC = () => {
   });
 
   const maxPage = useMemo(() => {
-    if (data?.Circle_aggregate.aggregate?.count) {
-      return Math.ceil(data?.Circle_aggregate.aggregate?.count / pageLimit);
+    if (data?.circles_aggregate.aggregate?.count) {
+      return Math.ceil(data.circles_aggregate.aggregate?.count / pageLimit);
     }
     return 1;
   }, [data]);
 
   if (error) return <p>Error! ${error.message}</p>;
 
-  const circles = data?.Circle.map((circle) => {
+  const circles = data?.circles.map((circle) => {
     return <CircleCard key={circle.id} circle={circle} />;
   });
 
