@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Circle } from "../../../generated/graphql";
+import { Circles } from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
 
@@ -52,7 +52,7 @@ const StyledImage = styled.img`
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
   circle: Pick<
-    Circle,
+  Circles,
     "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
   >;
 };

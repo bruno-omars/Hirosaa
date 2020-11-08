@@ -1,306 +1,289 @@
 - table:
     schema: public
-    name: Circle
+    name: sub_categories
   object_relationships:
-  - name: Organization
-    using:
-      foreign_key_constraint_on: organization_id
-  - name: SubCategory
-    using:
-      foreign_key_constraint_on: sub_category_id
-  - name: User
-    using:
-      foreign_key_constraint_on: owner_id
+    - name: parent_categories
+      using:
+        foreign_key_constraint_on: parent_category_id
+    - name: sub_categories
+      using:
+        manual_configuration:
+          remote_table:
+            schema: public
+            name: circles
+          column_mapping:
+            id: sub_category_id
   array_relationships:
-  - name: CicleSkills
-    using:
-      foreign_key_constraint_on:
-        column: circle_id
-        table:
-          schema: public
-          name: CircleSkill
-  - name: CircleUsers
-    using:
-      foreign_key_constraint_on:
-        column: circle_id
-        table:
-          schema: public
-          name: CircleUser
-  - name: Messages
-    using:
-      foreign_key_constraint_on:
-        column: circle_id
-        table:
-          schema: public
-          name: Message
-  insert_permissions:
-  - role: user
-    permission:
-      check:
-        owner_id:
-          _eq: X-Hasura-User-Id
-      columns:
-      - avatar
-      - name
-      - main_role
-      - what_we_will_do
-      backend_only: false
+    - name: circles
+      using:
+        foreign_key_constraint_on:
+          column: sub_category_id
+          table:
+            schema: public
+            name: circles
   select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - organization_id
-      - avatar
-      - name
-      - owner_id
-      - main_role
-      - what_we_will_do
-      filter:
-        organization_id:
-          _eq: X-Hasura-Domain
-  update_permissions:
-  - role: user
-    permission:
-      columns:
-      - avatar
-      - name
-      - main_role
-      - what_we_will_do
-      filter:
-        owner_id:
-          _eq: X-Hasura-User-Id
-      check: {}
-  delete_permissions:
-  - role: user
-    permission:
-      filter:
-        owner_id:
-          _eq: X-Hasura-User-Id
+    - role: user
+      permission:
+        columns:
+          - id
+          - name
+          - parent_category_id
+        filter: {}
 - table:
     schema: public
-    name: CircleSkill
+    name: users
   object_relationships:
-  - name: Circle
-    using:
-      foreign_key_constraint_on: circle_id
-  - name: Skill
-    using:
-      foreign_key_constraint_on: skill_id
-- table:
-    schema: public
-    name: CircleUser
-  object_relationships:
-  - name: Circle
-    using:
-      foreign_key_constraint_on: circle_id
-  - name: User
-    using:
-      foreign_key_constraint_on: user_id
-- table:
-    schema: public
-    name: Message
-  object_relationships:
-  - name: Circle
-    using:
-      foreign_key_constraint_on: circle_id
-  - name: User
-    using:
-      foreign_key_constraint_on: user_id
+    - name: organizations
+      using:
+        foreign_key_constraint_on: organization_id
+    - name: users
+      using:
+        manual_configuration:
+          remote_table:
+            schema: public
+            name: circles
+          column_mapping:
+            id: owner_id
+  array_relationships:
+    - name: circles
+      using:
+        foreign_key_constraint_on:
+          column: owner_id
+          table:
+            schema: public
+            name: circles
+    - name: circle_users
+      using:
+        foreign_key_constraint_on:
+          column: user_id
+          table:
+            schema: public
+            name: circle_users
+    - name: messages
+      using:
+        foreign_key_constraint_on:
+          column: user_id
+          table:
+            schema: public
+            name: messages
+    - name: user_skills
+      using:
+        foreign_key_constraint_on:
+          column: user_id
+          table:
+            schema: public
+            name: user_skills
   select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - text
-      - user_id
-      - circle_id
-      - timestamp
-      filter:
-        _or:
-        - Circle:
-            CircleUsers:
-              user_id:
+    - role: user
+      permission:
+        columns:
+          - avatar
+          - email
+          - id
+          - interested_in
+          - introduction
+          - last_seen
+          - name
+          - organization_id
+        filter:
+          _or:
+            - id:
                 _eq: X-Hasura-User-Id
-        - user_id:
-            _eq: X-Hasura-User-Id
-- table:
-    schema: public
-    name: Organization
-  array_relationships:
-  - name: Circles
-    using:
-      foreign_key_constraint_on:
-        column: organization_id
-        table:
-          schema: public
-          name: Circle
-  - name: Users
-    using:
-      foreign_key_constraint_on:
-        column: organization_id
-        table:
-          schema: public
-          name: User
-- table:
-    schema: public
-    name: ParentCategory
-  array_relationships:
-  - name: SubCategories
-    using:
-      foreign_key_constraint_on:
-        column: parent_category_id
-        table:
-          schema: public
-          name: SubCategory
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - name
-      filter: {}
-- table:
-    schema: public
-    name: Skill
-  array_relationships:
-  - name: CicleSkills
-    using:
-      foreign_key_constraint_on:
-        column: skill_id
-        table:
-          schema: public
-          name: CircleSkill
-  - name: UserSkills
-    using:
-      foreign_key_constraint_on:
-        column: skill_id
-        table:
-          schema: public
-          name: UserSkill
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - avatar
-      - name
-      filter: {}
-- table:
-    schema: public
-    name: SubCategory
-  object_relationships:
-  - name: ParentCategory
-    using:
-      foreign_key_constraint_on: parent_category_id
-  - name: SubCategory
-    using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: Circle
-        column_mapping:
-          id: sub_category_id
-  array_relationships:
-  - name: Circles
-    using:
-      foreign_key_constraint_on:
-        column: sub_category_id
-        table:
-          schema: public
-          name: Circle
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - name
-      - parent_category_id
-      filter: {}
-- table:
-    schema: public
-    name: User
-  object_relationships:
-  - name: Organization
-    using:
-      foreign_key_constraint_on: organization_id
-  - name: User
-    using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: Circle
-        column_mapping:
-          id: owner_id
-  array_relationships:
-  - name: Circles
-    using:
-      foreign_key_constraint_on:
-        column: owner_id
-        table:
-          schema: public
-          name: Circle
-  - name: CircleUsers
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          schema: public
-          name: CircleUser
-  - name: Messages
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          schema: public
-          name: Message
-  - name: UserSkills
-    using:
-      foreign_key_constraint_on:
-        column: user_id
-        table:
-          schema: public
-          name: UserSkill
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - avatar
-      - email
-      - id
-      - interested_in
-      - introduction
-      - last_seen
-      - name
-      - organization_id
-      filter:
-        _or:
-        - id:
-            _eq: X-Hasura-User-Id
-        - CircleUsers:
-            Circle:
-              CircleUsers:
-                user_id:
-                  _eq: X-Hasura-User-Id
+            - circle_users:
+                circle:
+                  circle_users:
+                    user_id:
+                      _eq: X-Hasura-User-Id
   update_permissions:
-  - role: user
-    permission:
-      columns:
-      - avatar
-      - interested_in
-      - introduction
-      - name
-      filter:
-        id:
-          _eq: X-Hasura-User-Id
-      check: null
+    - role: user
+      permission:
+        columns:
+          - avatar
+          - interested_in
+          - introduction
+          - name
+        filter:
+          id:
+            _eq: X-Hasura-User-Id
+        check: null
 - table:
     schema: public
-    name: UserSkill
+    name: circle_skills
   object_relationships:
-  - name: Skill
-    using:
-      foreign_key_constraint_on: skill_id
-  - name: User
-    using:
-      foreign_key_constraint_on: user_id
+    - name: circles
+      using:
+        foreign_key_constraint_on: circle_id
+    - name: skills
+      using:
+        foreign_key_constraint_on: skill_id
+- table:
+    schema: public
+    name: circle_users
+  object_relationships:
+    - name: circle
+      using:
+        foreign_key_constraint_on: circle_id
+    - name: users
+      using:
+        foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: circles
+  object_relationships:
+    - name: organizations
+      using:
+        foreign_key_constraint_on: organization_id
+    - name: sub_categories
+      using:
+        foreign_key_constraint_on: sub_category_id
+    - name: users
+      using:
+        foreign_key_constraint_on: owner_id
+  array_relationships:
+    - name: cicle_skills
+      using:
+        foreign_key_constraint_on:
+          column: circle_id
+          table:
+            schema: public
+            name: circle_skills
+    - name: circle_users
+      using:
+        foreign_key_constraint_on:
+          column: circle_id
+          table:
+            schema: public
+            name: circle_users
+    - name: messages
+      using:
+        foreign_key_constraint_on:
+          column: circle_id
+          table:
+            schema: public
+            name: messages
+  insert_permissions:
+    - role: user
+      permission:
+        check:
+          owner_id:
+            _eq: X-Hasura-User-Id
+        columns:
+          - avatar
+          - name
+          - main_role
+          - what_we_will_do
+        backend_only: false
+  select_permissions:
+    - role: user
+      permission:
+        columns:
+          - id
+          - organization_id
+          - avatar
+          - name
+          - owner_id
+          - main_role
+          - what_we_will_do
+        filter:
+          organization_id:
+            _eq: X-Hasura-Domain
+  update_permissions:
+    - role: user
+      permission:
+        columns:
+          - avatar
+          - name
+          - main_role
+          - what_we_will_do
+        filter:
+          owner_id:
+            _eq: X-Hasura-User-Id
+        check: {}
+  delete_permissions:
+    - role: user
+      permission:
+        filter:
+          owner_id:
+            _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: messages
+  object_relationships:
+    - name: circles
+      using:
+        foreign_key_constraint_on: circle_id
+    - name: users
+      using:
+        foreign_key_constraint_on: user_id
+- table:
+    schema: public
+    name: organizations
+  array_relationships:
+    - name: circles
+      using:
+        foreign_key_constraint_on:
+          column: organization_id
+          table:
+            schema: public
+            name: circles
+    - name: users
+      using:
+        foreign_key_constraint_on:
+          column: organization_id
+          table:
+            schema: public
+            name: users
+- table:
+    schema: public
+    name: parent_categories
+  array_relationships:
+    - name: sub_categories
+      using:
+        foreign_key_constraint_on:
+          column: parent_category_id
+          table:
+            schema: public
+            name: sub_categories
+  select_permissions:
+    - role: user
+      permission:
+        columns:
+          - id
+          - name
+        filter: {}
+- table:
+    schema: public
+    name: skills
+  array_relationships:
+    - name: circle_skills
+      using:
+        foreign_key_constraint_on:
+          column: skill_id
+          table:
+            schema: public
+            name: circle_skills
+    - name: user_skills
+      using:
+        foreign_key_constraint_on:
+          column: skill_id
+          table:
+            schema: public
+            name: user_skills
+  select_permissions:
+    - role: user
+      permission:
+        columns:
+          - id
+          - avatar
+          - name
+        filter: {}
+- table:
+    schema: public
+    name: user_skills
+  object_relationships:
+    - name: skills
+      using:
+        foreign_key_constraint_on: skill_id
+    - name: users
+      using:
+        foreign_key_constraint_on: user_id

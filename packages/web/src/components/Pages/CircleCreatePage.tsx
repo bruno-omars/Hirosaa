@@ -4,8 +4,8 @@ import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import {
   useInsertCircleMutation,
-  Skill_Constraint,
-  Skill_Update_Column,
+  Skills_Constraint,
+  Skills_Update_Column,
 } from "../../generated/graphql";
 
 const StyledPage = styled.div`
@@ -38,12 +38,12 @@ const CircleCreatePage: FC = () => {
 
   const [buttonText, setText] = useState("作成する");
 
-  const Skills = selectedSkills.map((skill: number) => ({
-    Skill: {
+  const skills = selectedSkills.map((skill: number) => ({
+    skills: {
       data: { id: skill, avatar: "", name: "" },
       on_conflict: {
-        constraint: Skill_Constraint.SkillPkey,
-        update_columns: [Skill_Update_Column.Id],
+        constraint: Skills_Constraint.SkillPkey,
+        update_columns: [Skills_Update_Column.Id],
       },
     },
   }));
@@ -57,9 +57,9 @@ const CircleCreatePage: FC = () => {
           {
             ...inputs,
             sub_category_id: selectedCategory,
-            CicleSkills: {
-              data: [...Skills],
-            },
+            cicle_skills:{
+              data: [...skills],
+            }
           },
         ],
       },
@@ -67,7 +67,7 @@ const CircleCreatePage: FC = () => {
   };
 
   useEffect(() => {
-    if (data?.insert_Circle) {
+    if (data?.insert_circles) {
       setText("作成しました");
     }
   }, [data]);

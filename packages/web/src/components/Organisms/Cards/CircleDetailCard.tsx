@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Circle, Skill, SubCategory, User } from "../../../generated/graphql";
+import { Circles, Skills, Sub_Categories, Users } from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
@@ -95,11 +95,11 @@ const StyledGrid = styled.div<StyleGrid>`
 
 type Props = {
   circle: Pick<
-    Circle,
+    Circles,
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { CicleSkills: { Skill: Pick<Skill, "id" | "name" | "avatar"> }[] } & {
-    SubCategory?: Pick<SubCategory, "name"> | null;
-  } & { User?: Pick<User, "id" | "name" | "avatar"> | null };
+  > & { cicle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
+    sub_categories?: Pick<Sub_Categories, "name"> | null;
+  } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
@@ -107,7 +107,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   const handleToDetail = () => {
     history.push({
       pathname: "/user-detail",
-      state: { userId: circle.User?.id },
+      state: { userId: circle.owner?.id },
     });
   };
 
@@ -118,8 +118,8 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
           <StyledCaption>{circle.recruit_title}</StyledCaption>
-          {circle.SubCategory?.name && (
-            <DefaultTag name={circle.SubCategory.name} />
+          {circle.sub_categories?.name && (
+            <DefaultTag name={circle.sub_categories.name} />
           )}
         </StyledHeader>
 
@@ -129,10 +129,10 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
           <StyledLeaderLabel>リーダー</StyledLeaderLabel>
           <Avatar
             onClick={handleToDetail}
-            src={circle.User?.avatar ?? ""}
+            src={circle.owner?.avatar ?? ""}
             size={30}
           />
-          <StyledLeaderName>{circle.User?.name}</StyledLeaderName>
+          <StyledLeaderName>{circle.owner?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
       </StyledTop>
       <hr />
@@ -147,12 +147,12 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.CicleSkills.length / 4) * 85}>
-          {circle.CicleSkills?.map((circleSkill) => (
+        <StyledGrid height={Math.ceil(circle.cicle_skills.length / 4) * 85}>
+          {circle.cicle_skills?.map((circleSkill) => (
             <SkillCard
-              name={circleSkill.Skill.name}
-              id={circleSkill.Skill.id.toString()}
-              avatar={circleSkill.Skill.avatar}
+              name={circleSkill.skills.name}
+              id={circleSkill.skills.id.toString()}
+              avatar={circleSkill.skills.avatar}
             />
           ))}
         </StyledGrid>

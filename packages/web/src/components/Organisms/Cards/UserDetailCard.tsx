@@ -50,14 +50,14 @@ const StyledGrid = styled.div<StyleGrid>`
 
 const UserDetailCard: FC<Props> = ({ data }) => {
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user?.UserSkills.length / 4) * 75,
+    () => data.user && Math.ceil(data.user.user_skills.length / 4) * 75,
     [data]
   );
 
   if (!data.user) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
-  const skills = user.UserSkills.map((skill) => skill.Skill);
+  const skills = user.user_skills.map((skill) => skill.skills);
 
   return (
     <StyledCard>
