@@ -10,8 +10,8 @@ fi
 yarn hasura migrate apply \
   --version "$1" \
   --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
-  --endpoint "https://allowed-herring-99.hasura.app"
+  --endpoint "http://localhost:8080"
 
 yarn hasura metadata apply \
   --admin-secret "$HASURA_GRAPHQL_ADMIN_SECRET" \
-  --endpoint "https://allowed-herring-99.hasura.app"
+  --endpoint "http://localhost:8080"
