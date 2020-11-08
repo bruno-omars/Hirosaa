@@ -4,6 +4,7 @@ import CircleDetailCard from "../Organisms/Cards/CircleDetailCard";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import { useLocation } from "react-router-dom";
+import Spinner from "../Atoms/Indicator/Spinner";
 
 type Params = {
   circleId: number;
@@ -32,7 +33,7 @@ const CircleDetailPage: FC = (props) => {
     variables: { id: circleId },
   });
   console.warn("data.", data?.circle);
-  if (!data?.circle || loading) return <p>Loading...</p>;
+  if (!data?.circle || loading) return <Spinner />;
   if (error) return <p>Error! ${error.message}</p>;
 
   const handleClickJoin = () => {};
