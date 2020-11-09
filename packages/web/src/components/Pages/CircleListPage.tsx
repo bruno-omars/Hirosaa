@@ -1,6 +1,6 @@
 import React, { FC, useState, useMemo } from "react";
 import { useCirclesQuery } from "../../generated/graphql";
-import CircleCard from "../Molecules/Cards/CricleCard";
+import CircleCard from "../Molecules/Cards/CircleCard";
 import styled from "styled-components";
 
 import Pagenation from "../Molecules/Pagenition";
