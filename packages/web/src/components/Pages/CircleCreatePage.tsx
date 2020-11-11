@@ -57,7 +57,7 @@ const CircleCreatePage: FC = () => {
           {
             ...inputs,
             sub_category_id: selectedCategory,
-            cicle_skills:{
+            circle_skills:{
               data: [...skills],
             }
           },

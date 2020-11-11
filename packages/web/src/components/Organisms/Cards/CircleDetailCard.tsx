@@ -97,7 +97,7 @@ type Props = {
   circle: Pick<
     Circles,
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { cicle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
+  > & { circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
     sub_categories?: Pick<Sub_Categories, "name"> | null;
   } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
@@ -147,8 +147,8 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.cicle_skills.length / 4) * 85}>
-          {circle.cicle_skills?.map((circleSkill) => (
+        <StyledGrid height={Math.ceil(circle.circle_skills.length / 4) * 85}>
+          {circle.circle_skills?.map((circleSkill) => (
             <SkillCard
               name={circleSkill.skills.name}
               id={circleSkill.skills.id.toString()}

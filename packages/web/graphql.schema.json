@@ -1015,7 +1015,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "CicleSkill_pkey",
+            "name": "circle_skills_pkey",
             "description": "unique or primary key constraint",
             "isDeprecated": false,
             "deprecationReason": null
@@ -3981,7 +3981,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cicle_skills",
+            "name": "circle_skills",
             "description": "An array relationship",
             "args": [
               {
@@ -4072,7 +4072,7 @@
             "deprecationReason": null
           },
           {
-            "name": "cicle_skills_aggregate",
+            "name": "circle_skills_aggregate",
             "description": "An aggregated array relationship",
             "args": [
               {
@@ -5152,7 +5152,7 @@
             "defaultValue": null
           },
           {
-            "name": "cicle_skills",
+            "name": "circle_skills",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5361,7 +5361,7 @@
             "defaultValue": null
           },
           {
-            "name": "cicle_skills",
+            "name": "circle_skills",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -6105,7 +6105,7 @@
             "defaultValue": null
           },
           {
-            "name": "cicle_skills_aggregate",
+            "name": "circle_skills_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

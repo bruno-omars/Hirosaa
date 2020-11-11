@@ -25,7 +25,7 @@ INSERT INTO public."messages" (id, text, user_id, circle_id, "timestamp") VALUES
 INSERT INTO public."user_skills" (id, user_id, skill_id, level) VALUES (1, 'auth0|5f4b51e2e9ef5f0067b5b0cf', 1, 3);
 INSERT INTO public."user_skills" (id, user_id, skill_id, level) VALUES (2, 'auth0|5f4b51e2e9ef5f0067b5b0cf', 2, 5);
 INSERT INTO public."user_skills" (id, user_id, skill_id, level) VALUES (3, 'auth0|5f4b51e2e9ef5f0067b5b0cf', 3, 5);
-SELECT pg_catalog.setval('public."CicleSkill_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."CircleSkill_id_seq"', 3, true);
 SELECT pg_catalog.setval('public."Messages_id_seq"', 3, true);
 SELECT pg_catalog.setval('public."Organization_id_seq"', 2, true);
 SELECT pg_catalog.setval('public."ParentCategory_id_seq"', 2, true);
