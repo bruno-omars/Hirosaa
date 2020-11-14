@@ -4,19 +4,9 @@ import { UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
-import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
-import { Textarea } from "../../Pages/UserDetailPage";
-import DefaultInput from "../../Atoms/Inputs/DefaultInput";
-import UserFileInput from "../../Atoms/Inputs/UserFileInput";
-import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 
 type Props = {
-  userData: UserQuery;
-  isEditing: boolean;
-  textareas: Textarea;
-  setTextareas: React.Dispatch<React.SetStateAction<Textarea>>;
-  selectedSkills: number[];
-  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
+  data: UserQuery;
 };
 
 const StyledCard = styled.div`
@@ -58,102 +48,37 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const UserDetailCard: FC<Props> = ({
-  userData,
-  isEditing,
-  setTextareas,
-  textareas,
-  selectedSkills,
-  setSkills,
-}) => {
-  const { data, error } = useSkillAndSubCategoryQuery();
-
+const UserDetailCard: FC<Props> = ({ data }) => {
   const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.skills.length / 4) * 75,
+    () => data.user && Math.ceil(data.user.user_skills.length / 4) * 75,
     [data]
   );
-  const handleChange = (
-    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
-  ) => {
-    e.preventDefault();
-    setTextareas({ ...textareas, [e.target.name]: e.target.value });
-  };
-  if (!userData.user) return <p>ユーザーが存在しません</p>;
 
-  const user = userData.user;
+  if (!data.user) return <p>ユーザーが存在しません</p>;
+
+  const user = data.user;
   const skills = user.user_skills.map((skill) => skill.skills);
 
   return (
     <StyledCard>
       <StyledTop>
-        {isEditing ? (
-          <UserFileInput
-            name="avatar"
-            handleChange={handleChange}
-            accept="image/png,image/jpeg,image/gif"
-            type="file"
-            hidden="hidden"
-            placeholder="画像を選択してください"
-          />
-        ) : (
-          <Avatar src={(user && user.avatar) || ""} size={66} />
-        )}
-        {isEditing ? (
-          <DefaultInput
-            name="name"
-            onChange={handleChange}
-            placeholder="名前"
-            value={userData.user.name || ''}
-          />
-        ) : (
-          <h2>{user.name}</h2>
-        )}
+        <Avatar src={(user && user.avatar) || ""} size={66} />
+        <h2>{user.name}</h2>
       </StyledTop>
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
-        {isEditing ? (
-          <DefaultTextArea
-            name="introduction"
-            onChange={handleChange}
-            placeholder="入力する"
-            areaSize="BASE"
-            value={user.introduction || ''}
-          />
-        ) : (
-          <StyledDesc>{user.introduction}</StyledDesc>
-        )}
+        <StyledDesc>{user.introduction}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        {isEditing ? (
-          <DefaultTextArea
-            name="interested_in"
-            onChange={handleChange}
-            placeholder="入力する"
-            areaSize="BASE"
-            value={user.interested_in || ''}
-          />
-        ) : (
-          <StyledDesc>{user.interested_in}</StyledDesc>
-        )}
+        <StyledDesc>{user.interested_in}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-
-        {isEditing ? (
-          <StyledGrid height={150 || 75}>
-            <SkillCards
-              skills={data?.skills}
-              selectedSkills={selectedSkills}
-              setSkills={setSkills}
-            />
-          </StyledGrid>
-        ) : (
-          <StyledGrid height={skillCardHeight || 75}>
-            <SkillCards skills={skills} />
-          </StyledGrid>
-        )}
+        <StyledGrid height={skillCardHeight || 75}>
+          <SkillCards skills={skills} />
+        </StyledGrid>
       </StyledBlock>
     </StyledCard>
   );

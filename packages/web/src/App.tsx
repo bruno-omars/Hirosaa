@@ -25,6 +25,7 @@ import CircleDetailPage from "./components/Pages/CircleDetailPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
 import CircleEditPage from "./components/Pages/CircleEditPage";
 import Spinner from "./components/Atoms/Indicator/Spinner";
+import UserEditPage from "./components/Pages/UserEditPage";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -78,6 +79,7 @@ const App: FC = () => {
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
             <PrivateRoute path="/circle-edit" component={CircleEditPage} />
             <PrivateRoute path="/user-detail" component={UserDetailPage} />
+            <PrivateRoute path="/user-edit" component={UserEditPage} />
 
             <Route path="*">
               <Redirect
