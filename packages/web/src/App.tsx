@@ -6,13 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import {
-  ApolloProvider,
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  split,
-} from "@apollo/client";
+import { ApolloProvider } from "@apollo/client";
 import CircleListPage from "./components/Pages/CircleListPage";
 import AboutPage from "./components/Pages/AboutPage";
 import TwoColumn from "./components/Templates/TwoColumn";
@@ -24,8 +18,7 @@ import ChatPage from "./components/Pages/ChatPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
 import CircleEditPage from "./components/Pages/CircleEditPage";
 import Spinner from "./components/Atoms/Indicator/Spinner";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
+import { createApolloClient } from "./graphql/client";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -33,64 +26,16 @@ const App: FC = () => {
 
   if (isLoading) return <Spinner />;
 
-  const getAccessToken = async () => {
+  (async () => {
     try {
       const token = await getAccessTokenSilently();
       setAccessToken(token);
-      console.log(token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  getAccessToken();
-
-
-  const httpLink = new HttpLink({
-    uri: "http://localhost:8080/v1/graphql",
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-      "x-hasura-admin-secret": process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
-    },
-  });
-  
-  const wsLink = new WebSocketLink({
-    uri: "ws://localhost:8080/v1/graphql",
-    options: {
-      reconnect: true,
-      connectionParams: {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-          "x-hasura-admin-secret":
-            process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
-        },
-      },
-    },
-  });
-
-  const link = split(
-    // split based on operation type
-    ({ query }) => {
-      const definition = getMainDefinition(query);
-      return (
-        definition.kind === "OperationDefinition" &&
-        definition.operation === "subscription"
-      );
-    },
-    wsLink,
-    httpLink
-  );
-
-  const client = new ApolloClient({
-    link,
-    cache: new InMemoryCache(),
-  });
-  
-
-  console.log("Login", isAuthenticated);
+    } catch (e) {}
+  })();
 
   return (
     <div className="App">
-      <ApolloProvider client={client}>
+      <ApolloProvider client={createApolloClient(accessToken)}>
         <Router>
           <Switch>
             <Route path="/login" component={GuestSidebar}>
