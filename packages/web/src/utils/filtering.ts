@@ -4,8 +4,8 @@
  * @param source number[]
  * @param target number[]
  */
-export const extractAdded = (source: number[], target: number[]) => (
-  target.filter((id) => !source.includes(id))
+export const extractAdded = <T>(source: T[], target: T[]) => (
+  target.filter((key) => !source.includes(key))
 );
 
 /**
@@ -14,6 +14,6 @@ export const extractAdded = (source: number[], target: number[]) => (
  * @param source number[]
  * @param target number[]
  */
-export const extractRemoved = (source: number[], target: number[]) => (
-  source.filter((id) => !target.includes(id))
+export const extractRemoved = <T>(source: T[], target: T[]) => (
+  source.filter((key) => !target.includes(key))
 );
