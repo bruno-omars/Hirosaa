@@ -1,4 +1,4 @@
-import React, { FC, ComponentProps } from "react";
+import React, { FC, ComponentProps, useRef } from "react";
 import styled from "styled-components";
 import { Circles, Messages, Users } from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
@@ -6,6 +6,8 @@ import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import IconRightInput from "../../Atoms/Inputs/IconRightInput";
 import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message-send.svg";
+// import NewMessageButton from "../../Atoms/Buttons/NewMessageButton";
+import DefaultButton from "../../Atoms/Buttons/Default";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -22,10 +24,12 @@ const Right = styled.div`
   grid-template-rows: 10% 80% 10%;
   height: 100%;
   width: 100%;
+  position: relative;
 `;
 
 const Top = styled.div`
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
+  height: 60px;
 `;
 
 const Bottom = styled.div`
@@ -83,6 +87,19 @@ const Typography = styled.div`
   word-break: break-all;
 `;
 
+const NewMessageButton = styled(DefaultButton)`
+  padding: 4px 8px;
+  border-radius: 50px;
+  width: 200px;
+  height: 40px;
+  font-size: 14px;
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  margin: auto;
+`;
+
 export type Input = {
   text: string;
 };
@@ -91,27 +108,36 @@ type Props = {
   activeCircleId: number | undefined;
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
   circle?: Pick<Circles, "id" | "name" | "avatar">;
-  messeges:
-    | ({} & Pick<Messages, "timestamp" | "text" | "id"> & {
-          users: {} & Pick<Users, "id" | "avatar" | "name">;
-        })[]
+  messages:
+    | (Pick<Messages, "timestamp" | "text" | "id"> & {
+        users: Pick<Users, "id" | "avatar" | "name">;
+      })[]
     | undefined;
   inputs: Input;
   setInputs: React.Dispatch<Input>;
   handleSubmit: ComponentProps<typeof IconRightInput>["iconClickHandler"];
   onChange: ComponentProps<typeof IconRightInput>["onChange"];
+  hasNewMessage: boolean;
+  setHasNewMessage: React.Dispatch<boolean>;
 };
 
 const ChatCard: FC<Props> = ({
-  messeges,
+  messages,
   inputs,
   onChange,
   handleSubmit,
   setActiveCircleId,
   activeCircleId,
   circle,
+  hasNewMessage,
+  setHasNewMessage,
   ...rest
 }) => {
+  const messageEndRef = useRef<HTMLHeadingElement>(null);
+  const onClickNewMessage = () => {
+    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    setHasNewMessage(false);
+  };
   return (
     <Card>
       <ChatSidebar
@@ -123,10 +149,15 @@ const ChatCard: FC<Props> = ({
           <StyledTitle>{circle?.name}</StyledTitle>
           <PeopleNum count={30} />
         </Top>
+        {hasNewMessage && (
+          <NewMessageButton onClick={onClickNewMessage} bgColor="ORANGE">
+            新規メッセージがあります。
+          </NewMessageButton>
+        )}
         <MessageContainer>
-          {messeges
-            ? messeges.map((message) => (
-                <MessageLi>
+          {messages
+            ? messages.map((message) => (
+                <MessageLi key={message.id}>
                   <MessageWrapper>
                     <ConversationItem>
                       <MessageContent>
@@ -137,6 +168,7 @@ const ChatCard: FC<Props> = ({
                 </MessageLi>
               ))
             : "やりとりがありません。何かメッセージを送ってみましょう"}
+          <div ref={messageEndRef} />
         </MessageContainer>
         <Bottom>
           <IconRightInput

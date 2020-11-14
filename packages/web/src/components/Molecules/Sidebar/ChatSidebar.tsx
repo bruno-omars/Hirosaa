@@ -38,6 +38,7 @@ const ChatSidebar: FC<Props> = ({ setActiveCircleId, activeCircleId }) => {
     <StyledSidebar>
       {data?.user?.circles?.map((circle) => (
         <StyledCircleIcon
+          key={circle.id}
           onClick={() => handleClickCircle(circle.id)}
           active={activeCircleId == circle.id}
         >
