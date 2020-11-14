@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { COLOR } from '../../constants/color';
-import { UserQuery, useUpdateUserMutation, useUserQuery } from '../../generated/graphql';
-import { extractAdded, extractRemoved } from '../../utils/filtering';
-import RoundedButton from '../Atoms/Buttons/RoundedButton';
-import Spinner from '../Atoms/Indicator/Spinner';
-import UserEditCard from '../Organisms/Cards/UserEditCard';
-import TwoColumn from '../Templates/TwoColumn';
+import React, { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
+import styled from "styled-components";
+import {
+  useDeleteUserSkillMutation,
+  useInsertUserSkillMutation,
+  useUpdateUserMutation,
+  useUserQuery,
+} from "../../generated/graphql";
+import { extractAdded, extractRemoved } from "../../utils/filtering";
+import RoundedButton from "../Atoms/Buttons/RoundedButton";
+import Spinner from "../Atoms/Indicator/Spinner";
+import UserEditCard from "../Organisms/Cards/UserEditCard";
+import TwoColumn from "../Templates/TwoColumn";
 
 const RightButton = styled.div`
   align-self: start;
@@ -15,7 +19,7 @@ const RightButton = styled.div`
 
 type Params = {
   userId: string;
-}
+};
 
 export type UserEditInput = {
   name: string;
@@ -68,10 +72,22 @@ const UserEditPage: React.FC = () => {
   }, [data]);
 
   const [updateUser, { data: updateUserData }] = useUpdateUserMutation();
+  const [
+    insertUserSkill,
+    { data: insertUserSkillData },
+  ] = useInsertUserSkillMutation();
+  const [
+    deleteUserSkill,
+    { data: deleteUserSkillData },
+  ] = useDeleteUserSkillMutation();
 
   useEffect(() => {
     // TODO(Ropital): 正確に条件分岐する
-    if (updateUserData?.update_users) {
+    if (
+      updateUserData?.update_users ||
+      insertUserSkillData?.insert_user_skills ||
+      deleteUserSkillData?.delete_user_skills
+    ) {
       setText("更新しました");
     }
   }, [updateUserData]);
@@ -80,22 +96,22 @@ const UserEditPage: React.FC = () => {
     e.preventDefault();
     const deletedSkills = extractRemoved(initSkills, selectedSkills);
     const addedSkills = extractAdded(initSkills, selectedSkills);
-    // addedSkills.forEach((id) => {
-    //   insertCircleSkill({
-    //     variables: {
-    //       userId,
-    //       skillId: id,
-    //     },
-    //   });
-    // });
-    // deletedSkills.forEach((id) => {
-    //   deleteCircleSkill({
-    //     variables: {
-    //       userId,
-    //       skillId: id,
-    //     },
-    //   });
-    // });
+    addedSkills.forEach((id) => {
+      insertUserSkill({
+        variables: {
+          userId,
+          skillId: id,
+        },
+      });
+    });
+    deletedSkills.forEach((id) => {
+      deleteUserSkill({
+        variables: {
+          userId,
+          skillId: id,
+        },
+      });
+    });
     updateUser({
       variables: {
         where: {
@@ -110,7 +126,7 @@ const UserEditPage: React.FC = () => {
     });
 
     redirectToDetail();
-  }
+  };
 
   console.log("data.", data?.user);
   if (!data?.user || loading) return <Spinner />;

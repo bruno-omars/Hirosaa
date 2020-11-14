@@ -1,7 +1,6 @@
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";
-import { UserQuery, useSkillAndSubCategoryQuery } from "../../../generated/graphql";
-import Avatar from "../../Atoms/Avatar/Default";
+import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
 import { UserEditInput } from "../../Pages/UserEditPage";
@@ -78,13 +77,13 @@ const UserEditCard: FC<Props> = (props) => {
           placeholder="ユーザ名"
           name="name"
           value={props.inputs.name}
-          />
+        />
       </StyledTop>
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea 
+          <DefaultTextArea
             onChange={handleChange}
             placeholder="自己紹介を記入してください"
             name="introduction"
@@ -95,18 +94,22 @@ const UserEditCard: FC<Props> = (props) => {
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea 
+          <DefaultTextArea
             onChange={handleChange}
             placeholder="自己紹介を記入してください"
             name="interested_in"
-            value={props.inputs.interested_in} 
+            value={props.inputs.interested_in}
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards skills={data?.skills} />
+          <SkillCards
+            skills={data?.skills}
+            selectedSkills={props.selectedSkills}
+            setSkills={props.setSkills}
+          />
         </StyledGrid>
       </StyledBlock>
     </StyledCard>

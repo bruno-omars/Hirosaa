@@ -29,6 +29,7 @@ const UserDetailPage: FC = () => {
     variables: {
       id: userId,
     },
+    pollInterval: 500,
   });
 
   console.log("data.", data?.user);
@@ -37,9 +38,9 @@ const UserDetailPage: FC = () => {
 
   const onEditMe = () => {
     history.push({
-      pathname: '/user-edit',
+      pathname: "/user-edit",
       state: { userId },
-    })
+    });
   };
 
   const onSubmitMessage = () => {};

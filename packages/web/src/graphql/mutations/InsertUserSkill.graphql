@@ -1,0 +1,5 @@
+mutation InsertUserSkill($userId: String!, $skillId: Int!) {
+  insert_user_skills(objects: { user_id: $userId, skill_id: $skillId }) {
+    affected_rows
+  }
+}
