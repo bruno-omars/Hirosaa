@@ -8,6 +8,8 @@ import IconRightInput from "../../Atoms/Inputs/IconRightInput";
 import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message-send.svg";
 // import NewMessageButton from "../../Atoms/Buttons/NewMessageButton";
 import DefaultButton from "../../Atoms/Buttons/Default";
+import { useAuthContext } from "../../../provider/AuthContextProvider";
+import Avatar from "../../Atoms/Avatar/Default";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -57,26 +59,28 @@ const MessageContainer = styled.ul`
 `;
 
 const MessageLi = styled.li`
-  margin-bottom: 4px;
+  margin: 0 8px 8px;
 `;
 
-const MessageWrapper = styled.div`
+const MessageWrapper = styled.div<{ isMine: boolean }>`
+  width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  flex-direction: ${({ isMine }) => (isMine ? "row-reverse" : "row")};
+  align-items: center;
 `;
 
 const ConversationItem = styled.div`
-  margin-left: 8px;
+  margin: 0 8px;
   max-width: 85%;
 `;
 
-const MessageContent = styled.div`
-  background-color: #f7f7f7;
+const MessageContent = styled.div<{ isMine: boolean }>`
+  background-color: ${({ isMine }) =>
+    isMine ? COLOR.TRANSLUCENT_GREEN : COLOR.LIGHT_GRAY};
   box-sizing: border-box;
   max-width: 100%;
   border-radius: 20px;
-  padding: 8px 16px;
+  padding: 8px 18px;
 `;
 
 const Typography = styled.div`
@@ -138,6 +142,8 @@ const ChatCard: FC<Props> = ({
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
     setHasNewMessage(false);
   };
+  const { me } = useAuthContext();
+
   return (
     <Card>
       <ChatSidebar
@@ -156,17 +162,21 @@ const ChatCard: FC<Props> = ({
         )}
         <MessageContainer>
           {messages
-            ? messages.map((message) => (
-                <MessageLi key={message.id}>
-                  <MessageWrapper>
-                    <ConversationItem>
-                      <MessageContent>
-                        <Typography>{message.text}</Typography>
-                      </MessageContent>
-                    </ConversationItem>
-                  </MessageWrapper>
-                </MessageLi>
-              ))
+            ? messages.map((message) => {
+                const isMine = message.users.id == me.id;
+                return (
+                  <MessageLi key={message.id}>
+                    <MessageWrapper isMine={isMine}>
+                      <Avatar size={40} src={message.users.avatar ?? ""} />
+                      <ConversationItem>
+                        <MessageContent isMine={isMine}>
+                          <Typography>{message.text}</Typography>
+                        </MessageContent>
+                      </ConversationItem>
+                    </MessageWrapper>
+                  </MessageLi>
+                );
+              })
             : "やりとりがありません。何かメッセージを送ってみましょう"}
           <div ref={messageEndRef} />
         </MessageContainer>

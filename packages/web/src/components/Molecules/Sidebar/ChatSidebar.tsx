@@ -15,7 +15,7 @@ const StyledCircleIcon = styled.div<{ active: boolean }>`
   height: 64px;
   background-color: ${COLOR["LIGHT_GRAY"]};
   margin: 12px auto;
-  ${({ active }) => active && `border:1px solid ${COLOR.LIGHT_ORANGE}`};
+  ${({ active }) => active && `border:1px solid ${COLOR.TRANSLUCENT_ORANGE}`};
 `;
 
 type Props = {
