@@ -42,7 +42,7 @@ export type Props = {
   shadowDepth?: ShadowDepth;
 };
 
-export const StyledButton = styled.button<Omit<Props, "clickHandler">>`
+export const StyledButton = styled.button<Props>`
   background-color: ${({ bgColor = "LIGHT_GREEN" }) => COLOR[bgColor]};
   border: ${({ bgColor = "LIGHT_GREEN" }) =>
     bgColor === "WHITE" ? "1px solid rgba(0,0,0,0.4)" : "none"};

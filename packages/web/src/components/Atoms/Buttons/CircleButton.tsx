@@ -16,9 +16,7 @@ type CircleButtonProps = Props & {
   buttonSize?: ButtonSize;
 };
 
-const StyledCircleButton = styled(StyledButton)<
-  Omit<CircleButtonProps, "onClick">
->`
+const StyledCircleButton = styled(StyledButton)<CircleButtonProps>`
   border-radius: 50%;
   height: ${({ buttonSize = "BASE" }) => BUTTON_SIZE[buttonSize]};
   width: ${({ buttonSize = "BASE" }) => BUTTON_SIZE[buttonSize]};
