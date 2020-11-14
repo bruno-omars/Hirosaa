@@ -19,18 +19,18 @@ type Props = {
 const PrivateRoute: FC<Props> = (props) => {
 	const { isAuthenticated } = useAuth0();
 
-	return isAuthenticated ? (
-		<Route path={props.path} exact={props.exact}>
-			<TwoColumn>
-				<LoginSidebar />
-				<StyledDiv>
-					<props.component />
-				</StyledDiv>
-			</TwoColumn>
-		</Route>
-	) : (
-		<Redirect to="/login" />
-	);
+  return isAuthenticated ? (
+    <Route path={props.path} exact={props.exact}>
+      <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
+        <LoginSidebar />
+        <StyledDiv>
+          <props.component />
+        </StyledDiv>
+      </TwoColumn>
+    </Route>
+  ) : (
+    <Redirect to="/login" />
+  );
 };
 
 export default PrivateRoute;

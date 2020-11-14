@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_PASSWORD: postgrespassword
   graphql-engine:
-    image: hasura/graphql-engine:v1.3.0.cli-migrations-v2
+    image: hasura/graphql-engine:v1.3.2.cli-migrations-v2
     ports:
       - "8080:8080"
     depends_on:
@@ -31,7 +31,7 @@ services:
       context: ./packages/web
       dockerfile: Dockerfile.dev
     environment:
-      REACT_APP_BACKEND_URL: localhost:8080
+      REACT_APP_BACKEND_URL: http://localhost:8080
     ports:
       - 3000:3000
     volumes:

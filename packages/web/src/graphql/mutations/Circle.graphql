@@ -1,5 +1,0 @@
-mutation InsertCircle($objects: [Circle_insert_input!]!) {
-  insert_Circle(objects: $objects) {
-    affected_rows
-  }
-}

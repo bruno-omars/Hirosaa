@@ -69,7 +69,7 @@ const UserDetailCard: FC<Props> = ({
   const { data, error } = useSkillAndSubCategoryQuery();
 
   const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.Skill.length / 4) * 75,
+    () => data && Math.ceil(data.skills.length / 4) * 75,
     [data]
   );
   const handleChange = (
@@ -81,7 +81,7 @@ const UserDetailCard: FC<Props> = ({
   if (!userData.user) return <p>ユーザーが存在しません</p>;
 
   const user = userData.user;
-  const skills = user.UserSkills.map((skill) => skill.Skill);
+  const skills = user.user_skills.map((skill) => skill.skills);
 
   return (
     <StyledCard>
@@ -101,8 +101,9 @@ const UserDetailCard: FC<Props> = ({
         {isEditing ? (
           <DefaultInput
             name="name"
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="名前"
+            value={userData.user.name || ''}
           />
         ) : (
           <h2>{user.name}</h2>
@@ -114,9 +115,10 @@ const UserDetailCard: FC<Props> = ({
         {isEditing ? (
           <DefaultTextArea
             name="introduction"
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="入力する"
             areaSize="BASE"
+            value={user.introduction || ''}
           />
         ) : (
           <StyledDesc>{user.introduction}</StyledDesc>
@@ -127,9 +129,10 @@ const UserDetailCard: FC<Props> = ({
         {isEditing ? (
           <DefaultTextArea
             name="interested_in"
-            handleChange={handleChange}
+            onChange={handleChange}
             placeholder="入力する"
             areaSize="BASE"
+            value={user.interested_in || ''}
           />
         ) : (
           <StyledDesc>{user.interested_in}</StyledDesc>
@@ -141,7 +144,7 @@ const UserDetailCard: FC<Props> = ({
         {isEditing ? (
           <StyledGrid height={150 || 75}>
             <SkillCards
-              skills={data?.Skill}
+              skills={data?.skills}
               selectedSkills={selectedSkills}
               setSkills={setSkills}
             />

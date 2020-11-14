@@ -5,6 +5,8 @@ import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
 import { useAuthContext } from "../../provider/AuthContextProvider";
+import TwoColumn from "../Templates/TwoColumn";
+import Spinner from "../Atoms/Indicator/Spinner";
 
 type Params = {
   userId: string;
@@ -79,7 +81,7 @@ const UserDetailPage: FC = () => {
   const onSubmitMessage = () => {};
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <UserDetailCard
         userData={data}
         isEditing={isEditing}
@@ -91,21 +93,21 @@ const UserDetailPage: FC = () => {
       <StyledRightButtons>
         {me.id === userId ? (
           !isEditing ? (
-            <StyledRoundedButton clickHandler={handleEdit} buttonSize="SMALL">
+            <StyledRoundedButton onClick={handleEdit} buttonSize="SMALL">
               編集する
             </StyledRoundedButton>
           ) : (
-            <StyledRoundedButton clickHandler={saveEdit} buttonSize="SMALL">
+            <StyledRoundedButton onClick={saveEdit} buttonSize="SMALL">
               {isSaving ? "保存する" : "保存しました"}
             </StyledRoundedButton>
           )
         ) : (
-          <StyledRoundedButton clickHandler={onSubmitMessage} buttonSize="BASE">
+          <StyledRoundedButton onClick={onSubmitMessage} buttonSize="BASE">
             メッセージを送信する
           </StyledRoundedButton>
         )}
       </StyledRightButtons>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 

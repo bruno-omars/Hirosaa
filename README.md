@@ -8,7 +8,11 @@
 $ docker-compose up -d
 ```
 
-- サンプルデータの作成
+- seeds の作成
+
+Slack に貼ってあります
+
+- seeds の適応
 
 最初にサーバを起動した時と、`hasura/seeds`が変更された場合に必要。
 

@@ -19,7 +19,7 @@ const StyledButtonRoude = styled(StyledButton)<RoundedButtonProps>`
 
 const RoundedButton: FC<Props> = (props) => {
   return (
-    <StyledButtonRoude onClick={props.clickHandler} {...props}>
+    <StyledButtonRoude {...props}>
       {props.children}
     </StyledButtonRoude>
   );

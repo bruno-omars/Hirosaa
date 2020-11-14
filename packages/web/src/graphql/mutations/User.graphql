@@ -1,5 +1,5 @@
-mutation updateUser($_set: User_set_input, $where: User_bool_exp!) {
-  update_User(where: $where, _set: $_set) {
+mutation updateUser($_set: users_set_input, $where: users_bool_exp!) {
+  update_users(where: $where, _set: $_set) {
     affected_rows
   }
 }

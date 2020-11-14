@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { Skill } from "../../../generated/graphql";
+import { Skills } from "../../../generated/graphql";
 
 type Props = {
   skills:
     | ({
-        __typename?: "Skill" | undefined | string;
-      } & Pick<Skill, "id" | "name" | "avatar">)[]
+        __typename?: "Skills" | undefined | string;
+      } & Pick<Skills, "id" | "name" | "avatar">)[]
     | undefined;
   selectedSkills?: number[];
   setSkills?: React.Dispatch<React.SetStateAction<number[]>>;
@@ -43,7 +43,7 @@ const SkillCards: FC<Props> = (props) => {
           key={skill.id}
           name={skill.name}
           bgColor={
-            selectedSkills && selectedSkills.includes(skill.id)
+            selectedSkills && selectedSkills.includes(Number(skill.id))
               ? "LIGHT_GREEN"
               : "WHITE"
           }
