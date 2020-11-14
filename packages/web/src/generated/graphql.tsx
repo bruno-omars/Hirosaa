@@ -12,1083 +12,6 @@ export type Scalars = {
   timestamptz: any;
 };
 
-/** columns and relationships of "Circle" */
-export type Circle = {
-  __typename?: 'Circle';
-  /** An array relationship */
-  CicleSkills: Array<CircleSkill>;
-  /** An aggregated array relationship */
-  CicleSkills_aggregate: CircleSkill_Aggregate;
-  /** An array relationship */
-  CircleUsers: Array<CircleUser>;
-  /** An aggregated array relationship */
-  CircleUsers_aggregate: CircleUser_Aggregate;
-  /** An array relationship */
-  Messages: Array<Message>;
-  /** An aggregated array relationship */
-  Messages_aggregate: Message_Aggregate;
-  /** An object relationship */
-  Organization?: Maybe<Organization>;
-  /** An object relationship */
-  SubCategory?: Maybe<SubCategory>;
-  /** An object relationship */
-  User?: Maybe<User>;
-  avatar?: Maybe<Scalars['String']>;
-  id: Scalars['Int'];
-  main_role?: Maybe<Scalars['String']>;
-  name: Scalars['String'];
-  organization_id?: Maybe<Scalars['Int']>;
-  owner_id?: Maybe<Scalars['String']>;
-  recruit_title?: Maybe<Scalars['String']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-  what_we_will_do?: Maybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleCicleSkillsArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleCicleSkills_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleCircleUsersArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleCircleUsers_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleMessagesArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Circle" */
-export type CircleMessages_AggregateArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
-};
-
-/** columns and relationships of "CircleSkill" */
-export type CircleSkill = {
-  __typename?: 'CircleSkill';
-  /** An object relationship */
-  Circle: Circle;
-  /** An object relationship */
-  Skill: Skill;
-  circle_id: Scalars['Int'];
-  id: Scalars['Int'];
-  skill_id: Scalars['Int'];
-};
-
-/** aggregated selection of "CircleSkill" */
-export type CircleSkill_Aggregate = {
-  __typename?: 'CircleSkill_aggregate';
-  aggregate?: Maybe<CircleSkill_Aggregate_Fields>;
-  nodes: Array<CircleSkill>;
-};
-
-/** aggregate fields of "CircleSkill" */
-export type CircleSkill_Aggregate_Fields = {
-  __typename?: 'CircleSkill_aggregate_fields';
-  avg?: Maybe<CircleSkill_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<CircleSkill_Max_Fields>;
-  min?: Maybe<CircleSkill_Min_Fields>;
-  stddev?: Maybe<CircleSkill_Stddev_Fields>;
-  stddev_pop?: Maybe<CircleSkill_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<CircleSkill_Stddev_Samp_Fields>;
-  sum?: Maybe<CircleSkill_Sum_Fields>;
-  var_pop?: Maybe<CircleSkill_Var_Pop_Fields>;
-  var_samp?: Maybe<CircleSkill_Var_Samp_Fields>;
-  variance?: Maybe<CircleSkill_Variance_Fields>;
-};
-
-
-/** aggregate fields of "CircleSkill" */
-export type CircleSkill_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<CircleSkill_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "CircleSkill" */
-export type CircleSkill_Aggregate_Order_By = {
-  avg?: Maybe<CircleSkill_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<CircleSkill_Max_Order_By>;
-  min?: Maybe<CircleSkill_Min_Order_By>;
-  stddev?: Maybe<CircleSkill_Stddev_Order_By>;
-  stddev_pop?: Maybe<CircleSkill_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<CircleSkill_Stddev_Samp_Order_By>;
-  sum?: Maybe<CircleSkill_Sum_Order_By>;
-  var_pop?: Maybe<CircleSkill_Var_Pop_Order_By>;
-  var_samp?: Maybe<CircleSkill_Var_Samp_Order_By>;
-  variance?: Maybe<CircleSkill_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "CircleSkill" */
-export type CircleSkill_Arr_Rel_Insert_Input = {
-  data: Array<CircleSkill_Insert_Input>;
-  on_conflict?: Maybe<CircleSkill_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type CircleSkill_Avg_Fields = {
-  __typename?: 'CircleSkill_avg_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "CircleSkill" */
-export type CircleSkill_Avg_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "CircleSkill". All fields are combined with a logical 'AND'. */
-export type CircleSkill_Bool_Exp = {
-  Circle?: Maybe<Circle_Bool_Exp>;
-  Skill?: Maybe<Skill_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<CircleSkill_Bool_Exp>>>;
-  _not?: Maybe<CircleSkill_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<CircleSkill_Bool_Exp>>>;
-  circle_id?: Maybe<Int_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  skill_id?: Maybe<Int_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "CircleSkill" */
-export enum CircleSkill_Constraint {
-  /** unique or primary key constraint */
-  CicleSkillPkey = 'CicleSkill_pkey'
-}
-
-/** input type for incrementing integer column in table "CircleSkill" */
-export type CircleSkill_Inc_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "CircleSkill" */
-export type CircleSkill_Insert_Input = {
-  Circle?: Maybe<Circle_Obj_Rel_Insert_Input>;
-  Skill?: Maybe<Skill_Obj_Rel_Insert_Input>;
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate max on columns */
-export type CircleSkill_Max_Fields = {
-  __typename?: 'CircleSkill_max_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by max() on columns of table "CircleSkill" */
-export type CircleSkill_Max_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type CircleSkill_Min_Fields = {
-  __typename?: 'CircleSkill_min_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by min() on columns of table "CircleSkill" */
-export type CircleSkill_Min_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "CircleSkill" */
-export type CircleSkill_Mutation_Response = {
-  __typename?: 'CircleSkill_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<CircleSkill>;
-};
-
-/** input type for inserting object relation for remote table "CircleSkill" */
-export type CircleSkill_Obj_Rel_Insert_Input = {
-  data: CircleSkill_Insert_Input;
-  on_conflict?: Maybe<CircleSkill_On_Conflict>;
-};
-
-/** on conflict condition type for table "CircleSkill" */
-export type CircleSkill_On_Conflict = {
-  constraint: CircleSkill_Constraint;
-  update_columns: Array<CircleSkill_Update_Column>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "CircleSkill" */
-export type CircleSkill_Order_By = {
-  Circle?: Maybe<Circle_Order_By>;
-  Skill?: Maybe<Skill_Order_By>;
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "CircleSkill" */
-export type CircleSkill_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "CircleSkill" */
-export enum CircleSkill_Select_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  SkillId = 'skill_id'
-}
-
-/** input type for updating data in table "CircleSkill" */
-export type CircleSkill_Set_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate stddev on columns */
-export type CircleSkill_Stddev_Fields = {
-  __typename?: 'CircleSkill_stddev_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "CircleSkill" */
-export type CircleSkill_Stddev_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type CircleSkill_Stddev_Pop_Fields = {
-  __typename?: 'CircleSkill_stddev_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "CircleSkill" */
-export type CircleSkill_Stddev_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type CircleSkill_Stddev_Samp_Fields = {
-  __typename?: 'CircleSkill_stddev_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "CircleSkill" */
-export type CircleSkill_Stddev_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type CircleSkill_Sum_Fields = {
-  __typename?: 'CircleSkill_sum_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "CircleSkill" */
-export type CircleSkill_Sum_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** update columns of table "CircleSkill" */
-export enum CircleSkill_Update_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  SkillId = 'skill_id'
-}
-
-/** aggregate var_pop on columns */
-export type CircleSkill_Var_Pop_Fields = {
-  __typename?: 'CircleSkill_var_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "CircleSkill" */
-export type CircleSkill_Var_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type CircleSkill_Var_Samp_Fields = {
-  __typename?: 'CircleSkill_var_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "CircleSkill" */
-export type CircleSkill_Var_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type CircleSkill_Variance_Fields = {
-  __typename?: 'CircleSkill_variance_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "CircleSkill" */
-export type CircleSkill_Variance_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "CircleUser" */
-export type CircleUser = {
-  __typename?: 'CircleUser';
-  /** An object relationship */
-  Circle: Circle;
-  /** An object relationship */
-  User: User;
-  circle_id: Scalars['Int'];
-  id: Scalars['Int'];
-  user_id: Scalars['String'];
-};
-
-/** aggregated selection of "CircleUser" */
-export type CircleUser_Aggregate = {
-  __typename?: 'CircleUser_aggregate';
-  aggregate?: Maybe<CircleUser_Aggregate_Fields>;
-  nodes: Array<CircleUser>;
-};
-
-/** aggregate fields of "CircleUser" */
-export type CircleUser_Aggregate_Fields = {
-  __typename?: 'CircleUser_aggregate_fields';
-  avg?: Maybe<CircleUser_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<CircleUser_Max_Fields>;
-  min?: Maybe<CircleUser_Min_Fields>;
-  stddev?: Maybe<CircleUser_Stddev_Fields>;
-  stddev_pop?: Maybe<CircleUser_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<CircleUser_Stddev_Samp_Fields>;
-  sum?: Maybe<CircleUser_Sum_Fields>;
-  var_pop?: Maybe<CircleUser_Var_Pop_Fields>;
-  var_samp?: Maybe<CircleUser_Var_Samp_Fields>;
-  variance?: Maybe<CircleUser_Variance_Fields>;
-};
-
-
-/** aggregate fields of "CircleUser" */
-export type CircleUser_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<CircleUser_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "CircleUser" */
-export type CircleUser_Aggregate_Order_By = {
-  avg?: Maybe<CircleUser_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<CircleUser_Max_Order_By>;
-  min?: Maybe<CircleUser_Min_Order_By>;
-  stddev?: Maybe<CircleUser_Stddev_Order_By>;
-  stddev_pop?: Maybe<CircleUser_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<CircleUser_Stddev_Samp_Order_By>;
-  sum?: Maybe<CircleUser_Sum_Order_By>;
-  var_pop?: Maybe<CircleUser_Var_Pop_Order_By>;
-  var_samp?: Maybe<CircleUser_Var_Samp_Order_By>;
-  variance?: Maybe<CircleUser_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "CircleUser" */
-export type CircleUser_Arr_Rel_Insert_Input = {
-  data: Array<CircleUser_Insert_Input>;
-  on_conflict?: Maybe<CircleUser_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type CircleUser_Avg_Fields = {
-  __typename?: 'CircleUser_avg_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "CircleUser" */
-export type CircleUser_Avg_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "CircleUser". All fields are combined with a logical 'AND'. */
-export type CircleUser_Bool_Exp = {
-  Circle?: Maybe<Circle_Bool_Exp>;
-  User?: Maybe<User_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<CircleUser_Bool_Exp>>>;
-  _not?: Maybe<CircleUser_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<CircleUser_Bool_Exp>>>;
-  circle_id?: Maybe<Int_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "CircleUser" */
-export enum CircleUser_Constraint {
-  /** unique or primary key constraint */
-  RoomUserPkey = 'RoomUser_pkey'
-}
-
-/** input type for incrementing integer column in table "CircleUser" */
-export type CircleUser_Inc_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "CircleUser" */
-export type CircleUser_Insert_Input = {
-  Circle?: Maybe<Circle_Obj_Rel_Insert_Input>;
-  User?: Maybe<User_Obj_Rel_Insert_Input>;
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type CircleUser_Max_Fields = {
-  __typename?: 'CircleUser_max_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "CircleUser" */
-export type CircleUser_Max_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type CircleUser_Min_Fields = {
-  __typename?: 'CircleUser_min_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "CircleUser" */
-export type CircleUser_Min_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "CircleUser" */
-export type CircleUser_Mutation_Response = {
-  __typename?: 'CircleUser_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<CircleUser>;
-};
-
-/** input type for inserting object relation for remote table "CircleUser" */
-export type CircleUser_Obj_Rel_Insert_Input = {
-  data: CircleUser_Insert_Input;
-  on_conflict?: Maybe<CircleUser_On_Conflict>;
-};
-
-/** on conflict condition type for table "CircleUser" */
-export type CircleUser_On_Conflict = {
-  constraint: CircleUser_Constraint;
-  update_columns: Array<CircleUser_Update_Column>;
-  where?: Maybe<CircleUser_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "CircleUser" */
-export type CircleUser_Order_By = {
-  Circle?: Maybe<Circle_Order_By>;
-  User?: Maybe<User_Order_By>;
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "CircleUser" */
-export type CircleUser_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "CircleUser" */
-export enum CircleUser_Select_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** input type for updating data in table "CircleUser" */
-export type CircleUser_Set_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type CircleUser_Stddev_Fields = {
-  __typename?: 'CircleUser_stddev_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "CircleUser" */
-export type CircleUser_Stddev_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type CircleUser_Stddev_Pop_Fields = {
-  __typename?: 'CircleUser_stddev_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "CircleUser" */
-export type CircleUser_Stddev_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type CircleUser_Stddev_Samp_Fields = {
-  __typename?: 'CircleUser_stddev_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "CircleUser" */
-export type CircleUser_Stddev_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type CircleUser_Sum_Fields = {
-  __typename?: 'CircleUser_sum_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "CircleUser" */
-export type CircleUser_Sum_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** update columns of table "CircleUser" */
-export enum CircleUser_Update_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** aggregate var_pop on columns */
-export type CircleUser_Var_Pop_Fields = {
-  __typename?: 'CircleUser_var_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "CircleUser" */
-export type CircleUser_Var_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type CircleUser_Var_Samp_Fields = {
-  __typename?: 'CircleUser_var_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "CircleUser" */
-export type CircleUser_Var_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type CircleUser_Variance_Fields = {
-  __typename?: 'CircleUser_variance_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "CircleUser" */
-export type CircleUser_Variance_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregated selection of "Circle" */
-export type Circle_Aggregate = {
-  __typename?: 'Circle_aggregate';
-  aggregate?: Maybe<Circle_Aggregate_Fields>;
-  nodes: Array<Circle>;
-};
-
-/** aggregate fields of "Circle" */
-export type Circle_Aggregate_Fields = {
-  __typename?: 'Circle_aggregate_fields';
-  avg?: Maybe<Circle_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Circle_Max_Fields>;
-  min?: Maybe<Circle_Min_Fields>;
-  stddev?: Maybe<Circle_Stddev_Fields>;
-  stddev_pop?: Maybe<Circle_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Circle_Stddev_Samp_Fields>;
-  sum?: Maybe<Circle_Sum_Fields>;
-  var_pop?: Maybe<Circle_Var_Pop_Fields>;
-  var_samp?: Maybe<Circle_Var_Samp_Fields>;
-  variance?: Maybe<Circle_Variance_Fields>;
-};
-
-
-/** aggregate fields of "Circle" */
-export type Circle_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Circle_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "Circle" */
-export type Circle_Aggregate_Order_By = {
-  avg?: Maybe<Circle_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Circle_Max_Order_By>;
-  min?: Maybe<Circle_Min_Order_By>;
-  stddev?: Maybe<Circle_Stddev_Order_By>;
-  stddev_pop?: Maybe<Circle_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Circle_Stddev_Samp_Order_By>;
-  sum?: Maybe<Circle_Sum_Order_By>;
-  var_pop?: Maybe<Circle_Var_Pop_Order_By>;
-  var_samp?: Maybe<Circle_Var_Samp_Order_By>;
-  variance?: Maybe<Circle_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "Circle" */
-export type Circle_Arr_Rel_Insert_Input = {
-  data: Array<Circle_Insert_Input>;
-  on_conflict?: Maybe<Circle_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Circle_Avg_Fields = {
-  __typename?: 'Circle_avg_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "Circle" */
-export type Circle_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "Circle". All fields are combined with a logical 'AND'. */
-export type Circle_Bool_Exp = {
-  CicleSkills?: Maybe<CircleSkill_Bool_Exp>;
-  CircleUsers?: Maybe<CircleUser_Bool_Exp>;
-  Messages?: Maybe<Message_Bool_Exp>;
-  Organization?: Maybe<Organization_Bool_Exp>;
-  SubCategory?: Maybe<SubCategory_Bool_Exp>;
-  User?: Maybe<User_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<Circle_Bool_Exp>>>;
-  _not?: Maybe<Circle_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Circle_Bool_Exp>>>;
-  avatar?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  main_role?: Maybe<String_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  organization_id?: Maybe<Int_Comparison_Exp>;
-  owner_id?: Maybe<String_Comparison_Exp>;
-  recruit_title?: Maybe<String_Comparison_Exp>;
-  sub_category_id?: Maybe<Int_Comparison_Exp>;
-  what_we_will_do?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "Circle" */
-export enum Circle_Constraint {
-  /** unique or primary key constraint */
-  RoomsPkey = 'rooms_pkey'
-}
-
-/** input type for incrementing integer column in table "Circle" */
-export type Circle_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "Circle" */
-export type Circle_Insert_Input = {
-  CicleSkills?: Maybe<CircleSkill_Arr_Rel_Insert_Input>;
-  CircleUsers?: Maybe<CircleUser_Arr_Rel_Insert_Input>;
-  Messages?: Maybe<Message_Arr_Rel_Insert_Input>;
-  Organization?: Maybe<Organization_Obj_Rel_Insert_Input>;
-  SubCategory?: Maybe<SubCategory_Obj_Rel_Insert_Input>;
-  User?: Maybe<User_Obj_Rel_Insert_Input>;
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  main_role?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  owner_id?: Maybe<Scalars['String']>;
-  recruit_title?: Maybe<Scalars['String']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-  what_we_will_do?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Circle_Max_Fields = {
-  __typename?: 'Circle_max_fields';
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  main_role?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  owner_id?: Maybe<Scalars['String']>;
-  recruit_title?: Maybe<Scalars['String']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-  what_we_will_do?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "Circle" */
-export type Circle_Max_Order_By = {
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  main_role?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  owner_id?: Maybe<Order_By>;
-  recruit_title?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-  what_we_will_do?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Circle_Min_Fields = {
-  __typename?: 'Circle_min_fields';
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  main_role?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  owner_id?: Maybe<Scalars['String']>;
-  recruit_title?: Maybe<Scalars['String']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-  what_we_will_do?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "Circle" */
-export type Circle_Min_Order_By = {
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  main_role?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  owner_id?: Maybe<Order_By>;
-  recruit_title?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-  what_we_will_do?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "Circle" */
-export type Circle_Mutation_Response = {
-  __typename?: 'Circle_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Circle>;
-};
-
-/** input type for inserting object relation for remote table "Circle" */
-export type Circle_Obj_Rel_Insert_Input = {
-  data: Circle_Insert_Input;
-  on_conflict?: Maybe<Circle_On_Conflict>;
-};
-
-/** on conflict condition type for table "Circle" */
-export type Circle_On_Conflict = {
-  constraint: Circle_Constraint;
-  update_columns: Array<Circle_Update_Column>;
-  where?: Maybe<Circle_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "Circle" */
-export type Circle_Order_By = {
-  CicleSkills_aggregate?: Maybe<CircleSkill_Aggregate_Order_By>;
-  CircleUsers_aggregate?: Maybe<CircleUser_Aggregate_Order_By>;
-  Messages_aggregate?: Maybe<Message_Aggregate_Order_By>;
-  Organization?: Maybe<Organization_Order_By>;
-  SubCategory?: Maybe<SubCategory_Order_By>;
-  User?: Maybe<User_Order_By>;
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  main_role?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  owner_id?: Maybe<Order_By>;
-  recruit_title?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-  what_we_will_do?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "Circle" */
-export type Circle_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "Circle" */
-export enum Circle_Select_Column {
-  /** column name */
-  Avatar = 'avatar',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  MainRole = 'main_role',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  OrganizationId = 'organization_id',
-  /** column name */
-  OwnerId = 'owner_id',
-  /** column name */
-  RecruitTitle = 'recruit_title',
-  /** column name */
-  SubCategoryId = 'sub_category_id',
-  /** column name */
-  WhatWeWillDo = 'what_we_will_do'
-}
-
-/** input type for updating data in table "Circle" */
-export type Circle_Set_Input = {
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  main_role?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  owner_id?: Maybe<Scalars['String']>;
-  recruit_title?: Maybe<Scalars['String']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-  what_we_will_do?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Circle_Stddev_Fields = {
-  __typename?: 'Circle_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "Circle" */
-export type Circle_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Circle_Stddev_Pop_Fields = {
-  __typename?: 'Circle_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "Circle" */
-export type Circle_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Circle_Stddev_Samp_Fields = {
-  __typename?: 'Circle_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "Circle" */
-export type Circle_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Circle_Sum_Fields = {
-  __typename?: 'Circle_sum_fields';
-  id?: Maybe<Scalars['Int']>;
-  organization_id?: Maybe<Scalars['Int']>;
-  sub_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "Circle" */
-export type Circle_Sum_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** update columns of table "Circle" */
-export enum Circle_Update_Column {
-  /** column name */
-  Avatar = 'avatar',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  MainRole = 'main_role',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  OrganizationId = 'organization_id',
-  /** column name */
-  OwnerId = 'owner_id',
-  /** column name */
-  RecruitTitle = 'recruit_title',
-  /** column name */
-  SubCategoryId = 'sub_category_id',
-  /** column name */
-  WhatWeWillDo = 'what_we_will_do'
-}
-
-/** aggregate var_pop on columns */
-export type Circle_Var_Pop_Fields = {
-  __typename?: 'Circle_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "Circle" */
-export type Circle_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Circle_Var_Samp_Fields = {
-  __typename?: 'Circle_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "Circle" */
-export type Circle_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Circle_Variance_Fields = {
-  __typename?: 'Circle_variance_fields';
-  id?: Maybe<Scalars['Float']>;
-  organization_id?: Maybe<Scalars['Float']>;
-  sub_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "Circle" */
-export type Circle_Variance_Order_By = {
-  id?: Maybe<Order_By>;
-  organization_id?: Maybe<Order_By>;
-  sub_category_id?: Maybe<Order_By>;
-};
-
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
   _eq?: Maybe<Scalars['Int']>;
@@ -1100,1245 +23,6 @@ export type Int_Comparison_Exp = {
   _lte?: Maybe<Scalars['Int']>;
   _neq?: Maybe<Scalars['Int']>;
   _nin?: Maybe<Array<Scalars['Int']>>;
-};
-
-/** columns and relationships of "Message" */
-export type Message = {
-  __typename?: 'Message';
-  /** An object relationship */
-  Circle: Circle;
-  /** An object relationship */
-  User: User;
-  circle_id: Scalars['Int'];
-  id: Scalars['Int'];
-  text: Scalars['String'];
-  timestamp: Scalars['timestamptz'];
-  user_id: Scalars['String'];
-};
-
-/** aggregated selection of "Message" */
-export type Message_Aggregate = {
-  __typename?: 'Message_aggregate';
-  aggregate?: Maybe<Message_Aggregate_Fields>;
-  nodes: Array<Message>;
-};
-
-/** aggregate fields of "Message" */
-export type Message_Aggregate_Fields = {
-  __typename?: 'Message_aggregate_fields';
-  avg?: Maybe<Message_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Message_Max_Fields>;
-  min?: Maybe<Message_Min_Fields>;
-  stddev?: Maybe<Message_Stddev_Fields>;
-  stddev_pop?: Maybe<Message_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Message_Stddev_Samp_Fields>;
-  sum?: Maybe<Message_Sum_Fields>;
-  var_pop?: Maybe<Message_Var_Pop_Fields>;
-  var_samp?: Maybe<Message_Var_Samp_Fields>;
-  variance?: Maybe<Message_Variance_Fields>;
-};
-
-
-/** aggregate fields of "Message" */
-export type Message_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Message_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "Message" */
-export type Message_Aggregate_Order_By = {
-  avg?: Maybe<Message_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Message_Max_Order_By>;
-  min?: Maybe<Message_Min_Order_By>;
-  stddev?: Maybe<Message_Stddev_Order_By>;
-  stddev_pop?: Maybe<Message_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Message_Stddev_Samp_Order_By>;
-  sum?: Maybe<Message_Sum_Order_By>;
-  var_pop?: Maybe<Message_Var_Pop_Order_By>;
-  var_samp?: Maybe<Message_Var_Samp_Order_By>;
-  variance?: Maybe<Message_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "Message" */
-export type Message_Arr_Rel_Insert_Input = {
-  data: Array<Message_Insert_Input>;
-  on_conflict?: Maybe<Message_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Message_Avg_Fields = {
-  __typename?: 'Message_avg_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "Message" */
-export type Message_Avg_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "Message". All fields are combined with a logical 'AND'. */
-export type Message_Bool_Exp = {
-  Circle?: Maybe<Circle_Bool_Exp>;
-  User?: Maybe<User_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<Message_Bool_Exp>>>;
-  _not?: Maybe<Message_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Message_Bool_Exp>>>;
-  circle_id?: Maybe<Int_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  text?: Maybe<String_Comparison_Exp>;
-  timestamp?: Maybe<Timestamptz_Comparison_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "Message" */
-export enum Message_Constraint {
-  /** unique or primary key constraint */
-  MessagesPkey = 'Messages_pkey'
-}
-
-/** input type for incrementing integer column in table "Message" */
-export type Message_Inc_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "Message" */
-export type Message_Insert_Input = {
-  Circle?: Maybe<Circle_Obj_Rel_Insert_Input>;
-  User?: Maybe<User_Obj_Rel_Insert_Input>;
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  text?: Maybe<Scalars['String']>;
-  timestamp?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Message_Max_Fields = {
-  __typename?: 'Message_max_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  text?: Maybe<Scalars['String']>;
-  timestamp?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "Message" */
-export type Message_Max_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  text?: Maybe<Order_By>;
-  timestamp?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Message_Min_Fields = {
-  __typename?: 'Message_min_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  text?: Maybe<Scalars['String']>;
-  timestamp?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "Message" */
-export type Message_Min_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  text?: Maybe<Order_By>;
-  timestamp?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "Message" */
-export type Message_Mutation_Response = {
-  __typename?: 'Message_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Message>;
-};
-
-/** input type for inserting object relation for remote table "Message" */
-export type Message_Obj_Rel_Insert_Input = {
-  data: Message_Insert_Input;
-  on_conflict?: Maybe<Message_On_Conflict>;
-};
-
-/** on conflict condition type for table "Message" */
-export type Message_On_Conflict = {
-  constraint: Message_Constraint;
-  update_columns: Array<Message_Update_Column>;
-  where?: Maybe<Message_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "Message" */
-export type Message_Order_By = {
-  Circle?: Maybe<Circle_Order_By>;
-  User?: Maybe<User_Order_By>;
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  text?: Maybe<Order_By>;
-  timestamp?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "Message" */
-export type Message_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "Message" */
-export enum Message_Select_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Text = 'text',
-  /** column name */
-  Timestamp = 'timestamp',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** input type for updating data in table "Message" */
-export type Message_Set_Input = {
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-  text?: Maybe<Scalars['String']>;
-  timestamp?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Message_Stddev_Fields = {
-  __typename?: 'Message_stddev_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "Message" */
-export type Message_Stddev_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Message_Stddev_Pop_Fields = {
-  __typename?: 'Message_stddev_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "Message" */
-export type Message_Stddev_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Message_Stddev_Samp_Fields = {
-  __typename?: 'Message_stddev_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "Message" */
-export type Message_Stddev_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Message_Sum_Fields = {
-  __typename?: 'Message_sum_fields';
-  circle_id?: Maybe<Scalars['Int']>;
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "Message" */
-export type Message_Sum_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** update columns of table "Message" */
-export enum Message_Update_Column {
-  /** column name */
-  CircleId = 'circle_id',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Text = 'text',
-  /** column name */
-  Timestamp = 'timestamp',
-  /** column name */
-  UserId = 'user_id'
-}
-
-/** aggregate var_pop on columns */
-export type Message_Var_Pop_Fields = {
-  __typename?: 'Message_var_pop_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "Message" */
-export type Message_Var_Pop_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Message_Var_Samp_Fields = {
-  __typename?: 'Message_var_samp_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "Message" */
-export type Message_Var_Samp_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Message_Variance_Fields = {
-  __typename?: 'Message_variance_fields';
-  circle_id?: Maybe<Scalars['Float']>;
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "Message" */
-export type Message_Variance_Order_By = {
-  circle_id?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "Organization" */
-export type Organization = {
-  __typename?: 'Organization';
-  /** An array relationship */
-  Circles: Array<Circle>;
-  /** An aggregated array relationship */
-  Circles_aggregate: Circle_Aggregate;
-  /** An array relationship */
-  Users: Array<User>;
-  /** An aggregated array relationship */
-  Users_aggregate: User_Aggregate;
-  domain: Scalars['String'];
-  id: Scalars['Int'];
-  name: Scalars['String'];
-};
-
-
-/** columns and relationships of "Organization" */
-export type OrganizationCirclesArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Organization" */
-export type OrganizationCircles_AggregateArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Organization" */
-export type OrganizationUsersArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Organization" */
-export type OrganizationUsers_AggregateArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
-};
-
-/** aggregated selection of "Organization" */
-export type Organization_Aggregate = {
-  __typename?: 'Organization_aggregate';
-  aggregate?: Maybe<Organization_Aggregate_Fields>;
-  nodes: Array<Organization>;
-};
-
-/** aggregate fields of "Organization" */
-export type Organization_Aggregate_Fields = {
-  __typename?: 'Organization_aggregate_fields';
-  avg?: Maybe<Organization_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Organization_Max_Fields>;
-  min?: Maybe<Organization_Min_Fields>;
-  stddev?: Maybe<Organization_Stddev_Fields>;
-  stddev_pop?: Maybe<Organization_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Organization_Stddev_Samp_Fields>;
-  sum?: Maybe<Organization_Sum_Fields>;
-  var_pop?: Maybe<Organization_Var_Pop_Fields>;
-  var_samp?: Maybe<Organization_Var_Samp_Fields>;
-  variance?: Maybe<Organization_Variance_Fields>;
-};
-
-
-/** aggregate fields of "Organization" */
-export type Organization_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Organization_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "Organization" */
-export type Organization_Aggregate_Order_By = {
-  avg?: Maybe<Organization_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Organization_Max_Order_By>;
-  min?: Maybe<Organization_Min_Order_By>;
-  stddev?: Maybe<Organization_Stddev_Order_By>;
-  stddev_pop?: Maybe<Organization_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Organization_Stddev_Samp_Order_By>;
-  sum?: Maybe<Organization_Sum_Order_By>;
-  var_pop?: Maybe<Organization_Var_Pop_Order_By>;
-  var_samp?: Maybe<Organization_Var_Samp_Order_By>;
-  variance?: Maybe<Organization_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "Organization" */
-export type Organization_Arr_Rel_Insert_Input = {
-  data: Array<Organization_Insert_Input>;
-  on_conflict?: Maybe<Organization_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Organization_Avg_Fields = {
-  __typename?: 'Organization_avg_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "Organization" */
-export type Organization_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "Organization". All fields are combined with a logical 'AND'. */
-export type Organization_Bool_Exp = {
-  Circles?: Maybe<Circle_Bool_Exp>;
-  Users?: Maybe<User_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<Organization_Bool_Exp>>>;
-  _not?: Maybe<Organization_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Organization_Bool_Exp>>>;
-  domain?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "Organization" */
-export enum Organization_Constraint {
-  /** unique or primary key constraint */
-  OrganizationPkey = 'Organization_pkey'
-}
-
-/** input type for incrementing integer column in table "Organization" */
-export type Organization_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "Organization" */
-export type Organization_Insert_Input = {
-  Circles?: Maybe<Circle_Arr_Rel_Insert_Input>;
-  Users?: Maybe<User_Arr_Rel_Insert_Input>;
-  domain?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Organization_Max_Fields = {
-  __typename?: 'Organization_max_fields';
-  domain?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "Organization" */
-export type Organization_Max_Order_By = {
-  domain?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Organization_Min_Fields = {
-  __typename?: 'Organization_min_fields';
-  domain?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "Organization" */
-export type Organization_Min_Order_By = {
-  domain?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "Organization" */
-export type Organization_Mutation_Response = {
-  __typename?: 'Organization_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Organization>;
-};
-
-/** input type for inserting object relation for remote table "Organization" */
-export type Organization_Obj_Rel_Insert_Input = {
-  data: Organization_Insert_Input;
-  on_conflict?: Maybe<Organization_On_Conflict>;
-};
-
-/** on conflict condition type for table "Organization" */
-export type Organization_On_Conflict = {
-  constraint: Organization_Constraint;
-  update_columns: Array<Organization_Update_Column>;
-  where?: Maybe<Organization_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "Organization" */
-export type Organization_Order_By = {
-  Circles_aggregate?: Maybe<Circle_Aggregate_Order_By>;
-  Users_aggregate?: Maybe<User_Aggregate_Order_By>;
-  domain?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "Organization" */
-export type Organization_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "Organization" */
-export enum Organization_Select_Column {
-  /** column name */
-  Domain = 'domain',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** input type for updating data in table "Organization" */
-export type Organization_Set_Input = {
-  domain?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Organization_Stddev_Fields = {
-  __typename?: 'Organization_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "Organization" */
-export type Organization_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Organization_Stddev_Pop_Fields = {
-  __typename?: 'Organization_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "Organization" */
-export type Organization_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Organization_Stddev_Samp_Fields = {
-  __typename?: 'Organization_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "Organization" */
-export type Organization_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Organization_Sum_Fields = {
-  __typename?: 'Organization_sum_fields';
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "Organization" */
-export type Organization_Sum_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** update columns of table "Organization" */
-export enum Organization_Update_Column {
-  /** column name */
-  Domain = 'domain',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** aggregate var_pop on columns */
-export type Organization_Var_Pop_Fields = {
-  __typename?: 'Organization_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "Organization" */
-export type Organization_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Organization_Var_Samp_Fields = {
-  __typename?: 'Organization_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "Organization" */
-export type Organization_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Organization_Variance_Fields = {
-  __typename?: 'Organization_variance_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "Organization" */
-export type Organization_Variance_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "ParentCategory" */
-export type ParentCategory = {
-  __typename?: 'ParentCategory';
-  /** An array relationship */
-  SubCategories: Array<SubCategory>;
-  /** An aggregated array relationship */
-  SubCategories_aggregate: SubCategory_Aggregate;
-  id: Scalars['Int'];
-  name: Scalars['String'];
-};
-
-
-/** columns and relationships of "ParentCategory" */
-export type ParentCategorySubCategoriesArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
-};
-
-
-/** columns and relationships of "ParentCategory" */
-export type ParentCategorySubCategories_AggregateArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
-};
-
-/** aggregated selection of "ParentCategory" */
-export type ParentCategory_Aggregate = {
-  __typename?: 'ParentCategory_aggregate';
-  aggregate?: Maybe<ParentCategory_Aggregate_Fields>;
-  nodes: Array<ParentCategory>;
-};
-
-/** aggregate fields of "ParentCategory" */
-export type ParentCategory_Aggregate_Fields = {
-  __typename?: 'ParentCategory_aggregate_fields';
-  avg?: Maybe<ParentCategory_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<ParentCategory_Max_Fields>;
-  min?: Maybe<ParentCategory_Min_Fields>;
-  stddev?: Maybe<ParentCategory_Stddev_Fields>;
-  stddev_pop?: Maybe<ParentCategory_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<ParentCategory_Stddev_Samp_Fields>;
-  sum?: Maybe<ParentCategory_Sum_Fields>;
-  var_pop?: Maybe<ParentCategory_Var_Pop_Fields>;
-  var_samp?: Maybe<ParentCategory_Var_Samp_Fields>;
-  variance?: Maybe<ParentCategory_Variance_Fields>;
-};
-
-
-/** aggregate fields of "ParentCategory" */
-export type ParentCategory_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<ParentCategory_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "ParentCategory" */
-export type ParentCategory_Aggregate_Order_By = {
-  avg?: Maybe<ParentCategory_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<ParentCategory_Max_Order_By>;
-  min?: Maybe<ParentCategory_Min_Order_By>;
-  stddev?: Maybe<ParentCategory_Stddev_Order_By>;
-  stddev_pop?: Maybe<ParentCategory_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<ParentCategory_Stddev_Samp_Order_By>;
-  sum?: Maybe<ParentCategory_Sum_Order_By>;
-  var_pop?: Maybe<ParentCategory_Var_Pop_Order_By>;
-  var_samp?: Maybe<ParentCategory_Var_Samp_Order_By>;
-  variance?: Maybe<ParentCategory_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "ParentCategory" */
-export type ParentCategory_Arr_Rel_Insert_Input = {
-  data: Array<ParentCategory_Insert_Input>;
-  on_conflict?: Maybe<ParentCategory_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type ParentCategory_Avg_Fields = {
-  __typename?: 'ParentCategory_avg_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "ParentCategory" */
-export type ParentCategory_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "ParentCategory". All fields are combined with a logical 'AND'. */
-export type ParentCategory_Bool_Exp = {
-  SubCategories?: Maybe<SubCategory_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<ParentCategory_Bool_Exp>>>;
-  _not?: Maybe<ParentCategory_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<ParentCategory_Bool_Exp>>>;
-  id?: Maybe<Int_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "ParentCategory" */
-export enum ParentCategory_Constraint {
-  /** unique or primary key constraint */
-  ParentCategoryPkey = 'ParentCategory_pkey'
-}
-
-/** input type for incrementing integer column in table "ParentCategory" */
-export type ParentCategory_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "ParentCategory" */
-export type ParentCategory_Insert_Input = {
-  SubCategories?: Maybe<SubCategory_Arr_Rel_Insert_Input>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type ParentCategory_Max_Fields = {
-  __typename?: 'ParentCategory_max_fields';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "ParentCategory" */
-export type ParentCategory_Max_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type ParentCategory_Min_Fields = {
-  __typename?: 'ParentCategory_min_fields';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "ParentCategory" */
-export type ParentCategory_Min_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "ParentCategory" */
-export type ParentCategory_Mutation_Response = {
-  __typename?: 'ParentCategory_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<ParentCategory>;
-};
-
-/** input type for inserting object relation for remote table "ParentCategory" */
-export type ParentCategory_Obj_Rel_Insert_Input = {
-  data: ParentCategory_Insert_Input;
-  on_conflict?: Maybe<ParentCategory_On_Conflict>;
-};
-
-/** on conflict condition type for table "ParentCategory" */
-export type ParentCategory_On_Conflict = {
-  constraint: ParentCategory_Constraint;
-  update_columns: Array<ParentCategory_Update_Column>;
-  where?: Maybe<ParentCategory_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "ParentCategory" */
-export type ParentCategory_Order_By = {
-  SubCategories_aggregate?: Maybe<SubCategory_Aggregate_Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "ParentCategory" */
-export type ParentCategory_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "ParentCategory" */
-export enum ParentCategory_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** input type for updating data in table "ParentCategory" */
-export type ParentCategory_Set_Input = {
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type ParentCategory_Stddev_Fields = {
-  __typename?: 'ParentCategory_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "ParentCategory" */
-export type ParentCategory_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type ParentCategory_Stddev_Pop_Fields = {
-  __typename?: 'ParentCategory_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "ParentCategory" */
-export type ParentCategory_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type ParentCategory_Stddev_Samp_Fields = {
-  __typename?: 'ParentCategory_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "ParentCategory" */
-export type ParentCategory_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type ParentCategory_Sum_Fields = {
-  __typename?: 'ParentCategory_sum_fields';
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "ParentCategory" */
-export type ParentCategory_Sum_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** update columns of table "ParentCategory" */
-export enum ParentCategory_Update_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** aggregate var_pop on columns */
-export type ParentCategory_Var_Pop_Fields = {
-  __typename?: 'ParentCategory_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "ParentCategory" */
-export type ParentCategory_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type ParentCategory_Var_Samp_Fields = {
-  __typename?: 'ParentCategory_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "ParentCategory" */
-export type ParentCategory_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type ParentCategory_Variance_Fields = {
-  __typename?: 'ParentCategory_variance_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "ParentCategory" */
-export type ParentCategory_Variance_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "Skill" */
-export type Skill = {
-  __typename?: 'Skill';
-  /** An array relationship */
-  CicleSkills: Array<CircleSkill>;
-  /** An aggregated array relationship */
-  CicleSkills_aggregate: CircleSkill_Aggregate;
-  /** An array relationship */
-  UserSkills: Array<UserSkill>;
-  /** An aggregated array relationship */
-  UserSkills_aggregate: UserSkill_Aggregate;
-  avatar: Scalars['String'];
-  id: Scalars['Int'];
-  name: Scalars['String'];
-};
-
-
-/** columns and relationships of "Skill" */
-export type SkillCicleSkillsArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Skill" */
-export type SkillCicleSkills_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Skill" */
-export type SkillUserSkillsArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "Skill" */
-export type SkillUserSkills_AggregateArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-/** aggregated selection of "Skill" */
-export type Skill_Aggregate = {
-  __typename?: 'Skill_aggregate';
-  aggregate?: Maybe<Skill_Aggregate_Fields>;
-  nodes: Array<Skill>;
-};
-
-/** aggregate fields of "Skill" */
-export type Skill_Aggregate_Fields = {
-  __typename?: 'Skill_aggregate_fields';
-  avg?: Maybe<Skill_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<Skill_Max_Fields>;
-  min?: Maybe<Skill_Min_Fields>;
-  stddev?: Maybe<Skill_Stddev_Fields>;
-  stddev_pop?: Maybe<Skill_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<Skill_Stddev_Samp_Fields>;
-  sum?: Maybe<Skill_Sum_Fields>;
-  var_pop?: Maybe<Skill_Var_Pop_Fields>;
-  var_samp?: Maybe<Skill_Var_Samp_Fields>;
-  variance?: Maybe<Skill_Variance_Fields>;
-};
-
-
-/** aggregate fields of "Skill" */
-export type Skill_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Skill_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "Skill" */
-export type Skill_Aggregate_Order_By = {
-  avg?: Maybe<Skill_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<Skill_Max_Order_By>;
-  min?: Maybe<Skill_Min_Order_By>;
-  stddev?: Maybe<Skill_Stddev_Order_By>;
-  stddev_pop?: Maybe<Skill_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<Skill_Stddev_Samp_Order_By>;
-  sum?: Maybe<Skill_Sum_Order_By>;
-  var_pop?: Maybe<Skill_Var_Pop_Order_By>;
-  var_samp?: Maybe<Skill_Var_Samp_Order_By>;
-  variance?: Maybe<Skill_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "Skill" */
-export type Skill_Arr_Rel_Insert_Input = {
-  data: Array<Skill_Insert_Input>;
-  on_conflict?: Maybe<Skill_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type Skill_Avg_Fields = {
-  __typename?: 'Skill_avg_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "Skill" */
-export type Skill_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "Skill". All fields are combined with a logical 'AND'. */
-export type Skill_Bool_Exp = {
-  CicleSkills?: Maybe<CircleSkill_Bool_Exp>;
-  UserSkills?: Maybe<UserSkill_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<Skill_Bool_Exp>>>;
-  _not?: Maybe<Skill_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<Skill_Bool_Exp>>>;
-  avatar?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<Int_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "Skill" */
-export enum Skill_Constraint {
-  /** unique or primary key constraint */
-  SkillPkey = 'Skill_pkey'
-}
-
-/** input type for incrementing integer column in table "Skill" */
-export type Skill_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "Skill" */
-export type Skill_Insert_Input = {
-  CicleSkills?: Maybe<CircleSkill_Arr_Rel_Insert_Input>;
-  UserSkills?: Maybe<UserSkill_Arr_Rel_Insert_Input>;
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate max on columns */
-export type Skill_Max_Fields = {
-  __typename?: 'Skill_max_fields';
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "Skill" */
-export type Skill_Max_Order_By = {
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Skill_Min_Fields = {
-  __typename?: 'Skill_min_fields';
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "Skill" */
-export type Skill_Min_Order_By = {
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "Skill" */
-export type Skill_Mutation_Response = {
-  __typename?: 'Skill_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<Skill>;
-};
-
-/** input type for inserting object relation for remote table "Skill" */
-export type Skill_Obj_Rel_Insert_Input = {
-  data: Skill_Insert_Input;
-  on_conflict?: Maybe<Skill_On_Conflict>;
-};
-
-/** on conflict condition type for table "Skill" */
-export type Skill_On_Conflict = {
-  constraint: Skill_Constraint;
-  update_columns: Array<Skill_Update_Column>;
-  where?: Maybe<Skill_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "Skill" */
-export type Skill_Order_By = {
-  CicleSkills_aggregate?: Maybe<CircleSkill_Aggregate_Order_By>;
-  UserSkills_aggregate?: Maybe<UserSkill_Aggregate_Order_By>;
-  avatar?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "Skill" */
-export type Skill_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "Skill" */
-export enum Skill_Select_Column {
-  /** column name */
-  Avatar = 'avatar',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** input type for updating data in table "Skill" */
-export type Skill_Set_Input = {
-  avatar?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-/** aggregate stddev on columns */
-export type Skill_Stddev_Fields = {
-  __typename?: 'Skill_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "Skill" */
-export type Skill_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type Skill_Stddev_Pop_Fields = {
-  __typename?: 'Skill_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "Skill" */
-export type Skill_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type Skill_Stddev_Samp_Fields = {
-  __typename?: 'Skill_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "Skill" */
-export type Skill_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type Skill_Sum_Fields = {
-  __typename?: 'Skill_sum_fields';
-  id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "Skill" */
-export type Skill_Sum_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** update columns of table "Skill" */
-export enum Skill_Update_Column {
-  /** column name */
-  Avatar = 'avatar',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name'
-}
-
-/** aggregate var_pop on columns */
-export type Skill_Var_Pop_Fields = {
-  __typename?: 'Skill_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "Skill" */
-export type Skill_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type Skill_Var_Samp_Fields = {
-  __typename?: 'Skill_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "Skill" */
-export type Skill_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type Skill_Variance_Fields = {
-  __typename?: 'Skill_variance_fields';
-  id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "Skill" */
-export type Skill_Variance_Order_By = {
-  id?: Maybe<Order_By>;
 };
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -2360,1600 +44,1924 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>;
 };
 
-/** columns and relationships of "SubCategory" */
-export type SubCategory = {
-  __typename?: 'SubCategory';
+/** columns and relationships of "circle_skills" */
+export type Circle_Skills = {
+  __typename?: 'circle_skills';
+  circle_id: Scalars['Int'];
   /** An object relationship */
-  ParentCategory: ParentCategory;
-  /** An object relationship */
-  SubCategory?: Maybe<Circle>;
+  circles: Circles;
   id: Scalars['Int'];
-  name: Scalars['String'];
-  parent_category_id: Scalars['Int'];
-};
-
-/** aggregated selection of "SubCategory" */
-export type SubCategory_Aggregate = {
-  __typename?: 'SubCategory_aggregate';
-  aggregate?: Maybe<SubCategory_Aggregate_Fields>;
-  nodes: Array<SubCategory>;
-};
-
-/** aggregate fields of "SubCategory" */
-export type SubCategory_Aggregate_Fields = {
-  __typename?: 'SubCategory_aggregate_fields';
-  avg?: Maybe<SubCategory_Avg_Fields>;
-  count?: Maybe<Scalars['Int']>;
-  max?: Maybe<SubCategory_Max_Fields>;
-  min?: Maybe<SubCategory_Min_Fields>;
-  stddev?: Maybe<SubCategory_Stddev_Fields>;
-  stddev_pop?: Maybe<SubCategory_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<SubCategory_Stddev_Samp_Fields>;
-  sum?: Maybe<SubCategory_Sum_Fields>;
-  var_pop?: Maybe<SubCategory_Var_Pop_Fields>;
-  var_samp?: Maybe<SubCategory_Var_Samp_Fields>;
-  variance?: Maybe<SubCategory_Variance_Fields>;
-};
-
-
-/** aggregate fields of "SubCategory" */
-export type SubCategory_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<SubCategory_Select_Column>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "SubCategory" */
-export type SubCategory_Aggregate_Order_By = {
-  avg?: Maybe<SubCategory_Avg_Order_By>;
-  count?: Maybe<Order_By>;
-  max?: Maybe<SubCategory_Max_Order_By>;
-  min?: Maybe<SubCategory_Min_Order_By>;
-  stddev?: Maybe<SubCategory_Stddev_Order_By>;
-  stddev_pop?: Maybe<SubCategory_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<SubCategory_Stddev_Samp_Order_By>;
-  sum?: Maybe<SubCategory_Sum_Order_By>;
-  var_pop?: Maybe<SubCategory_Var_Pop_Order_By>;
-  var_samp?: Maybe<SubCategory_Var_Samp_Order_By>;
-  variance?: Maybe<SubCategory_Variance_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "SubCategory" */
-export type SubCategory_Arr_Rel_Insert_Input = {
-  data: Array<SubCategory_Insert_Input>;
-  on_conflict?: Maybe<SubCategory_On_Conflict>;
-};
-
-/** aggregate avg on columns */
-export type SubCategory_Avg_Fields = {
-  __typename?: 'SubCategory_avg_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by avg() on columns of table "SubCategory" */
-export type SubCategory_Avg_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** Boolean expression to filter rows from the table "SubCategory". All fields are combined with a logical 'AND'. */
-export type SubCategory_Bool_Exp = {
-  ParentCategory?: Maybe<ParentCategory_Bool_Exp>;
-  SubCategory?: Maybe<Circle_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<SubCategory_Bool_Exp>>>;
-  _not?: Maybe<SubCategory_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<SubCategory_Bool_Exp>>>;
-  id?: Maybe<Int_Comparison_Exp>;
-  name?: Maybe<String_Comparison_Exp>;
-  parent_category_id?: Maybe<Int_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "SubCategory" */
-export enum SubCategory_Constraint {
-  /** unique or primary key constraint */
-  SubCategoryPkey = 'SubCategory_pkey'
-}
-
-/** input type for incrementing integer column in table "SubCategory" */
-export type SubCategory_Inc_Input = {
-  id?: Maybe<Scalars['Int']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** input type for inserting data into table "SubCategory" */
-export type SubCategory_Insert_Input = {
-  ParentCategory?: Maybe<ParentCategory_Obj_Rel_Insert_Input>;
-  SubCategory?: Maybe<Circle_Obj_Rel_Insert_Input>;
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate max on columns */
-export type SubCategory_Max_Fields = {
-  __typename?: 'SubCategory_max_fields';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by max() on columns of table "SubCategory" */
-export type SubCategory_Max_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type SubCategory_Min_Fields = {
-  __typename?: 'SubCategory_min_fields';
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by min() on columns of table "SubCategory" */
-export type SubCategory_Min_Order_By = {
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** response of any mutation on the table "SubCategory" */
-export type SubCategory_Mutation_Response = {
-  __typename?: 'SubCategory_mutation_response';
-  /** number of affected rows by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data of the affected rows by the mutation */
-  returning: Array<SubCategory>;
-};
-
-/** input type for inserting object relation for remote table "SubCategory" */
-export type SubCategory_Obj_Rel_Insert_Input = {
-  data: SubCategory_Insert_Input;
-  on_conflict?: Maybe<SubCategory_On_Conflict>;
-};
-
-/** on conflict condition type for table "SubCategory" */
-export type SubCategory_On_Conflict = {
-  constraint: SubCategory_Constraint;
-  update_columns: Array<SubCategory_Update_Column>;
-  where?: Maybe<SubCategory_Bool_Exp>;
-};
-
-/** ordering options when selecting data from "SubCategory" */
-export type SubCategory_Order_By = {
-  ParentCategory?: Maybe<ParentCategory_Order_By>;
-  SubCategory?: Maybe<Circle_Order_By>;
-  id?: Maybe<Order_By>;
-  name?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** primary key columns input for table: "SubCategory" */
-export type SubCategory_Pk_Columns_Input = {
-  id: Scalars['Int'];
-};
-
-/** select columns of table "SubCategory" */
-export enum SubCategory_Select_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  ParentCategoryId = 'parent_category_id'
-}
-
-/** input type for updating data in table "SubCategory" */
-export type SubCategory_Set_Input = {
-  id?: Maybe<Scalars['Int']>;
-  name?: Maybe<Scalars['String']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** aggregate stddev on columns */
-export type SubCategory_Stddev_Fields = {
-  __typename?: 'SubCategory_stddev_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev() on columns of table "SubCategory" */
-export type SubCategory_Stddev_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_pop on columns */
-export type SubCategory_Stddev_Pop_Fields = {
-  __typename?: 'SubCategory_stddev_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_pop() on columns of table "SubCategory" */
-export type SubCategory_Stddev_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate stddev_samp on columns */
-export type SubCategory_Stddev_Samp_Fields = {
-  __typename?: 'SubCategory_stddev_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by stddev_samp() on columns of table "SubCategory" */
-export type SubCategory_Stddev_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate sum on columns */
-export type SubCategory_Sum_Fields = {
-  __typename?: 'SubCategory_sum_fields';
-  id?: Maybe<Scalars['Int']>;
-  parent_category_id?: Maybe<Scalars['Int']>;
-};
-
-/** order by sum() on columns of table "SubCategory" */
-export type SubCategory_Sum_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** update columns of table "SubCategory" */
-export enum SubCategory_Update_Column {
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Name = 'name',
-  /** column name */
-  ParentCategoryId = 'parent_category_id'
-}
-
-/** aggregate var_pop on columns */
-export type SubCategory_Var_Pop_Fields = {
-  __typename?: 'SubCategory_var_pop_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_pop() on columns of table "SubCategory" */
-export type SubCategory_Var_Pop_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate var_samp on columns */
-export type SubCategory_Var_Samp_Fields = {
-  __typename?: 'SubCategory_var_samp_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by var_samp() on columns of table "SubCategory" */
-export type SubCategory_Var_Samp_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** aggregate variance on columns */
-export type SubCategory_Variance_Fields = {
-  __typename?: 'SubCategory_variance_fields';
-  id?: Maybe<Scalars['Float']>;
-  parent_category_id?: Maybe<Scalars['Float']>;
-};
-
-/** order by variance() on columns of table "SubCategory" */
-export type SubCategory_Variance_Order_By = {
-  id?: Maybe<Order_By>;
-  parent_category_id?: Maybe<Order_By>;
-};
-
-/** columns and relationships of "User" */
-export type User = {
-  __typename?: 'User';
-  /** An array relationship */
-  CircleUsers: Array<CircleUser>;
-  /** An aggregated array relationship */
-  CircleUsers_aggregate: CircleUser_Aggregate;
-  /** An array relationship */
-  Messages: Array<Message>;
-  /** An aggregated array relationship */
-  Messages_aggregate: Message_Aggregate;
-  /** An object relationship */
-  Organization?: Maybe<Organization>;
-  /** An object relationship */
-  User?: Maybe<Circle>;
-  /** An array relationship */
-  UserSkills: Array<UserSkill>;
-  /** An aggregated array relationship */
-  UserSkills_aggregate: UserSkill_Aggregate;
-  avatar?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  id: Scalars['String'];
-  interested_in?: Maybe<Scalars['String']>;
-  introduction?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
-  name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserCircleUsersArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserCircleUsers_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserMessagesArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserMessages_AggregateArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserUserSkillsArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-
-/** columns and relationships of "User" */
-export type UserUserSkills_AggregateArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-/** columns and relationships of "UserSkill" */
-export type UserSkill = {
-  __typename?: 'UserSkill';
-  /** An object relationship */
-  Skill: Skill;
-  /** An object relationship */
-  User: User;
-  id: Scalars['Int'];
-  level: Scalars['Int'];
   skill_id: Scalars['Int'];
-  user_id: Scalars['String'];
+  /** An object relationship */
+  skills: Skills;
 };
 
-/** aggregated selection of "UserSkill" */
-export type UserSkill_Aggregate = {
-  __typename?: 'UserSkill_aggregate';
-  aggregate?: Maybe<UserSkill_Aggregate_Fields>;
-  nodes: Array<UserSkill>;
+/** aggregated selection of "circle_skills" */
+export type Circle_Skills_Aggregate = {
+  __typename?: 'circle_skills_aggregate';
+  aggregate?: Maybe<Circle_Skills_Aggregate_Fields>;
+  nodes: Array<Circle_Skills>;
 };
 
-/** aggregate fields of "UserSkill" */
-export type UserSkill_Aggregate_Fields = {
-  __typename?: 'UserSkill_aggregate_fields';
-  avg?: Maybe<UserSkill_Avg_Fields>;
+/** aggregate fields of "circle_skills" */
+export type Circle_Skills_Aggregate_Fields = {
+  __typename?: 'circle_skills_aggregate_fields';
+  avg?: Maybe<Circle_Skills_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
-  max?: Maybe<UserSkill_Max_Fields>;
-  min?: Maybe<UserSkill_Min_Fields>;
-  stddev?: Maybe<UserSkill_Stddev_Fields>;
-  stddev_pop?: Maybe<UserSkill_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<UserSkill_Stddev_Samp_Fields>;
-  sum?: Maybe<UserSkill_Sum_Fields>;
-  var_pop?: Maybe<UserSkill_Var_Pop_Fields>;
-  var_samp?: Maybe<UserSkill_Var_Samp_Fields>;
-  variance?: Maybe<UserSkill_Variance_Fields>;
+  max?: Maybe<Circle_Skills_Max_Fields>;
+  min?: Maybe<Circle_Skills_Min_Fields>;
+  stddev?: Maybe<Circle_Skills_Stddev_Fields>;
+  stddev_pop?: Maybe<Circle_Skills_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Circle_Skills_Stddev_Samp_Fields>;
+  sum?: Maybe<Circle_Skills_Sum_Fields>;
+  var_pop?: Maybe<Circle_Skills_Var_Pop_Fields>;
+  var_samp?: Maybe<Circle_Skills_Var_Samp_Fields>;
+  variance?: Maybe<Circle_Skills_Variance_Fields>;
 };
 
 
-/** aggregate fields of "UserSkill" */
-export type UserSkill_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<UserSkill_Select_Column>>;
+/** aggregate fields of "circle_skills" */
+export type Circle_Skills_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Circle_Skills_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "UserSkill" */
-export type UserSkill_Aggregate_Order_By = {
-  avg?: Maybe<UserSkill_Avg_Order_By>;
+/** order by aggregate values of table "circle_skills" */
+export type Circle_Skills_Aggregate_Order_By = {
+  avg?: Maybe<Circle_Skills_Avg_Order_By>;
   count?: Maybe<Order_By>;
-  max?: Maybe<UserSkill_Max_Order_By>;
-  min?: Maybe<UserSkill_Min_Order_By>;
-  stddev?: Maybe<UserSkill_Stddev_Order_By>;
-  stddev_pop?: Maybe<UserSkill_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<UserSkill_Stddev_Samp_Order_By>;
-  sum?: Maybe<UserSkill_Sum_Order_By>;
-  var_pop?: Maybe<UserSkill_Var_Pop_Order_By>;
-  var_samp?: Maybe<UserSkill_Var_Samp_Order_By>;
-  variance?: Maybe<UserSkill_Variance_Order_By>;
+  max?: Maybe<Circle_Skills_Max_Order_By>;
+  min?: Maybe<Circle_Skills_Min_Order_By>;
+  stddev?: Maybe<Circle_Skills_Stddev_Order_By>;
+  stddev_pop?: Maybe<Circle_Skills_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Circle_Skills_Stddev_Samp_Order_By>;
+  sum?: Maybe<Circle_Skills_Sum_Order_By>;
+  var_pop?: Maybe<Circle_Skills_Var_Pop_Order_By>;
+  var_samp?: Maybe<Circle_Skills_Var_Samp_Order_By>;
+  variance?: Maybe<Circle_Skills_Variance_Order_By>;
 };
 
-/** input type for inserting array relation for remote table "UserSkill" */
-export type UserSkill_Arr_Rel_Insert_Input = {
-  data: Array<UserSkill_Insert_Input>;
-  on_conflict?: Maybe<UserSkill_On_Conflict>;
+/** input type for inserting array relation for remote table "circle_skills" */
+export type Circle_Skills_Arr_Rel_Insert_Input = {
+  data: Array<Circle_Skills_Insert_Input>;
+  on_conflict?: Maybe<Circle_Skills_On_Conflict>;
 };
 
 /** aggregate avg on columns */
-export type UserSkill_Avg_Fields = {
-  __typename?: 'UserSkill_avg_fields';
+export type Circle_Skills_Avg_Fields = {
+  __typename?: 'circle_skills_avg_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
   skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by avg() on columns of table "UserSkill" */
-export type UserSkill_Avg_Order_By = {
+/** order by avg() on columns of table "circle_skills" */
+export type Circle_Skills_Avg_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
   skill_id?: Maybe<Order_By>;
 };
 
-/** Boolean expression to filter rows from the table "UserSkill". All fields are combined with a logical 'AND'. */
-export type UserSkill_Bool_Exp = {
-  Skill?: Maybe<Skill_Bool_Exp>;
-  User?: Maybe<User_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<UserSkill_Bool_Exp>>>;
-  _not?: Maybe<UserSkill_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<UserSkill_Bool_Exp>>>;
+/** Boolean expression to filter rows from the table "circle_skills". All fields are combined with a logical 'AND'. */
+export type Circle_Skills_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Circle_Skills_Bool_Exp>>>;
+  _not?: Maybe<Circle_Skills_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Circle_Skills_Bool_Exp>>>;
+  circle_id?: Maybe<Int_Comparison_Exp>;
+  circles?: Maybe<Circles_Bool_Exp>;
   id?: Maybe<Int_Comparison_Exp>;
-  level?: Maybe<Int_Comparison_Exp>;
   skill_id?: Maybe<Int_Comparison_Exp>;
-  user_id?: Maybe<String_Comparison_Exp>;
+  skills?: Maybe<Skills_Bool_Exp>;
 };
 
-/** unique or primary key constraints on table "UserSkill" */
-export enum UserSkill_Constraint {
+/** unique or primary key constraints on table "circle_skills" */
+export enum Circle_Skills_Constraint {
   /** unique or primary key constraint */
-  UserSkillPkey = 'UserSkill_pkey'
+  CircleSkillsPkey = 'circle_skills_pkey'
 }
 
-/** input type for incrementing integer column in table "UserSkill" */
-export type UserSkill_Inc_Input = {
+/** input type for incrementing integer column in table "circle_skills" */
+export type Circle_Skills_Inc_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
   skill_id?: Maybe<Scalars['Int']>;
 };
 
-/** input type for inserting data into table "UserSkill" */
-export type UserSkill_Insert_Input = {
-  Skill?: Maybe<Skill_Obj_Rel_Insert_Input>;
-  User?: Maybe<User_Obj_Rel_Insert_Input>;
+/** input type for inserting data into table "circle_skills" */
+export type Circle_Skills_Insert_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  circles?: Maybe<Circles_Obj_Rel_Insert_Input>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
   skill_id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
+  skills?: Maybe<Skills_Obj_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
-export type UserSkill_Max_Fields = {
-  __typename?: 'UserSkill_max_fields';
+export type Circle_Skills_Max_Fields = {
+  __typename?: 'circle_skills_max_fields';
+  circle_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
   skill_id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
 };
 
-/** order by max() on columns of table "UserSkill" */
-export type UserSkill_Max_Order_By = {
+/** order by max() on columns of table "circle_skills" */
+export type Circle_Skills_Max_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
   skill_id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
-export type UserSkill_Min_Fields = {
-  __typename?: 'UserSkill_min_fields';
+export type Circle_Skills_Min_Fields = {
+  __typename?: 'circle_skills_min_fields';
+  circle_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
   skill_id?: Maybe<Scalars['Int']>;
-  user_id?: Maybe<Scalars['String']>;
 };
 
-/** order by min() on columns of table "UserSkill" */
-export type UserSkill_Min_Order_By = {
+/** order by min() on columns of table "circle_skills" */
+export type Circle_Skills_Min_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
   skill_id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
 };
 
-/** response of any mutation on the table "UserSkill" */
-export type UserSkill_Mutation_Response = {
-  __typename?: 'UserSkill_mutation_response';
+/** response of any mutation on the table "circle_skills" */
+export type Circle_Skills_Mutation_Response = {
+  __typename?: 'circle_skills_mutation_response';
   /** number of affected rows by the mutation */
   affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<UserSkill>;
+  returning: Array<Circle_Skills>;
 };
 
-/** input type for inserting object relation for remote table "UserSkill" */
-export type UserSkill_Obj_Rel_Insert_Input = {
-  data: UserSkill_Insert_Input;
-  on_conflict?: Maybe<UserSkill_On_Conflict>;
+/** input type for inserting object relation for remote table "circle_skills" */
+export type Circle_Skills_Obj_Rel_Insert_Input = {
+  data: Circle_Skills_Insert_Input;
+  on_conflict?: Maybe<Circle_Skills_On_Conflict>;
 };
 
-/** on conflict condition type for table "UserSkill" */
-export type UserSkill_On_Conflict = {
-  constraint: UserSkill_Constraint;
-  update_columns: Array<UserSkill_Update_Column>;
-  where?: Maybe<UserSkill_Bool_Exp>;
+/** on conflict condition type for table "circle_skills" */
+export type Circle_Skills_On_Conflict = {
+  constraint: Circle_Skills_Constraint;
+  update_columns: Array<Circle_Skills_Update_Column>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "UserSkill" */
-export type UserSkill_Order_By = {
-  Skill?: Maybe<Skill_Order_By>;
-  User?: Maybe<User_Order_By>;
+/** ordering options when selecting data from "circle_skills" */
+export type Circle_Skills_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  circles?: Maybe<Circles_Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
   skill_id?: Maybe<Order_By>;
-  user_id?: Maybe<Order_By>;
+  skills?: Maybe<Skills_Order_By>;
 };
 
-/** primary key columns input for table: "UserSkill" */
-export type UserSkill_Pk_Columns_Input = {
+/** primary key columns input for table: "circle_skills" */
+export type Circle_Skills_Pk_Columns_Input = {
   id: Scalars['Int'];
 };
 
-/** select columns of table "UserSkill" */
-export enum UserSkill_Select_Column {
+/** select columns of table "circle_skills" */
+export enum Circle_Skills_Select_Column {
+  /** column name */
+  CircleId = 'circle_id',
   /** column name */
   Id = 'id',
   /** column name */
-  Level = 'level',
+  SkillId = 'skill_id'
+}
+
+/** input type for updating data in table "circle_skills" */
+export type Circle_Skills_Set_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Circle_Skills_Stddev_Fields = {
+  __typename?: 'circle_skills_stddev_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "circle_skills" */
+export type Circle_Skills_Stddev_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Circle_Skills_Stddev_Pop_Fields = {
+  __typename?: 'circle_skills_stddev_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "circle_skills" */
+export type Circle_Skills_Stddev_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Circle_Skills_Stddev_Samp_Fields = {
+  __typename?: 'circle_skills_stddev_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "circle_skills" */
+export type Circle_Skills_Stddev_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Circle_Skills_Sum_Fields = {
+  __typename?: 'circle_skills_sum_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "circle_skills" */
+export type Circle_Skills_Sum_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "circle_skills" */
+export enum Circle_Skills_Update_Column {
   /** column name */
-  SkillId = 'skill_id',
+  CircleId = 'circle_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  SkillId = 'skill_id'
+}
+
+/** aggregate var_pop on columns */
+export type Circle_Skills_Var_Pop_Fields = {
+  __typename?: 'circle_skills_var_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "circle_skills" */
+export type Circle_Skills_Var_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Circle_Skills_Var_Samp_Fields = {
+  __typename?: 'circle_skills_var_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "circle_skills" */
+export type Circle_Skills_Var_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Circle_Skills_Variance_Fields = {
+  __typename?: 'circle_skills_variance_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "circle_skills" */
+export type Circle_Skills_Variance_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "circle_users" */
+export type Circle_Users = {
+  __typename?: 'circle_users';
+  /** An object relationship */
+  circle: Circles;
+  circle_id: Scalars['Int'];
+  id: Scalars['Int'];
+  user_id: Scalars['String'];
+  /** An object relationship */
+  users: Users;
+};
+
+/** aggregated selection of "circle_users" */
+export type Circle_Users_Aggregate = {
+  __typename?: 'circle_users_aggregate';
+  aggregate?: Maybe<Circle_Users_Aggregate_Fields>;
+  nodes: Array<Circle_Users>;
+};
+
+/** aggregate fields of "circle_users" */
+export type Circle_Users_Aggregate_Fields = {
+  __typename?: 'circle_users_aggregate_fields';
+  avg?: Maybe<Circle_Users_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Circle_Users_Max_Fields>;
+  min?: Maybe<Circle_Users_Min_Fields>;
+  stddev?: Maybe<Circle_Users_Stddev_Fields>;
+  stddev_pop?: Maybe<Circle_Users_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Circle_Users_Stddev_Samp_Fields>;
+  sum?: Maybe<Circle_Users_Sum_Fields>;
+  var_pop?: Maybe<Circle_Users_Var_Pop_Fields>;
+  var_samp?: Maybe<Circle_Users_Var_Samp_Fields>;
+  variance?: Maybe<Circle_Users_Variance_Fields>;
+};
+
+
+/** aggregate fields of "circle_users" */
+export type Circle_Users_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Circle_Users_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "circle_users" */
+export type Circle_Users_Aggregate_Order_By = {
+  avg?: Maybe<Circle_Users_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Circle_Users_Max_Order_By>;
+  min?: Maybe<Circle_Users_Min_Order_By>;
+  stddev?: Maybe<Circle_Users_Stddev_Order_By>;
+  stddev_pop?: Maybe<Circle_Users_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Circle_Users_Stddev_Samp_Order_By>;
+  sum?: Maybe<Circle_Users_Sum_Order_By>;
+  var_pop?: Maybe<Circle_Users_Var_Pop_Order_By>;
+  var_samp?: Maybe<Circle_Users_Var_Samp_Order_By>;
+  variance?: Maybe<Circle_Users_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "circle_users" */
+export type Circle_Users_Arr_Rel_Insert_Input = {
+  data: Array<Circle_Users_Insert_Input>;
+  on_conflict?: Maybe<Circle_Users_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Circle_Users_Avg_Fields = {
+  __typename?: 'circle_users_avg_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "circle_users" */
+export type Circle_Users_Avg_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "circle_users". All fields are combined with a logical 'AND'. */
+export type Circle_Users_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Circle_Users_Bool_Exp>>>;
+  _not?: Maybe<Circle_Users_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Circle_Users_Bool_Exp>>>;
+  circle?: Maybe<Circles_Bool_Exp>;
+  circle_id?: Maybe<Int_Comparison_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  user_id?: Maybe<String_Comparison_Exp>;
+  users?: Maybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "circle_users" */
+export enum Circle_Users_Constraint {
+  /** unique or primary key constraint */
+  RoomUserPkey = 'RoomUser_pkey'
+}
+
+/** input type for incrementing integer column in table "circle_users" */
+export type Circle_Users_Inc_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "circle_users" */
+export type Circle_Users_Insert_Input = {
+  circle?: Maybe<Circles_Obj_Rel_Insert_Input>;
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+  users?: Maybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Circle_Users_Max_Fields = {
+  __typename?: 'circle_users_max_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "circle_users" */
+export type Circle_Users_Max_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Circle_Users_Min_Fields = {
+  __typename?: 'circle_users_min_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "circle_users" */
+export type Circle_Users_Min_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "circle_users" */
+export type Circle_Users_Mutation_Response = {
+  __typename?: 'circle_users_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Circle_Users>;
+};
+
+/** input type for inserting object relation for remote table "circle_users" */
+export type Circle_Users_Obj_Rel_Insert_Input = {
+  data: Circle_Users_Insert_Input;
+  on_conflict?: Maybe<Circle_Users_On_Conflict>;
+};
+
+/** on conflict condition type for table "circle_users" */
+export type Circle_Users_On_Conflict = {
+  constraint: Circle_Users_Constraint;
+  update_columns: Array<Circle_Users_Update_Column>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "circle_users" */
+export type Circle_Users_Order_By = {
+  circle?: Maybe<Circles_Order_By>;
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+  users?: Maybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: "circle_users" */
+export type Circle_Users_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "circle_users" */
+export enum Circle_Users_Select_Column {
+  /** column name */
+  CircleId = 'circle_id',
+  /** column name */
+  Id = 'id',
   /** column name */
   UserId = 'user_id'
 }
 
-/** input type for updating data in table "UserSkill" */
-export type UserSkill_Set_Input = {
+/** input type for updating data in table "circle_users" */
+export type Circle_Users_Set_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
   user_id?: Maybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
-export type UserSkill_Stddev_Fields = {
-  __typename?: 'UserSkill_stddev_fields';
+export type Circle_Users_Stddev_Fields = {
+  __typename?: 'circle_users_stddev_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev() on columns of table "UserSkill" */
-export type UserSkill_Stddev_Order_By = {
+/** order by stddev() on columns of table "circle_users" */
+export type Circle_Users_Stddev_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type UserSkill_Stddev_Pop_Fields = {
-  __typename?: 'UserSkill_stddev_pop_fields';
+export type Circle_Users_Stddev_Pop_Fields = {
+  __typename?: 'circle_users_stddev_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_pop() on columns of table "UserSkill" */
-export type UserSkill_Stddev_Pop_Order_By = {
+/** order by stddev_pop() on columns of table "circle_users" */
+export type Circle_Users_Stddev_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type UserSkill_Stddev_Samp_Fields = {
-  __typename?: 'UserSkill_stddev_samp_fields';
+export type Circle_Users_Stddev_Samp_Fields = {
+  __typename?: 'circle_users_stddev_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_samp() on columns of table "UserSkill" */
-export type UserSkill_Stddev_Samp_Order_By = {
+/** order by stddev_samp() on columns of table "circle_users" */
+export type Circle_Users_Stddev_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
-export type UserSkill_Sum_Fields = {
-  __typename?: 'UserSkill_sum_fields';
+export type Circle_Users_Sum_Fields = {
+  __typename?: 'circle_users_sum_fields';
+  circle_id?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  level?: Maybe<Scalars['Int']>;
-  skill_id?: Maybe<Scalars['Int']>;
 };
 
-/** order by sum() on columns of table "UserSkill" */
-export type UserSkill_Sum_Order_By = {
+/** order by sum() on columns of table "circle_users" */
+export type Circle_Users_Sum_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
-/** update columns of table "UserSkill" */
-export enum UserSkill_Update_Column {
+/** update columns of table "circle_users" */
+export enum Circle_Users_Update_Column {
+  /** column name */
+  CircleId = 'circle_id',
   /** column name */
   Id = 'id',
-  /** column name */
-  Level = 'level',
-  /** column name */
-  SkillId = 'skill_id',
   /** column name */
   UserId = 'user_id'
 }
 
 /** aggregate var_pop on columns */
-export type UserSkill_Var_Pop_Fields = {
-  __typename?: 'UserSkill_var_pop_fields';
+export type Circle_Users_Var_Pop_Fields = {
+  __typename?: 'circle_users_var_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_pop() on columns of table "UserSkill" */
-export type UserSkill_Var_Pop_Order_By = {
+/** order by var_pop() on columns of table "circle_users" */
+export type Circle_Users_Var_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type UserSkill_Var_Samp_Fields = {
-  __typename?: 'UserSkill_var_samp_fields';
+export type Circle_Users_Var_Samp_Fields = {
+  __typename?: 'circle_users_var_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_samp() on columns of table "UserSkill" */
-export type UserSkill_Var_Samp_Order_By = {
+/** order by var_samp() on columns of table "circle_users" */
+export type Circle_Users_Var_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type UserSkill_Variance_Fields = {
-  __typename?: 'UserSkill_variance_fields';
+export type Circle_Users_Variance_Fields = {
+  __typename?: 'circle_users_variance_fields';
+  circle_id?: Maybe<Scalars['Float']>;
   id?: Maybe<Scalars['Float']>;
-  level?: Maybe<Scalars['Float']>;
-  skill_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by variance() on columns of table "UserSkill" */
-export type UserSkill_Variance_Order_By = {
+/** order by variance() on columns of table "circle_users" */
+export type Circle_Users_Variance_Order_By = {
+  circle_id?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  level?: Maybe<Order_By>;
-  skill_id?: Maybe<Order_By>;
 };
 
-/** aggregated selection of "User" */
-export type User_Aggregate = {
-  __typename?: 'User_aggregate';
-  aggregate?: Maybe<User_Aggregate_Fields>;
-  nodes: Array<User>;
+/** columns and relationships of "circles" */
+export type Circles = {
+  __typename?: 'circles';
+  avatar: Scalars['String'];
+  /** An array relationship */
+  circle_skills: Array<Circle_Skills>;
+  /** An aggregated array relationship */
+  circle_skills_aggregate: Circle_Skills_Aggregate;
+  /** An array relationship */
+  circle_users: Array<Circle_Users>;
+  /** An aggregated array relationship */
+  circle_users_aggregate: Circle_Users_Aggregate;
+  id: Scalars['Int'];
+  main_role?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  messages: Array<Messages>;
+  /** An aggregated array relationship */
+  messages_aggregate: Messages_Aggregate;
+  name: Scalars['String'];
+  organization_id?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  organizations?: Maybe<Organizations>;
+  owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  sub_categories?: Maybe<Sub_Categories>;
+  sub_category_id?: Maybe<Scalars['Int']>;
+  /** An object relationship */
+  users?: Maybe<Users>;
+  what_we_will_do?: Maybe<Scalars['String']>;
 };
 
-/** aggregate fields of "User" */
-export type User_Aggregate_Fields = {
-  __typename?: 'User_aggregate_fields';
-  avg?: Maybe<User_Avg_Fields>;
+
+/** columns and relationships of "circles" */
+export type CirclesCircle_SkillsArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "circles" */
+export type CirclesCircle_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "circles" */
+export type CirclesCircle_UsersArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
+};
+
+
+/** columns and relationships of "circles" */
+export type CirclesCircle_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
+};
+
+
+/** columns and relationships of "circles" */
+export type CirclesMessagesArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "circles" */
+export type CirclesMessages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
+};
+
+/** aggregated selection of "circles" */
+export type Circles_Aggregate = {
+  __typename?: 'circles_aggregate';
+  aggregate?: Maybe<Circles_Aggregate_Fields>;
+  nodes: Array<Circles>;
+};
+
+/** aggregate fields of "circles" */
+export type Circles_Aggregate_Fields = {
+  __typename?: 'circles_aggregate_fields';
+  avg?: Maybe<Circles_Avg_Fields>;
   count?: Maybe<Scalars['Int']>;
-  max?: Maybe<User_Max_Fields>;
-  min?: Maybe<User_Min_Fields>;
-  stddev?: Maybe<User_Stddev_Fields>;
-  stddev_pop?: Maybe<User_Stddev_Pop_Fields>;
-  stddev_samp?: Maybe<User_Stddev_Samp_Fields>;
-  sum?: Maybe<User_Sum_Fields>;
-  var_pop?: Maybe<User_Var_Pop_Fields>;
-  var_samp?: Maybe<User_Var_Samp_Fields>;
-  variance?: Maybe<User_Variance_Fields>;
+  max?: Maybe<Circles_Max_Fields>;
+  min?: Maybe<Circles_Min_Fields>;
+  stddev?: Maybe<Circles_Stddev_Fields>;
+  stddev_pop?: Maybe<Circles_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Circles_Stddev_Samp_Fields>;
+  sum?: Maybe<Circles_Sum_Fields>;
+  var_pop?: Maybe<Circles_Var_Pop_Fields>;
+  var_samp?: Maybe<Circles_Var_Samp_Fields>;
+  variance?: Maybe<Circles_Variance_Fields>;
 };
 
 
-/** aggregate fields of "User" */
-export type User_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<User_Select_Column>>;
+/** aggregate fields of "circles" */
+export type Circles_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Circles_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "User" */
-export type User_Aggregate_Order_By = {
-  avg?: Maybe<User_Avg_Order_By>;
+/** order by aggregate values of table "circles" */
+export type Circles_Aggregate_Order_By = {
+  avg?: Maybe<Circles_Avg_Order_By>;
   count?: Maybe<Order_By>;
-  max?: Maybe<User_Max_Order_By>;
-  min?: Maybe<User_Min_Order_By>;
-  stddev?: Maybe<User_Stddev_Order_By>;
-  stddev_pop?: Maybe<User_Stddev_Pop_Order_By>;
-  stddev_samp?: Maybe<User_Stddev_Samp_Order_By>;
-  sum?: Maybe<User_Sum_Order_By>;
-  var_pop?: Maybe<User_Var_Pop_Order_By>;
-  var_samp?: Maybe<User_Var_Samp_Order_By>;
-  variance?: Maybe<User_Variance_Order_By>;
+  max?: Maybe<Circles_Max_Order_By>;
+  min?: Maybe<Circles_Min_Order_By>;
+  stddev?: Maybe<Circles_Stddev_Order_By>;
+  stddev_pop?: Maybe<Circles_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Circles_Stddev_Samp_Order_By>;
+  sum?: Maybe<Circles_Sum_Order_By>;
+  var_pop?: Maybe<Circles_Var_Pop_Order_By>;
+  var_samp?: Maybe<Circles_Var_Samp_Order_By>;
+  variance?: Maybe<Circles_Variance_Order_By>;
 };
 
-/** input type for inserting array relation for remote table "User" */
-export type User_Arr_Rel_Insert_Input = {
-  data: Array<User_Insert_Input>;
-  on_conflict?: Maybe<User_On_Conflict>;
+/** input type for inserting array relation for remote table "circles" */
+export type Circles_Arr_Rel_Insert_Input = {
+  data: Array<Circles_Insert_Input>;
+  on_conflict?: Maybe<Circles_On_Conflict>;
 };
 
 /** aggregate avg on columns */
-export type User_Avg_Fields = {
-  __typename?: 'User_avg_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Avg_Fields = {
+  __typename?: 'circles_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by avg() on columns of table "User" */
-export type User_Avg_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by avg() on columns of table "circles" */
+export type Circles_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
-/** Boolean expression to filter rows from the table "User". All fields are combined with a logical 'AND'. */
-export type User_Bool_Exp = {
-  CircleUsers?: Maybe<CircleUser_Bool_Exp>;
-  Messages?: Maybe<Message_Bool_Exp>;
-  Organization?: Maybe<Organization_Bool_Exp>;
-  User?: Maybe<Circle_Bool_Exp>;
-  UserSkills?: Maybe<UserSkill_Bool_Exp>;
-  _and?: Maybe<Array<Maybe<User_Bool_Exp>>>;
-  _not?: Maybe<User_Bool_Exp>;
-  _or?: Maybe<Array<Maybe<User_Bool_Exp>>>;
+/** Boolean expression to filter rows from the table "circles". All fields are combined with a logical 'AND'. */
+export type Circles_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Circles_Bool_Exp>>>;
+  _not?: Maybe<Circles_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Circles_Bool_Exp>>>;
   avatar?: Maybe<String_Comparison_Exp>;
-  created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  email?: Maybe<String_Comparison_Exp>;
-  id?: Maybe<String_Comparison_Exp>;
-  interested_in?: Maybe<String_Comparison_Exp>;
-  introduction?: Maybe<String_Comparison_Exp>;
-  last_seen?: Maybe<Timestamptz_Comparison_Exp>;
+  circle_skills?: Maybe<Circle_Skills_Bool_Exp>;
+  circle_users?: Maybe<Circle_Users_Bool_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  main_role?: Maybe<String_Comparison_Exp>;
+  messages?: Maybe<Messages_Bool_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  organization_id?: Maybe<Int_Comparison_Exp>;
+  organization_id?: Maybe<String_Comparison_Exp>;
+  organizations?: Maybe<Organizations_Bool_Exp>;
+  owner_id?: Maybe<String_Comparison_Exp>;
+  recruit_title?: Maybe<String_Comparison_Exp>;
+  sub_categories?: Maybe<Sub_Categories_Bool_Exp>;
+  sub_category_id?: Maybe<Int_Comparison_Exp>;
+  users?: Maybe<Users_Bool_Exp>;
+  what_we_will_do?: Maybe<String_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "User" */
-export enum User_Constraint {
+/** unique or primary key constraints on table "circles" */
+export enum Circles_Constraint {
   /** unique or primary key constraint */
-  UserPkey = 'user_pkey'
+  RoomsPkey = 'rooms_pkey'
 }
 
-/** input type for incrementing integer column in table "User" */
-export type User_Inc_Input = {
-  organization_id?: Maybe<Scalars['Int']>;
+/** input type for incrementing integer column in table "circles" */
+export type Circles_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  sub_category_id?: Maybe<Scalars['Int']>;
 };
 
-/** input type for inserting data into table "User" */
-export type User_Insert_Input = {
-  CircleUsers?: Maybe<CircleUser_Arr_Rel_Insert_Input>;
-  Messages?: Maybe<Message_Arr_Rel_Insert_Input>;
-  Organization?: Maybe<Organization_Obj_Rel_Insert_Input>;
-  User?: Maybe<Circle_Obj_Rel_Insert_Input>;
-  UserSkills?: Maybe<UserSkill_Arr_Rel_Insert_Input>;
+/** input type for inserting data into table "circles" */
+export type Circles_Insert_Input = {
   avatar?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  interested_in?: Maybe<Scalars['String']>;
-  introduction?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
+  circle_skills?: Maybe<Circle_Skills_Arr_Rel_Insert_Input>;
+  circle_users?: Maybe<Circle_Users_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
+  main_role?: Maybe<Scalars['String']>;
+  messages?: Maybe<Messages_Arr_Rel_Insert_Input>;
   name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
+  organization_id?: Maybe<Scalars['String']>;
+  organizations?: Maybe<Organizations_Obj_Rel_Insert_Input>;
+  owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
+  sub_categories?: Maybe<Sub_Categories_Obj_Rel_Insert_Input>;
+  sub_category_id?: Maybe<Scalars['Int']>;
+  users?: Maybe<Users_Obj_Rel_Insert_Input>;
+  what_we_will_do?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type User_Max_Fields = {
-  __typename?: 'User_max_fields';
+export type Circles_Max_Fields = {
+  __typename?: 'circles_max_fields';
   avatar?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  interested_in?: Maybe<Scalars['String']>;
-  introduction?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  main_role?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
+  organization_id?: Maybe<Scalars['String']>;
+  owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
+  sub_category_id?: Maybe<Scalars['Int']>;
+  what_we_will_do?: Maybe<Scalars['String']>;
 };
 
-/** order by max() on columns of table "User" */
-export type User_Max_Order_By = {
+/** order by max() on columns of table "circles" */
+export type Circles_Max_Order_By = {
   avatar?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  interested_in?: Maybe<Order_By>;
-  introduction?: Maybe<Order_By>;
-  last_seen?: Maybe<Order_By>;
+  main_role?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
+  owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
+  what_we_will_do?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
-export type User_Min_Fields = {
-  __typename?: 'User_min_fields';
+export type Circles_Min_Fields = {
+  __typename?: 'circles_min_fields';
   avatar?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  interested_in?: Maybe<Scalars['String']>;
-  introduction?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  main_role?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
+  organization_id?: Maybe<Scalars['String']>;
+  owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
+  sub_category_id?: Maybe<Scalars['Int']>;
+  what_we_will_do?: Maybe<Scalars['String']>;
 };
 
-/** order by min() on columns of table "User" */
-export type User_Min_Order_By = {
+/** order by min() on columns of table "circles" */
+export type Circles_Min_Order_By = {
   avatar?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  interested_in?: Maybe<Order_By>;
-  introduction?: Maybe<Order_By>;
-  last_seen?: Maybe<Order_By>;
+  main_role?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
+  owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
+  what_we_will_do?: Maybe<Order_By>;
 };
 
-/** response of any mutation on the table "User" */
-export type User_Mutation_Response = {
-  __typename?: 'User_mutation_response';
+/** response of any mutation on the table "circles" */
+export type Circles_Mutation_Response = {
+  __typename?: 'circles_mutation_response';
   /** number of affected rows by the mutation */
   affected_rows: Scalars['Int'];
   /** data of the affected rows by the mutation */
-  returning: Array<User>;
+  returning: Array<Circles>;
 };
 
-/** input type for inserting object relation for remote table "User" */
-export type User_Obj_Rel_Insert_Input = {
-  data: User_Insert_Input;
-  on_conflict?: Maybe<User_On_Conflict>;
+/** input type for inserting object relation for remote table "circles" */
+export type Circles_Obj_Rel_Insert_Input = {
+  data: Circles_Insert_Input;
+  on_conflict?: Maybe<Circles_On_Conflict>;
 };
 
-/** on conflict condition type for table "User" */
-export type User_On_Conflict = {
-  constraint: User_Constraint;
-  update_columns: Array<User_Update_Column>;
-  where?: Maybe<User_Bool_Exp>;
+/** on conflict condition type for table "circles" */
+export type Circles_On_Conflict = {
+  constraint: Circles_Constraint;
+  update_columns: Array<Circles_Update_Column>;
+  where?: Maybe<Circles_Bool_Exp>;
 };
 
-/** ordering options when selecting data from "User" */
-export type User_Order_By = {
-  CircleUsers_aggregate?: Maybe<CircleUser_Aggregate_Order_By>;
-  Messages_aggregate?: Maybe<Message_Aggregate_Order_By>;
-  Organization?: Maybe<Organization_Order_By>;
-  User?: Maybe<Circle_Order_By>;
-  UserSkills_aggregate?: Maybe<UserSkill_Aggregate_Order_By>;
+/** ordering options when selecting data from "circles" */
+export type Circles_Order_By = {
   avatar?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  email?: Maybe<Order_By>;
+  circle_skills_aggregate?: Maybe<Circle_Skills_Aggregate_Order_By>;
+  circle_users_aggregate?: Maybe<Circle_Users_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
-  interested_in?: Maybe<Order_By>;
-  introduction?: Maybe<Order_By>;
-  last_seen?: Maybe<Order_By>;
+  main_role?: Maybe<Order_By>;
+  messages_aggregate?: Maybe<Messages_Aggregate_Order_By>;
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
+  organizations?: Maybe<Organizations_Order_By>;
+  owner_id?: Maybe<Order_By>;
+  recruit_title?: Maybe<Order_By>;
+  sub_categories?: Maybe<Sub_Categories_Order_By>;
+  sub_category_id?: Maybe<Order_By>;
+  users?: Maybe<Users_Order_By>;
+  what_we_will_do?: Maybe<Order_By>;
 };
 
-/** primary key columns input for table: "User" */
-export type User_Pk_Columns_Input = {
-  id: Scalars['String'];
+/** primary key columns input for table: "circles" */
+export type Circles_Pk_Columns_Input = {
+  id: Scalars['Int'];
 };
 
-/** select columns of table "User" */
-export enum User_Select_Column {
+/** select columns of table "circles" */
+export enum Circles_Select_Column {
   /** column name */
   Avatar = 'avatar',
   /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Email = 'email',
-  /** column name */
   Id = 'id',
   /** column name */
-  InterestedIn = 'interested_in',
-  /** column name */
-  Introduction = 'introduction',
-  /** column name */
-  LastSeen = 'last_seen',
+  MainRole = 'main_role',
   /** column name */
   Name = 'name',
   /** column name */
-  OrganizationId = 'organization_id'
+  OrganizationId = 'organization_id',
+  /** column name */
+  OwnerId = 'owner_id',
+  /** column name */
+  RecruitTitle = 'recruit_title',
+  /** column name */
+  SubCategoryId = 'sub_category_id',
+  /** column name */
+  WhatWeWillDo = 'what_we_will_do'
 }
 
-/** input type for updating data in table "User" */
-export type User_Set_Input = {
+/** input type for updating data in table "circles" */
+export type Circles_Set_Input = {
   avatar?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['String']>;
-  interested_in?: Maybe<Scalars['String']>;
-  introduction?: Maybe<Scalars['String']>;
-  last_seen?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['Int']>;
+  main_role?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  organization_id?: Maybe<Scalars['Int']>;
+  organization_id?: Maybe<Scalars['String']>;
+  owner_id?: Maybe<Scalars['String']>;
+  recruit_title?: Maybe<Scalars['String']>;
+  sub_category_id?: Maybe<Scalars['Int']>;
+  what_we_will_do?: Maybe<Scalars['String']>;
 };
 
 /** aggregate stddev on columns */
-export type User_Stddev_Fields = {
-  __typename?: 'User_stddev_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Stddev_Fields = {
+  __typename?: 'circles_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev() on columns of table "User" */
-export type User_Stddev_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by stddev() on columns of table "circles" */
+export type Circles_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
-export type User_Stddev_Pop_Fields = {
-  __typename?: 'User_stddev_pop_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Stddev_Pop_Fields = {
+  __typename?: 'circles_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_pop() on columns of table "User" */
-export type User_Stddev_Pop_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by stddev_pop() on columns of table "circles" */
+export type Circles_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
-export type User_Stddev_Samp_Fields = {
-  __typename?: 'User_stddev_samp_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Stddev_Samp_Fields = {
+  __typename?: 'circles_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by stddev_samp() on columns of table "User" */
-export type User_Stddev_Samp_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by stddev_samp() on columns of table "circles" */
+export type Circles_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
 /** aggregate sum on columns */
-export type User_Sum_Fields = {
-  __typename?: 'User_sum_fields';
-  organization_id?: Maybe<Scalars['Int']>;
+export type Circles_Sum_Fields = {
+  __typename?: 'circles_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  sub_category_id?: Maybe<Scalars['Int']>;
 };
 
-/** order by sum() on columns of table "User" */
-export type User_Sum_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by sum() on columns of table "circles" */
+export type Circles_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
-/** update columns of table "User" */
-export enum User_Update_Column {
+/** update columns of table "circles" */
+export enum Circles_Update_Column {
   /** column name */
   Avatar = 'avatar',
   /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Email = 'email',
-  /** column name */
   Id = 'id',
   /** column name */
-  InterestedIn = 'interested_in',
-  /** column name */
-  Introduction = 'introduction',
-  /** column name */
-  LastSeen = 'last_seen',
+  MainRole = 'main_role',
   /** column name */
   Name = 'name',
   /** column name */
-  OrganizationId = 'organization_id'
+  OrganizationId = 'organization_id',
+  /** column name */
+  OwnerId = 'owner_id',
+  /** column name */
+  RecruitTitle = 'recruit_title',
+  /** column name */
+  SubCategoryId = 'sub_category_id',
+  /** column name */
+  WhatWeWillDo = 'what_we_will_do'
 }
 
 /** aggregate var_pop on columns */
-export type User_Var_Pop_Fields = {
-  __typename?: 'User_var_pop_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Var_Pop_Fields = {
+  __typename?: 'circles_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_pop() on columns of table "User" */
-export type User_Var_Pop_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by var_pop() on columns of table "circles" */
+export type Circles_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
-export type User_Var_Samp_Fields = {
-  __typename?: 'User_var_samp_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Var_Samp_Fields = {
+  __typename?: 'circles_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by var_samp() on columns of table "User" */
-export type User_Var_Samp_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by var_samp() on columns of table "circles" */
+export type Circles_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
 };
 
 /** aggregate variance on columns */
-export type User_Variance_Fields = {
-  __typename?: 'User_variance_fields';
-  organization_id?: Maybe<Scalars['Float']>;
+export type Circles_Variance_Fields = {
+  __typename?: 'circles_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  sub_category_id?: Maybe<Scalars['Float']>;
 };
 
-/** order by variance() on columns of table "User" */
-export type User_Variance_Order_By = {
-  organization_id?: Maybe<Order_By>;
+/** order by variance() on columns of table "circles" */
+export type Circles_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  sub_category_id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "messages" */
+export type Messages = {
+  __typename?: 'messages';
+  circle_id: Scalars['Int'];
+  /** An object relationship */
+  circles: Circles;
+  id: Scalars['Int'];
+  text: Scalars['String'];
+  timestamp: Scalars['timestamptz'];
+  user_id: Scalars['String'];
+  /** An object relationship */
+  users: Users;
+};
+
+/** aggregated selection of "messages" */
+export type Messages_Aggregate = {
+  __typename?: 'messages_aggregate';
+  aggregate?: Maybe<Messages_Aggregate_Fields>;
+  nodes: Array<Messages>;
+};
+
+/** aggregate fields of "messages" */
+export type Messages_Aggregate_Fields = {
+  __typename?: 'messages_aggregate_fields';
+  avg?: Maybe<Messages_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Messages_Max_Fields>;
+  min?: Maybe<Messages_Min_Fields>;
+  stddev?: Maybe<Messages_Stddev_Fields>;
+  stddev_pop?: Maybe<Messages_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Messages_Stddev_Samp_Fields>;
+  sum?: Maybe<Messages_Sum_Fields>;
+  var_pop?: Maybe<Messages_Var_Pop_Fields>;
+  var_samp?: Maybe<Messages_Var_Samp_Fields>;
+  variance?: Maybe<Messages_Variance_Fields>;
+};
+
+
+/** aggregate fields of "messages" */
+export type Messages_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Messages_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "messages" */
+export type Messages_Aggregate_Order_By = {
+  avg?: Maybe<Messages_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Messages_Max_Order_By>;
+  min?: Maybe<Messages_Min_Order_By>;
+  stddev?: Maybe<Messages_Stddev_Order_By>;
+  stddev_pop?: Maybe<Messages_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Messages_Stddev_Samp_Order_By>;
+  sum?: Maybe<Messages_Sum_Order_By>;
+  var_pop?: Maybe<Messages_Var_Pop_Order_By>;
+  var_samp?: Maybe<Messages_Var_Samp_Order_By>;
+  variance?: Maybe<Messages_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "messages" */
+export type Messages_Arr_Rel_Insert_Input = {
+  data: Array<Messages_Insert_Input>;
+  on_conflict?: Maybe<Messages_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Messages_Avg_Fields = {
+  __typename?: 'messages_avg_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "messages" */
+export type Messages_Avg_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "messages". All fields are combined with a logical 'AND'. */
+export type Messages_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Messages_Bool_Exp>>>;
+  _not?: Maybe<Messages_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Messages_Bool_Exp>>>;
+  circle_id?: Maybe<Int_Comparison_Exp>;
+  circles?: Maybe<Circles_Bool_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  text?: Maybe<String_Comparison_Exp>;
+  timestamp?: Maybe<Timestamptz_Comparison_Exp>;
+  user_id?: Maybe<String_Comparison_Exp>;
+  users?: Maybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "messages" */
+export enum Messages_Constraint {
+  /** unique or primary key constraint */
+  MessagesPkey = 'Messages_pkey'
+}
+
+/** input type for incrementing integer column in table "messages" */
+export type Messages_Inc_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "messages" */
+export type Messages_Insert_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  circles?: Maybe<Circles_Obj_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
+  text?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['String']>;
+  users?: Maybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Messages_Max_Fields = {
+  __typename?: 'messages_max_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  text?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "messages" */
+export type Messages_Max_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  text?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Messages_Min_Fields = {
+  __typename?: 'messages_min_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  text?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "messages" */
+export type Messages_Min_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  text?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "messages" */
+export type Messages_Mutation_Response = {
+  __typename?: 'messages_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Messages>;
+};
+
+/** input type for inserting object relation for remote table "messages" */
+export type Messages_Obj_Rel_Insert_Input = {
+  data: Messages_Insert_Input;
+  on_conflict?: Maybe<Messages_On_Conflict>;
+};
+
+/** on conflict condition type for table "messages" */
+export type Messages_On_Conflict = {
+  constraint: Messages_Constraint;
+  update_columns: Array<Messages_Update_Column>;
+  where?: Maybe<Messages_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "messages" */
+export type Messages_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  circles?: Maybe<Circles_Order_By>;
+  id?: Maybe<Order_By>;
+  text?: Maybe<Order_By>;
+  timestamp?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+  users?: Maybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: "messages" */
+export type Messages_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "messages" */
+export enum Messages_Select_Column {
+  /** column name */
+  CircleId = 'circle_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Text = 'text',
+  /** column name */
+  Timestamp = 'timestamp',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "messages" */
+export type Messages_Set_Input = {
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  text?: Maybe<Scalars['String']>;
+  timestamp?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Messages_Stddev_Fields = {
+  __typename?: 'messages_stddev_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "messages" */
+export type Messages_Stddev_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Messages_Stddev_Pop_Fields = {
+  __typename?: 'messages_stddev_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "messages" */
+export type Messages_Stddev_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Messages_Stddev_Samp_Fields = {
+  __typename?: 'messages_stddev_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "messages" */
+export type Messages_Stddev_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Messages_Sum_Fields = {
+  __typename?: 'messages_sum_fields';
+  circle_id?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "messages" */
+export type Messages_Sum_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "messages" */
+export enum Messages_Update_Column {
+  /** column name */
+  CircleId = 'circle_id',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Text = 'text',
+  /** column name */
+  Timestamp = 'timestamp',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** aggregate var_pop on columns */
+export type Messages_Var_Pop_Fields = {
+  __typename?: 'messages_var_pop_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "messages" */
+export type Messages_Var_Pop_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Messages_Var_Samp_Fields = {
+  __typename?: 'messages_var_samp_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "messages" */
+export type Messages_Var_Samp_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Messages_Variance_Fields = {
+  __typename?: 'messages_variance_fields';
+  circle_id?: Maybe<Scalars['Float']>;
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "messages" */
+export type Messages_Variance_Order_By = {
+  circle_id?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
 };
 
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
-  /** delete data from the table: "Circle" */
-  delete_Circle?: Maybe<Circle_Mutation_Response>;
-  /** delete data from the table: "CircleSkill" */
-  delete_CircleSkill?: Maybe<CircleSkill_Mutation_Response>;
-  /** delete single row from the table: "CircleSkill" */
-  delete_CircleSkill_by_pk?: Maybe<CircleSkill>;
-  /** delete data from the table: "CircleUser" */
-  delete_CircleUser?: Maybe<CircleUser_Mutation_Response>;
-  /** delete single row from the table: "CircleUser" */
-  delete_CircleUser_by_pk?: Maybe<CircleUser>;
-  /** delete single row from the table: "Circle" */
-  delete_Circle_by_pk?: Maybe<Circle>;
-  /** delete data from the table: "Message" */
-  delete_Message?: Maybe<Message_Mutation_Response>;
-  /** delete single row from the table: "Message" */
-  delete_Message_by_pk?: Maybe<Message>;
-  /** delete data from the table: "Organization" */
-  delete_Organization?: Maybe<Organization_Mutation_Response>;
-  /** delete single row from the table: "Organization" */
-  delete_Organization_by_pk?: Maybe<Organization>;
-  /** delete data from the table: "ParentCategory" */
-  delete_ParentCategory?: Maybe<ParentCategory_Mutation_Response>;
-  /** delete single row from the table: "ParentCategory" */
-  delete_ParentCategory_by_pk?: Maybe<ParentCategory>;
-  /** delete data from the table: "Skill" */
-  delete_Skill?: Maybe<Skill_Mutation_Response>;
-  /** delete single row from the table: "Skill" */
-  delete_Skill_by_pk?: Maybe<Skill>;
-  /** delete data from the table: "SubCategory" */
-  delete_SubCategory?: Maybe<SubCategory_Mutation_Response>;
-  /** delete single row from the table: "SubCategory" */
-  delete_SubCategory_by_pk?: Maybe<SubCategory>;
-  /** delete data from the table: "User" */
-  delete_User?: Maybe<User_Mutation_Response>;
-  /** delete data from the table: "UserSkill" */
-  delete_UserSkill?: Maybe<UserSkill_Mutation_Response>;
-  /** delete single row from the table: "UserSkill" */
-  delete_UserSkill_by_pk?: Maybe<UserSkill>;
-  /** delete single row from the table: "User" */
-  delete_User_by_pk?: Maybe<User>;
-  /** insert data into the table: "Circle" */
-  insert_Circle?: Maybe<Circle_Mutation_Response>;
-  /** insert data into the table: "CircleSkill" */
-  insert_CircleSkill?: Maybe<CircleSkill_Mutation_Response>;
-  /** insert a single row into the table: "CircleSkill" */
-  insert_CircleSkill_one?: Maybe<CircleSkill>;
-  /** insert data into the table: "CircleUser" */
-  insert_CircleUser?: Maybe<CircleUser_Mutation_Response>;
-  /** insert a single row into the table: "CircleUser" */
-  insert_CircleUser_one?: Maybe<CircleUser>;
-  /** insert a single row into the table: "Circle" */
-  insert_Circle_one?: Maybe<Circle>;
-  /** insert data into the table: "Message" */
-  insert_Message?: Maybe<Message_Mutation_Response>;
-  /** insert a single row into the table: "Message" */
-  insert_Message_one?: Maybe<Message>;
-  /** insert data into the table: "Organization" */
-  insert_Organization?: Maybe<Organization_Mutation_Response>;
-  /** insert a single row into the table: "Organization" */
-  insert_Organization_one?: Maybe<Organization>;
-  /** insert data into the table: "ParentCategory" */
-  insert_ParentCategory?: Maybe<ParentCategory_Mutation_Response>;
-  /** insert a single row into the table: "ParentCategory" */
-  insert_ParentCategory_one?: Maybe<ParentCategory>;
-  /** insert data into the table: "Skill" */
-  insert_Skill?: Maybe<Skill_Mutation_Response>;
-  /** insert a single row into the table: "Skill" */
-  insert_Skill_one?: Maybe<Skill>;
-  /** insert data into the table: "SubCategory" */
-  insert_SubCategory?: Maybe<SubCategory_Mutation_Response>;
-  /** insert a single row into the table: "SubCategory" */
-  insert_SubCategory_one?: Maybe<SubCategory>;
-  /** insert data into the table: "User" */
-  insert_User?: Maybe<User_Mutation_Response>;
-  /** insert data into the table: "UserSkill" */
-  insert_UserSkill?: Maybe<UserSkill_Mutation_Response>;
-  /** insert a single row into the table: "UserSkill" */
-  insert_UserSkill_one?: Maybe<UserSkill>;
-  /** insert a single row into the table: "User" */
-  insert_User_one?: Maybe<User>;
-  /** update data of the table: "Circle" */
-  update_Circle?: Maybe<Circle_Mutation_Response>;
-  /** update data of the table: "CircleSkill" */
-  update_CircleSkill?: Maybe<CircleSkill_Mutation_Response>;
-  /** update single row of the table: "CircleSkill" */
-  update_CircleSkill_by_pk?: Maybe<CircleSkill>;
-  /** update data of the table: "CircleUser" */
-  update_CircleUser?: Maybe<CircleUser_Mutation_Response>;
-  /** update single row of the table: "CircleUser" */
-  update_CircleUser_by_pk?: Maybe<CircleUser>;
-  /** update single row of the table: "Circle" */
-  update_Circle_by_pk?: Maybe<Circle>;
-  /** update data of the table: "Message" */
-  update_Message?: Maybe<Message_Mutation_Response>;
-  /** update single row of the table: "Message" */
-  update_Message_by_pk?: Maybe<Message>;
-  /** update data of the table: "Organization" */
-  update_Organization?: Maybe<Organization_Mutation_Response>;
-  /** update single row of the table: "Organization" */
-  update_Organization_by_pk?: Maybe<Organization>;
-  /** update data of the table: "ParentCategory" */
-  update_ParentCategory?: Maybe<ParentCategory_Mutation_Response>;
-  /** update single row of the table: "ParentCategory" */
-  update_ParentCategory_by_pk?: Maybe<ParentCategory>;
-  /** update data of the table: "Skill" */
-  update_Skill?: Maybe<Skill_Mutation_Response>;
-  /** update single row of the table: "Skill" */
-  update_Skill_by_pk?: Maybe<Skill>;
-  /** update data of the table: "SubCategory" */
-  update_SubCategory?: Maybe<SubCategory_Mutation_Response>;
-  /** update single row of the table: "SubCategory" */
-  update_SubCategory_by_pk?: Maybe<SubCategory>;
-  /** update data of the table: "User" */
-  update_User?: Maybe<User_Mutation_Response>;
-  /** update data of the table: "UserSkill" */
-  update_UserSkill?: Maybe<UserSkill_Mutation_Response>;
-  /** update single row of the table: "UserSkill" */
-  update_UserSkill_by_pk?: Maybe<UserSkill>;
-  /** update single row of the table: "User" */
-  update_User_by_pk?: Maybe<User>;
+  /** delete data from the table: "circle_skills" */
+  delete_circle_skills?: Maybe<Circle_Skills_Mutation_Response>;
+  /** delete single row from the table: "circle_skills" */
+  delete_circle_skills_by_pk?: Maybe<Circle_Skills>;
+  /** delete data from the table: "circle_users" */
+  delete_circle_users?: Maybe<Circle_Users_Mutation_Response>;
+  /** delete single row from the table: "circle_users" */
+  delete_circle_users_by_pk?: Maybe<Circle_Users>;
+  /** delete data from the table: "circles" */
+  delete_circles?: Maybe<Circles_Mutation_Response>;
+  /** delete single row from the table: "circles" */
+  delete_circles_by_pk?: Maybe<Circles>;
+  /** delete data from the table: "messages" */
+  delete_messages?: Maybe<Messages_Mutation_Response>;
+  /** delete single row from the table: "messages" */
+  delete_messages_by_pk?: Maybe<Messages>;
+  /** delete data from the table: "organizations" */
+  delete_organizations?: Maybe<Organizations_Mutation_Response>;
+  /** delete single row from the table: "organizations" */
+  delete_organizations_by_pk?: Maybe<Organizations>;
+  /** delete data from the table: "parent_categories" */
+  delete_parent_categories?: Maybe<Parent_Categories_Mutation_Response>;
+  /** delete single row from the table: "parent_categories" */
+  delete_parent_categories_by_pk?: Maybe<Parent_Categories>;
+  /** delete data from the table: "skills" */
+  delete_skills?: Maybe<Skills_Mutation_Response>;
+  /** delete single row from the table: "skills" */
+  delete_skills_by_pk?: Maybe<Skills>;
+  /** delete data from the table: "sub_categories" */
+  delete_sub_categories?: Maybe<Sub_Categories_Mutation_Response>;
+  /** delete single row from the table: "sub_categories" */
+  delete_sub_categories_by_pk?: Maybe<Sub_Categories>;
+  /** delete data from the table: "user_skills" */
+  delete_user_skills?: Maybe<User_Skills_Mutation_Response>;
+  /** delete single row from the table: "user_skills" */
+  delete_user_skills_by_pk?: Maybe<User_Skills>;
+  /** delete data from the table: "users" */
+  delete_users?: Maybe<Users_Mutation_Response>;
+  /** delete single row from the table: "users" */
+  delete_users_by_pk?: Maybe<Users>;
+  /** insert data into the table: "circle_skills" */
+  insert_circle_skills?: Maybe<Circle_Skills_Mutation_Response>;
+  /** insert a single row into the table: "circle_skills" */
+  insert_circle_skills_one?: Maybe<Circle_Skills>;
+  /** insert data into the table: "circle_users" */
+  insert_circle_users?: Maybe<Circle_Users_Mutation_Response>;
+  /** insert a single row into the table: "circle_users" */
+  insert_circle_users_one?: Maybe<Circle_Users>;
+  /** insert data into the table: "circles" */
+  insert_circles?: Maybe<Circles_Mutation_Response>;
+  /** insert a single row into the table: "circles" */
+  insert_circles_one?: Maybe<Circles>;
+  /** insert data into the table: "messages" */
+  insert_messages?: Maybe<Messages_Mutation_Response>;
+  /** insert a single row into the table: "messages" */
+  insert_messages_one?: Maybe<Messages>;
+  /** insert data into the table: "organizations" */
+  insert_organizations?: Maybe<Organizations_Mutation_Response>;
+  /** insert a single row into the table: "organizations" */
+  insert_organizations_one?: Maybe<Organizations>;
+  /** insert data into the table: "parent_categories" */
+  insert_parent_categories?: Maybe<Parent_Categories_Mutation_Response>;
+  /** insert a single row into the table: "parent_categories" */
+  insert_parent_categories_one?: Maybe<Parent_Categories>;
+  /** insert data into the table: "skills" */
+  insert_skills?: Maybe<Skills_Mutation_Response>;
+  /** insert a single row into the table: "skills" */
+  insert_skills_one?: Maybe<Skills>;
+  /** insert data into the table: "sub_categories" */
+  insert_sub_categories?: Maybe<Sub_Categories_Mutation_Response>;
+  /** insert a single row into the table: "sub_categories" */
+  insert_sub_categories_one?: Maybe<Sub_Categories>;
+  /** insert data into the table: "user_skills" */
+  insert_user_skills?: Maybe<User_Skills_Mutation_Response>;
+  /** insert a single row into the table: "user_skills" */
+  insert_user_skills_one?: Maybe<User_Skills>;
+  /** insert data into the table: "users" */
+  insert_users?: Maybe<Users_Mutation_Response>;
+  /** insert a single row into the table: "users" */
+  insert_users_one?: Maybe<Users>;
+  /** update data of the table: "circle_skills" */
+  update_circle_skills?: Maybe<Circle_Skills_Mutation_Response>;
+  /** update single row of the table: "circle_skills" */
+  update_circle_skills_by_pk?: Maybe<Circle_Skills>;
+  /** update data of the table: "circle_users" */
+  update_circle_users?: Maybe<Circle_Users_Mutation_Response>;
+  /** update single row of the table: "circle_users" */
+  update_circle_users_by_pk?: Maybe<Circle_Users>;
+  /** update data of the table: "circles" */
+  update_circles?: Maybe<Circles_Mutation_Response>;
+  /** update single row of the table: "circles" */
+  update_circles_by_pk?: Maybe<Circles>;
+  /** update data of the table: "messages" */
+  update_messages?: Maybe<Messages_Mutation_Response>;
+  /** update single row of the table: "messages" */
+  update_messages_by_pk?: Maybe<Messages>;
+  /** update data of the table: "organizations" */
+  update_organizations?: Maybe<Organizations_Mutation_Response>;
+  /** update single row of the table: "organizations" */
+  update_organizations_by_pk?: Maybe<Organizations>;
+  /** update data of the table: "parent_categories" */
+  update_parent_categories?: Maybe<Parent_Categories_Mutation_Response>;
+  /** update single row of the table: "parent_categories" */
+  update_parent_categories_by_pk?: Maybe<Parent_Categories>;
+  /** update data of the table: "skills" */
+  update_skills?: Maybe<Skills_Mutation_Response>;
+  /** update single row of the table: "skills" */
+  update_skills_by_pk?: Maybe<Skills>;
+  /** update data of the table: "sub_categories" */
+  update_sub_categories?: Maybe<Sub_Categories_Mutation_Response>;
+  /** update single row of the table: "sub_categories" */
+  update_sub_categories_by_pk?: Maybe<Sub_Categories>;
+  /** update data of the table: "user_skills" */
+  update_user_skills?: Maybe<User_Skills_Mutation_Response>;
+  /** update single row of the table: "user_skills" */
+  update_user_skills_by_pk?: Maybe<User_Skills>;
+  /** update data of the table: "users" */
+  update_users?: Maybe<Users_Mutation_Response>;
+  /** update single row of the table: "users" */
+  update_users_by_pk?: Maybe<Users>;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_CircleArgs = {
-  where: Circle_Bool_Exp;
+export type Mutation_RootDelete_Circle_SkillsArgs = {
+  where: Circle_Skills_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_CircleSkillArgs = {
-  where: CircleSkill_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_CircleSkill_By_PkArgs = {
+export type Mutation_RootDelete_Circle_Skills_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_CircleUserArgs = {
-  where: CircleUser_Bool_Exp;
+export type Mutation_RootDelete_Circle_UsersArgs = {
+  where: Circle_Users_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_CircleUser_By_PkArgs = {
+export type Mutation_RootDelete_Circle_Users_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Circle_By_PkArgs = {
+export type Mutation_RootDelete_CirclesArgs = {
+  where: Circles_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Circles_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_MessageArgs = {
-  where: Message_Bool_Exp;
+export type Mutation_RootDelete_MessagesArgs = {
+  where: Messages_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Message_By_PkArgs = {
+export type Mutation_RootDelete_Messages_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_OrganizationArgs = {
-  where: Organization_Bool_Exp;
+export type Mutation_RootDelete_OrganizationsArgs = {
+  where: Organizations_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Organization_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_ParentCategoryArgs = {
-  where: ParentCategory_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_ParentCategory_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_SkillArgs = {
-  where: Skill_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Skill_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_SubCategoryArgs = {
-  where: SubCategory_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_SubCategory_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_UserArgs = {
-  where: User_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_UserSkillArgs = {
-  where: UserSkill_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_UserSkill_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_User_By_PkArgs = {
+export type Mutation_RootDelete_Organizations_By_PkArgs = {
   id: Scalars['String'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_CircleArgs = {
-  objects: Array<Circle_Insert_Input>;
-  on_conflict?: Maybe<Circle_On_Conflict>;
+export type Mutation_RootDelete_Parent_CategoriesArgs = {
+  where: Parent_Categories_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_CircleSkillArgs = {
-  objects: Array<CircleSkill_Insert_Input>;
-  on_conflict?: Maybe<CircleSkill_On_Conflict>;
+export type Mutation_RootDelete_Parent_Categories_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_CircleSkill_OneArgs = {
-  object: CircleSkill_Insert_Input;
-  on_conflict?: Maybe<CircleSkill_On_Conflict>;
+export type Mutation_RootDelete_SkillsArgs = {
+  where: Skills_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_CircleUserArgs = {
-  objects: Array<CircleUser_Insert_Input>;
-  on_conflict?: Maybe<CircleUser_On_Conflict>;
+export type Mutation_RootDelete_Skills_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_CircleUser_OneArgs = {
-  object: CircleUser_Insert_Input;
-  on_conflict?: Maybe<CircleUser_On_Conflict>;
+export type Mutation_RootDelete_Sub_CategoriesArgs = {
+  where: Sub_Categories_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Circle_OneArgs = {
-  object: Circle_Insert_Input;
-  on_conflict?: Maybe<Circle_On_Conflict>;
+export type Mutation_RootDelete_Sub_Categories_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_MessageArgs = {
-  objects: Array<Message_Insert_Input>;
-  on_conflict?: Maybe<Message_On_Conflict>;
+export type Mutation_RootDelete_User_SkillsArgs = {
+  where: User_Skills_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Message_OneArgs = {
-  object: Message_Insert_Input;
-  on_conflict?: Maybe<Message_On_Conflict>;
+export type Mutation_RootDelete_User_Skills_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_OrganizationArgs = {
-  objects: Array<Organization_Insert_Input>;
-  on_conflict?: Maybe<Organization_On_Conflict>;
+export type Mutation_RootDelete_UsersArgs = {
+  where: Users_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Organization_OneArgs = {
-  object: Organization_Insert_Input;
-  on_conflict?: Maybe<Organization_On_Conflict>;
+export type Mutation_RootDelete_Users_By_PkArgs = {
+  id: Scalars['String'];
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_ParentCategoryArgs = {
-  objects: Array<ParentCategory_Insert_Input>;
-  on_conflict?: Maybe<ParentCategory_On_Conflict>;
+export type Mutation_RootInsert_Circle_SkillsArgs = {
+  objects: Array<Circle_Skills_Insert_Input>;
+  on_conflict?: Maybe<Circle_Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_ParentCategory_OneArgs = {
-  object: ParentCategory_Insert_Input;
-  on_conflict?: Maybe<ParentCategory_On_Conflict>;
+export type Mutation_RootInsert_Circle_Skills_OneArgs = {
+  object: Circle_Skills_Insert_Input;
+  on_conflict?: Maybe<Circle_Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_SkillArgs = {
-  objects: Array<Skill_Insert_Input>;
-  on_conflict?: Maybe<Skill_On_Conflict>;
+export type Mutation_RootInsert_Circle_UsersArgs = {
+  objects: Array<Circle_Users_Insert_Input>;
+  on_conflict?: Maybe<Circle_Users_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Skill_OneArgs = {
-  object: Skill_Insert_Input;
-  on_conflict?: Maybe<Skill_On_Conflict>;
+export type Mutation_RootInsert_Circle_Users_OneArgs = {
+  object: Circle_Users_Insert_Input;
+  on_conflict?: Maybe<Circle_Users_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_SubCategoryArgs = {
-  objects: Array<SubCategory_Insert_Input>;
-  on_conflict?: Maybe<SubCategory_On_Conflict>;
+export type Mutation_RootInsert_CirclesArgs = {
+  objects: Array<Circles_Insert_Input>;
+  on_conflict?: Maybe<Circles_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_SubCategory_OneArgs = {
-  object: SubCategory_Insert_Input;
-  on_conflict?: Maybe<SubCategory_On_Conflict>;
+export type Mutation_RootInsert_Circles_OneArgs = {
+  object: Circles_Insert_Input;
+  on_conflict?: Maybe<Circles_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_UserArgs = {
-  objects: Array<User_Insert_Input>;
-  on_conflict?: Maybe<User_On_Conflict>;
+export type Mutation_RootInsert_MessagesArgs = {
+  objects: Array<Messages_Insert_Input>;
+  on_conflict?: Maybe<Messages_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_UserSkillArgs = {
-  objects: Array<UserSkill_Insert_Input>;
-  on_conflict?: Maybe<UserSkill_On_Conflict>;
+export type Mutation_RootInsert_Messages_OneArgs = {
+  object: Messages_Insert_Input;
+  on_conflict?: Maybe<Messages_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_UserSkill_OneArgs = {
-  object: UserSkill_Insert_Input;
-  on_conflict?: Maybe<UserSkill_On_Conflict>;
+export type Mutation_RootInsert_OrganizationsArgs = {
+  objects: Array<Organizations_Insert_Input>;
+  on_conflict?: Maybe<Organizations_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_User_OneArgs = {
-  object: User_Insert_Input;
-  on_conflict?: Maybe<User_On_Conflict>;
+export type Mutation_RootInsert_Organizations_OneArgs = {
+  object: Organizations_Insert_Input;
+  on_conflict?: Maybe<Organizations_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_CircleArgs = {
-  _inc?: Maybe<Circle_Inc_Input>;
-  _set?: Maybe<Circle_Set_Input>;
-  where: Circle_Bool_Exp;
+export type Mutation_RootInsert_Parent_CategoriesArgs = {
+  objects: Array<Parent_Categories_Insert_Input>;
+  on_conflict?: Maybe<Parent_Categories_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_CircleSkillArgs = {
-  _inc?: Maybe<CircleSkill_Inc_Input>;
-  _set?: Maybe<CircleSkill_Set_Input>;
-  where: CircleSkill_Bool_Exp;
+export type Mutation_RootInsert_Parent_Categories_OneArgs = {
+  object: Parent_Categories_Insert_Input;
+  on_conflict?: Maybe<Parent_Categories_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_CircleSkill_By_PkArgs = {
-  _inc?: Maybe<CircleSkill_Inc_Input>;
-  _set?: Maybe<CircleSkill_Set_Input>;
-  pk_columns: CircleSkill_Pk_Columns_Input;
+export type Mutation_RootInsert_SkillsArgs = {
+  objects: Array<Skills_Insert_Input>;
+  on_conflict?: Maybe<Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_CircleUserArgs = {
-  _inc?: Maybe<CircleUser_Inc_Input>;
-  _set?: Maybe<CircleUser_Set_Input>;
-  where: CircleUser_Bool_Exp;
+export type Mutation_RootInsert_Skills_OneArgs = {
+  object: Skills_Insert_Input;
+  on_conflict?: Maybe<Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_CircleUser_By_PkArgs = {
-  _inc?: Maybe<CircleUser_Inc_Input>;
-  _set?: Maybe<CircleUser_Set_Input>;
-  pk_columns: CircleUser_Pk_Columns_Input;
+export type Mutation_RootInsert_Sub_CategoriesArgs = {
+  objects: Array<Sub_Categories_Insert_Input>;
+  on_conflict?: Maybe<Sub_Categories_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Circle_By_PkArgs = {
-  _inc?: Maybe<Circle_Inc_Input>;
-  _set?: Maybe<Circle_Set_Input>;
-  pk_columns: Circle_Pk_Columns_Input;
+export type Mutation_RootInsert_Sub_Categories_OneArgs = {
+  object: Sub_Categories_Insert_Input;
+  on_conflict?: Maybe<Sub_Categories_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_MessageArgs = {
-  _inc?: Maybe<Message_Inc_Input>;
-  _set?: Maybe<Message_Set_Input>;
-  where: Message_Bool_Exp;
+export type Mutation_RootInsert_User_SkillsArgs = {
+  objects: Array<User_Skills_Insert_Input>;
+  on_conflict?: Maybe<User_Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Message_By_PkArgs = {
-  _inc?: Maybe<Message_Inc_Input>;
-  _set?: Maybe<Message_Set_Input>;
-  pk_columns: Message_Pk_Columns_Input;
+export type Mutation_RootInsert_User_Skills_OneArgs = {
+  object: User_Skills_Insert_Input;
+  on_conflict?: Maybe<User_Skills_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_OrganizationArgs = {
-  _inc?: Maybe<Organization_Inc_Input>;
-  _set?: Maybe<Organization_Set_Input>;
-  where: Organization_Bool_Exp;
+export type Mutation_RootInsert_UsersArgs = {
+  objects: Array<Users_Insert_Input>;
+  on_conflict?: Maybe<Users_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Organization_By_PkArgs = {
-  _inc?: Maybe<Organization_Inc_Input>;
-  _set?: Maybe<Organization_Set_Input>;
-  pk_columns: Organization_Pk_Columns_Input;
+export type Mutation_RootInsert_Users_OneArgs = {
+  object: Users_Insert_Input;
+  on_conflict?: Maybe<Users_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_ParentCategoryArgs = {
-  _inc?: Maybe<ParentCategory_Inc_Input>;
-  _set?: Maybe<ParentCategory_Set_Input>;
-  where: ParentCategory_Bool_Exp;
+export type Mutation_RootUpdate_Circle_SkillsArgs = {
+  _inc?: Maybe<Circle_Skills_Inc_Input>;
+  _set?: Maybe<Circle_Skills_Set_Input>;
+  where: Circle_Skills_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_ParentCategory_By_PkArgs = {
-  _inc?: Maybe<ParentCategory_Inc_Input>;
-  _set?: Maybe<ParentCategory_Set_Input>;
-  pk_columns: ParentCategory_Pk_Columns_Input;
+export type Mutation_RootUpdate_Circle_Skills_By_PkArgs = {
+  _inc?: Maybe<Circle_Skills_Inc_Input>;
+  _set?: Maybe<Circle_Skills_Set_Input>;
+  pk_columns: Circle_Skills_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_SkillArgs = {
-  _inc?: Maybe<Skill_Inc_Input>;
-  _set?: Maybe<Skill_Set_Input>;
-  where: Skill_Bool_Exp;
+export type Mutation_RootUpdate_Circle_UsersArgs = {
+  _inc?: Maybe<Circle_Users_Inc_Input>;
+  _set?: Maybe<Circle_Users_Set_Input>;
+  where: Circle_Users_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Skill_By_PkArgs = {
-  _inc?: Maybe<Skill_Inc_Input>;
-  _set?: Maybe<Skill_Set_Input>;
-  pk_columns: Skill_Pk_Columns_Input;
+export type Mutation_RootUpdate_Circle_Users_By_PkArgs = {
+  _inc?: Maybe<Circle_Users_Inc_Input>;
+  _set?: Maybe<Circle_Users_Set_Input>;
+  pk_columns: Circle_Users_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_SubCategoryArgs = {
-  _inc?: Maybe<SubCategory_Inc_Input>;
-  _set?: Maybe<SubCategory_Set_Input>;
-  where: SubCategory_Bool_Exp;
+export type Mutation_RootUpdate_CirclesArgs = {
+  _inc?: Maybe<Circles_Inc_Input>;
+  _set?: Maybe<Circles_Set_Input>;
+  where: Circles_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_SubCategory_By_PkArgs = {
-  _inc?: Maybe<SubCategory_Inc_Input>;
-  _set?: Maybe<SubCategory_Set_Input>;
-  pk_columns: SubCategory_Pk_Columns_Input;
+export type Mutation_RootUpdate_Circles_By_PkArgs = {
+  _inc?: Maybe<Circles_Inc_Input>;
+  _set?: Maybe<Circles_Set_Input>;
+  pk_columns: Circles_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_UserArgs = {
-  _inc?: Maybe<User_Inc_Input>;
-  _set?: Maybe<User_Set_Input>;
-  where: User_Bool_Exp;
+export type Mutation_RootUpdate_MessagesArgs = {
+  _inc?: Maybe<Messages_Inc_Input>;
+  _set?: Maybe<Messages_Set_Input>;
+  where: Messages_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_UserSkillArgs = {
-  _inc?: Maybe<UserSkill_Inc_Input>;
-  _set?: Maybe<UserSkill_Set_Input>;
-  where: UserSkill_Bool_Exp;
+export type Mutation_RootUpdate_Messages_By_PkArgs = {
+  _inc?: Maybe<Messages_Inc_Input>;
+  _set?: Maybe<Messages_Set_Input>;
+  pk_columns: Messages_Pk_Columns_Input;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_UserSkill_By_PkArgs = {
-  _inc?: Maybe<UserSkill_Inc_Input>;
-  _set?: Maybe<UserSkill_Set_Input>;
-  pk_columns: UserSkill_Pk_Columns_Input;
+export type Mutation_RootUpdate_OrganizationsArgs = {
+  _set?: Maybe<Organizations_Set_Input>;
+  where: Organizations_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_User_By_PkArgs = {
-  _inc?: Maybe<User_Inc_Input>;
-  _set?: Maybe<User_Set_Input>;
-  pk_columns: User_Pk_Columns_Input;
+export type Mutation_RootUpdate_Organizations_By_PkArgs = {
+  _set?: Maybe<Organizations_Set_Input>;
+  pk_columns: Organizations_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Parent_CategoriesArgs = {
+  _inc?: Maybe<Parent_Categories_Inc_Input>;
+  _set?: Maybe<Parent_Categories_Set_Input>;
+  where: Parent_Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Parent_Categories_By_PkArgs = {
+  _inc?: Maybe<Parent_Categories_Inc_Input>;
+  _set?: Maybe<Parent_Categories_Set_Input>;
+  pk_columns: Parent_Categories_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_SkillsArgs = {
+  _inc?: Maybe<Skills_Inc_Input>;
+  _set?: Maybe<Skills_Set_Input>;
+  where: Skills_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Skills_By_PkArgs = {
+  _inc?: Maybe<Skills_Inc_Input>;
+  _set?: Maybe<Skills_Set_Input>;
+  pk_columns: Skills_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sub_CategoriesArgs = {
+  _inc?: Maybe<Sub_Categories_Inc_Input>;
+  _set?: Maybe<Sub_Categories_Set_Input>;
+  where: Sub_Categories_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Sub_Categories_By_PkArgs = {
+  _inc?: Maybe<Sub_Categories_Inc_Input>;
+  _set?: Maybe<Sub_Categories_Set_Input>;
+  pk_columns: Sub_Categories_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_SkillsArgs = {
+  _inc?: Maybe<User_Skills_Inc_Input>;
+  _set?: Maybe<User_Skills_Set_Input>;
+  where: User_Skills_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Skills_By_PkArgs = {
+  _inc?: Maybe<User_Skills_Inc_Input>;
+  _set?: Maybe<User_Skills_Set_Input>;
+  pk_columns: User_Skills_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_UsersArgs = {
+  _set?: Maybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_By_PkArgs = {
+  _set?: Maybe<Users_Set_Input>;
+  pk_columns: Users_Pk_Columns_Input;
 };
 
 /** column ordering options */
@@ -3972,653 +1980,1771 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
+/** columns and relationships of "organizations" */
+export type Organizations = {
+  __typename?: 'organizations';
+  /** An array relationship */
+  circles: Array<Circles>;
+  /** An aggregated array relationship */
+  circles_aggregate: Circles_Aggregate;
+  id: Scalars['String'];
+  name: Scalars['String'];
+  /** An array relationship */
+  users: Array<Users>;
+  /** An aggregated array relationship */
+  users_aggregate: Users_Aggregate;
+};
+
+
+/** columns and relationships of "organizations" */
+export type OrganizationsCirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "organizations" */
+export type OrganizationsCircles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "organizations" */
+export type OrganizationsUsersArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** columns and relationships of "organizations" */
+export type OrganizationsUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
+};
+
+/** aggregated selection of "organizations" */
+export type Organizations_Aggregate = {
+  __typename?: 'organizations_aggregate';
+  aggregate?: Maybe<Organizations_Aggregate_Fields>;
+  nodes: Array<Organizations>;
+};
+
+/** aggregate fields of "organizations" */
+export type Organizations_Aggregate_Fields = {
+  __typename?: 'organizations_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Organizations_Max_Fields>;
+  min?: Maybe<Organizations_Min_Fields>;
+};
+
+
+/** aggregate fields of "organizations" */
+export type Organizations_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Organizations_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "organizations" */
+export type Organizations_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Organizations_Max_Order_By>;
+  min?: Maybe<Organizations_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "organizations" */
+export type Organizations_Arr_Rel_Insert_Input = {
+  data: Array<Organizations_Insert_Input>;
+  on_conflict?: Maybe<Organizations_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "organizations". All fields are combined with a logical 'AND'. */
+export type Organizations_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Organizations_Bool_Exp>>>;
+  _not?: Maybe<Organizations_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Organizations_Bool_Exp>>>;
+  circles?: Maybe<Circles_Bool_Exp>;
+  id?: Maybe<String_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  users?: Maybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "organizations" */
+export enum Organizations_Constraint {
+  /** unique or primary key constraint */
+  OrganizationPkey = 'Organization_pkey'
+}
+
+/** input type for inserting data into table "organizations" */
+export type Organizations_Insert_Input = {
+  circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+  users?: Maybe<Users_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Organizations_Max_Fields = {
+  __typename?: 'organizations_max_fields';
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "organizations" */
+export type Organizations_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Organizations_Min_Fields = {
+  __typename?: 'organizations_min_fields';
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "organizations" */
+export type Organizations_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "organizations" */
+export type Organizations_Mutation_Response = {
+  __typename?: 'organizations_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Organizations>;
+};
+
+/** input type for inserting object relation for remote table "organizations" */
+export type Organizations_Obj_Rel_Insert_Input = {
+  data: Organizations_Insert_Input;
+  on_conflict?: Maybe<Organizations_On_Conflict>;
+};
+
+/** on conflict condition type for table "organizations" */
+export type Organizations_On_Conflict = {
+  constraint: Organizations_Constraint;
+  update_columns: Array<Organizations_Update_Column>;
+  where?: Maybe<Organizations_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "organizations" */
+export type Organizations_Order_By = {
+  circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  users_aggregate?: Maybe<Users_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: "organizations" */
+export type Organizations_Pk_Columns_Input = {
+  id: Scalars['String'];
+};
+
+/** select columns of table "organizations" */
+export enum Organizations_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "organizations" */
+export type Organizations_Set_Input = {
+  id?: Maybe<Scalars['String']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "organizations" */
+export enum Organizations_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** columns and relationships of "parent_categories" */
+export type Parent_Categories = {
+  __typename?: 'parent_categories';
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  /** An array relationship */
+  sub_categories: Array<Sub_Categories>;
+  /** An aggregated array relationship */
+  sub_categories_aggregate: Sub_Categories_Aggregate;
+};
+
+
+/** columns and relationships of "parent_categories" */
+export type Parent_CategoriesSub_CategoriesArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+
+/** columns and relationships of "parent_categories" */
+export type Parent_CategoriesSub_Categories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+/** aggregated selection of "parent_categories" */
+export type Parent_Categories_Aggregate = {
+  __typename?: 'parent_categories_aggregate';
+  aggregate?: Maybe<Parent_Categories_Aggregate_Fields>;
+  nodes: Array<Parent_Categories>;
+};
+
+/** aggregate fields of "parent_categories" */
+export type Parent_Categories_Aggregate_Fields = {
+  __typename?: 'parent_categories_aggregate_fields';
+  avg?: Maybe<Parent_Categories_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Parent_Categories_Max_Fields>;
+  min?: Maybe<Parent_Categories_Min_Fields>;
+  stddev?: Maybe<Parent_Categories_Stddev_Fields>;
+  stddev_pop?: Maybe<Parent_Categories_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Parent_Categories_Stddev_Samp_Fields>;
+  sum?: Maybe<Parent_Categories_Sum_Fields>;
+  var_pop?: Maybe<Parent_Categories_Var_Pop_Fields>;
+  var_samp?: Maybe<Parent_Categories_Var_Samp_Fields>;
+  variance?: Maybe<Parent_Categories_Variance_Fields>;
+};
+
+
+/** aggregate fields of "parent_categories" */
+export type Parent_Categories_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Parent_Categories_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "parent_categories" */
+export type Parent_Categories_Aggregate_Order_By = {
+  avg?: Maybe<Parent_Categories_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Parent_Categories_Max_Order_By>;
+  min?: Maybe<Parent_Categories_Min_Order_By>;
+  stddev?: Maybe<Parent_Categories_Stddev_Order_By>;
+  stddev_pop?: Maybe<Parent_Categories_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Parent_Categories_Stddev_Samp_Order_By>;
+  sum?: Maybe<Parent_Categories_Sum_Order_By>;
+  var_pop?: Maybe<Parent_Categories_Var_Pop_Order_By>;
+  var_samp?: Maybe<Parent_Categories_Var_Samp_Order_By>;
+  variance?: Maybe<Parent_Categories_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "parent_categories" */
+export type Parent_Categories_Arr_Rel_Insert_Input = {
+  data: Array<Parent_Categories_Insert_Input>;
+  on_conflict?: Maybe<Parent_Categories_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Parent_Categories_Avg_Fields = {
+  __typename?: 'parent_categories_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "parent_categories" */
+export type Parent_Categories_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "parent_categories". All fields are combined with a logical 'AND'. */
+export type Parent_Categories_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Parent_Categories_Bool_Exp>>>;
+  _not?: Maybe<Parent_Categories_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Parent_Categories_Bool_Exp>>>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  sub_categories?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "parent_categories" */
+export enum Parent_Categories_Constraint {
+  /** unique or primary key constraint */
+  ParentCategoryPkey = 'ParentCategory_pkey'
+}
+
+/** input type for incrementing integer column in table "parent_categories" */
+export type Parent_Categories_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "parent_categories" */
+export type Parent_Categories_Insert_Input = {
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  sub_categories?: Maybe<Sub_Categories_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Parent_Categories_Max_Fields = {
+  __typename?: 'parent_categories_max_fields';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "parent_categories" */
+export type Parent_Categories_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Parent_Categories_Min_Fields = {
+  __typename?: 'parent_categories_min_fields';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "parent_categories" */
+export type Parent_Categories_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "parent_categories" */
+export type Parent_Categories_Mutation_Response = {
+  __typename?: 'parent_categories_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Parent_Categories>;
+};
+
+/** input type for inserting object relation for remote table "parent_categories" */
+export type Parent_Categories_Obj_Rel_Insert_Input = {
+  data: Parent_Categories_Insert_Input;
+  on_conflict?: Maybe<Parent_Categories_On_Conflict>;
+};
+
+/** on conflict condition type for table "parent_categories" */
+export type Parent_Categories_On_Conflict = {
+  constraint: Parent_Categories_Constraint;
+  update_columns: Array<Parent_Categories_Update_Column>;
+  where?: Maybe<Parent_Categories_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "parent_categories" */
+export type Parent_Categories_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  sub_categories_aggregate?: Maybe<Sub_Categories_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: "parent_categories" */
+export type Parent_Categories_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "parent_categories" */
+export enum Parent_Categories_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "parent_categories" */
+export type Parent_Categories_Set_Input = {
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Parent_Categories_Stddev_Fields = {
+  __typename?: 'parent_categories_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "parent_categories" */
+export type Parent_Categories_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Parent_Categories_Stddev_Pop_Fields = {
+  __typename?: 'parent_categories_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "parent_categories" */
+export type Parent_Categories_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Parent_Categories_Stddev_Samp_Fields = {
+  __typename?: 'parent_categories_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "parent_categories" */
+export type Parent_Categories_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Parent_Categories_Sum_Fields = {
+  __typename?: 'parent_categories_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "parent_categories" */
+export type Parent_Categories_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "parent_categories" */
+export enum Parent_Categories_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** aggregate var_pop on columns */
+export type Parent_Categories_Var_Pop_Fields = {
+  __typename?: 'parent_categories_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "parent_categories" */
+export type Parent_Categories_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Parent_Categories_Var_Samp_Fields = {
+  __typename?: 'parent_categories_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "parent_categories" */
+export type Parent_Categories_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Parent_Categories_Variance_Fields = {
+  __typename?: 'parent_categories_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "parent_categories" */
+export type Parent_Categories_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
 /** query root */
 export type Query_Root = {
   __typename?: 'query_root';
-  /** fetch data from the table: "Circle" */
-  Circle: Array<Circle>;
-  /** fetch data from the table: "CircleSkill" */
-  CircleSkill: Array<CircleSkill>;
-  /** fetch aggregated fields from the table: "CircleSkill" */
-  CircleSkill_aggregate: CircleSkill_Aggregate;
-  /** fetch data from the table: "CircleSkill" using primary key columns */
-  CircleSkill_by_pk?: Maybe<CircleSkill>;
-  /** fetch data from the table: "CircleUser" */
-  CircleUser: Array<CircleUser>;
-  /** fetch aggregated fields from the table: "CircleUser" */
-  CircleUser_aggregate: CircleUser_Aggregate;
-  /** fetch data from the table: "CircleUser" using primary key columns */
-  CircleUser_by_pk?: Maybe<CircleUser>;
-  /** fetch aggregated fields from the table: "Circle" */
-  Circle_aggregate: Circle_Aggregate;
-  /** fetch data from the table: "Circle" using primary key columns */
-  Circle_by_pk?: Maybe<Circle>;
-  /** fetch data from the table: "Message" */
-  Message: Array<Message>;
-  /** fetch aggregated fields from the table: "Message" */
-  Message_aggregate: Message_Aggregate;
-  /** fetch data from the table: "Message" using primary key columns */
-  Message_by_pk?: Maybe<Message>;
-  /** fetch data from the table: "Organization" */
-  Organization: Array<Organization>;
-  /** fetch aggregated fields from the table: "Organization" */
-  Organization_aggregate: Organization_Aggregate;
-  /** fetch data from the table: "Organization" using primary key columns */
-  Organization_by_pk?: Maybe<Organization>;
-  /** fetch data from the table: "ParentCategory" */
-  ParentCategory: Array<ParentCategory>;
-  /** fetch aggregated fields from the table: "ParentCategory" */
-  ParentCategory_aggregate: ParentCategory_Aggregate;
-  /** fetch data from the table: "ParentCategory" using primary key columns */
-  ParentCategory_by_pk?: Maybe<ParentCategory>;
-  /** fetch data from the table: "Skill" */
-  Skill: Array<Skill>;
-  /** fetch aggregated fields from the table: "Skill" */
-  Skill_aggregate: Skill_Aggregate;
-  /** fetch data from the table: "Skill" using primary key columns */
-  Skill_by_pk?: Maybe<Skill>;
-  /** fetch data from the table: "SubCategory" */
-  SubCategory: Array<SubCategory>;
-  /** fetch aggregated fields from the table: "SubCategory" */
-  SubCategory_aggregate: SubCategory_Aggregate;
-  /** fetch data from the table: "SubCategory" using primary key columns */
-  SubCategory_by_pk?: Maybe<SubCategory>;
-  /** fetch data from the table: "User" */
-  User: Array<User>;
-  /** fetch data from the table: "UserSkill" */
-  UserSkill: Array<UserSkill>;
-  /** fetch aggregated fields from the table: "UserSkill" */
-  UserSkill_aggregate: UserSkill_Aggregate;
-  /** fetch data from the table: "UserSkill" using primary key columns */
-  UserSkill_by_pk?: Maybe<UserSkill>;
-  /** fetch aggregated fields from the table: "User" */
-  User_aggregate: User_Aggregate;
-  /** fetch data from the table: "User" using primary key columns */
-  User_by_pk?: Maybe<User>;
+  /** fetch data from the table: "circle_skills" */
+  circle_skills: Array<Circle_Skills>;
+  /** fetch aggregated fields from the table: "circle_skills" */
+  circle_skills_aggregate: Circle_Skills_Aggregate;
+  /** fetch data from the table: "circle_skills" using primary key columns */
+  circle_skills_by_pk?: Maybe<Circle_Skills>;
+  /** fetch data from the table: "circle_users" */
+  circle_users: Array<Circle_Users>;
+  /** fetch aggregated fields from the table: "circle_users" */
+  circle_users_aggregate: Circle_Users_Aggregate;
+  /** fetch data from the table: "circle_users" using primary key columns */
+  circle_users_by_pk?: Maybe<Circle_Users>;
+  /** fetch data from the table: "circles" */
+  circles: Array<Circles>;
+  /** fetch aggregated fields from the table: "circles" */
+  circles_aggregate: Circles_Aggregate;
+  /** fetch data from the table: "circles" using primary key columns */
+  circles_by_pk?: Maybe<Circles>;
+  /** fetch data from the table: "messages" */
+  messages: Array<Messages>;
+  /** fetch aggregated fields from the table: "messages" */
+  messages_aggregate: Messages_Aggregate;
+  /** fetch data from the table: "messages" using primary key columns */
+  messages_by_pk?: Maybe<Messages>;
+  /** fetch data from the table: "organizations" */
+  organizations: Array<Organizations>;
+  /** fetch aggregated fields from the table: "organizations" */
+  organizations_aggregate: Organizations_Aggregate;
+  /** fetch data from the table: "organizations" using primary key columns */
+  organizations_by_pk?: Maybe<Organizations>;
+  /** fetch data from the table: "parent_categories" */
+  parent_categories: Array<Parent_Categories>;
+  /** fetch aggregated fields from the table: "parent_categories" */
+  parent_categories_aggregate: Parent_Categories_Aggregate;
+  /** fetch data from the table: "parent_categories" using primary key columns */
+  parent_categories_by_pk?: Maybe<Parent_Categories>;
+  /** fetch data from the table: "skills" */
+  skills: Array<Skills>;
+  /** fetch aggregated fields from the table: "skills" */
+  skills_aggregate: Skills_Aggregate;
+  /** fetch data from the table: "skills" using primary key columns */
+  skills_by_pk?: Maybe<Skills>;
+  /** fetch data from the table: "sub_categories" */
+  sub_categories: Array<Sub_Categories>;
+  /** fetch aggregated fields from the table: "sub_categories" */
+  sub_categories_aggregate: Sub_Categories_Aggregate;
+  /** fetch data from the table: "sub_categories" using primary key columns */
+  sub_categories_by_pk?: Maybe<Sub_Categories>;
+  /** fetch data from the table: "user_skills" */
+  user_skills: Array<User_Skills>;
+  /** fetch aggregated fields from the table: "user_skills" */
+  user_skills_aggregate: User_Skills_Aggregate;
+  /** fetch data from the table: "user_skills" using primary key columns */
+  user_skills_by_pk?: Maybe<User_Skills>;
+  /** fetch data from the table: "users" */
+  users: Array<Users>;
+  /** fetch aggregated fields from the table: "users" */
+  users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "users" using primary key columns */
+  users_by_pk?: Maybe<Users>;
 };
 
 
 /** query root */
-export type Query_RootCircleArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
+export type Query_RootCircle_SkillsArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootCircleSkillArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
+export type Query_RootCircle_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootCircleSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootCircleSkill_By_PkArgs = {
+export type Query_RootCircle_Skills_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** query root */
-export type Query_RootCircleUserArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
+export type Query_RootCircle_UsersArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootCircleUser_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
+export type Query_RootCircle_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootCircleUser_By_PkArgs = {
+export type Query_RootCircle_Users_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** query root */
-export type Query_RootCircle_AggregateArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
+export type Query_RootCirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootCircle_By_PkArgs = {
+export type Query_RootCircles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootCircles_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** query root */
-export type Query_RootMessageArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
+export type Query_RootMessagesArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootMessage_AggregateArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
+export type Query_RootMessages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootMessage_By_PkArgs = {
+export type Query_RootMessages_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** query root */
-export type Query_RootOrganizationArgs = {
-  distinct_on?: Maybe<Array<Organization_Select_Column>>;
+export type Query_RootOrganizationsArgs = {
+  distinct_on?: Maybe<Array<Organizations_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Organization_Order_By>>;
-  where?: Maybe<Organization_Bool_Exp>;
+  order_by?: Maybe<Array<Organizations_Order_By>>;
+  where?: Maybe<Organizations_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootOrganization_AggregateArgs = {
-  distinct_on?: Maybe<Array<Organization_Select_Column>>;
+export type Query_RootOrganizations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Organizations_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Organization_Order_By>>;
-  where?: Maybe<Organization_Bool_Exp>;
+  order_by?: Maybe<Array<Organizations_Order_By>>;
+  where?: Maybe<Organizations_Bool_Exp>;
 };
 
 
 /** query root */
-export type Query_RootOrganization_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootParentCategoryArgs = {
-  distinct_on?: Maybe<Array<ParentCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<ParentCategory_Order_By>>;
-  where?: Maybe<ParentCategory_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootParentCategory_AggregateArgs = {
-  distinct_on?: Maybe<Array<ParentCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<ParentCategory_Order_By>>;
-  where?: Maybe<ParentCategory_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootParentCategory_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootSkillArgs = {
-  distinct_on?: Maybe<Array<Skill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Skill_Order_By>>;
-  where?: Maybe<Skill_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<Skill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Skill_Order_By>>;
-  where?: Maybe<Skill_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSkill_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootSubCategoryArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSubCategory_AggregateArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootSubCategory_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootUserArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootUserSkillArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootUserSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootUserSkill_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** query root */
-export type Query_RootUser_AggregateArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
-};
-
-
-/** query root */
-export type Query_RootUser_By_PkArgs = {
+export type Query_RootOrganizations_By_PkArgs = {
   id: Scalars['String'];
+};
+
+
+/** query root */
+export type Query_RootParent_CategoriesArgs = {
+  distinct_on?: Maybe<Array<Parent_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Parent_Categories_Order_By>>;
+  where?: Maybe<Parent_Categories_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootParent_Categories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Parent_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Parent_Categories_Order_By>>;
+  where?: Maybe<Parent_Categories_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootParent_Categories_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootSkillsArgs = {
+  distinct_on?: Maybe<Array<Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Skills_Order_By>>;
+  where?: Maybe<Skills_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSkills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Skills_Order_By>>;
+  where?: Maybe<Skills_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSkills_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootSub_CategoriesArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSub_Categories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootSub_Categories_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootUser_SkillsArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootUser_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootUser_Skills_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** query root */
+export type Query_RootUsersArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
+};
+
+
+/** query root */
+export type Query_RootUsers_By_PkArgs = {
+  id: Scalars['String'];
+};
+
+/** columns and relationships of "skills" */
+export type Skills = {
+  __typename?: 'skills';
+  avatar: Scalars['String'];
+  /** An array relationship */
+  circle_skills: Array<Circle_Skills>;
+  /** An aggregated array relationship */
+  circle_skills_aggregate: Circle_Skills_Aggregate;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  /** An array relationship */
+  user_skills: Array<User_Skills>;
+  /** An aggregated array relationship */
+  user_skills_aggregate: User_Skills_Aggregate;
+};
+
+
+/** columns and relationships of "skills" */
+export type SkillsCircle_SkillsArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "skills" */
+export type SkillsCircle_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "skills" */
+export type SkillsUser_SkillsArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "skills" */
+export type SkillsUser_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+/** aggregated selection of "skills" */
+export type Skills_Aggregate = {
+  __typename?: 'skills_aggregate';
+  aggregate?: Maybe<Skills_Aggregate_Fields>;
+  nodes: Array<Skills>;
+};
+
+/** aggregate fields of "skills" */
+export type Skills_Aggregate_Fields = {
+  __typename?: 'skills_aggregate_fields';
+  avg?: Maybe<Skills_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Skills_Max_Fields>;
+  min?: Maybe<Skills_Min_Fields>;
+  stddev?: Maybe<Skills_Stddev_Fields>;
+  stddev_pop?: Maybe<Skills_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Skills_Stddev_Samp_Fields>;
+  sum?: Maybe<Skills_Sum_Fields>;
+  var_pop?: Maybe<Skills_Var_Pop_Fields>;
+  var_samp?: Maybe<Skills_Var_Samp_Fields>;
+  variance?: Maybe<Skills_Variance_Fields>;
+};
+
+
+/** aggregate fields of "skills" */
+export type Skills_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Skills_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "skills" */
+export type Skills_Aggregate_Order_By = {
+  avg?: Maybe<Skills_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Skills_Max_Order_By>;
+  min?: Maybe<Skills_Min_Order_By>;
+  stddev?: Maybe<Skills_Stddev_Order_By>;
+  stddev_pop?: Maybe<Skills_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Skills_Stddev_Samp_Order_By>;
+  sum?: Maybe<Skills_Sum_Order_By>;
+  var_pop?: Maybe<Skills_Var_Pop_Order_By>;
+  var_samp?: Maybe<Skills_Var_Samp_Order_By>;
+  variance?: Maybe<Skills_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "skills" */
+export type Skills_Arr_Rel_Insert_Input = {
+  data: Array<Skills_Insert_Input>;
+  on_conflict?: Maybe<Skills_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Skills_Avg_Fields = {
+  __typename?: 'skills_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "skills" */
+export type Skills_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "skills". All fields are combined with a logical 'AND'. */
+export type Skills_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Skills_Bool_Exp>>>;
+  _not?: Maybe<Skills_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Skills_Bool_Exp>>>;
+  avatar?: Maybe<String_Comparison_Exp>;
+  circle_skills?: Maybe<Circle_Skills_Bool_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  user_skills?: Maybe<User_Skills_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "skills" */
+export enum Skills_Constraint {
+  /** unique or primary key constraint */
+  SkillPkey = 'Skill_pkey'
+}
+
+/** input type for incrementing integer column in table "skills" */
+export type Skills_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "skills" */
+export type Skills_Insert_Input = {
+  avatar?: Maybe<Scalars['String']>;
+  circle_skills?: Maybe<Circle_Skills_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  user_skills?: Maybe<User_Skills_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Skills_Max_Fields = {
+  __typename?: 'skills_max_fields';
+  avatar?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "skills" */
+export type Skills_Max_Order_By = {
+  avatar?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Skills_Min_Fields = {
+  __typename?: 'skills_min_fields';
+  avatar?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "skills" */
+export type Skills_Min_Order_By = {
+  avatar?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "skills" */
+export type Skills_Mutation_Response = {
+  __typename?: 'skills_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Skills>;
+};
+
+/** input type for inserting object relation for remote table "skills" */
+export type Skills_Obj_Rel_Insert_Input = {
+  data: Skills_Insert_Input;
+  on_conflict?: Maybe<Skills_On_Conflict>;
+};
+
+/** on conflict condition type for table "skills" */
+export type Skills_On_Conflict = {
+  constraint: Skills_Constraint;
+  update_columns: Array<Skills_Update_Column>;
+  where?: Maybe<Skills_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "skills" */
+export type Skills_Order_By = {
+  avatar?: Maybe<Order_By>;
+  circle_skills_aggregate?: Maybe<Circle_Skills_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  user_skills_aggregate?: Maybe<User_Skills_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: "skills" */
+export type Skills_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "skills" */
+export enum Skills_Select_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "skills" */
+export type Skills_Set_Input = {
+  avatar?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Skills_Stddev_Fields = {
+  __typename?: 'skills_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "skills" */
+export type Skills_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Skills_Stddev_Pop_Fields = {
+  __typename?: 'skills_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "skills" */
+export type Skills_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Skills_Stddev_Samp_Fields = {
+  __typename?: 'skills_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "skills" */
+export type Skills_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Skills_Sum_Fields = {
+  __typename?: 'skills_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "skills" */
+export type Skills_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** update columns of table "skills" */
+export enum Skills_Update_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** aggregate var_pop on columns */
+export type Skills_Var_Pop_Fields = {
+  __typename?: 'skills_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "skills" */
+export type Skills_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Skills_Var_Samp_Fields = {
+  __typename?: 'skills_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "skills" */
+export type Skills_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Skills_Variance_Fields = {
+  __typename?: 'skills_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "skills" */
+export type Skills_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "sub_categories" */
+export type Sub_Categories = {
+  __typename?: 'sub_categories';
+  /** An array relationship */
+  circles: Array<Circles>;
+  /** An aggregated array relationship */
+  circles_aggregate: Circles_Aggregate;
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  /** An object relationship */
+  parent_categories: Parent_Categories;
+  parent_category_id: Scalars['Int'];
+  /** An object relationship */
+  sub_categories?: Maybe<Circles>;
+};
+
+
+/** columns and relationships of "sub_categories" */
+export type Sub_CategoriesCirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "sub_categories" */
+export type Sub_CategoriesCircles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+/** aggregated selection of "sub_categories" */
+export type Sub_Categories_Aggregate = {
+  __typename?: 'sub_categories_aggregate';
+  aggregate?: Maybe<Sub_Categories_Aggregate_Fields>;
+  nodes: Array<Sub_Categories>;
+};
+
+/** aggregate fields of "sub_categories" */
+export type Sub_Categories_Aggregate_Fields = {
+  __typename?: 'sub_categories_aggregate_fields';
+  avg?: Maybe<Sub_Categories_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Sub_Categories_Max_Fields>;
+  min?: Maybe<Sub_Categories_Min_Fields>;
+  stddev?: Maybe<Sub_Categories_Stddev_Fields>;
+  stddev_pop?: Maybe<Sub_Categories_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Sub_Categories_Stddev_Samp_Fields>;
+  sum?: Maybe<Sub_Categories_Sum_Fields>;
+  var_pop?: Maybe<Sub_Categories_Var_Pop_Fields>;
+  var_samp?: Maybe<Sub_Categories_Var_Samp_Fields>;
+  variance?: Maybe<Sub_Categories_Variance_Fields>;
+};
+
+
+/** aggregate fields of "sub_categories" */
+export type Sub_Categories_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Sub_Categories_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "sub_categories" */
+export type Sub_Categories_Aggregate_Order_By = {
+  avg?: Maybe<Sub_Categories_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<Sub_Categories_Max_Order_By>;
+  min?: Maybe<Sub_Categories_Min_Order_By>;
+  stddev?: Maybe<Sub_Categories_Stddev_Order_By>;
+  stddev_pop?: Maybe<Sub_Categories_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<Sub_Categories_Stddev_Samp_Order_By>;
+  sum?: Maybe<Sub_Categories_Sum_Order_By>;
+  var_pop?: Maybe<Sub_Categories_Var_Pop_Order_By>;
+  var_samp?: Maybe<Sub_Categories_Var_Samp_Order_By>;
+  variance?: Maybe<Sub_Categories_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "sub_categories" */
+export type Sub_Categories_Arr_Rel_Insert_Input = {
+  data: Array<Sub_Categories_Insert_Input>;
+  on_conflict?: Maybe<Sub_Categories_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Sub_Categories_Avg_Fields = {
+  __typename?: 'sub_categories_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "sub_categories" */
+export type Sub_Categories_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "sub_categories". All fields are combined with a logical 'AND'. */
+export type Sub_Categories_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Sub_Categories_Bool_Exp>>>;
+  _not?: Maybe<Sub_Categories_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Sub_Categories_Bool_Exp>>>;
+  circles?: Maybe<Circles_Bool_Exp>;
+  id?: Maybe<Int_Comparison_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  parent_categories?: Maybe<Parent_Categories_Bool_Exp>;
+  parent_category_id?: Maybe<Int_Comparison_Exp>;
+  sub_categories?: Maybe<Circles_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "sub_categories" */
+export enum Sub_Categories_Constraint {
+  /** unique or primary key constraint */
+  SubCategoryPkey = 'SubCategory_pkey'
+}
+
+/** input type for incrementing integer column in table "sub_categories" */
+export type Sub_Categories_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "sub_categories" */
+export type Sub_Categories_Insert_Input = {
+  circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  parent_categories?: Maybe<Parent_Categories_Obj_Rel_Insert_Input>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+  sub_categories?: Maybe<Circles_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Sub_Categories_Max_Fields = {
+  __typename?: 'sub_categories_max_fields';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by max() on columns of table "sub_categories" */
+export type Sub_Categories_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Sub_Categories_Min_Fields = {
+  __typename?: 'sub_categories_min_fields';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by min() on columns of table "sub_categories" */
+export type Sub_Categories_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "sub_categories" */
+export type Sub_Categories_Mutation_Response = {
+  __typename?: 'sub_categories_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Sub_Categories>;
+};
+
+/** input type for inserting object relation for remote table "sub_categories" */
+export type Sub_Categories_Obj_Rel_Insert_Input = {
+  data: Sub_Categories_Insert_Input;
+  on_conflict?: Maybe<Sub_Categories_On_Conflict>;
+};
+
+/** on conflict condition type for table "sub_categories" */
+export type Sub_Categories_On_Conflict = {
+  constraint: Sub_Categories_Constraint;
+  update_columns: Array<Sub_Categories_Update_Column>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "sub_categories" */
+export type Sub_Categories_Order_By = {
+  circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
+  id?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  parent_categories?: Maybe<Parent_Categories_Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+  sub_categories?: Maybe<Circles_Order_By>;
+};
+
+/** primary key columns input for table: "sub_categories" */
+export type Sub_Categories_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "sub_categories" */
+export enum Sub_Categories_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ParentCategoryId = 'parent_category_id'
+}
+
+/** input type for updating data in table "sub_categories" */
+export type Sub_Categories_Set_Input = {
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Sub_Categories_Stddev_Fields = {
+  __typename?: 'sub_categories_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "sub_categories" */
+export type Sub_Categories_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Sub_Categories_Stddev_Pop_Fields = {
+  __typename?: 'sub_categories_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "sub_categories" */
+export type Sub_Categories_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Sub_Categories_Stddev_Samp_Fields = {
+  __typename?: 'sub_categories_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "sub_categories" */
+export type Sub_Categories_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type Sub_Categories_Sum_Fields = {
+  __typename?: 'sub_categories_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  parent_category_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "sub_categories" */
+export type Sub_Categories_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "sub_categories" */
+export enum Sub_Categories_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  ParentCategoryId = 'parent_category_id'
+}
+
+/** aggregate var_pop on columns */
+export type Sub_Categories_Var_Pop_Fields = {
+  __typename?: 'sub_categories_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "sub_categories" */
+export type Sub_Categories_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Sub_Categories_Var_Samp_Fields = {
+  __typename?: 'sub_categories_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "sub_categories" */
+export type Sub_Categories_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Sub_Categories_Variance_Fields = {
+  __typename?: 'sub_categories_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  parent_category_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "sub_categories" */
+export type Sub_Categories_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  parent_category_id?: Maybe<Order_By>;
 };
 
 /** subscription root */
 export type Subscription_Root = {
   __typename?: 'subscription_root';
-  /** fetch data from the table: "Circle" */
-  Circle: Array<Circle>;
-  /** fetch data from the table: "CircleSkill" */
-  CircleSkill: Array<CircleSkill>;
-  /** fetch aggregated fields from the table: "CircleSkill" */
-  CircleSkill_aggregate: CircleSkill_Aggregate;
-  /** fetch data from the table: "CircleSkill" using primary key columns */
-  CircleSkill_by_pk?: Maybe<CircleSkill>;
-  /** fetch data from the table: "CircleUser" */
-  CircleUser: Array<CircleUser>;
-  /** fetch aggregated fields from the table: "CircleUser" */
-  CircleUser_aggregate: CircleUser_Aggregate;
-  /** fetch data from the table: "CircleUser" using primary key columns */
-  CircleUser_by_pk?: Maybe<CircleUser>;
-  /** fetch aggregated fields from the table: "Circle" */
-  Circle_aggregate: Circle_Aggregate;
-  /** fetch data from the table: "Circle" using primary key columns */
-  Circle_by_pk?: Maybe<Circle>;
-  /** fetch data from the table: "Message" */
-  Message: Array<Message>;
-  /** fetch aggregated fields from the table: "Message" */
-  Message_aggregate: Message_Aggregate;
-  /** fetch data from the table: "Message" using primary key columns */
-  Message_by_pk?: Maybe<Message>;
-  /** fetch data from the table: "Organization" */
-  Organization: Array<Organization>;
-  /** fetch aggregated fields from the table: "Organization" */
-  Organization_aggregate: Organization_Aggregate;
-  /** fetch data from the table: "Organization" using primary key columns */
-  Organization_by_pk?: Maybe<Organization>;
-  /** fetch data from the table: "ParentCategory" */
-  ParentCategory: Array<ParentCategory>;
-  /** fetch aggregated fields from the table: "ParentCategory" */
-  ParentCategory_aggregate: ParentCategory_Aggregate;
-  /** fetch data from the table: "ParentCategory" using primary key columns */
-  ParentCategory_by_pk?: Maybe<ParentCategory>;
-  /** fetch data from the table: "Skill" */
-  Skill: Array<Skill>;
-  /** fetch aggregated fields from the table: "Skill" */
-  Skill_aggregate: Skill_Aggregate;
-  /** fetch data from the table: "Skill" using primary key columns */
-  Skill_by_pk?: Maybe<Skill>;
-  /** fetch data from the table: "SubCategory" */
-  SubCategory: Array<SubCategory>;
-  /** fetch aggregated fields from the table: "SubCategory" */
-  SubCategory_aggregate: SubCategory_Aggregate;
-  /** fetch data from the table: "SubCategory" using primary key columns */
-  SubCategory_by_pk?: Maybe<SubCategory>;
-  /** fetch data from the table: "User" */
-  User: Array<User>;
-  /** fetch data from the table: "UserSkill" */
-  UserSkill: Array<UserSkill>;
-  /** fetch aggregated fields from the table: "UserSkill" */
-  UserSkill_aggregate: UserSkill_Aggregate;
-  /** fetch data from the table: "UserSkill" using primary key columns */
-  UserSkill_by_pk?: Maybe<UserSkill>;
-  /** fetch aggregated fields from the table: "User" */
-  User_aggregate: User_Aggregate;
-  /** fetch data from the table: "User" using primary key columns */
-  User_by_pk?: Maybe<User>;
+  /** fetch data from the table: "circle_skills" */
+  circle_skills: Array<Circle_Skills>;
+  /** fetch aggregated fields from the table: "circle_skills" */
+  circle_skills_aggregate: Circle_Skills_Aggregate;
+  /** fetch data from the table: "circle_skills" using primary key columns */
+  circle_skills_by_pk?: Maybe<Circle_Skills>;
+  /** fetch data from the table: "circle_users" */
+  circle_users: Array<Circle_Users>;
+  /** fetch aggregated fields from the table: "circle_users" */
+  circle_users_aggregate: Circle_Users_Aggregate;
+  /** fetch data from the table: "circle_users" using primary key columns */
+  circle_users_by_pk?: Maybe<Circle_Users>;
+  /** fetch data from the table: "circles" */
+  circles: Array<Circles>;
+  /** fetch aggregated fields from the table: "circles" */
+  circles_aggregate: Circles_Aggregate;
+  /** fetch data from the table: "circles" using primary key columns */
+  circles_by_pk?: Maybe<Circles>;
+  /** fetch data from the table: "messages" */
+  messages: Array<Messages>;
+  /** fetch aggregated fields from the table: "messages" */
+  messages_aggregate: Messages_Aggregate;
+  /** fetch data from the table: "messages" using primary key columns */
+  messages_by_pk?: Maybe<Messages>;
+  /** fetch data from the table: "organizations" */
+  organizations: Array<Organizations>;
+  /** fetch aggregated fields from the table: "organizations" */
+  organizations_aggregate: Organizations_Aggregate;
+  /** fetch data from the table: "organizations" using primary key columns */
+  organizations_by_pk?: Maybe<Organizations>;
+  /** fetch data from the table: "parent_categories" */
+  parent_categories: Array<Parent_Categories>;
+  /** fetch aggregated fields from the table: "parent_categories" */
+  parent_categories_aggregate: Parent_Categories_Aggregate;
+  /** fetch data from the table: "parent_categories" using primary key columns */
+  parent_categories_by_pk?: Maybe<Parent_Categories>;
+  /** fetch data from the table: "skills" */
+  skills: Array<Skills>;
+  /** fetch aggregated fields from the table: "skills" */
+  skills_aggregate: Skills_Aggregate;
+  /** fetch data from the table: "skills" using primary key columns */
+  skills_by_pk?: Maybe<Skills>;
+  /** fetch data from the table: "sub_categories" */
+  sub_categories: Array<Sub_Categories>;
+  /** fetch aggregated fields from the table: "sub_categories" */
+  sub_categories_aggregate: Sub_Categories_Aggregate;
+  /** fetch data from the table: "sub_categories" using primary key columns */
+  sub_categories_by_pk?: Maybe<Sub_Categories>;
+  /** fetch data from the table: "user_skills" */
+  user_skills: Array<User_Skills>;
+  /** fetch aggregated fields from the table: "user_skills" */
+  user_skills_aggregate: User_Skills_Aggregate;
+  /** fetch data from the table: "user_skills" using primary key columns */
+  user_skills_by_pk?: Maybe<User_Skills>;
+  /** fetch data from the table: "users" */
+  users: Array<Users>;
+  /** fetch aggregated fields from the table: "users" */
+  users_aggregate: Users_Aggregate;
+  /** fetch data from the table: "users" using primary key columns */
+  users_by_pk?: Maybe<Users>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
+export type Subscription_RootCircle_SkillsArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleSkillArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
+export type Subscription_RootCircle_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Skills_Order_By>>;
+  where?: Maybe<Circle_Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleSkill_Order_By>>;
-  where?: Maybe<CircleSkill_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootCircleSkill_By_PkArgs = {
+export type Subscription_RootCircle_Skills_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleUserArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
+export type Subscription_RootCircle_UsersArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleUser_AggregateArgs = {
-  distinct_on?: Maybe<Array<CircleUser_Select_Column>>;
+export type Subscription_RootCircle_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<CircleUser_Order_By>>;
-  where?: Maybe<CircleUser_Bool_Exp>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircleUser_By_PkArgs = {
+export type Subscription_RootCircle_Users_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootCircle_AggregateArgs = {
-  distinct_on?: Maybe<Array<Circle_Select_Column>>;
+export type Subscription_RootCirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circle_Order_By>>;
-  where?: Maybe<Circle_Bool_Exp>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootCircle_By_PkArgs = {
+export type Subscription_RootCircles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootCircles_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootMessageArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
+export type Subscription_RootMessagesArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootMessage_AggregateArgs = {
-  distinct_on?: Maybe<Array<Message_Select_Column>>;
+export type Subscription_RootMessages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Message_Order_By>>;
-  where?: Maybe<Message_Bool_Exp>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootMessage_By_PkArgs = {
+export type Subscription_RootMessages_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootOrganizationArgs = {
-  distinct_on?: Maybe<Array<Organization_Select_Column>>;
+export type Subscription_RootOrganizationsArgs = {
+  distinct_on?: Maybe<Array<Organizations_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Organization_Order_By>>;
-  where?: Maybe<Organization_Bool_Exp>;
+  order_by?: Maybe<Array<Organizations_Order_By>>;
+  where?: Maybe<Organizations_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootOrganization_AggregateArgs = {
-  distinct_on?: Maybe<Array<Organization_Select_Column>>;
+export type Subscription_RootOrganizations_AggregateArgs = {
+  distinct_on?: Maybe<Array<Organizations_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Organization_Order_By>>;
-  where?: Maybe<Organization_Bool_Exp>;
+  order_by?: Maybe<Array<Organizations_Order_By>>;
+  where?: Maybe<Organizations_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootOrganization_By_PkArgs = {
+export type Subscription_RootOrganizations_By_PkArgs = {
+  id: Scalars['String'];
+};
+
+
+/** subscription root */
+export type Subscription_RootParent_CategoriesArgs = {
+  distinct_on?: Maybe<Array<Parent_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Parent_Categories_Order_By>>;
+  where?: Maybe<Parent_Categories_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootParent_Categories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Parent_Categories_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Parent_Categories_Order_By>>;
+  where?: Maybe<Parent_Categories_Bool_Exp>;
+};
+
+
+/** subscription root */
+export type Subscription_RootParent_Categories_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootParentCategoryArgs = {
-  distinct_on?: Maybe<Array<ParentCategory_Select_Column>>;
+export type Subscription_RootSkillsArgs = {
+  distinct_on?: Maybe<Array<Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<ParentCategory_Order_By>>;
-  where?: Maybe<ParentCategory_Bool_Exp>;
+  order_by?: Maybe<Array<Skills_Order_By>>;
+  where?: Maybe<Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootParentCategory_AggregateArgs = {
-  distinct_on?: Maybe<Array<ParentCategory_Select_Column>>;
+export type Subscription_RootSkills_AggregateArgs = {
+  distinct_on?: Maybe<Array<Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<ParentCategory_Order_By>>;
-  where?: Maybe<ParentCategory_Bool_Exp>;
+  order_by?: Maybe<Array<Skills_Order_By>>;
+  where?: Maybe<Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootParentCategory_By_PkArgs = {
+export type Subscription_RootSkills_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootSkillArgs = {
-  distinct_on?: Maybe<Array<Skill_Select_Column>>;
+export type Subscription_RootSub_CategoriesArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Skill_Order_By>>;
-  where?: Maybe<Skill_Bool_Exp>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<Skill_Select_Column>>;
+export type Subscription_RootSub_Categories_AggregateArgs = {
+  distinct_on?: Maybe<Array<Sub_Categories_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Skill_Order_By>>;
-  where?: Maybe<Skill_Bool_Exp>;
+  order_by?: Maybe<Array<Sub_Categories_Order_By>>;
+  where?: Maybe<Sub_Categories_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootSkill_By_PkArgs = {
+export type Subscription_RootSub_Categories_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootSubCategoryArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
+export type Subscription_RootUser_SkillsArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootSubCategory_AggregateArgs = {
-  distinct_on?: Maybe<Array<SubCategory_Select_Column>>;
+export type Subscription_RootUser_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<SubCategory_Order_By>>;
-  where?: Maybe<SubCategory_Bool_Exp>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootSubCategory_By_PkArgs = {
+export type Subscription_RootUser_Skills_By_PkArgs = {
   id: Scalars['Int'];
 };
 
 
 /** subscription root */
-export type Subscription_RootUserArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
+export type Subscription_RootUsersArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootUserSkillArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
+export type Subscription_RootUsers_AggregateArgs = {
+  distinct_on?: Maybe<Array<Users_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
+  order_by?: Maybe<Array<Users_Order_By>>;
+  where?: Maybe<Users_Bool_Exp>;
 };
 
 
 /** subscription root */
-export type Subscription_RootUserSkill_AggregateArgs = {
-  distinct_on?: Maybe<Array<UserSkill_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<UserSkill_Order_By>>;
-  where?: Maybe<UserSkill_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootUserSkill_By_PkArgs = {
-  id: Scalars['Int'];
-};
-
-
-/** subscription root */
-export type Subscription_RootUser_AggregateArgs = {
-  distinct_on?: Maybe<Array<User_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<User_Order_By>>;
-  where?: Maybe<User_Bool_Exp>;
-};
-
-
-/** subscription root */
-export type Subscription_RootUser_By_PkArgs = {
+export type Subscription_RootUsers_By_PkArgs = {
   id: Scalars['String'];
 };
 
@@ -4636,32 +3762,750 @@ export type Timestamptz_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
+/** columns and relationships of "user_skills" */
+export type User_Skills = {
+  __typename?: 'user_skills';
+  id: Scalars['Int'];
+  level: Scalars['Int'];
+  skill_id: Scalars['Int'];
+  /** An object relationship */
+  skills: Skills;
+  user_id: Scalars['String'];
+  /** An object relationship */
+  users: Users;
+};
+
+/** aggregated selection of "user_skills" */
+export type User_Skills_Aggregate = {
+  __typename?: 'user_skills_aggregate';
+  aggregate?: Maybe<User_Skills_Aggregate_Fields>;
+  nodes: Array<User_Skills>;
+};
+
+/** aggregate fields of "user_skills" */
+export type User_Skills_Aggregate_Fields = {
+  __typename?: 'user_skills_aggregate_fields';
+  avg?: Maybe<User_Skills_Avg_Fields>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<User_Skills_Max_Fields>;
+  min?: Maybe<User_Skills_Min_Fields>;
+  stddev?: Maybe<User_Skills_Stddev_Fields>;
+  stddev_pop?: Maybe<User_Skills_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<User_Skills_Stddev_Samp_Fields>;
+  sum?: Maybe<User_Skills_Sum_Fields>;
+  var_pop?: Maybe<User_Skills_Var_Pop_Fields>;
+  var_samp?: Maybe<User_Skills_Var_Samp_Fields>;
+  variance?: Maybe<User_Skills_Variance_Fields>;
+};
+
+
+/** aggregate fields of "user_skills" */
+export type User_Skills_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<User_Skills_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "user_skills" */
+export type User_Skills_Aggregate_Order_By = {
+  avg?: Maybe<User_Skills_Avg_Order_By>;
+  count?: Maybe<Order_By>;
+  max?: Maybe<User_Skills_Max_Order_By>;
+  min?: Maybe<User_Skills_Min_Order_By>;
+  stddev?: Maybe<User_Skills_Stddev_Order_By>;
+  stddev_pop?: Maybe<User_Skills_Stddev_Pop_Order_By>;
+  stddev_samp?: Maybe<User_Skills_Stddev_Samp_Order_By>;
+  sum?: Maybe<User_Skills_Sum_Order_By>;
+  var_pop?: Maybe<User_Skills_Var_Pop_Order_By>;
+  var_samp?: Maybe<User_Skills_Var_Samp_Order_By>;
+  variance?: Maybe<User_Skills_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "user_skills" */
+export type User_Skills_Arr_Rel_Insert_Input = {
+  data: Array<User_Skills_Insert_Input>;
+  on_conflict?: Maybe<User_Skills_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type User_Skills_Avg_Fields = {
+  __typename?: 'user_skills_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "user_skills" */
+export type User_Skills_Avg_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** Boolean expression to filter rows from the table "user_skills". All fields are combined with a logical 'AND'. */
+export type User_Skills_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<User_Skills_Bool_Exp>>>;
+  _not?: Maybe<User_Skills_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<User_Skills_Bool_Exp>>>;
+  id?: Maybe<Int_Comparison_Exp>;
+  level?: Maybe<Int_Comparison_Exp>;
+  skill_id?: Maybe<Int_Comparison_Exp>;
+  skills?: Maybe<Skills_Bool_Exp>;
+  user_id?: Maybe<String_Comparison_Exp>;
+  users?: Maybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "user_skills" */
+export enum User_Skills_Constraint {
+  /** unique or primary key constraint */
+  UserSkillPkey = 'UserSkill_pkey'
+}
+
+/** input type for incrementing integer column in table "user_skills" */
+export type User_Skills_Inc_Input = {
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "user_skills" */
+export type User_Skills_Insert_Input = {
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+  skills?: Maybe<Skills_Obj_Rel_Insert_Input>;
+  user_id?: Maybe<Scalars['String']>;
+  users?: Maybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type User_Skills_Max_Fields = {
+  __typename?: 'user_skills_max_fields';
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "user_skills" */
+export type User_Skills_Max_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type User_Skills_Min_Fields = {
+  __typename?: 'user_skills_min_fields';
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "user_skills" */
+export type User_Skills_Min_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+  user_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "user_skills" */
+export type User_Skills_Mutation_Response = {
+  __typename?: 'user_skills_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<User_Skills>;
+};
+
+/** input type for inserting object relation for remote table "user_skills" */
+export type User_Skills_Obj_Rel_Insert_Input = {
+  data: User_Skills_Insert_Input;
+  on_conflict?: Maybe<User_Skills_On_Conflict>;
+};
+
+/** on conflict condition type for table "user_skills" */
+export type User_Skills_On_Conflict = {
+  constraint: User_Skills_Constraint;
+  update_columns: Array<User_Skills_Update_Column>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "user_skills" */
+export type User_Skills_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+  skills?: Maybe<Skills_Order_By>;
+  user_id?: Maybe<Order_By>;
+  users?: Maybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: "user_skills" */
+export type User_Skills_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "user_skills" */
+export enum User_Skills_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Level = 'level',
+  /** column name */
+  SkillId = 'skill_id',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "user_skills" */
+export type User_Skills_Set_Input = {
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+  user_id?: Maybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type User_Skills_Stddev_Fields = {
+  __typename?: 'user_skills_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "user_skills" */
+export type User_Skills_Stddev_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type User_Skills_Stddev_Pop_Fields = {
+  __typename?: 'user_skills_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "user_skills" */
+export type User_Skills_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type User_Skills_Stddev_Samp_Fields = {
+  __typename?: 'user_skills_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "user_skills" */
+export type User_Skills_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate sum on columns */
+export type User_Skills_Sum_Fields = {
+  __typename?: 'user_skills_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+  level?: Maybe<Scalars['Int']>;
+  skill_id?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "user_skills" */
+export type User_Skills_Sum_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** update columns of table "user_skills" */
+export enum User_Skills_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Level = 'level',
+  /** column name */
+  SkillId = 'skill_id',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** aggregate var_pop on columns */
+export type User_Skills_Var_Pop_Fields = {
+  __typename?: 'user_skills_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "user_skills" */
+export type User_Skills_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type User_Skills_Var_Samp_Fields = {
+  __typename?: 'user_skills_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "user_skills" */
+export type User_Skills_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type User_Skills_Variance_Fields = {
+  __typename?: 'user_skills_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+  level?: Maybe<Scalars['Float']>;
+  skill_id?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "user_skills" */
+export type User_Skills_Variance_Order_By = {
+  id?: Maybe<Order_By>;
+  level?: Maybe<Order_By>;
+  skill_id?: Maybe<Order_By>;
+};
+
+/** columns and relationships of "users" */
+export type Users = {
+  __typename?: 'users';
+  avatar?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  circle_users: Array<Circle_Users>;
+  /** An aggregated array relationship */
+  circle_users_aggregate: Circle_Users_Aggregate;
+  /** An array relationship */
+  circles: Array<Circles>;
+  /** An aggregated array relationship */
+  circles_aggregate: Circles_Aggregate;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  interested_in?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  last_seen?: Maybe<Scalars['timestamptz']>;
+  /** An array relationship */
+  messages: Array<Messages>;
+  /** An aggregated array relationship */
+  messages_aggregate: Messages_Aggregate;
+  name?: Maybe<Scalars['String']>;
+  organization_id?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  organizations?: Maybe<Organizations>;
+  /** An array relationship */
+  user_skills: Array<User_Skills>;
+  /** An aggregated array relationship */
+  user_skills_aggregate: User_Skills_Aggregate;
+  /** An object relationship */
+  users?: Maybe<Circles>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersCircle_UsersArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersCircle_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circle_Users_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circle_Users_Order_By>>;
+  where?: Maybe<Circle_Users_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersCirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersCircles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersMessagesArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersMessages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Messages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Messages_Order_By>>;
+  where?: Maybe<Messages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersUser_SkillsArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersUser_Skills_AggregateArgs = {
+  distinct_on?: Maybe<Array<User_Skills_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<User_Skills_Order_By>>;
+  where?: Maybe<User_Skills_Bool_Exp>;
+};
+
+/** aggregated selection of "users" */
+export type Users_Aggregate = {
+  __typename?: 'users_aggregate';
+  aggregate?: Maybe<Users_Aggregate_Fields>;
+  nodes: Array<Users>;
+};
+
+/** aggregate fields of "users" */
+export type Users_Aggregate_Fields = {
+  __typename?: 'users_aggregate_fields';
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Users_Max_Fields>;
+  min?: Maybe<Users_Min_Fields>;
+};
+
+
+/** aggregate fields of "users" */
+export type Users_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Users_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "users" */
+export type Users_Aggregate_Order_By = {
+  count?: Maybe<Order_By>;
+  max?: Maybe<Users_Max_Order_By>;
+  min?: Maybe<Users_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "users" */
+export type Users_Arr_Rel_Insert_Input = {
+  data: Array<Users_Insert_Input>;
+  on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+export type Users_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
+  _not?: Maybe<Users_Bool_Exp>;
+  _or?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
+  avatar?: Maybe<String_Comparison_Exp>;
+  circle_users?: Maybe<Circle_Users_Bool_Exp>;
+  circles?: Maybe<Circles_Bool_Exp>;
+  created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  email?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<String_Comparison_Exp>;
+  interested_in?: Maybe<String_Comparison_Exp>;
+  introduction?: Maybe<String_Comparison_Exp>;
+  last_seen?: Maybe<Timestamptz_Comparison_Exp>;
+  messages?: Maybe<Messages_Bool_Exp>;
+  name?: Maybe<String_Comparison_Exp>;
+  organization_id?: Maybe<String_Comparison_Exp>;
+  organizations?: Maybe<Organizations_Bool_Exp>;
+  user_skills?: Maybe<User_Skills_Bool_Exp>;
+  users?: Maybe<Circles_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "users" */
+export enum Users_Constraint {
+  /** unique or primary key constraint */
+  UserPkey = 'user_pkey'
+}
+
+/** input type for inserting data into table "users" */
+export type Users_Insert_Input = {
+  avatar?: Maybe<Scalars['String']>;
+  circle_users?: Maybe<Circle_Users_Arr_Rel_Insert_Input>;
+  circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  interested_in?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  last_seen?: Maybe<Scalars['timestamptz']>;
+  messages?: Maybe<Messages_Arr_Rel_Insert_Input>;
+  name?: Maybe<Scalars['String']>;
+  organization_id?: Maybe<Scalars['String']>;
+  organizations?: Maybe<Organizations_Obj_Rel_Insert_Input>;
+  user_skills?: Maybe<User_Skills_Arr_Rel_Insert_Input>;
+  users?: Maybe<Circles_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Users_Max_Fields = {
+  __typename?: 'users_max_fields';
+  avatar?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  interested_in?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  last_seen?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  organization_id?: Maybe<Scalars['String']>;
+};
+
+/** order by max() on columns of table "users" */
+export type Users_Max_Order_By = {
+  avatar?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  interested_in?: Maybe<Order_By>;
+  introduction?: Maybe<Order_By>;
+  last_seen?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  organization_id?: Maybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Users_Min_Fields = {
+  __typename?: 'users_min_fields';
+  avatar?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  interested_in?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  last_seen?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  organization_id?: Maybe<Scalars['String']>;
+};
+
+/** order by min() on columns of table "users" */
+export type Users_Min_Order_By = {
+  avatar?: Maybe<Order_By>;
+  created_at?: Maybe<Order_By>;
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  interested_in?: Maybe<Order_By>;
+  introduction?: Maybe<Order_By>;
+  last_seen?: Maybe<Order_By>;
+  name?: Maybe<Order_By>;
+  organization_id?: Maybe<Order_By>;
+};
+
+/** response of any mutation on the table "users" */
+export type Users_Mutation_Response = {
+  __typename?: 'users_mutation_response';
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data of the affected rows by the mutation */
+  returning: Array<Users>;
+};
+
+/** input type for inserting object relation for remote table "users" */
+export type Users_Obj_Rel_Insert_Input = {
+  data: Users_Insert_Input;
+  on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+/** on conflict condition type for table "users" */
+export type Users_On_Conflict = {
+  constraint: Users_Constraint;
+  update_columns: Array<Users_Update_Column>;
+  where?: Maybe<Users_Bool_Exp>;
+};
+
+/** ordering options when selecting data from "users" */
+export type Users_Order_By = {
+  avatar?: Maybe<Order_By>;
+  circle_users_aggregate?: Maybe<Circle_Users_Aggregate_Order_By>;
+  circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
+  created_at?: Maybe<Order_By>;
+  email?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  interested_in?: Maybe<Order_By>;
+  introduction?: Maybe<Order_By>;
+  last_seen?: Maybe<Order_By>;
+  messages_aggregate?: Maybe<Messages_Aggregate_Order_By>;
+  name?: Maybe<Order_By>;
+  organization_id?: Maybe<Order_By>;
+  organizations?: Maybe<Organizations_Order_By>;
+  user_skills_aggregate?: Maybe<User_Skills_Aggregate_Order_By>;
+  users?: Maybe<Circles_Order_By>;
+};
+
+/** primary key columns input for table: "users" */
+export type Users_Pk_Columns_Input = {
+  id: Scalars['String'];
+};
+
+/** select columns of table "users" */
+export enum Users_Select_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterestedIn = 'interested_in',
+  /** column name */
+  Introduction = 'introduction',
+  /** column name */
+  LastSeen = 'last_seen',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  OrganizationId = 'organization_id'
+}
+
+/** input type for updating data in table "users" */
+export type Users_Set_Input = {
+  avatar?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  interested_in?: Maybe<Scalars['String']>;
+  introduction?: Maybe<Scalars['String']>;
+  last_seen?: Maybe<Scalars['timestamptz']>;
+  name?: Maybe<Scalars['String']>;
+  organization_id?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "users" */
+export enum Users_Update_Column {
+  /** column name */
+  Avatar = 'avatar',
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  InterestedIn = 'interested_in',
+  /** column name */
+  Introduction = 'introduction',
+  /** column name */
+  LastSeen = 'last_seen',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  OrganizationId = 'organization_id'
+}
+
+export type DeleteCircleSkillMutationVariables = Exact<{
+  circleId: Scalars['Int'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type DeleteCircleSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_circle_skills?: Maybe<(
+    { __typename?: 'circle_skills_mutation_response' }
+    & Pick<Circle_Skills_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertCircleMutationVariables = Exact<{
-  objects: Array<Circle_Insert_Input>;
+  objects: Array<Circles_Insert_Input>;
 }>;
 
 
 export type InsertCircleMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_Circle?: Maybe<(
-    { __typename?: 'Circle_mutation_response' }
-    & Pick<Circle_Mutation_Response, 'affected_rows'>
+  & { insert_circles?: Maybe<(
+    { __typename?: 'circles_mutation_response' }
+    & Pick<Circles_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type InsertCircleSkillMutationVariables = Exact<{
+  circleId: Scalars['Int'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type InsertCircleSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_circle_skills?: Maybe<(
+    { __typename?: 'circle_skills_mutation_response' }
+    & Pick<Circle_Skills_Mutation_Response, 'affected_rows'>
   )> }
 );
 
 export type InsertMessageMutationVariables = Exact<{
-  objects: Array<Message_Insert_Input>;
+  objects: Array<Messages_Insert_Input>;
 }>;
 
 
 export type InsertMessageMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_Message?: Maybe<(
-    { __typename?: 'Message_mutation_response' }
+  & { insert_messages?: Maybe<(
+    { __typename?: 'messages_mutation_response' }
     & { returning: Array<(
-      { __typename?: 'Message' }
-      & Pick<Message, 'id'>
+      { __typename?: 'messages' }
+      & Pick<Messages, 'id'>
     )> }
+  )> }
+);
+
+export type UpdateCirlceMutationVariables = Exact<{
+  id: Scalars['Int'];
+  inputs?: Maybe<Circles_Set_Input>;
+}>;
+
+
+export type UpdateCirlceMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_circles?: Maybe<(
+    { __typename?: 'circles_mutation_response' }
+    & Pick<Circles_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -4670,12 +4514,12 @@ export type CategoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CategoriesQuery = (
   { __typename?: 'query_root' }
-  & { ParentCategory: Array<(
-    { __typename?: 'ParentCategory' }
-    & Pick<ParentCategory, 'id' | 'name'>
-    & { SubCategories: Array<(
-      { __typename?: 'SubCategory' }
-      & Pick<SubCategory, 'id' | 'name'>
+  & { parent_categories: Array<(
+    { __typename?: 'parent_categories' }
+    & Pick<Parent_Categories, 'id' | 'name'>
+    & { sub_categories: Array<(
+      { __typename?: 'sub_categories' }
+      & Pick<Sub_Categories, 'id' | 'name'>
     )> }
   )> }
 );
@@ -4688,19 +4532,19 @@ export type CircleQueryVariables = Exact<{
 export type CircleQuery = (
   { __typename?: 'query_root' }
   & { circle?: Maybe<(
-    { __typename?: 'Circle' }
-    & Pick<Circle, 'id' | 'avatar' | 'name' | 'main_role' | 'what_we_will_do' | 'recruit_title'>
-    & { User?: Maybe<(
-      { __typename?: 'User' }
-      & Pick<User, 'id' | 'name' | 'avatar'>
-    )>, SubCategory?: Maybe<(
-      { __typename?: 'SubCategory' }
-      & Pick<SubCategory, 'id' | 'name'>
-    )>, CicleSkills: Array<(
-      { __typename?: 'CircleSkill' }
-      & { Skill: (
-        { __typename?: 'Skill' }
-        & Pick<Skill, 'id' | 'name' | 'avatar'>
+    { __typename?: 'circles' }
+    & Pick<Circles, 'id' | 'avatar' | 'name' | 'main_role' | 'what_we_will_do' | 'recruit_title'>
+    & { owner?: Maybe<(
+      { __typename?: 'users' }
+      & Pick<Users, 'id' | 'name' | 'avatar'>
+    )>, sub_categories?: Maybe<(
+      { __typename?: 'sub_categories' }
+      & Pick<Sub_Categories, 'id' | 'name'>
+    )>, circle_skills: Array<(
+      { __typename?: 'circle_skills' }
+      & { skills: (
+        { __typename?: 'skills' }
+        & Pick<Skills, 'id' | 'name' | 'avatar'>
       ) }
     )> }
   )> }
@@ -4709,20 +4553,20 @@ export type CircleQuery = (
 export type CirclesQueryVariables = Exact<{
   limit: Scalars['Int'];
   offset: Scalars['Int'];
-  where?: Maybe<Circle_Bool_Exp>;
+  where?: Maybe<Circles_Bool_Exp>;
 }>;
 
 
 export type CirclesQuery = (
   { __typename?: 'query_root' }
-  & { Circle: Array<(
-    { __typename?: 'Circle' }
-    & Pick<Circle, 'id' | 'name' | 'recruit_title' | 'avatar' | 'what_we_will_do' | 'main_role'>
-  )>, Circle_aggregate: (
-    { __typename?: 'Circle_aggregate' }
+  & { circles: Array<(
+    { __typename?: 'circles' }
+    & Pick<Circles, 'id' | 'name' | 'recruit_title' | 'avatar' | 'what_we_will_do' | 'main_role'>
+  )>, circles_aggregate: (
+    { __typename?: 'circles_aggregate' }
     & { aggregate?: Maybe<(
-      { __typename?: 'Circle_aggregate_fields' }
-      & Pick<Circle_Aggregate_Fields, 'count'>
+      { __typename?: 'circles_aggregate_fields' }
+      & Pick<Circles_Aggregate_Fields, 'count'>
     )> }
   ) }
 );
@@ -4732,23 +4576,32 @@ export type SkillAndSubCategoryQueryVariables = Exact<{ [key: string]: never; }>
 
 export type SkillAndSubCategoryQuery = (
   { __typename?: 'query_root' }
-  & { Skill: Array<(
-    { __typename?: 'Skill' }
-    & Pick<Skill, 'id' | 'avatar' | 'name'>
-  )>, SubCategory: Array<(
-    { __typename?: 'SubCategory' }
-    & Pick<SubCategory, 'id' | 'name'>
+  & { skills: Array<(
+    { __typename?: 'skills' }
+    & Pick<Skills, 'id' | 'avatar' | 'name'>
+  )>, sub_categories: Array<(
+    { __typename?: 'sub_categories' }
+    & Pick<Sub_Categories, 'id' | 'name'>
   )> }
 );
 
-export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
 
 
-export type UsersQuery = (
+export type UserQuery = (
   { __typename?: 'query_root' }
-  & { User: Array<(
-    { __typename?: 'User' }
-    & Pick<User, 'id' | 'name'>
+  & { user?: Maybe<(
+    { __typename?: 'users' }
+    & Pick<Users, 'id' | 'avatar' | 'name' | 'introduction' | 'interested_in'>
+    & { user_skills: Array<(
+      { __typename?: 'user_skills' }
+      & { skills: (
+        { __typename?: 'skills' }
+        & Pick<Skills, 'id' | 'avatar' | 'name'>
+      ) }
+    )> }
   )> }
 );
 
@@ -4760,15 +4613,11 @@ export type UserCirclesQueryVariables = Exact<{
 export type UserCirclesQuery = (
   { __typename?: 'query_root' }
   & { user?: Maybe<(
-    { __typename?: 'User' }
-    & Pick<User, 'id'>
-    & { CircleUsers: Array<(
-      { __typename?: 'CircleUser' }
-      & Pick<CircleUser, 'id'>
-      & { Circle: (
-        { __typename?: 'Circle' }
-        & Pick<Circle, 'id' | 'name' | 'avatar'>
-      ) }
+    { __typename?: 'users' }
+    & Pick<Users, 'id'>
+    & { circles: Array<(
+      { __typename?: 'circles' }
+      & Pick<Circles, 'id' | 'name' | 'avatar'>
     )> }
   )> }
 );
@@ -4780,20 +4629,53 @@ export type MessagesSubscriptionVariables = Exact<{
 
 export type MessagesSubscription = (
   { __typename?: 'subscription_root' }
-  & { Message: Array<(
-    { __typename?: 'Message' }
-    & Pick<Message, 'timestamp' | 'text' | 'id'>
-    & { User: (
-      { __typename?: 'User' }
-      & Pick<User, 'id' | 'avatar' | 'name'>
+  & { messages: Array<(
+    { __typename?: 'messages' }
+    & Pick<Messages, 'timestamp' | 'text' | 'id'>
+    & { users: (
+      { __typename?: 'users' }
+      & Pick<Users, 'id' | 'avatar' | 'name'>
     ) }
   )> }
 );
 
 
+export const DeleteCircleSkillDocument = gql`
+    mutation DeleteCircleSkill($circleId: Int!, $skillId: Int!) {
+  delete_circle_skills(where: {circle_id: {_eq: $circleId}, skill_id: {_eq: $skillId}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteCircleSkillMutationFn = Apollo.MutationFunction<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>;
+
+/**
+ * __useDeleteCircleSkillMutation__
+ *
+ * To run a mutation, you first call `useDeleteCircleSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCircleSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCircleSkillMutation, { data, loading, error }] = useDeleteCircleSkillMutation({
+ *   variables: {
+ *      circleId: // value for 'circleId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useDeleteCircleSkillMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>) {
+        return Apollo.useMutation<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>(DeleteCircleSkillDocument, baseOptions);
+      }
+export type DeleteCircleSkillMutationHookResult = ReturnType<typeof useDeleteCircleSkillMutation>;
+export type DeleteCircleSkillMutationResult = Apollo.MutationResult<DeleteCircleSkillMutation>;
+export type DeleteCircleSkillMutationOptions = Apollo.BaseMutationOptions<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>;
 export const InsertCircleDocument = gql`
-    mutation InsertCircle($objects: [Circle_insert_input!]!) {
-  insert_Circle(objects: $objects) {
+    mutation InsertCircle($objects: [circles_insert_input!]!) {
+  insert_circles(objects: $objects) {
     affected_rows
   }
 }
@@ -4823,9 +4705,42 @@ export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions
 export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
 export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
+export const InsertCircleSkillDocument = gql`
+    mutation InsertCircleSkill($circleId: Int!, $skillId: Int!) {
+  insert_circle_skills(objects: {circle_id: $circleId, skill_id: $skillId}) {
+    affected_rows
+  }
+}
+    `;
+export type InsertCircleSkillMutationFn = Apollo.MutationFunction<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>;
+
+/**
+ * __useInsertCircleSkillMutation__
+ *
+ * To run a mutation, you first call `useInsertCircleSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertCircleSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertCircleSkillMutation, { data, loading, error }] = useInsertCircleSkillMutation({
+ *   variables: {
+ *      circleId: // value for 'circleId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useInsertCircleSkillMutation(baseOptions?: Apollo.MutationHookOptions<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>) {
+        return Apollo.useMutation<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>(InsertCircleSkillDocument, baseOptions);
+      }
+export type InsertCircleSkillMutationHookResult = ReturnType<typeof useInsertCircleSkillMutation>;
+export type InsertCircleSkillMutationResult = Apollo.MutationResult<InsertCircleSkillMutation>;
+export type InsertCircleSkillMutationOptions = Apollo.BaseMutationOptions<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>;
 export const InsertMessageDocument = gql`
-    mutation InsertMessage($objects: [Message_insert_input!]!) {
-  insert_Message(objects: $objects) {
+    mutation InsertMessage($objects: [messages_insert_input!]!) {
+  insert_messages(objects: $objects) {
     returning {
       id
     }
@@ -4857,12 +4772,45 @@ export function useInsertMessageMutation(baseOptions?: Apollo.MutationHookOption
 export type InsertMessageMutationHookResult = ReturnType<typeof useInsertMessageMutation>;
 export type InsertMessageMutationResult = Apollo.MutationResult<InsertMessageMutation>;
 export type InsertMessageMutationOptions = Apollo.BaseMutationOptions<InsertMessageMutation, InsertMessageMutationVariables>;
+export const UpdateCirlceDocument = gql`
+    mutation UpdateCirlce($id: Int!, $inputs: circles_set_input) {
+  update_circles(where: {id: {_eq: $id}}, _set: $inputs) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateCirlceMutationFn = Apollo.MutationFunction<UpdateCirlceMutation, UpdateCirlceMutationVariables>;
+
+/**
+ * __useUpdateCirlceMutation__
+ *
+ * To run a mutation, you first call `useUpdateCirlceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCirlceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCirlceMutation, { data, loading, error }] = useUpdateCirlceMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      inputs: // value for 'inputs'
+ *   },
+ * });
+ */
+export function useUpdateCirlceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCirlceMutation, UpdateCirlceMutationVariables>) {
+        return Apollo.useMutation<UpdateCirlceMutation, UpdateCirlceMutationVariables>(UpdateCirlceDocument, baseOptions);
+      }
+export type UpdateCirlceMutationHookResult = ReturnType<typeof useUpdateCirlceMutation>;
+export type UpdateCirlceMutationResult = Apollo.MutationResult<UpdateCirlceMutation>;
+export type UpdateCirlceMutationOptions = Apollo.BaseMutationOptions<UpdateCirlceMutation, UpdateCirlceMutationVariables>;
 export const CategoriesDocument = gql`
     query Categories {
-  ParentCategory {
+  parent_categories {
     id
     name
-    SubCategories {
+    sub_categories {
       id
       name
     }
@@ -4896,24 +4844,24 @@ export type CategoriesLazyQueryHookResult = ReturnType<typeof useCategoriesLazyQ
 export type CategoriesQueryResult = Apollo.QueryResult<CategoriesQuery, CategoriesQueryVariables>;
 export const CircleDocument = gql`
     query Circle($id: Int!) {
-  circle: Circle_by_pk(id: $id) {
+  circle: circles_by_pk(id: $id) {
     id
     avatar
     name
     main_role
     what_we_will_do
     recruit_title
-    User {
+    owner: users {
       id
       name
       avatar
     }
-    SubCategory {
+    sub_categories {
       id
       name
     }
-    CicleSkills {
-      Skill {
+    circle_skills {
+      skills {
         id
         name
         avatar
@@ -4949,8 +4897,8 @@ export type CircleQueryHookResult = ReturnType<typeof useCircleQuery>;
 export type CircleLazyQueryHookResult = ReturnType<typeof useCircleLazyQuery>;
 export type CircleQueryResult = Apollo.QueryResult<CircleQuery, CircleQueryVariables>;
 export const CirclesDocument = gql`
-    query Circles($limit: Int!, $offset: Int!, $where: Circle_bool_exp) {
-  Circle(limit: $limit, offset: $offset, where: $where) {
+    query Circles($limit: Int!, $offset: Int!, $where: circles_bool_exp) {
+  circles(limit: $limit, offset: $offset, where: $where) {
     id
     name
     recruit_title
@@ -4958,7 +4906,7 @@ export const CirclesDocument = gql`
     what_we_will_do
     main_role
   }
-  Circle_aggregate(where: $where) {
+  circles_aggregate(where: $where) {
     aggregate {
       count(columns: avatar)
     }
@@ -4995,12 +4943,12 @@ export type CirclesLazyQueryHookResult = ReturnType<typeof useCirclesLazyQuery>;
 export type CirclesQueryResult = Apollo.QueryResult<CirclesQuery, CirclesQueryVariables>;
 export const SkillAndSubCategoryDocument = gql`
     query SkillAndSubCategory {
-  Skill {
+  skills {
     id
     avatar
     name
   }
-  SubCategory {
+  sub_categories {
     id
     name
   }
@@ -5031,50 +4979,58 @@ export function useSkillAndSubCategoryLazyQuery(baseOptions?: Apollo.LazyQueryHo
 export type SkillAndSubCategoryQueryHookResult = ReturnType<typeof useSkillAndSubCategoryQuery>;
 export type SkillAndSubCategoryLazyQueryHookResult = ReturnType<typeof useSkillAndSubCategoryLazyQuery>;
 export type SkillAndSubCategoryQueryResult = Apollo.QueryResult<SkillAndSubCategoryQuery, SkillAndSubCategoryQueryVariables>;
-export const UsersDocument = gql`
-    query Users {
-  User {
+export const UserDocument = gql`
+    query User($id: String!) {
+  user: users_by_pk(id: $id) {
     id
+    avatar
     name
+    introduction
+    interested_in
+    user_skills {
+      skills {
+        id
+        avatar
+        name
+      }
+    }
   }
 }
     `;
 
 /**
- * __useUsersQuery__
+ * __useUserQuery__
  *
- * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
- * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useUsersQuery({
+ * const { data, loading, error } = useUserQuery({
  *   variables: {
+ *      id: // value for 'id'
  *   },
  * });
  */
-export function useUsersQuery(baseOptions?: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
-        return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
       }
-export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
-          return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, baseOptions);
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, baseOptions);
         }
-export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
-export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
-export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
 export const UserCirclesDocument = gql`
     query UserCircles($id: String!) {
-  user: User_by_pk(id: $id) {
+  user: users_by_pk(id: $id) {
     id
-    CircleUsers {
+    circles {
       id
-      Circle {
-        id
-        name
-        avatar
-      }
+      name
+      avatar
     }
   }
 }
@@ -5107,11 +5063,11 @@ export type UserCirclesLazyQueryHookResult = ReturnType<typeof useUserCirclesLaz
 export type UserCirclesQueryResult = Apollo.QueryResult<UserCirclesQuery, UserCirclesQueryVariables>;
 export const MessagesDocument = gql`
     subscription Messages($circleId: Int!) {
-  Message(where: {Circle: {id: {_eq: $circleId}}}, order_by: {timestamp: asc}) {
+  messages(where: {circles: {id: {_eq: $circleId}}}, order_by: {timestamp: asc}) {
     timestamp
     text
     id
-    User {
+    users {
       id
       avatar
       name

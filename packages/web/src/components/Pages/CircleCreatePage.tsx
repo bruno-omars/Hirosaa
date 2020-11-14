@@ -4,16 +4,10 @@ import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import {
   useInsertCircleMutation,
-  Skill_Constraint,
-  Skill_Update_Column,
+  Skills_Constraint,
+  Skills_Update_Column,
 } from "../../generated/graphql";
-
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0.2fr;
-  place-items: center;
-  padding-top: 60px;
-`;
+import TwoColumn from "../Templates/TwoColumn";
 
 const RightButton = styled.div`
   align-self: start;
@@ -38,12 +32,12 @@ const CircleCreatePage: FC = () => {
 
   const [buttonText, setText] = useState("作成する");
 
-  const Skills = selectedSkills.map((skill: number) => ({
-    Skill: {
+  const skills = selectedSkills.map((skill: number) => ({
+    skills: {
       data: { id: skill, avatar: "", name: "" },
       on_conflict: {
-        constraint: Skill_Constraint.SkillPkey,
-        update_columns: [Skill_Update_Column.Id],
+        constraint: Skills_Constraint.SkillPkey,
+        update_columns: [Skills_Update_Column.Id],
       },
     },
   }));
@@ -57,9 +51,9 @@ const CircleCreatePage: FC = () => {
           {
             ...inputs,
             sub_category_id: selectedCategory,
-            CicleSkills: {
-              data: [...Skills],
-            },
+            circle_skills:{
+              data: [...skills],
+            }
           },
         ],
       },
@@ -67,13 +61,13 @@ const CircleCreatePage: FC = () => {
   };
 
   useEffect(() => {
-    if (data?.insert_Circle) {
+    if (data?.insert_circles) {
       setText("作成しました");
     }
   }, [data]);
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <CircleCreateCard
         inputs={inputs}
         setInputs={setInputs}
@@ -83,11 +77,11 @@ const CircleCreatePage: FC = () => {
         setCategory={setCategory}
       />
       <RightButton>
-        <RoundedButton clickHandler={handleClick} buttonSize="SMALL">
+        <RoundedButton onClick={handleClick} buttonSize="SMALL">
           {buttonText}
         </RoundedButton>
       </RightButton>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 

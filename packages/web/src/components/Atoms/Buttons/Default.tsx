@@ -6,7 +6,7 @@ import { COLOR } from "../../../constants/color";
 export const BUTTON_SIZE = {
   LARGE: { H: "60px", W: "400px" },
   MEDIUM: { H: "60px", W: "380px" },
-  BASE: { H: "60px", W: "260px" },
+  BASE: { H: "40px", W: "220px" },
   SMALL: { H: "40px", W: "150px" },
   MINI: { H: "52px", W: "45px" },
 };
@@ -35,16 +35,14 @@ export type Color = keyof typeof COLOR;
 export type ShadowDepth = keyof typeof SHADOW_DEPTH;
 
 export type Props = {
-  clickHandler: (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   buttonSize?: ButtonSize;
   bgColor?: Color;
   disabled?: boolean;
   shadowDepth?: ShadowDepth;
 };
 
-export const StyledButton = styled.button<Omit<Props, "clickHandler">>`
+export const StyledButton = styled.button<Props>`
   background-color: ${({ bgColor = "LIGHT_GREEN" }) => COLOR[bgColor]};
   border: ${({ bgColor = "LIGHT_GREEN" }) =>
     bgColor === "WHITE" ? "1px solid rgba(0,0,0,0.4)" : "none"};
@@ -58,11 +56,7 @@ export const StyledButton = styled.button<Omit<Props, "clickHandler">>`
 `;
 
 const Default: FC<Props> = (props) => {
-  return (
-    <StyledButton onClick={props.clickHandler} {...props}>
-      {props.children}
-    </StyledButton>
-  );
+  return <StyledButton {...props}>{props.children}</StyledButton>;
 };
 
 export default Default;

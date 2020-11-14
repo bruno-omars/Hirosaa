@@ -10,7 +10,7 @@ const StyledMe = styled.div`
   cursor: pointer;
   display: grid;
   fill: white;
-  grid-template-columns: 30% 50% 20%;
+  grid-template-columns: 20% 70% 10%;
   height: 80px;
   place-items: center;
 
@@ -30,20 +30,28 @@ const StyledImage = styled.img`
   width: 100%;
 `;
 
+const StyledId = styled.p`
+  font-size: 0.8em;
+`;
+
 type Props = {
   user: any;
+  onRedirectDetail: () => void;
 };
 
-const Me: FC<Props> = ({ user }) => {
+const Me: FC<Props> = ({ user, onRedirectDetail }) => {
+  const idMaxLength = 8;
+  const userId = user["https://hasura.io/jwt/claims"]["x-hasura-user-id"].slice(
+    -idMaxLength
+  );
   return (
     <StyledMe>
-      <CircleButton clickHandler={() => {}} shadowDepth={"NONE"}>
-        <StyledImage src={user.picture || ""} />
+      <CircleButton onClick={onRedirectDetail} shadowDepth={"NONE"}>
+        <StyledImage src={user.picture||""} />
       </CircleButton>
       <div>
         <StyledText>{user.nickname}</StyledText>
-        {/* {user['https://hasura.io/jwt/claims']['x-hasura-user-id']} */}
-        @ropital
+        <StyledId>@{userId}</StyledId>
       </div>
       <DownArrow />
     </StyledMe>

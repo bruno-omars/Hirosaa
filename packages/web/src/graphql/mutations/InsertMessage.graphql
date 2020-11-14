@@ -1,5 +1,5 @@
-mutation InsertMessage($objects: [Message_insert_input!]!) {
-  insert_Message(objects: $objects) {
+mutation InsertMessage($objects: [messages_insert_input!]!) {
+  insert_messages(objects: $objects) {
     returning {
       id
     }

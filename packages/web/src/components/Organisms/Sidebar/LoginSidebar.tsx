@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
 import Me from "../../Molecules/Sidebar/Me";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
+import { useHistory } from "react-router-dom";
 
 const StyledSidebar = styled.div`
   background-color: ${COLOR["DARK_GREEN"]};
@@ -32,6 +33,14 @@ const StyledMe = styled.div`
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
   const { useCase, setMe, me } = useAuthContext();
+  let history = useHistory();
+
+  const onRedirectDetail = () => {
+    history.push({
+      pathname: "/user-detail",
+      state: { userId: me.id },
+    });
+  };
 
   useEffect(() => {
     setMe(useCase.setMe(user));
@@ -40,7 +49,7 @@ const LoginSidebar: FC = () => {
   return (
     <StyledSidebar>
       <StyledMe>
-        <Me user={user} />
+        <Me user={user} onRedirectDetail={onRedirectDetail} />
       </StyledMe>
       <StyledList>
         <IconLink to="/circle" text="サークル一覧" bgcolor={"WHITE"}>

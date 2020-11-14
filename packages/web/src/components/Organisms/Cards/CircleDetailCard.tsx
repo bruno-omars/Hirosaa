@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Circle, Skill, SubCategory, User } from "../../../generated/graphql";
+import { Circles, Skills, Sub_Categories, Users } from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
+import { useHistory } from "react-router-dom";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -23,6 +24,7 @@ const StyledTop = styled.div`
 const StyledCircleAvatar = styled(Avatar)`
   grid-row: 1/3;
   align-self: center;
+  cursor: default;
 `;
 
 const StyledHeader = styled.div`
@@ -93,14 +95,22 @@ const StyledGrid = styled.div<StyleGrid>`
 
 type Props = {
   circle: Pick<
-    Circle,
+    Circles,
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { CicleSkills: { Skill: Pick<Skill, "id" | "name" | "avatar"> }[] } & {
-    SubCategory?: Pick<SubCategory, "name"> | null;
-  } & { User?: Pick<User, "name" | "avatar"> | null };
+  > & { circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
+    sub_categories?: Pick<Sub_Categories, "name"> | null;
+  } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
+  let history = useHistory();
+  const handleToDetail = () => {
+    history.push({
+      pathname: "/user-detail",
+      state: { userId: circle.owner?.id },
+    });
+  };
+
   return (
     <StyledCard>
       <StyledTop>
@@ -108,8 +118,8 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
           <StyledCaption>{circle.recruit_title}</StyledCaption>
-          {circle.SubCategory?.name && (
-            <DefaultTag name={circle.SubCategory.name} />
+          {circle.sub_categories?.name && (
+            <DefaultTag name={circle.sub_categories.name} />
           )}
         </StyledHeader>
 
@@ -117,8 +127,12 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
 
         <StyledLeaderWrapper>
           <StyledLeaderLabel>リーダー</StyledLeaderLabel>
-          <Avatar src={circle.User?.avatar ?? ""} size={30} />
-          <StyledLeaderName>{circle.User?.name}</StyledLeaderName>
+          <Avatar
+            onClick={handleToDetail}
+            src={circle.owner?.avatar ?? ""}
+            size={30}
+          />
+          <StyledLeaderName>{circle.owner?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
       </StyledTop>
       <hr />
@@ -133,12 +147,12 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.CicleSkills.length / 4) * 85}>
-          {circle.CicleSkills?.map((circleSkill) => (
+        <StyledGrid height={Math.ceil(circle.circle_skills.length / 4) * 85}>
+          {circle.circle_skills?.map((circleSkill) => (
             <SkillCard
-              name={circleSkill.Skill.name}
-              id={circleSkill.Skill.id.toString()}
-              avatar={circleSkill.Skill.avatar}
+              name={circleSkill.skills.name}
+              id={circleSkill.skills.id.toString()}
+              avatar={circleSkill.skills.avatar}
             />
           ))}
         </StyledGrid>

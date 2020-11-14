@@ -1,12 +1,12 @@
 subscription Messages($circleId: Int!) {
-  Message(
-    where: { Circle: { id: { _eq: $circleId } } }
+  messages(
+    where: { circles: { id: { _eq: $circleId } } }
     order_by: { timestamp: asc }
   ) {
     timestamp
     text
     id
-    User {
+    users {
       id
       avatar
       name

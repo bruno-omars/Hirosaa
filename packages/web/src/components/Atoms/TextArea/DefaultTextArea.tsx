@@ -10,13 +10,14 @@ export const SIZE = {
 };
 
 type Props = {
-  handleChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
   areaSize?: keyof typeof SIZE;
   name?: string;
+  value: string;
 };
 
-const StyledTextArea = styled.textarea<Omit<Props, "handleChange">>`
+const StyledTextArea = styled.textarea<Omit<Props, "onChange">>`
   box-sizing: border-box;
   border: 1px solid ${COLOR["BORDER_TEXT_INPUT"]};
   border-radius: 4px;
@@ -36,14 +37,7 @@ const StyledTextArea = styled.textarea<Omit<Props, "handleChange">>`
 `;
 
 const DefaultTextArea: FC<Props> = (props) => {
-  return (
-    <StyledTextArea
-      areaSize={props.areaSize}
-      onChange={props.handleChange}
-      placeholder={props.placeholder}
-      name={props.name}
-    />
-  );
+  return <StyledTextArea {...props} />;
 };
 
 export default DefaultTextArea;

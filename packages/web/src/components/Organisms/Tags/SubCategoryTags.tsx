@@ -1,13 +1,9 @@
 import React, { FC } from "react";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
-import { SubCategory } from "../../../generated/graphql";
+import { Sub_Categories } from "../../../generated/graphql";
 
 type Props = {
-  subCategories:
-    | ({
-        __typename?: "SubCategory" | undefined;
-      } & Pick<SubCategory, "name" | "id">)[]
-    | undefined;
+  subCategories: Pick<Sub_Categories, "name" | "id">[] | undefined;
   selectedCategory: number;
   setCategory: React.Dispatch<React.SetStateAction<number>>;
 };

@@ -1,15 +1,11 @@
 import React, { FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { Skill } from "../../../generated/graphql";
+import { Skills } from "../../../generated/graphql";
 
 type Props = {
-  skills:
-    | ({
-        __typename?: "Skill" | undefined;
-      } & Pick<Skill, "id" | "name" | "avatar">)[]
-    | undefined;
-  selectedSkills: number[];
-  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
+  skills?: Pick<Skills, "id" | "name" | "avatar">[];
+  selectedSkills?: number[];
+  setSkills?: React.Dispatch<React.SetStateAction<number[]>>;
 };
 
 const SkillCards: FC<Props> = (props) => {
@@ -18,12 +14,14 @@ const SkillCards: FC<Props> = (props) => {
     e.preventDefault();
     let newSelectedSkills: number[];
     const id = Number(e.currentTarget.id);
-    if (selectedSkills.includes(id)) {
-      newSelectedSkills = selectedSkills.filter((num) => num !== id);
-    } else {
-      newSelectedSkills = [...selectedSkills, id];
+    if (selectedSkills && setSkills) {
+      if (selectedSkills.includes(id)) {
+        newSelectedSkills = selectedSkills.filter((num) => num !== id);
+      } else {
+        newSelectedSkills = [...selectedSkills, id];
+      }
+      setSkills(newSelectedSkills);
     }
-    setSkills(newSelectedSkills);
   };
 
   const skills =
@@ -35,7 +33,11 @@ const SkillCards: FC<Props> = (props) => {
           id={skill.id.toString()}
           key={skill.id}
           name={skill.name}
-          bgColor={selectedSkills.includes(skill.id) ? "LIGHT_GREEN" : "WHITE"}
+          bgColor={
+            selectedSkills && selectedSkills.includes(skill.id)
+              ? "LIGHT_GREEN"
+              : "WHITE"
+          }
           avatar={skill.avatar}
         />
       );
