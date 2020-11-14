@@ -1,6 +1,5 @@
 /**
  * sourceとtargetを比較し、targetに存在する要素の配列を返す
- * TODO: 名前がaddに依存しているため変更したいが良いのがわからない
  * @param source number[]
  * @param target number[]
  */
