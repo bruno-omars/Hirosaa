@@ -5,18 +5,12 @@ import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
 import { useAuthContext } from "../../provider/AuthContextProvider";
+import TwoColumn from "../Templates/TwoColumn";
 import Spinner from "../Atoms/Indicator/Spinner";
 
 type Params = {
   userId: string;
 };
-
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0.2fr;
-  place-items: center;
-  padding-top: 60px;
-`;
 
 const StyledRightButtons = styled.div`
   align-self: start;
@@ -45,20 +39,20 @@ const UserDetailPage: FC = () => {
   const onSubmitMessage = () => {};
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <UserDetailCard data={data} />
       <StyledRightButtons>
         {me.id === userId ? (
-          <StyledRoundedButton clickHandler={onEditMe} buttonSize="SMALL">
+          <StyledRoundedButton onClick={onEditMe} buttonSize="SMALL">
             編集する
           </StyledRoundedButton>
         ) : (
-          <StyledRoundedButton clickHandler={onSubmitMessage} buttonSize="BASE">
+          <StyledRoundedButton onClick={onSubmitMessage} buttonSize="BASE">
             メッセージを送信する
           </StyledRoundedButton>
         )}
       </StyledRightButtons>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 

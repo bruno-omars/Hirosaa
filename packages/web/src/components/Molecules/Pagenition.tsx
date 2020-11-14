@@ -33,7 +33,7 @@ const Pagenation: FC<Props> = (props) => {
     .map((pageNum) => {
       return (
         <Default
-          clickHandler={() => handleToSpecificPage(pageNum)}
+          onClick={() => handleToSpecificPage(pageNum)}
           buttonSize="MINI"
           shadowDepth="NONE"
           bgColor={pageNum === currentPage ? "LIGHT_GREEN" : "WHITE"}
@@ -50,7 +50,7 @@ const Pagenation: FC<Props> = (props) => {
         ""
       ) : (
         <Default
-          clickHandler={handleToPrePage}
+          onClick={handleToPrePage}
           buttonSize="MINI"
           shadowDepth="NONE"
           bgColor="WHITE"
@@ -64,7 +64,7 @@ const Pagenation: FC<Props> = (props) => {
         ""
       ) : (
         <Default
-          clickHandler={handleToNextPage}
+          onClick={handleToNextPage}
           buttonSize="MINI"
           shadowDepth="NONE"
           bgColor="WHITE"

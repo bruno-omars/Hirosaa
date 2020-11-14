@@ -7,13 +7,7 @@ import {
   Skills_Constraint,
   Skills_Update_Column,
 } from "../../generated/graphql";
-
-const StyledPage = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 0.2fr;
-  place-items: center;
-  padding-top: 60px;
-`;
+import TwoColumn from "../Templates/TwoColumn";
 
 const RightButton = styled.div`
   align-self: start;
@@ -73,7 +67,7 @@ const CircleCreatePage: FC = () => {
   }, [data]);
 
   return (
-    <StyledPage>
+    <TwoColumn defaultStyle>
       <CircleCreateCard
         inputs={inputs}
         setInputs={setInputs}
@@ -83,11 +77,11 @@ const CircleCreatePage: FC = () => {
         setCategory={setCategory}
       />
       <RightButton>
-        <RoundedButton clickHandler={handleClick} buttonSize="SMALL">
+        <RoundedButton onClick={handleClick} buttonSize="SMALL">
           {buttonText}
         </RoundedButton>
       </RightButton>
-    </StyledPage>
+    </TwoColumn>
   );
 };
 

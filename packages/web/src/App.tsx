@@ -23,6 +23,7 @@ import PrivateRoute from "./PrivateRoute";
 import CircleCreatePage from "./components/Pages/CircleCreatePage";
 import CircleDetailPage from "./components/Pages/CircleDetailPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
+import CircleEditPage from "./components/Pages/CircleEditPage";
 import Spinner from "./components/Atoms/Indicator/Spinner";
 
 const App: FC = () => {
@@ -62,7 +63,7 @@ const App: FC = () => {
         <Router>
           <Switch>
             <Route path="/login" component={GuestSidebar}>
-              <TwoColumn>
+              <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
                 <GuestSidebar />
                 <AboutPage />
               </TwoColumn>
@@ -75,6 +76,7 @@ const App: FC = () => {
               exact
             />
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
+            <PrivateRoute path="/circle-edit" component={CircleEditPage} />
             <PrivateRoute path="/user-detail" component={UserDetailPage} />
 
             <Route path="*">
