@@ -3,7 +3,7 @@ import styled from "styled-components";
 import DefaultInput from "./DefaultInput";
 
 export const StyledInput = styled(DefaultInput)`
-  padding-right: 20px;
+  padding-right: 40px;
   width: 100%;
 `; //TODO: iconの大きさによって変える
 

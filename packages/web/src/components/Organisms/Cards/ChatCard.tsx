@@ -38,7 +38,7 @@ const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  margin-bottom: 5px;
+  margin: 5px 12px;
 `;
 
 const StyledTitle = styled.h2`
@@ -48,7 +48,7 @@ const StyledTitle = styled.h2`
 const StyledSendIcon = styled(MessageSendIcon)`
   width: 20px;
   height: 20px;
-  margin: auto;
+  display: flex;
 `;
 
 const MessageContainer = styled.ul`
@@ -190,7 +190,7 @@ const ChatCard: FC<Props> = ({
             iconClickHandler={handleSubmit}
             onChange={onChange}
             value={inputs.text}
-            placeholder=""
+            placeholder="メッセージを送信する"
             name="text"
           />
         </Bottom>
