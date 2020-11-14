@@ -22,7 +22,7 @@ const ChatPage: FC = () => {
     variables: { id: me?.id! },
     skip: !me?.id,
     onCompleted: (data) => {
-      setActiveCircleId(data?.user?.CircleUsers[0]?.Circle.id);
+      setActiveCircleId(data?.user?.circles[0].id);
     },
   });
   const { data: messageData, loading, error } = useMessagesSubscription({
@@ -33,9 +33,9 @@ const ChatPage: FC = () => {
   });
   const [insertMessage] = useInsertMessageMutation();
 
-  const activeCircle = userData?.user?.CircleUsers.find(
-    (circleUser) => circleUser.Circle.id === activeCircleId
-  )?.Circle;
+  const activeCircle = userData?.user?.circles.find(
+    (circle) => circle.id === activeCircleId
+  );
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -73,7 +73,7 @@ const ChatPage: FC = () => {
     <ChatCard
       setActiveCircleId={setActiveCircleId}
       circle={activeCircle}
-      messeges={messageData?.Message}
+      messeges={messageData?.messages}
       inputs={inputs}
       setInputs={setInputs}
       onChange={onChange}

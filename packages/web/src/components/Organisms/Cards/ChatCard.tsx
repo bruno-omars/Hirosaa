@@ -1,6 +1,6 @@
 import React, { FC, ComponentProps } from "react";
 import styled from "styled-components";
-import { Circle, Message, User } from "../../../generated/graphql";
+import { Circles, Messages, Users } from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
@@ -45,7 +45,7 @@ const StyledSendIcon = styled(MessageSendIcon)`
   margin: auto;
 `;
 
-const Messages = styled.ul`
+const MessageContainer = styled.ul`
   width: 100%;
   height: 100%;
   padding: 10px 0;
@@ -89,14 +89,10 @@ export type Input = {
 
 type Props = {
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
-  circle?: Pick<Circle, "id" | "name" | "avatar">;
+  circle?: Pick<Circles, "id" | "name" | "avatar">;
   messeges:
-    | ({
-        __typename?: "Message" | undefined;
-      } & Pick<Message, "timestamp" | "text" | "id"> & {
-          User: {
-            __typename?: "User" | undefined;
-          } & Pick<User, "id" | "avatar" | "name">;
+    | ({} & Pick<Messages, "timestamp" | "text" | "id"> & {
+          users: {} & Pick<Users, "id" | "avatar" | "name">;
         })[]
     | undefined;
   inputs: Input;
@@ -122,7 +118,7 @@ const ChatCard: FC<Props> = ({
           <StyledTitle>{circle?.name}</StyledTitle>
           <PeopleNum count={30} />
         </Top>
-        <Messages>
+        <MessageContainer>
           {messeges
             ? messeges.map((message) => (
                 <MessageLi>
@@ -136,7 +132,7 @@ const ChatCard: FC<Props> = ({
                 </MessageLi>
               ))
             : "やりとりがありません。何かメッセージを送ってみましょう"}
-        </Messages>
+        </MessageContainer>
         <Bottom>
           <IconRightInput
             icon={

@@ -34,14 +34,11 @@ const ChatSidebar: FC<Props> = (props) => {
 
   return (
     <StyledSidebar>
-      {data?.user?.CircleUsers.map((circleUser) => {
-        const circle = circleUser.Circle;
-        return (
-          <StyledCircleIcon onClick={() => handleClickCircle(circle.id)}>
-            <img height="64px" src={circle.avatar || ""} />
-          </StyledCircleIcon>
-        );
-      })}
+      {data?.user?.circles?.map((circle) => (
+        <StyledCircleIcon onClick={() => handleClickCircle(circle.id)}>
+          <img height="64px" src={circle.avatar || ""} />
+        </StyledCircleIcon>
+      ))}
     </StyledSidebar>
   );
 };
