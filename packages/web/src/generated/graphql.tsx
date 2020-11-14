@@ -4438,6 +4438,20 @@ export enum Users_Update_Column {
   OrganizationId = 'organization_id'
 }
 
+export type DeleteCircleSkillMutationVariables = Exact<{
+  circleId: Scalars['Int'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type DeleteCircleSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_circle_skills?: Maybe<(
+    { __typename?: 'circle_skills_mutation_response' }
+    & Pick<Circle_Skills_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertCircleMutationVariables = Exact<{
   objects: Array<Circles_Insert_Input>;
 }>;
@@ -4446,6 +4460,34 @@ export type InsertCircleMutationVariables = Exact<{
 export type InsertCircleMutation = (
   { __typename?: 'mutation_root' }
   & { insert_circles?: Maybe<(
+    { __typename?: 'circles_mutation_response' }
+    & Pick<Circles_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type InsertCircleSkillMutationVariables = Exact<{
+  circleId: Scalars['Int'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type InsertCircleSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_circle_skills?: Maybe<(
+    { __typename?: 'circle_skills_mutation_response' }
+    & Pick<Circle_Skills_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateCirlceMutationVariables = Exact<{
+  id: Scalars['Int'];
+  inputs?: Maybe<Circles_Set_Input>;
+}>;
+
+
+export type UpdateCirlceMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_circles?: Maybe<(
     { __typename?: 'circles_mutation_response' }
     & Pick<Circles_Mutation_Response, 'affected_rows'>
   )> }
@@ -4548,6 +4590,39 @@ export type UserQuery = (
 );
 
 
+export const DeleteCircleSkillDocument = gql`
+    mutation DeleteCircleSkill($circleId: Int!, $skillId: Int!) {
+  delete_circle_skills(where: {circle_id: {_eq: $circleId}, skill_id: {_eq: $skillId}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteCircleSkillMutationFn = Apollo.MutationFunction<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>;
+
+/**
+ * __useDeleteCircleSkillMutation__
+ *
+ * To run a mutation, you first call `useDeleteCircleSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteCircleSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteCircleSkillMutation, { data, loading, error }] = useDeleteCircleSkillMutation({
+ *   variables: {
+ *      circleId: // value for 'circleId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useDeleteCircleSkillMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>) {
+        return Apollo.useMutation<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>(DeleteCircleSkillDocument, baseOptions);
+      }
+export type DeleteCircleSkillMutationHookResult = ReturnType<typeof useDeleteCircleSkillMutation>;
+export type DeleteCircleSkillMutationResult = Apollo.MutationResult<DeleteCircleSkillMutation>;
+export type DeleteCircleSkillMutationOptions = Apollo.BaseMutationOptions<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>;
 export const InsertCircleDocument = gql`
     mutation InsertCircle($objects: [circles_insert_input!]!) {
   insert_circles(objects: $objects) {
@@ -4580,6 +4655,72 @@ export function useInsertCircleMutation(baseOptions?: Apollo.MutationHookOptions
 export type InsertCircleMutationHookResult = ReturnType<typeof useInsertCircleMutation>;
 export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<InsertCircleMutation, InsertCircleMutationVariables>;
+export const InsertCircleSkillDocument = gql`
+    mutation InsertCircleSkill($circleId: Int!, $skillId: Int!) {
+  insert_circle_skills(objects: {circle_id: $circleId, skill_id: $skillId}) {
+    affected_rows
+  }
+}
+    `;
+export type InsertCircleSkillMutationFn = Apollo.MutationFunction<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>;
+
+/**
+ * __useInsertCircleSkillMutation__
+ *
+ * To run a mutation, you first call `useInsertCircleSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertCircleSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertCircleSkillMutation, { data, loading, error }] = useInsertCircleSkillMutation({
+ *   variables: {
+ *      circleId: // value for 'circleId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useInsertCircleSkillMutation(baseOptions?: Apollo.MutationHookOptions<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>) {
+        return Apollo.useMutation<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>(InsertCircleSkillDocument, baseOptions);
+      }
+export type InsertCircleSkillMutationHookResult = ReturnType<typeof useInsertCircleSkillMutation>;
+export type InsertCircleSkillMutationResult = Apollo.MutationResult<InsertCircleSkillMutation>;
+export type InsertCircleSkillMutationOptions = Apollo.BaseMutationOptions<InsertCircleSkillMutation, InsertCircleSkillMutationVariables>;
+export const UpdateCirlceDocument = gql`
+    mutation UpdateCirlce($id: Int!, $inputs: circles_set_input) {
+  update_circles(where: {id: {_eq: $id}}, _set: $inputs) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateCirlceMutationFn = Apollo.MutationFunction<UpdateCirlceMutation, UpdateCirlceMutationVariables>;
+
+/**
+ * __useUpdateCirlceMutation__
+ *
+ * To run a mutation, you first call `useUpdateCirlceMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCirlceMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateCirlceMutation, { data, loading, error }] = useUpdateCirlceMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *      inputs: // value for 'inputs'
+ *   },
+ * });
+ */
+export function useUpdateCirlceMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCirlceMutation, UpdateCirlceMutationVariables>) {
+        return Apollo.useMutation<UpdateCirlceMutation, UpdateCirlceMutationVariables>(UpdateCirlceDocument, baseOptions);
+      }
+export type UpdateCirlceMutationHookResult = ReturnType<typeof useUpdateCirlceMutation>;
+export type UpdateCirlceMutationResult = Apollo.MutationResult<UpdateCirlceMutation>;
+export type UpdateCirlceMutationOptions = Apollo.BaseMutationOptions<UpdateCirlceMutation, UpdateCirlceMutationVariables>;
 export const CategoriesDocument = gql`
     query Categories {
   parent_categories {
