@@ -35,7 +35,7 @@ export type Color = keyof typeof COLOR;
 export type ShadowDepth = keyof typeof SHADOW_DEPTH;
 
 export type Props = {
-  clickHandler: (
+  onClick: (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => void;
   buttonSize?: ButtonSize;
@@ -44,7 +44,7 @@ export type Props = {
   shadowDepth?: ShadowDepth;
 };
 
-export const StyledButton = styled.button<Omit<Props, "clickHandler">>`
+export const StyledButton = styled.button<Props>`
   background-color: ${({ bgColor = "LIGHT_GREEN" }) => COLOR[bgColor]};
   border: ${({ bgColor = "LIGHT_GREEN" }) =>
     bgColor === "WHITE" ? "1px solid rgba(0,0,0,0.4)" : "none"};
@@ -59,7 +59,7 @@ export const StyledButton = styled.button<Omit<Props, "clickHandler">>`
 
 const Default: FC<Props> = (props) => {
   return (
-    <StyledButton onClick={props.clickHandler} {...props}>
+    <StyledButton {...props}>
       {props.children}
     </StyledButton>
   );

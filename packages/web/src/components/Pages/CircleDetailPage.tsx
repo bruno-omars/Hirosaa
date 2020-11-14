@@ -44,10 +44,10 @@ const CircleDetailPage: FC = (props) => {
     <StyledPage>
       <CircleDetailCard circle={data.circle} />
       <StyledRightButtons>
-        <StyledRoundedButton clickHandler={handleClickJoin} buttonSize="SMALL">
+        <StyledRoundedButton onClick={handleClickJoin} buttonSize="SMALL">
           応募する
         </StyledRoundedButton>
-        <StyledRoundedButton clickHandler={handleClickEdit} buttonSize="SMALL">
+        <StyledRoundedButton onClick={handleClickEdit} buttonSize="SMALL">
           編集する
         </StyledRoundedButton>
       </StyledRightButtons>

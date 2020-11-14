@@ -68,7 +68,7 @@ const CircleCard: FC<Props> = ({ circle }) => {
 
   return (
     <StyledCard onClick={handleToDetail}>
-      <CircleButton clickHandler={() => {}} shadowDepth={"NONE"}>
+      <CircleButton onClick={() => {}} shadowDepth={"NONE"}>
         <StyledImage src={circle.avatar} />
       </CircleButton>
       <CardTitle>{circle.name}</CardTitle>
