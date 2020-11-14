@@ -71,6 +71,7 @@ const ChatPage: FC = () => {
   if (userLoading) return <>loading</>;
   return (
     <ChatCard
+      activeCircleId={activeCircleId}
       setActiveCircleId={setActiveCircleId}
       circle={activeCircle}
       messeges={messageData?.messages}

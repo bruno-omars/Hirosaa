@@ -88,6 +88,7 @@ export type Input = {
 };
 
 type Props = {
+  activeCircleId: number | undefined;
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
   circle?: Pick<Circles, "id" | "name" | "avatar">;
   messeges:
@@ -107,12 +108,16 @@ const ChatCard: FC<Props> = ({
   onChange,
   handleSubmit,
   setActiveCircleId,
+  activeCircleId,
   circle,
   ...rest
 }) => {
   return (
     <Card>
-      <ChatSidebar setActiveCircleId={setActiveCircleId} />
+      <ChatSidebar
+        setActiveCircleId={setActiveCircleId}
+        activeCircleId={activeCircleId}
+      />
       <Right>
         <Top>
           <StyledTitle>{circle?.name}</StyledTitle>

@@ -9,19 +9,21 @@ const StyledSidebar = styled.div`
   height: 100%;
 `;
 
-const StyledCircleIcon = styled.div`
+const StyledCircleIcon = styled.div<{ active: boolean }>`
   border-radius: 8px;
   width: 64px;
   height: 64px;
   background-color: ${COLOR["LIGHT_GRAY"]};
   margin: 12px auto;
+  ${({ active }) => active && `border:1px solid ${COLOR.LIGHT_ORANGE}`};
 `;
 
 type Props = {
+  activeCircleId: number | undefined;
   setActiveCircleId: React.Dispatch<React.SetStateAction<number | undefined>>;
 };
 
-const ChatSidebar: FC<Props> = (props) => {
+const ChatSidebar: FC<Props> = ({ setActiveCircleId, activeCircleId }) => {
   const { me } = useAuthContext();
   const { data } = useUserCirclesQuery({
     variables: { id: me?.id! },
@@ -29,13 +31,16 @@ const ChatSidebar: FC<Props> = (props) => {
   });
 
   const handleClickCircle = (id: number) => {
-    props.setActiveCircleId(id);
+    setActiveCircleId(id);
   };
 
   return (
     <StyledSidebar>
       {data?.user?.circles?.map((circle) => (
-        <StyledCircleIcon onClick={() => handleClickCircle(circle.id)}>
+        <StyledCircleIcon
+          onClick={() => handleClickCircle(circle.id)}
+          active={activeCircleId == circle.id}
+        >
           <img height="64px" src={circle.avatar || ""} />
         </StyledCircleIcon>
       ))}
