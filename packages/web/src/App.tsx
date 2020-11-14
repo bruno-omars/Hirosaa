@@ -24,12 +24,13 @@ import CircleCreatePage from "./components/Pages/CircleCreatePage";
 import CircleDetailPage from "./components/Pages/CircleDetailPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
 import CircleEditPage from "./components/Pages/CircleEditPage";
+import Spinner from "./components/Atoms/Indicator/Spinner";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const [accessToken, setAccessToken] = useState("");
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Spinner />;
 
   const getAccessToken = async () => {
     try {

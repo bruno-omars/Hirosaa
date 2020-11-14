@@ -6,6 +6,7 @@ import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
 import { useAuthContext } from "../../provider/AuthContextProvider";
 import TwoColumn from "../Templates/TwoColumn";
+import Spinner from "../Atoms/Indicator/Spinner";
 
 type Params = {
   userId: string;
@@ -30,7 +31,7 @@ const UserDetailPage: FC = () => {
   });
 
   console.log("data.", data?.user);
-  if (!data?.user || loading) return <p>Loading...</p>;
+  if (!data?.user || loading) return <Spinner />;
   if (error) return <p>{error.message}</p>;
 
   const onEditMe = () => {};

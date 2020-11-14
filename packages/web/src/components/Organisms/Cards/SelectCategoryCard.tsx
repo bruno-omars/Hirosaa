@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import CheckBoxStagesList from "../../Molecules/Lists/CheckBoxStagesList";
 import { useCategoriesQuery } from "../../../generated/graphql";
+import Spinner from "../../Atoms/Indicator/Spinner";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -30,17 +31,17 @@ const SelectCategoryCard: FC<Props> = ({
 }) => {
   const { data, loading, error } = useCategoriesQuery();
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>Error! ${error.message}</p>;
 
   return (
     <StyledCard>
       <StyledH3>カテゴリー選択</StyledH3>
-      {data?.ParentCategory.map((parentCategory) => {
+      {data?.parent_categories.map((parentCategory) => {
         return (
           <CheckBoxStagesList
             parentItem={parentCategory}
-            childrenItems={parentCategory.SubCategories}
+            childrenItems={parentCategory.sub_categories}
             key={parentCategory.id}
             selectedChildrenIds={selectedSubcategories}
             setChildrenIds={setSubCategories}

@@ -60,7 +60,7 @@ const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
   const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.Skill.length / 4) * 75,
+    () => data && Math.ceil(data.skills.length / 4) * 75,
     [data]
   );
 
@@ -95,7 +95,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             ) : (
               <StyledGrid height={30}>
                 <SubCategoryTags
-                  subCategories={data?.SubCategory}
+                  subCategories={data?.sub_categories}
                   selectedCategory={props.selectedCategory}
                   setCategory={props.setCategory}
                 />
@@ -127,10 +127,10 @@ const CircleCreateCard: FC<Props> = (props) => {
             <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
             {error ? (
               "スキルカードの読み込みに失敗しました。リロードしてください。"
-            ) : data?.Skill ? (
+            ) : data?.skills ? (
               <StyledGrid height={skillCardHeight || 75}>
                 <SkillCards
-                  skills={data?.Skill}
+                  skills={data.skills}
                   selectedSkills={props.selectedSkills}
                   setSkills={props.setSkills}
                 />

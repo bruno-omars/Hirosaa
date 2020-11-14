@@ -1,10 +1,11 @@
 import React, { FC, useState, useMemo } from "react";
 import { useCirclesQuery } from "../../generated/graphql";
-import CircleCard from "../Molecules/Cards/CricleCard";
+import CircleCard from "../Molecules/Cards/CircleCard";
 import styled from "styled-components";
 
 import Pagenation from "../Molecules/Pagenition";
 import SelectCategoryCard from "../Organisms/Cards/SelectCategoryCard";
+import Spinner from "../Atoms/Indicator/Spinner";
 
 const StyledTitle = styled.h1`
   color: #292929;
@@ -33,7 +34,7 @@ const CircleListPage: FC = () => {
   const where = useMemo(() => {
     return selectedSubcategories.length
       ? {
-          SubCategory: {
+          sub_categories: {
             id: {
               _in: selectedSubcategories,
             },
@@ -50,20 +51,21 @@ const CircleListPage: FC = () => {
     };
   }, [where, currentPage]);
 
-  const { data, error } = useCirclesQuery({
+  const { data, loading, error } = useCirclesQuery({
     variables: variables,
   });
 
   const maxPage = useMemo(() => {
-    if (data?.Circle_aggregate.aggregate?.count) {
-      return Math.ceil(data?.Circle_aggregate.aggregate?.count / pageLimit);
+    if (data?.circles_aggregate.aggregate?.count) {
+      return Math.ceil(data.circles_aggregate.aggregate?.count / pageLimit);
     }
     return 1;
   }, [data]);
 
+  if (loading) return <Spinner />;
   if (error) return <p>Error! ${error.message}</p>;
 
-  const circles = data?.Circle.map((circle) => {
+  const circles = data?.circles.map((circle) => {
     return <CircleCard key={circle.id} circle={circle} />;
   });
 

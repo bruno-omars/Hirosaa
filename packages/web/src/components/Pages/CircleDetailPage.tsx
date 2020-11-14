@@ -5,6 +5,7 @@ import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import { useLocation, useHistory } from "react-router-dom";
 import TwoColumn from "../Templates/TwoColumn";
+import Spinner from "../Atoms/Indicator/Spinner";
 
 type Params = {
   circleId: number;
@@ -34,8 +35,9 @@ const CircleDetailPage: FC = (props) => {
     variables: { id: circleId },
     pollInterval: 500,
   });
-  console.warn("data.", data?.circle);
-  if (!data?.circle || loading) return <p>Loading...</p>;
+
+  if (!data?.circle || loading) return <Spinner />;
+
   if (error) return <p>Error! ${error.message}</p>;
 
   const handleClickJoin = () => {};

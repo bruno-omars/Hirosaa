@@ -59,8 +59,8 @@ const CircleEditPage: React.FC = () => {
           what_we_will_do: circle.what_we_will_do || "",
           main_role: circle.main_role || "",
         });
-        const skills = circle.CicleSkills.map((skill) => skill.Skill.id) || [];
-        const category = circle.SubCategory?.id;
+        const skills = circle.circle_skills.map((skill) => skill.skills.id) || [];
+        const category = circle.sub_categories?.id;
         setSkills(skills);
         setInitSkills(skills);
         console.log(category);
@@ -95,9 +95,9 @@ const CircleEditPage: React.FC = () => {
   useEffect(() => {
     // TODO(Ropital): 正確に条件分岐する
     if (
-      updateCircleData?.update_Circle ||
-      insertCircleSkillData?.insert_CircleSkill ||
-      deleteCircleSkillData?.delete_CircleSkill
+      updateCircleData?.update_circles ||
+      insertCircleSkillData?.insert_circle_skills ||
+      deleteCircleSkillData?.delete_circle_skills
     ) {
       setText("更新しました");
     }

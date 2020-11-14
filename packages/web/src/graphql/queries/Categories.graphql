@@ -1,8 +1,8 @@
 query Categories {
-  ParentCategory {
+  parent_categories {
     id
     name
-    SubCategories {
+    sub_categories {
       id
       name
     }

@@ -1,13 +1,9 @@
 import React, { FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { Skill } from "../../../generated/graphql";
+import { Skills } from "../../../generated/graphql";
 
 type Props = {
-  skills:
-    | ({
-        __typename?: "Skill" | undefined;
-      } & Pick<Skill, "id" | "name" | "avatar">)[]
-    | undefined;
+  skills?: Pick<Skills, "id" | "name" | "avatar">[];
   selectedSkills?: number[];
   setSkills?: React.Dispatch<React.SetStateAction<number[]>>;
 };
