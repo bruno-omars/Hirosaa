@@ -4706,7 +4706,9 @@ export type InsertCircleSkillMutationOptions = Apollo.BaseMutationOptions<
 >;
 export const InsertUserSkillDocument = gql`
   mutation InsertUserSkill($userId: String!, $skillId: Int!) {
-    insert_user_skills(objects: { user_id: $userId, skill_id: $skillId }) {
+    insert_user_skills(
+      objects: { user_id: $userId, skill_id: $skillId, level: 1 }
+    ) {
       affected_rows
     }
   }
