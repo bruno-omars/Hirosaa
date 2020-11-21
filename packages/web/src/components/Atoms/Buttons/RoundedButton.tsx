@@ -13,8 +13,16 @@ type RoundedButtonProps = Props & {
   borderRadius?: RadiusSize;
 };
 
-const RoundedButton = styled(StyledButton)<RoundedButtonProps>`
+const StyledButtonRoude = styled(StyledButton)<RoundedButtonProps>`
   border-radius: ${({ borderRadius = "BASE" }) => RADIUS_SIZE[borderRadius]};
 `;
+
+const RoundedButton: FC<Props> = (props) => {
+  return (
+    <StyledButtonRoude {...props}>
+      {props.children}
+    </StyledButtonRoude>
+  );
+};
 
 export default RoundedButton;

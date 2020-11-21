@@ -3,7 +3,11 @@ import SkillCard from "../../Molecules/Cards/SkillCard";
 import { Skills } from "../../../generated/graphql";
 
 type Props = {
-  skills?: Pick<Skills, "id" | "name" | "avatar">[];
+  skills:
+    | ({
+        __typename?: "Skills" | undefined | string;
+      } & Pick<Skills, "id" | "name" | "avatar">)[]
+    | undefined;
   selectedSkills?: number[];
   setSkills?: React.Dispatch<React.SetStateAction<number[]>>;
 };
@@ -23,6 +27,11 @@ const SkillCards: FC<Props> = (props) => {
       setSkills(newSelectedSkills);
     }
   };
+  if (props.skills) {
+    const currentID = props.skills.map((e) => {
+      console.log(typeof e.id);
+    });
+  }
 
   const skills =
     props.skills &&
@@ -34,7 +43,7 @@ const SkillCards: FC<Props> = (props) => {
           key={skill.id}
           name={skill.name}
           bgColor={
-            selectedSkills && selectedSkills.includes(skill.id)
+            selectedSkills && selectedSkills.includes(Number(skill.id))
               ? "LIGHT_GREEN"
               : "WHITE"
           }

@@ -46,8 +46,6 @@ const LoginSidebar: FC = () => {
     setMe(useCase.setMe(user));
   }, [user, setMe, useCase]);
 
-  console.log(me);
-
   return (
     <StyledSidebar>
       <StyledMe>

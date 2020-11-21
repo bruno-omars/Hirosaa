@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useUserQuery } from "../../generated/graphql";
 import styled from "styled-components";
 import RoundedButton from "../Atoms/Buttons/RoundedButton";
@@ -21,6 +21,7 @@ const StyledRoundedButton = styled(RoundedButton)`
 `;
 
 const UserDetailPage: FC = () => {
+  const history = useHistory();
   const { state } = useLocation<Params>();
   const { me } = useAuthContext();
   const userId = state.userId;
@@ -28,13 +29,19 @@ const UserDetailPage: FC = () => {
     variables: {
       id: userId,
     },
+    pollInterval: 500,
   });
 
   console.log("data.", data?.user);
   if (!data?.user || loading) return <Spinner />;
   if (error) return <p>{error.message}</p>;
 
-  const onEditMe = () => {};
+  const onEditMe = () => {
+    history.push({
+      pathname: "/user-edit",
+      state: { userId },
+    });
+  };
 
   const onSubmitMessage = () => {};
 
