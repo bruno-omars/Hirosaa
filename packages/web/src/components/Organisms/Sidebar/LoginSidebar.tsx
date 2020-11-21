@@ -21,7 +21,9 @@ const StyledSidebar = styled.div`
 const StyledList = styled.div`
   display: grid;
   grid-template-rows: 80px 80px 80px 80px 80px;
+  grid-template-columns: 90%;
   justify-content: right;
+  width: 100%;
 `;
 
 const StyledMe = styled.div`

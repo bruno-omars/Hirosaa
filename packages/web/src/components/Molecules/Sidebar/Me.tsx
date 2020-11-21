@@ -4,6 +4,8 @@ import styled from "styled-components";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as DownArrow } from "../../../assets/icons/down-arrow.svg";
 import { COLOR } from "../../../constants/color";
+import { useMedia } from "../../../hooks/useMedia";
+import media from "styled-media-query";
 
 const StyledMe = styled.div`
   color: ${COLOR["WHITE"]};
@@ -18,6 +20,10 @@ const StyledMe = styled.div`
     background-color: ${COLOR["LIGHT_GREEN"]};
     border-radius: 50px;
   }
+
+  ${media.lessThan("medium")`
+    grid-template-columns: 1fr;
+  `}
 `;
 
 const StyledText = styled.p`
@@ -44,6 +50,19 @@ const Me: FC<Props> = ({ user, onRedirectDetail }) => {
   const userId = user["https://hasura.io/jwt/claims"]["x-hasura-user-id"].slice(
     -idMaxLength
   );
+  const Media = useMedia();
+  const isPC = Media.pc.matches;
+
+  if (!isPC) {
+    return (
+      <StyledMe>
+        <CircleButton onClick={onRedirectDetail} shadowDepth={"NONE"}>
+          <StyledImage src={user.picture} />
+        </CircleButton>
+      </StyledMe>
+    );
+  }
+
   return (
     <StyledMe>
       <CircleButton onClick={onRedirectDetail} shadowDepth={"NONE"}>
