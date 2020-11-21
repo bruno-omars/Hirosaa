@@ -4452,6 +4452,20 @@ export type DeleteCircleSkillMutation = (
   )> }
 );
 
+export type DeleteUserSkillMutationVariables = Exact<{
+  userId: Scalars['String'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type DeleteUserSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_user_skills?: Maybe<(
+    { __typename?: 'user_skills_mutation_response' }
+    & Pick<User_Skills_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type InsertCircleMutationVariables = Exact<{
   objects: Array<Circles_Insert_Input>;
 }>;
@@ -4495,6 +4509,20 @@ export type InsertMessageMutation = (
   )> }
 );
 
+export type InsertUserSkillMutationVariables = Exact<{
+  userId: Scalars['String'];
+  skillId: Scalars['Int'];
+}>;
+
+
+export type InsertUserSkillMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_user_skills?: Maybe<(
+    { __typename?: 'user_skills_mutation_response' }
+    & Pick<User_Skills_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
 export type UpdateCirlceMutationVariables = Exact<{
   id: Scalars['Int'];
   inputs?: Maybe<Circles_Set_Input>;
@@ -4506,6 +4534,20 @@ export type UpdateCirlceMutation = (
   & { update_circles?: Maybe<(
     { __typename?: 'circles_mutation_response' }
     & Pick<Circles_Mutation_Response, 'affected_rows'>
+  )> }
+);
+
+export type UpdateUserMutationVariables = Exact<{
+  _set?: Maybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
+}>;
+
+
+export type UpdateUserMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_users?: Maybe<(
+    { __typename?: 'users_mutation_response' }
+    & Pick<Users_Mutation_Response, 'affected_rows'>
   )> }
 );
 
@@ -4694,6 +4736,39 @@ export function useDeleteCircleSkillMutation(baseOptions?: Apollo.MutationHookOp
 export type DeleteCircleSkillMutationHookResult = ReturnType<typeof useDeleteCircleSkillMutation>;
 export type DeleteCircleSkillMutationResult = Apollo.MutationResult<DeleteCircleSkillMutation>;
 export type DeleteCircleSkillMutationOptions = Apollo.BaseMutationOptions<DeleteCircleSkillMutation, DeleteCircleSkillMutationVariables>;
+export const DeleteUserSkillDocument = gql`
+    mutation DeleteUserSkill($userId: String!, $skillId: Int!) {
+  delete_user_skills(where: {user_id: {_eq: $userId}, skill_id: {_eq: $skillId}}) {
+    affected_rows
+  }
+}
+    `;
+export type DeleteUserSkillMutationFn = Apollo.MutationFunction<DeleteUserSkillMutation, DeleteUserSkillMutationVariables>;
+
+/**
+ * __useDeleteUserSkillMutation__
+ *
+ * To run a mutation, you first call `useDeleteUserSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteUserSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteUserSkillMutation, { data, loading, error }] = useDeleteUserSkillMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useDeleteUserSkillMutation(baseOptions?: Apollo.MutationHookOptions<DeleteUserSkillMutation, DeleteUserSkillMutationVariables>) {
+        return Apollo.useMutation<DeleteUserSkillMutation, DeleteUserSkillMutationVariables>(DeleteUserSkillDocument, baseOptions);
+      }
+export type DeleteUserSkillMutationHookResult = ReturnType<typeof useDeleteUserSkillMutation>;
+export type DeleteUserSkillMutationResult = Apollo.MutationResult<DeleteUserSkillMutation>;
+export type DeleteUserSkillMutationOptions = Apollo.BaseMutationOptions<DeleteUserSkillMutation, DeleteUserSkillMutationVariables>;
 export const InsertCircleDocument = gql`
     mutation InsertCircle($objects: [circles_insert_input!]!) {
   insert_circles(objects: $objects) {
@@ -4793,6 +4868,39 @@ export function useInsertMessageMutation(baseOptions?: Apollo.MutationHookOption
 export type InsertMessageMutationHookResult = ReturnType<typeof useInsertMessageMutation>;
 export type InsertMessageMutationResult = Apollo.MutationResult<InsertMessageMutation>;
 export type InsertMessageMutationOptions = Apollo.BaseMutationOptions<InsertMessageMutation, InsertMessageMutationVariables>;
+export const InsertUserSkillDocument = gql`
+    mutation InsertUserSkill($userId: String!, $skillId: Int!) {
+  insert_user_skills(objects: {user_id: $userId, skill_id: $skillId, level: 1}) {
+    affected_rows
+  }
+}
+    `;
+export type InsertUserSkillMutationFn = Apollo.MutationFunction<InsertUserSkillMutation, InsertUserSkillMutationVariables>;
+
+/**
+ * __useInsertUserSkillMutation__
+ *
+ * To run a mutation, you first call `useInsertUserSkillMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useInsertUserSkillMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [insertUserSkillMutation, { data, loading, error }] = useInsertUserSkillMutation({
+ *   variables: {
+ *      userId: // value for 'userId'
+ *      skillId: // value for 'skillId'
+ *   },
+ * });
+ */
+export function useInsertUserSkillMutation(baseOptions?: Apollo.MutationHookOptions<InsertUserSkillMutation, InsertUserSkillMutationVariables>) {
+        return Apollo.useMutation<InsertUserSkillMutation, InsertUserSkillMutationVariables>(InsertUserSkillDocument, baseOptions);
+      }
+export type InsertUserSkillMutationHookResult = ReturnType<typeof useInsertUserSkillMutation>;
+export type InsertUserSkillMutationResult = Apollo.MutationResult<InsertUserSkillMutation>;
+export type InsertUserSkillMutationOptions = Apollo.BaseMutationOptions<InsertUserSkillMutation, InsertUserSkillMutationVariables>;
 export const UpdateCirlceDocument = gql`
     mutation UpdateCirlce($id: Int!, $inputs: circles_set_input) {
   update_circles(where: {id: {_eq: $id}}, _set: $inputs) {
@@ -4826,6 +4934,39 @@ export function useUpdateCirlceMutation(baseOptions?: Apollo.MutationHookOptions
 export type UpdateCirlceMutationHookResult = ReturnType<typeof useUpdateCirlceMutation>;
 export type UpdateCirlceMutationResult = Apollo.MutationResult<UpdateCirlceMutation>;
 export type UpdateCirlceMutationOptions = Apollo.BaseMutationOptions<UpdateCirlceMutation, UpdateCirlceMutationVariables>;
+export const UpdateUserDocument = gql`
+    mutation updateUser($_set: users_set_input, $where: users_bool_exp!) {
+  update_users(where: $where, _set: $_set) {
+    affected_rows
+  }
+}
+    `;
+export type UpdateUserMutationFn = Apollo.MutationFunction<UpdateUserMutation, UpdateUserMutationVariables>;
+
+/**
+ * __useUpdateUserMutation__
+ *
+ * To run a mutation, you first call `useUpdateUserMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateUserMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateUserMutation, { data, loading, error }] = useUpdateUserMutation({
+ *   variables: {
+ *      _set: // value for '_set'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateUserMutation(baseOptions?: Apollo.MutationHookOptions<UpdateUserMutation, UpdateUserMutationVariables>) {
+        return Apollo.useMutation<UpdateUserMutation, UpdateUserMutationVariables>(UpdateUserDocument, baseOptions);
+      }
+export type UpdateUserMutationHookResult = ReturnType<typeof useUpdateUserMutation>;
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
+export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<UpdateUserMutation, UpdateUserMutationVariables>;
 export const CategoriesDocument = gql`
     query Categories {
   parent_categories {

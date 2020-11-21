@@ -18,6 +18,7 @@ import ChatPage from "./components/Pages/ChatPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
 import CircleEditPage from "./components/Pages/CircleEditPage";
 import Spinner from "./components/Atoms/Indicator/Spinner";
+import UserEditPage from "./components/Pages/UserEditPage";
 import { createApolloClient } from "./graphql/client";
 
 const App: FC = () => {
@@ -55,6 +56,7 @@ const App: FC = () => {
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
             <PrivateRoute path="/circle-edit" component={CircleEditPage} />
             <PrivateRoute path="/user-detail" component={UserDetailPage} />
+            <PrivateRoute path="/user-edit" component={UserEditPage} />
 
             <Route path="*">
               <Redirect
