@@ -19,15 +19,17 @@ const DefaultStyle = css`
 const StyledDiv = styled.div<Props>`
   display: grid;
   ${({ defaultStyle }) => defaultStyle && DefaultStyle};
-  grid-template-columns: ${({ leftColumn, rightColumn }) => `${leftColumn} ${rightColumn}`};
+  grid-template-columns: ${({ leftColumn, rightColumn }) =>
+    `${leftColumn} ${rightColumn}`};
   min-height: 100vh;
+
   ${({ HCenter, VCenter }) => {
     if (HCenter && VCenter) {
-      return 'place-items: center';
+      return "place-items: center";
     } else if (HCenter) {
-      return 'justify-items: center';
+      return "justify-items: center";
     } else if (VCenter) {
-      return 'align-items: center';
+      return "align-items: center";
     }
   }}
 `;
