@@ -1,10 +1,12 @@
 query UserCircles($id: String!) {
   user: users_by_pk(id: $id) {
     id
-    circles {
-      id
-      name
-      avatar
+    circle_users {
+      circle {
+        id
+        name
+        avatar
+      }
     }
   }
 }

@@ -36,15 +36,18 @@ const ChatSidebar: FC<Props> = ({ setActiveCircleId, activeCircleId }) => {
 
   return (
     <StyledSidebar>
-      {data?.user?.circles?.map((circle) => (
-        <StyledCircleIcon
-          key={circle.id}
-          onClick={() => handleClickCircle(circle.id)}
-          active={activeCircleId == circle.id}
-        >
-          <img height="64px" src={circle.avatar || ""} />
-        </StyledCircleIcon>
-      ))}
+      {data?.user?.circle_users?.map((circle_user) => {
+        const circle = circle_user.circle;
+        return (
+          <StyledCircleIcon
+            key={circle.id}
+            onClick={() => handleClickCircle(circle.id)}
+            active={activeCircleId == circle.id}
+          >
+            <img height="64px" src={circle.avatar || ""} />
+          </StyledCircleIcon>
+        );
+      })}
     </StyledSidebar>
   );
 };

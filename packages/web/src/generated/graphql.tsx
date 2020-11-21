@@ -4093,10 +4093,6 @@ export type Users = {
   circle_users: Array<Circle_Users>;
   /** An aggregated array relationship */
   circle_users_aggregate: Circle_Users_Aggregate;
-  /** An array relationship */
-  circles: Array<Circles>;
-  /** An aggregated array relationship */
-  circles_aggregate: Circles_Aggregate;
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
   id: Scalars['String'];
@@ -4111,6 +4107,10 @@ export type Users = {
   organization_id?: Maybe<Scalars['String']>;
   /** An object relationship */
   organizations?: Maybe<Organizations>;
+  /** An array relationship */
+  owner_circles: Array<Circles>;
+  /** An aggregated array relationship */
+  owner_circles_aggregate: Circles_Aggregate;
   /** An array relationship */
   user_skills: Array<User_Skills>;
   /** An aggregated array relationship */
@@ -4141,26 +4141,6 @@ export type UsersCircle_Users_AggregateArgs = {
 
 
 /** columns and relationships of "users" */
-export type UsersCirclesArgs = {
-  distinct_on?: Maybe<Array<Circles_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circles_Order_By>>;
-  where?: Maybe<Circles_Bool_Exp>;
-};
-
-
-/** columns and relationships of "users" */
-export type UsersCircles_AggregateArgs = {
-  distinct_on?: Maybe<Array<Circles_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Circles_Order_By>>;
-  where?: Maybe<Circles_Bool_Exp>;
-};
-
-
-/** columns and relationships of "users" */
 export type UsersMessagesArgs = {
   distinct_on?: Maybe<Array<Messages_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4177,6 +4157,26 @@ export type UsersMessages_AggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<Messages_Order_By>>;
   where?: Maybe<Messages_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersOwner_CirclesArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
+};
+
+
+/** columns and relationships of "users" */
+export type UsersOwner_Circles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Circles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Circles_Order_By>>;
+  where?: Maybe<Circles_Bool_Exp>;
 };
 
 
@@ -4241,7 +4241,6 @@ export type Users_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Users_Bool_Exp>>>;
   avatar?: Maybe<String_Comparison_Exp>;
   circle_users?: Maybe<Circle_Users_Bool_Exp>;
-  circles?: Maybe<Circles_Bool_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   email?: Maybe<String_Comparison_Exp>;
   id?: Maybe<String_Comparison_Exp>;
@@ -4252,6 +4251,7 @@ export type Users_Bool_Exp = {
   name?: Maybe<String_Comparison_Exp>;
   organization_id?: Maybe<String_Comparison_Exp>;
   organizations?: Maybe<Organizations_Bool_Exp>;
+  owner_circles?: Maybe<Circles_Bool_Exp>;
   user_skills?: Maybe<User_Skills_Bool_Exp>;
   users?: Maybe<Circles_Bool_Exp>;
 };
@@ -4266,7 +4266,6 @@ export enum Users_Constraint {
 export type Users_Insert_Input = {
   avatar?: Maybe<Scalars['String']>;
   circle_users?: Maybe<Circle_Users_Arr_Rel_Insert_Input>;
-  circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
   created_at?: Maybe<Scalars['timestamptz']>;
   email?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['String']>;
@@ -4277,6 +4276,7 @@ export type Users_Insert_Input = {
   name?: Maybe<Scalars['String']>;
   organization_id?: Maybe<Scalars['String']>;
   organizations?: Maybe<Organizations_Obj_Rel_Insert_Input>;
+  owner_circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
   user_skills?: Maybe<User_Skills_Arr_Rel_Insert_Input>;
   users?: Maybe<Circles_Obj_Rel_Insert_Input>;
 };
@@ -4361,7 +4361,6 @@ export type Users_On_Conflict = {
 export type Users_Order_By = {
   avatar?: Maybe<Order_By>;
   circle_users_aggregate?: Maybe<Circle_Users_Aggregate_Order_By>;
-  circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
   created_at?: Maybe<Order_By>;
   email?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
@@ -4372,6 +4371,7 @@ export type Users_Order_By = {
   name?: Maybe<Order_By>;
   organization_id?: Maybe<Order_By>;
   organizations?: Maybe<Organizations_Order_By>;
+  owner_circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
   user_skills_aggregate?: Maybe<User_Skills_Aggregate_Order_By>;
   users?: Maybe<Circles_Order_By>;
 };
@@ -4633,9 +4633,12 @@ export type UserCirclesQuery = (
   & { user?: Maybe<(
     { __typename?: 'users' }
     & Pick<Users, 'id'>
-    & { circles: Array<(
-      { __typename?: 'circles' }
-      & Pick<Circles, 'id' | 'name' | 'avatar'>
+    & { circle_users: Array<(
+      { __typename?: 'circle_users' }
+      & { circle: (
+        { __typename?: 'circles' }
+        & Pick<Circles, 'id' | 'name' | 'avatar'>
+      ) }
     )> }
   )> }
 );
@@ -5086,10 +5089,12 @@ export const UserCirclesDocument = gql`
     query UserCircles($id: String!) {
   user: users_by_pk(id: $id) {
     id
-    circles {
-      id
-      name
-      avatar
+    circle_users {
+      circle {
+        id
+        name
+        avatar
+      }
     }
   }
 }

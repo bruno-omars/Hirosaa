@@ -33,7 +33,8 @@ const ChatPage: FC = () => {
     variables: { id: me?.id! },
     skip: !me?.id,
     onCompleted: (data) => {
-      setActiveCircleId(data?.user?.circles[0].id);
+      const myFirstJoiningCircleId = data?.user?.circle_users[0]?.circle.id;
+      setActiveCircleId(myFirstJoiningCircleId);
     },
   });
 
@@ -74,9 +75,9 @@ const ChatPage: FC = () => {
 
   const [insertMessage] = useInsertMessageMutation();
 
-  const activeCircle = userData?.user?.circles.find(
-    (circle) => circle.id === activeCircleId
-  );
+  const activeCircle = userData?.user?.circle_users.find(
+    (circle) => circle.circle.id === activeCircleId
+  )?.circle;
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
