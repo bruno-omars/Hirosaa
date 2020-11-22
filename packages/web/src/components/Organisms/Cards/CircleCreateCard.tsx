@@ -7,16 +7,23 @@ import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillCards from "./SkillCards";
 import SubCategoryTags from "../Tags/SubCategoryTags";
+import media from "styled-media-query";
 
 const Card = styled.div`
   padding: 40px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
   width: 70%;
   margin-bottom: 40px;
+
+  ${media.lessThan("medium")`
+    width: 100%;
+    padding: 10px;
+  `}
 `;
 
 const Block = styled.div`
   margin-top: 40px;
+  width: 100%;
 `;
 
 const StyledForm = styled.form``;
@@ -45,6 +52,10 @@ const StyledGrid = styled.div<StyleGrid>`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
+
+  ${media.lessThan("medium")`
+    grid-template-columns: repeat(2, 1fr);
+  `}
 `;
 
 type Props = {
@@ -81,12 +92,14 @@ const CircleCreateCard: FC<Props> = (props) => {
             placeholder="サークル名"
             name="name"
             value={props.inputs.name}
+            inputSize="MAX"
           />
           <DefaultInput
             onChange={handleChange}
             placeholder="募集の題名"
             name="recruit_title"
             value={props.inputs.recruit_title}
+            inputSize="MAX"
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
@@ -112,6 +125,7 @@ const CircleCreateCard: FC<Props> = (props) => {
               placeholder="あなたのサークルでやることを記入してください"
               name="what_we_will_do"
               value={props.inputs.what_we_will_do}
+              areaSize="MAX"
             />
           </Block>
           <Block>
@@ -121,6 +135,7 @@ const CircleCreateCard: FC<Props> = (props) => {
               placeholder="歓迎条件をご記入ください"
               name="main_role"
               value={props.inputs.main_role}
+              areaSize="MAX"
             />
           </Block>
           <Block>

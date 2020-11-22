@@ -1,5 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import styled, { css } from "styled-components";
+import media from "styled-media-query";
 
 type Props = {
   children: ReactNode;
@@ -14,6 +15,11 @@ const DefaultStyle = css`
   grid-template-columns: 1fr 0.2fr;
   justify-items: center;
   margin-top: 60px;
+
+  ${media.lessThan("medium")`
+    grid-template-columns: 100%;
+    grid-template-rows: 1fr 0.2fr;
+  `}
 `;
 
 const StyledDiv = styled.div<Props>`
@@ -22,6 +28,7 @@ const StyledDiv = styled.div<Props>`
   grid-template-columns: ${({ leftColumn, rightColumn }) =>
     `${leftColumn} ${rightColumn}`};
   min-height: 100vh;
+  width: 100%;
 
   ${({ HCenter, VCenter }) => {
     if (HCenter && VCenter) {
