@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { Circles } from "../../../generated/graphql";
+import {
+  Circles,
+  Circle_Users_Aggregate_Fields,
+  Maybe,
+} from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
 
@@ -52,9 +56,18 @@ const StyledImage = styled.img`
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
   circle: Pick<
-  Circles,
+    Circles,
     "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
-  >;
+  > & {
+    circle_users_aggregate: { __typename?: "circle_users_aggregate" } & {
+      aggregate?: Maybe<
+        { __typename?: "circle_users_aggregate_fields" } & Pick<
+          Circle_Users_Aggregate_Fields,
+          "count"
+        >
+      >;
+    };
+  };
 };
 
 const CircleCard: FC<Props> = ({ circle }) => {
@@ -74,7 +87,7 @@ const CircleCard: FC<Props> = ({ circle }) => {
       <CardTitle>{circle.name}</CardTitle>
       <PeopleNum>
         <People height="20px" width="20px" />
-        30人
+        {circle.circle_users_aggregate.aggregate?.count}
       </PeopleNum>
       <Description>{circle.what_we_will_do}</Description>
     </StyledCard>

@@ -22,5 +22,13 @@ query Circle($id: Int!) {
         avatar
       }
     }
+    circle_users {
+      id
+    }
+    circle_users_aggregate {
+      aggregate {
+        count
+      }
+    }
   }
 }

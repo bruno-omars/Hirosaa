@@ -1,6 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Circles, Skills, Sub_Categories, Users } from "../../../generated/graphql";
+import {
+  CircleQuery,
+  Circles,
+  Skills,
+  Sub_Categories,
+  Users,
+} from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
@@ -93,62 +99,63 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-type Props = {
-  circle: Pick<
-    Circles,
-    "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
-    sub_categories?: Pick<Sub_Categories, "name"> | null;
-  } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
-};
+type Props = Omit<CircleQuery, "null" | "undefined">;
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
   let history = useHistory();
   const handleToDetail = () => {
     history.push({
       pathname: "/user-detail",
-      state: { userId: circle.owner?.id },
+      state: { userId: circle?.owner?.id },
     });
   };
 
   return (
     <StyledCard>
       <StyledTop>
-        <StyledCircleAvatar src={circle.avatar} size={66} />
+        <StyledCircleAvatar src={circle?.avatar} size={66} />
         <StyledHeader>
-          <StyledTitle>{circle.name}</StyledTitle>
-          <StyledCaption>{circle.recruit_title}</StyledCaption>
-          {circle.sub_categories?.name && (
-            <DefaultTag name={circle.sub_categories.name} />
+          <StyledTitle>{circle?.name}</StyledTitle>
+          <StyledCaption>{circle?.recruit_title}</StyledCaption>
+          {circle?.sub_categories?.name && (
+            <DefaultTag name={circle?.sub_categories.name} />
           )}
         </StyledHeader>
 
-        <StyledPeopleNum count={30} />
+        <StyledPeopleNum
+          count={circle?.circle_users_aggregate.aggregate?.count || 0}
+        />
 
         <StyledLeaderWrapper>
           <StyledLeaderLabel>リーダー</StyledLeaderLabel>
           <Avatar
             onClick={handleToDetail}
-            src={circle.owner?.avatar ?? ""}
+            src={circle?.owner?.avatar ?? ""}
             size={30}
           />
-          <StyledLeaderName>{circle.owner?.name}</StyledLeaderName>
+          <StyledLeaderName>{circle?.owner?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
       </StyledTop>
       <hr />
 
       <StyledBlock>
         <StyledSubTitle>何をするのか</StyledSubTitle>
-        <StyledDesc>{circle.what_we_will_do}</StyledDesc>
+        <StyledDesc>{circle?.what_we_will_do}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>主な役割</StyledSubTitle>
-        <StyledDesc>{circle.main_role}</StyledDesc>
+        <StyledDesc>{circle?.main_role}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.circle_skills.length / 4) * 85}>
-          {circle.circle_skills?.map((circleSkill) => (
+        <StyledGrid
+          height={
+            circle?.circle_skills
+              ? Math.ceil(circle?.circle_skills.length / 4) * 85
+              : 0
+          }
+        >
+          {circle?.circle_skills?.map((circleSkill) => (
             <SkillCard
               name={circleSkill.skills.name}
               id={circleSkill.skills.id.toString()}

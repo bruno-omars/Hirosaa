@@ -4430,6 +4430,17 @@ export type CircleQuery = { __typename?: "query_root" } & {
             >;
           }
         >;
+        circle_users: Array<
+          { __typename?: "circle_users" } & Pick<Circle_Users, "id">
+        >;
+        circle_users_aggregate: { __typename?: "circle_users_aggregate" } & {
+          aggregate?: Maybe<
+            { __typename?: "circle_users_aggregate_fields" } & Pick<
+              Circle_Users_Aggregate_Fields,
+              "count"
+            >
+          >;
+        };
       }
   >;
 };
@@ -4450,7 +4461,16 @@ export type CirclesQuery = { __typename?: "query_root" } & {
       | "avatar"
       | "what_we_will_do"
       | "main_role"
-    >
+    > & {
+        circle_users_aggregate: { __typename?: "circle_users_aggregate" } & {
+          aggregate?: Maybe<
+            { __typename?: "circle_users_aggregate_fields" } & Pick<
+              Circle_Users_Aggregate_Fields,
+              "count"
+            >
+          >;
+        };
+      }
   >;
   circles_aggregate: { __typename?: "circles_aggregate" } & {
     aggregate?: Maybe<
@@ -4942,6 +4962,14 @@ export const CircleDocument = gql`
           avatar
         }
       }
+      circle_users {
+        id
+      }
+      circle_users_aggregate {
+        aggregate {
+          count
+        }
+      }
     }
   }
 `;
@@ -4993,6 +5021,11 @@ export const CirclesDocument = gql`
       avatar
       what_we_will_do
       main_role
+      circle_users_aggregate {
+        aggregate {
+          count
+        }
+      }
     }
     circles_aggregate(where: $where) {
       aggregate {
