@@ -4491,6 +4491,14 @@ export type UserQuery = { __typename?: "query_root" } & {
             >;
           }
         >;
+        circle_users: Array<
+          { __typename?: "circle_users" } & {
+            circle: { __typename?: "circles" } & Pick<
+              Circles,
+              "id" | "avatar" | "name"
+            >;
+          }
+        >;
       }
   >;
 };
@@ -5113,6 +5121,13 @@ export const UserDocument = gql`
       interested_in
       user_skills {
         skills {
+          id
+          avatar
+          name
+        }
+      }
+      circle_users {
+        circle {
           id
           avatar
           name

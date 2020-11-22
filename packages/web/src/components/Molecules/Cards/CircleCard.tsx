@@ -16,7 +16,7 @@ const StyledCard = styled.div`
   justify-content: center;
   margin-bottom: 50px;
   place-items: center;
-  width: 500px;
+  width: 100%;
 `;
 
 const CardTitle = styled.h3`
@@ -52,7 +52,7 @@ const StyledImage = styled.img`
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
   circle: Pick<
-  Circles,
+    Circles,
     "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
   >;
 };
