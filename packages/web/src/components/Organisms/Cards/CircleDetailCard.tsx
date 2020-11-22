@@ -1,6 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Circles, Skills, Sub_Categories, Users } from "../../../generated/graphql";
+import {
+  Circles,
+  Skills,
+  Sub_Categories,
+  Users,
+} from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
@@ -97,7 +102,9 @@ type Props = {
   circle: Pick<
     Circles,
     "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
-  > & { circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[] } & {
+  > & {
+    circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[];
+  } & {
     sub_categories?: Pick<Sub_Categories, "name"> | null;
   } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
@@ -106,8 +113,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   let history = useHistory();
   const handleToDetail = () => {
     history.push({
-      pathname: "/user-detail",
-      state: { userId: circle.owner?.id },
+      pathname: `/user-detail/${circle.owner?.id}`,
     });
   };
 

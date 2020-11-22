@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import {
-	BrowserRouter as Router,
-	Switch,
-	Route,
-	Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
@@ -78,7 +78,7 @@ const App: FC = () => {
             />
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
             <PrivateRoute path="/circle-edit" component={CircleEditPage} />
-            <PrivateRoute path="/user-detail" component={UserDetailPage} />
+            <PrivateRoute path="/user-detail/:id" component={UserDetailPage} />
             <PrivateRoute path="/user-edit" component={UserEditPage} />
 
             <Route path="*">
