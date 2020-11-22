@@ -34,7 +34,7 @@ const IconLink: FC<IconLinkProps> = (props) => {
         bgcolor={props.bgcolor}
         size={props.size}
         to={props.to}
-        onClick={props.clickHandler}
+        onClick={props.onClick}
       >
         <Center>{props.children}</Center>
       </StyledIconLink>
@@ -46,7 +46,7 @@ const IconLink: FC<IconLinkProps> = (props) => {
       bgcolor={props.bgcolor}
       size={props.size}
       to={props.to}
-      onClick={props.clickHandler}
+      onClick={props.onClick}
     >
       <Center>{props.children}</Center>
       {props.text}
