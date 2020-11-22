@@ -1,4 +1,11 @@
-import React, { FC, ComponentProps, useRef } from "react";
+import React, {
+  FC,
+  ComponentProps,
+  useRef,
+  useEffect,
+  useCallback,
+  useState,
+} from "react";
 import styled from "styled-components";
 import { Circles, Messages, Users } from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
@@ -6,10 +13,11 @@ import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import IconRightInput from "../../Atoms/Inputs/IconRightInput";
 import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message-send.svg";
-// import NewMessageButton from "../../Atoms/Buttons/NewMessageButton";
 import DefaultButton from "../../Atoms/Buttons/Default";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
 import Avatar from "../../Atoms/Avatar/Default";
+
+import _ from "lodash";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -123,6 +131,8 @@ type Props = {
   onChange: ComponentProps<typeof IconRightInput>["onChange"];
   hasNewMessage: boolean;
   setHasNewMessage: React.Dispatch<boolean>;
+  handleFetchMore: (messages: any) => Promise<void>;
+  isFirstLoad: boolean;
 };
 
 const ChatCard: FC<Props> = ({
@@ -135,14 +145,74 @@ const ChatCard: FC<Props> = ({
   circle,
   hasNewMessage,
   setHasNewMessage,
+  handleFetchMore,
+  isFirstLoad,
   ...rest
 }) => {
   const messageEndRef = useRef<HTMLHeadingElement>(null);
+  const scrollRef = useRef(null);
+  const [isFetching, setIsFetching] = useState(false);
+
+  const handleScrollToBottom = (behavior: "smooth" | "auto" | undefined) => {
+    messageEndRef.current?.scrollIntoView({
+      behavior: behavior,
+    });
+  };
   const onClickNewMessage = () => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    handleScrollToBottom("smooth");
     setHasNewMessage(false);
   };
   const { me } = useAuthContext();
+
+  const handleScroll = async (
+    isBottom: boolean,
+    isTop: boolean,
+    messages: any
+  ) => {
+    console.warn("scrollRef", scrollRef.current);
+    if (isBottom) {
+      setHasNewMessage(false);
+    } else if (isTop) {
+      setIsFetching(true);
+      await handleFetchMore(messages);
+      setIsFetching(false);
+    }
+  };
+
+  const callbackHandleScroll = useCallback(
+    _.debounce(
+      (isBottom, isTop, messages) => handleScroll(isBottom, isTop, messages),
+      500
+    ),
+    []
+  );
+
+  const onScroll = (e: React.UIEvent<HTMLUListElement>) => {
+    if (isFetching) return;
+    const { scrollHeight, scrollTop, clientHeight } = e.currentTarget;
+    const isBottom = scrollHeight - scrollTop <= clientHeight + 25;
+    const isTop = scrollTop < 25;
+    // handleScroll(isBottom, isTop);
+    callbackHandleScroll(isBottom, isTop, messages);
+  };
+
+  // const handleDetectBottom = (isVisible: boolean) => {
+  //   if (isVisible) {
+  //     setHasNewMessage(false);
+  //   }
+  // };
+
+  // const handleDetectTop = async (isVisible: boolean) => {
+  //   if (isVisible) {
+  //     await handleFetchMore();
+  //   }
+  // };
+
+  useEffect(() => {
+    if (!isFirstLoad) {
+      handleScrollToBottom("auto");
+    }
+  }, [isFirstLoad]);
 
   return (
     <Card>
@@ -160,24 +230,41 @@ const ChatCard: FC<Props> = ({
             新規メッセージがあります。
           </NewMessageButton>
         )}
-        <MessageContainer>
+        <MessageContainer onScroll={onScroll}>
+          {/* <ReactVisibilitySensor
+            onChange={handleDetectTop}
+            partialVisibility={true}
+            offset={{ top: -100, bottom: -100 }}
+          >
+            <div />
+          </ReactVisibilitySensor> */}
           {messages
-            ? messages.map((message) => {
-                const isMine = message.users.id == me.id;
-                return (
-                  <MessageLi key={message.id}>
-                    <MessageWrapper isMine={isMine}>
-                      <Avatar size={40} src={message.users.avatar ?? ""} />
-                      <ConversationItem>
-                        <MessageContent isMine={isMine}>
-                          <Typography>{message.text}</Typography>
-                        </MessageContent>
-                      </ConversationItem>
-                    </MessageWrapper>
-                  </MessageLi>
-                );
-              })
+            ? messages
+                .slice()
+                .reverse()
+                .map((message) => {
+                  const isMine = message.users.id == me.id;
+                  return (
+                    <MessageLi key={message.id}>
+                      <MessageWrapper isMine={isMine}>
+                        <Avatar size={40} src={message.users.avatar ?? ""} />
+                        <ConversationItem>
+                          <MessageContent isMine={isMine}>
+                            <Typography>{message.text}</Typography>
+                          </MessageContent>
+                        </ConversationItem>
+                      </MessageWrapper>
+                    </MessageLi>
+                  );
+                })
             : "やりとりがありません。何かメッセージを送ってみましょう"}
+          {/* <ReactVisibilitySensor
+            onChange={handleDetectBottom}
+            partialVisibility={true}
+            offset={{ top: -100, bottom: -100 }}
+          >
+            <div />
+          </ReactVisibilitySensor> */}
           <div ref={messageEndRef} />
         </MessageContainer>
         <Bottom>

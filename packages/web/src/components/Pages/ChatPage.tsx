@@ -1,15 +1,12 @@
-import React, { FC, useState, ComponentProps } from "react";
+import React, { FC, useState, ComponentProps, useEffect } from "react";
 import { useAuthContext } from "../../provider/AuthContextProvider";
 import {
+  useMessagesQuery,
   useNewMessagesSubscription,
   useUserCirclesQuery,
   useInsertMessageMutation,
 } from "../../generated/graphql";
 import ChatCard from "../Organisms/Cards/ChatCard";
-import {
-  useMessagesQuery,
-  NewMessagesSubscription,
-} from "../../generated/graphql";
 
 const INITIAL_INPUT = {
   text: "",
@@ -19,10 +16,7 @@ const ChatPage: FC = () => {
   const [activeCircleId, setActiveCircleId] = useState<number>();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
   const [hasNewMessage, setHasNewMessage] = useState(false);
-  const [lastRecievedId, setLastReceivedId] = useState(-1);
-  const [newMessages, setNewMessages] = useState<
-    NewMessagesSubscription["messages"]
-  >([]);
+  const [dataChangedFlag, setdataChangedFlag] = useState(false);
 
   const [inputs, setInputs] = useState<
     ComponentProps<typeof ChatCard>["inputs"]
@@ -38,6 +32,9 @@ const ChatPage: FC = () => {
     },
   });
 
+  const { data: messageData, fetchMore, updateQuery } = useMessagesQuery();
+  const messages = messageData?.messages ?? [];
+
   const {
     data: messageSubscriptionData,
     loading,
@@ -51,8 +48,18 @@ const ChatPage: FC = () => {
       if (isFirstLoad) {
         setIsFirstLoad(false);
       } else {
-        const messages = data.subscriptionData.data?.messages;
-        setNewMessages([...newMessages, ...(messages ?? [])]);
+        updateQuery((previousResult) => {
+          const newMessages = data.subscriptionData.data?.messages;
+          console.warn("newMessages", newMessages);
+          if (!newMessages) {
+            return previousResult;
+          }
+          const newData = {
+            ...previousResult,
+            messages: [...newMessages, ...previousResult.messages],
+          };
+          return newData;
+        });
 
         //他人からの新規メッセージがあったら通知
         const hasOthersMessage = data.subscriptionData.data?.messages?.find(
@@ -65,13 +72,15 @@ const ChatPage: FC = () => {
     },
   });
 
-  //TODO: ページネーション
-  const { data: messageData } = useMessagesQuery({
-    variables: {
-      last_received_id: lastRecievedId,
-      last_received_ts: setLastReceivedId,
-    },
-  });
+  const handleFetchMore = async (messages: any) => {
+    console.warn("messages", messages);
+    await fetchMore({
+      variables: {
+        last_received_ts: messages[messages.length - 1].timestamp,
+      },
+    });
+    setdataChangedFlag(!dataChangedFlag);
+  };
 
   const [insertMessage] = useInsertMessageMutation();
 
@@ -111,21 +120,23 @@ const ChatPage: FC = () => {
   };
 
   if (userLoading) return <>loading</>;
-
-  const messages = [...(messageData?.messages ?? []), ...newMessages];
   return (
-    <ChatCard
-      activeCircleId={activeCircleId}
-      setActiveCircleId={setActiveCircleId}
-      circle={activeCircle}
-      messages={messages}
-      inputs={inputs}
-      setInputs={setInputs}
-      onChange={onChange}
-      handleSubmit={handleSubmit}
-      hasNewMessage={hasNewMessage}
-      setHasNewMessage={setHasNewMessage}
-    />
+    <>
+      <ChatCard
+        activeCircleId={activeCircleId}
+        setActiveCircleId={setActiveCircleId}
+        circle={activeCircle}
+        messages={messages}
+        inputs={inputs}
+        setInputs={setInputs}
+        onChange={onChange}
+        handleSubmit={handleSubmit}
+        hasNewMessage={hasNewMessage}
+        setHasNewMessage={setHasNewMessage}
+        handleFetchMore={handleFetchMore}
+        isFirstLoad={isFirstLoad}
+      />
+    </>
   );
 };
 
