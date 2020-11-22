@@ -1,12 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import {
-  CircleQuery,
-  Circles,
-  Skills,
-  Sub_Categories,
-  Users,
-} from "../../../generated/graphql";
+import { CircleQuery } from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
