@@ -119,7 +119,7 @@ type Props = {
     | undefined;
   inputs: Input;
   setInputs: React.Dispatch<Input>;
-  handleSubmit: ComponentProps<typeof IconRightInput>["iconClickHandler"];
+  handleSubmit: ComponentProps<typeof IconRightInput>["onSubmit"];
   onChange: ComponentProps<typeof IconRightInput>["onChange"];
   hasNewMessage: boolean;
   setHasNewMessage: React.Dispatch<boolean>;
@@ -187,7 +187,7 @@ const ChatCard: FC<Props> = ({
                 fill={inputs.text ? COLOR.LIGHT_GREEN : COLOR.BORDER_TEXT_INPUT}
               />
             }
-            iconClickHandler={handleSubmit}
+            onSubmit={handleSubmit}
             onChange={onChange}
             value={inputs.text}
             placeholder="メッセージを送信する"

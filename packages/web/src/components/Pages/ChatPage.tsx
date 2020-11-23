@@ -1,4 +1,4 @@
-import React, { FC, useState, ComponentProps } from "react";
+import React, { FC, useState, ComponentProps, FormEvent } from "react";
 import { useAuthContext } from "../../provider/AuthContextProvider";
 import {
   useNewMessagesSubscription,
@@ -87,9 +87,7 @@ const ChatPage: FC = () => {
     setInputs({ ...inputs, ...targetInput });
   };
 
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputs.text) return;
     try {
