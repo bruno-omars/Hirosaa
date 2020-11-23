@@ -25,10 +25,9 @@ const Center = styled.div`
 `;
 
 const IconLink: FC<IconLinkProps> = (props) => {
-  const Media = useMedia();
-  const isPC = Media.pc.matches;
+  const { IS_PC } = useMedia();
 
-  if (!isPC) {
+  if (!IS_PC) {
     return (
       <StyledIconLink
         bgcolor={props.bgcolor}
