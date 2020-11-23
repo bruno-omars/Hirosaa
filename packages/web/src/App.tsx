@@ -55,7 +55,7 @@ const App: FC = () => {
             <PrivateRoute path="/chat" component={ChatPage} />
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
             <PrivateRoute path="/circle-edit" component={CircleEditPage} />
-            <PrivateRoute path="/user-detail" component={UserDetailPage} />
+            <PrivateRoute path="/user-detail/:id" component={UserDetailPage} />
             <PrivateRoute path="/user-edit" component={UserEditPage} />
 
             <Route path="*">

@@ -4649,6 +4649,7 @@ export type UserQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
+<<<<<<< HEAD
 
 export type UserQuery = (
   { __typename?: 'query_root' }
@@ -4702,6 +4703,33 @@ export type NewMessagesSubscription = (
   )> }
 );
 
+=======
+export type UserQuery = { __typename?: "query_root" } & {
+  user?: Maybe<
+    { __typename?: "users" } & Pick<
+      Users,
+      "id" | "avatar" | "name" | "introduction" | "interested_in"
+    > & {
+        user_skills: Array<
+          { __typename?: "user_skills" } & {
+            skills: { __typename?: "skills" } & Pick<
+              Skills,
+              "id" | "avatar" | "name"
+            >;
+          }
+        >;
+        circle_users: Array<
+          { __typename?: "circle_users" } & {
+            circle: { __typename?: "circles" } & Pick<
+              Circles,
+              "id" | "avatar" | "name"
+            >;
+          }
+        >;
+      }
+  >;
+};
+>>>>>>> 27df7de43d7af4b6431215ead366acebebeed784
 
 export const DeleteCircleSkillDocument = gql`
     mutation DeleteCircleSkill($circleId: Int!, $skillId: Int!) {
@@ -5195,6 +5223,13 @@ export const UserDocument = gql`
         id
         avatar
         name
+      }
+      circle_users {
+        circle {
+          id
+          avatar
+          name
+        }
       }
     }
   }

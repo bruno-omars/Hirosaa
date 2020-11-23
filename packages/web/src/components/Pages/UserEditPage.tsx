@@ -48,8 +48,7 @@ const UserEditPage: React.FC = () => {
   const redirectToDetail = () => {
     setTimeout(() => {
       history.push({
-        pathname: "/user-detail",
-        state: { userId },
+        pathname: `/user-detail/${userId}`,
       });
     }, 2000);
   };

@@ -55,7 +55,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "scaffdog": "^0.3.0"
   },
   "lint-staged": {
     "*.{html,css,md,json,yaml}": "prettier --write",
