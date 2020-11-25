@@ -37,6 +37,6 @@ services:
     volumes:
       - ./packages/web/src:/app/src
       - ./packages/web/public:/app/public
-    stdin_open: true
+      - ./yarn.lock:/app/yarn.lock
 volumes:
   db_data:
