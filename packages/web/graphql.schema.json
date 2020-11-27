@@ -4606,7 +4606,7 @@
             "deprecationReason": null
           },
           {
-            "name": "subCategories",
+            "name": "subCategory",
             "description": "An object relationship",
             "args": [],
             "type": {
@@ -5261,7 +5261,7 @@
             "defaultValue": null
           },
           {
-            "name": "subCategories",
+            "name": "subCategory",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5470,7 +5470,7 @@
             "defaultValue": null
           },
           {
-            "name": "subCategories",
+            "name": "subCategory",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -6214,7 +6214,7 @@
             "defaultValue": null
           },
           {
-            "name": "subCategories",
+            "name": "subCategory",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",

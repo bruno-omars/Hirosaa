@@ -49,7 +49,7 @@
   - name: owner
     using:
       foreign_key_constraint_on: owner_id
-  - name: subCategories
+  - name: subCategory
     using:
       foreign_key_constraint_on: sub_category_id
   array_relationships:

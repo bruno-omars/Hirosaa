@@ -674,7 +674,7 @@ export type Circles = {
   ownerId?: Maybe<Scalars['String']>;
   recruitTitle?: Maybe<Scalars['String']>;
   /** An object relationship */
-  subCategories?: Maybe<Sub_Categories>;
+  subCategory?: Maybe<Sub_Categories>;
   subCategoryId?: Maybe<Scalars['Int']>;
   whatWeWillDo?: Maybe<Scalars['String']>;
 };
@@ -820,7 +820,7 @@ export type Circles_Bool_Exp = {
   owner?: Maybe<Users_Bool_Exp>;
   ownerId?: Maybe<String_Comparison_Exp>;
   recruitTitle?: Maybe<String_Comparison_Exp>;
-  subCategories?: Maybe<Sub_Categories_Bool_Exp>;
+  subCategory?: Maybe<Sub_Categories_Bool_Exp>;
   subCategoryId?: Maybe<Int_Comparison_Exp>;
   whatWeWillDo?: Maybe<String_Comparison_Exp>;
 };
@@ -851,7 +851,7 @@ export type Circles_Insert_Input = {
   owner?: Maybe<Users_Obj_Rel_Insert_Input>;
   ownerId?: Maybe<Scalars['String']>;
   recruitTitle?: Maybe<Scalars['String']>;
-  subCategories?: Maybe<Sub_Categories_Obj_Rel_Insert_Input>;
+  subCategory?: Maybe<Sub_Categories_Obj_Rel_Insert_Input>;
   subCategoryId?: Maybe<Scalars['Int']>;
   whatWeWillDo?: Maybe<Scalars['String']>;
 };
@@ -946,7 +946,7 @@ export type Circles_Order_By = {
   owner?: Maybe<Users_Order_By>;
   ownerId?: Maybe<Order_By>;
   recruitTitle?: Maybe<Order_By>;
-  subCategories?: Maybe<Sub_Categories_Order_By>;
+  subCategory?: Maybe<Sub_Categories_Order_By>;
   subCategoryId?: Maybe<Order_By>;
   whatWeWillDo?: Maybe<Order_By>;
 };
@@ -4563,7 +4563,7 @@ export type CircleQuery = (
     & { owner?: Maybe<(
       { __typename?: 'users' }
       & Pick<Users, 'id' | 'name' | 'avatar'>
-    )>, subCategories?: Maybe<(
+    )>, subCategory?: Maybe<(
       { __typename?: 'sub_categories' }
       & Pick<Sub_Categories, 'id' | 'name'>
     )>, circleSkills: Array<(
@@ -4919,7 +4919,7 @@ export const CircleDocument = gql`
       name
       avatar
     }
-    subCategories {
+    subCategory {
       id
       name
     }
