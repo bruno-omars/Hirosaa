@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import IconLink from "../../Atoms/Links/IconLink";
@@ -33,6 +33,7 @@ const StyledMe = styled.div`
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
   const { useCase, setMe, me } = useAuthContext();
+  const [isActive, setIsActive] = useState(false);
   let history = useHistory();
 
   const onRedirectDetail = () => {
@@ -51,10 +52,20 @@ const LoginSidebar: FC = () => {
         <Me user={user} onRedirectDetail={onRedirectDetail} />
       </StyledMe>
       <StyledList>
-        <IconLink to="/circle" text="サークル一覧" bgcolor={"WHITE"}>
+        <IconLink
+          to="/circle"
+          text="サークル一覧"
+          clickHandler={() => setIsActive(true)}
+          bgcolor={isActive ? "WHITE" : "DARK_GREEN"}
+        >
           <Circleci />
         </IconLink>
-        <IconLink to="/circle-new" text="サークル作成">
+        <IconLink
+          to="/circle-new"
+          text="サークル作成"
+          clickHandler={() => setIsActive(true)}
+          bgcolor={isActive ? "WHITE" : "DARK_GREEN"}
+        >
           <Circleci />
         </IconLink>
         <IconLink to="#" text="トークルーム">

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-
 import { Props, StyledLink } from "./Default";
 
 type IconLinkProps = Props & {
   text: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 };
 
 const StyledIconLink = styled(StyledLink)`
