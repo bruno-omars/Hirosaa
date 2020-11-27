@@ -37,11 +37,11 @@ const SelectCategoryCard: FC<Props> = ({
   return (
     <StyledCard>
       <StyledH3>カテゴリー選択</StyledH3>
-      {data?.parent_categories.map((parentCategory) => {
+      {data?.parentCategories.map((parentCategory) => {
         return (
           <CheckBoxStagesList
             parentItem={parentCategory}
-            childrenItems={parentCategory.sub_categories}
+            childrenItems={parentCategory.subCategories}
             key={parentCategory.id}
             selectedChildrenIds={selectedSubcategories}
             setChildrenIds={setSubCategories}

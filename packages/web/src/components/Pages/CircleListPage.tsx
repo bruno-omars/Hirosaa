@@ -34,7 +34,7 @@ const CircleListPage: FC = () => {
   const where = useMemo(() => {
     return selectedSubcategories.length
       ? {
-          sub_categories: {
+          subCategory: {
             id: {
               _in: selectedSubcategories,
             },

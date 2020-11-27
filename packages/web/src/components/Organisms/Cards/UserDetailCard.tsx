@@ -55,20 +55,20 @@ const StyledCircleList = styled.div`
 
 const UserDetailCard: FC<Props> = ({ data }) => {
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user.user_skills.length / 4) * 75,
+    () => data.user && Math.ceil(data.user.userSkills.length / 4) * 75,
     [data]
   );
 
   const circleCardHeight = useMemo(
-    () => (data.user?.circle_users.length || 0) * 75,
+    () => (data.user?.circleUsers.length || 0) * 75,
     [data]
   );
 
   if (data.user == null) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
-  const skills = user.user_skills.map((skill) => skill.skills);
-  const circles = user.circle_users.map((circle_user) => circle_user.circle);
+  const skills = user.userSkills.map((userSkill) => userSkill.skill);
+  const circles = user.circleUsers.map((circleUser) => circleUser.circle);
 
   return (
     <StyledCard>
@@ -83,7 +83,7 @@ const UserDetailCard: FC<Props> = ({ data }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        <StyledDesc>{user.interested_in}</StyledDesc>
+        <StyledDesc>{user.interestedIn}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
