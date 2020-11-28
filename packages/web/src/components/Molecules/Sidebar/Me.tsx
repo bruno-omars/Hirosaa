@@ -50,10 +50,8 @@ const Me: FC<Props> = ({ user, onRedirectDetail }) => {
   const userId = user["https://hasura.io/jwt/claims"]["x-hasura-user-id"].slice(
     -idMaxLength
   );
-  const Media = useMedia();
-  const isPC = Media.pc.matches;
-
-  if (!isPC) {
+  const { IS_PC } = useMedia();
+  if (!IS_PC) {
     return (
       <StyledMe>
         <CircleButton onClick={onRedirectDetail} shadowDepth={"NONE"}>
