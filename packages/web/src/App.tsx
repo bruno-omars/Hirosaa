@@ -6,15 +6,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
-import AuthContextProvider from "./provider/AuthContextProvider";
-import {
-  ApolloProvider,
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-} from "@apollo/client";
-
+import { ApolloProvider } from "@apollo/client";
 import CircleListPage from "./components/Pages/CircleListPage";
 import AboutPage from "./components/Pages/AboutPage";
 import TwoColumn from "./components/Templates/TwoColumn";
@@ -22,10 +14,12 @@ import GuestSidebar from "./components/Organisms/Sidebar/GuestSidebar";
 import PrivateRoute from "./PrivateRoute";
 import CircleCreatePage from "./components/Pages/CircleCreatePage";
 import CircleDetailPage from "./components/Pages/CircleDetailPage";
+import ChatPage from "./components/Pages/ChatPage";
 import UserDetailPage from "./components/Pages/UserDetailPage";
 import CircleEditPage from "./components/Pages/CircleEditPage";
 import Spinner from "./components/Atoms/Indicator/Spinner";
 import UserEditPage from "./components/Pages/UserEditPage";
+import { createApolloClient } from "./graphql/client";
 
 const App: FC = () => {
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -33,34 +27,16 @@ const App: FC = () => {
 
   if (isLoading) return <Spinner />;
 
-  const getAccessToken = async () => {
+  (async () => {
     try {
       const token = await getAccessTokenSilently();
       setAccessToken(token);
-      console.log(token);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  getAccessToken();
-
-  const client = new ApolloClient({
-    link: new HttpLink({
-      uri: `${process.env.REACT_APP_BACKEND_URL}/v1/graphql`,
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "x-hasura-admin-secret":
-          process.env.REACT_APP_HASURA_GRAPHQL_ADMIN_SECRET,
-      },
-    }),
-    cache: new InMemoryCache(),
-  });
-
-  console.log("Login", isAuthenticated);
+    } catch (e) {}
+  })();
 
   return (
     <div className="App">
-      <ApolloProvider client={client}>
+      <ApolloProvider client={createApolloClient(accessToken)}>
         <Router>
           <Switch>
             <Route path="/login" component={GuestSidebar}>
@@ -76,6 +52,7 @@ const App: FC = () => {
               component={CircleCreatePage}
               exact
             />
+            <PrivateRoute path="/chat" component={ChatPage} />
             <PrivateRoute path="/circle-detail" component={CircleDetailPage} />
             <PrivateRoute path="/circle-edit" component={CircleEditPage} />
             <PrivateRoute path="/user-detail/:id" component={UserDetailPage} />

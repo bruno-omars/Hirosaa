@@ -1,0 +1,20 @@
+query Messages($last_received_id: Int, $last_received_ts: timestamptz) {
+  messages(
+    where: {
+      _and: {
+        id: { _neq: $last_received_id }
+        timestamp: { _gte: $last_received_ts }
+      }
+    }
+    order_by: { timestamp: asc }
+  ) {
+    timestamp
+    text
+    id
+    users {
+      id
+      avatar
+      name
+    }
+  }
+}

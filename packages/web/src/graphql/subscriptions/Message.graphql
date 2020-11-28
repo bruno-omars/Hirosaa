@@ -1,0 +1,16 @@
+subscription NewMessages($circleId: Int!) {
+  messages(
+    where: { circles: { id: { _eq: $circleId } } }
+    order_by: { timestamp: desc }
+    limit: 1
+  ) {
+    timestamp
+    text
+    id
+    users {
+      id
+      avatar
+      name
+    }
+  }
+}
