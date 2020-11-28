@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Props, StyledLink } from "./Default";
 
 type IconLinkProps = Props & {
   text: string;
-  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  selectedLinkName?: string;
 };
 
 const StyledIconLink = styled(StyledLink)`
@@ -20,7 +20,7 @@ const Center = styled.div`
 const IconLink: FC<IconLinkProps> = (props) => {
   return (
     <StyledIconLink
-      bgcolor={props.bgcolor}
+      bgcolor={props.selectedLinkName === props.text ? "WHITE" : "DARK_GREEN"}
       size={props.size}
       to={props.to}
       onClick={props.clickHandler}

@@ -33,7 +33,9 @@ const StyledMe = styled.div`
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
   const { useCase, setMe, me } = useAuthContext();
-  const [isActive, setIsActive] = useState(false);
+  const [selectedLinkName, setSelectedLinkName] = useState<string>(
+    "サークル一覧"
+  );
   let history = useHistory();
 
   const onRedirectDetail = () => {
@@ -55,29 +57,43 @@ const LoginSidebar: FC = () => {
         <IconLink
           to="/circle"
           text="サークル一覧"
-          clickHandler={() => setIsActive(true)}
-          bgcolor={isActive ? "WHITE" : "DARK_GREEN"}
+          clickHandler={() => setSelectedLinkName("サークル一覧")}
+          selectedLinkName={selectedLinkName}
         >
           <Circleci />
         </IconLink>
         <IconLink
           to="/circle-new"
           text="サークル作成"
-          clickHandler={() => setIsActive(true)}
-          bgcolor={isActive ? "WHITE" : "DARK_GREEN"}
+          clickHandler={() => setSelectedLinkName("サークル作成")}
+          selectedLinkName={selectedLinkName}
         >
           <Circleci />
         </IconLink>
-        <IconLink to="#" text="トークルーム">
+        <IconLink
+          to="#"
+          text="トークルーム"
+          clickHandler={() => setSelectedLinkName("トークルーム")}
+          selectedLinkName={selectedLinkName}
+        >
           <Chat />
         </IconLink>
-        <IconLink to="#" text="プロフィール">
+        <IconLink
+          to="#"
+          text="プロフィール"
+          clickHandler={() => setSelectedLinkName("プロフィール")}
+          selectedLinkName={selectedLinkName}
+        >
           <Person />
         </IconLink>
         <IconLink
           to="#"
           text="ログアウト"
-          clickHandler={() => logout({ returnTo: window.location.origin })}
+          clickHandler={() => {
+            logout({ returnTo: window.location.origin });
+            setSelectedLinkName("ログアウト");
+          }}
+          selectedLinkName={selectedLinkName}
         >
           <Person />
         </IconLink>
