@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef, useEffect } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
 import { Props, StyledLink } from "./Default";
 
