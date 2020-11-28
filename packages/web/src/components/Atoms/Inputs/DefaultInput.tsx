@@ -6,7 +6,8 @@ const SIZE = {
   LARGE: "400px",
   MEDIUM: "380px",
   BASE: "260px",
-  SMALL: "150PX",
+  SMALL: "150px",
+  MAX: "100%",
 };
 
 type Props = {

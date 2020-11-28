@@ -6,17 +6,22 @@ import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import { useLocation, useHistory } from "react-router-dom";
 import TwoColumn from "../Templates/TwoColumn";
 import Spinner from "../Atoms/Indicator/Spinner";
+import media from "styled-media-query";
 
 type Params = {
   circleId: number;
 };
 
 const StyledRightButtons = styled.div`
-  align-self: start;
+  width: 100%;
 `;
 
 const StyledRoundedButton = styled(RoundedButton)`
   margin-bottom: 24px;
+
+  ${media.lessThan("small")`
+    width: 100%;
+  `}
 `;
 
 const CircleDetailPage: FC = (props) => {

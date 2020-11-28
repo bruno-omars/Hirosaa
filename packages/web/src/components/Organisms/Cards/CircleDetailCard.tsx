@@ -12,6 +12,7 @@ import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
+import media from "styled-media-query";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -22,19 +23,26 @@ const StyledCard = styled.div`
 
 const StyledTop = styled.div`
   display: grid;
-  grid-template-columns: 80px 1fr 200px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 80px 200px;
+  grid-template-rows: 1fr 0.7fr 0.7fr;
+
+  ${media.lessThan("medium")`
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 0.6fr 0.6fr;
+  `}
 `;
 
 const StyledCircleAvatar = styled(Avatar)`
-  grid-row: 1/3;
   align-self: center;
   cursor: default;
 `;
 
 const StyledHeader = styled.div`
-  flex-direction: row;
-  grid-column: 2/4;
+  ${media.greaterThan("medium")`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  `}
 `;
 
 const StyledTitle = styled.h1`
@@ -53,29 +61,16 @@ const StyledDesc = styled.p`
 `;
 
 const StyledLeaderWrapper = styled.div`
-  grid-row-start: 2;
-  grid-column-start: 3;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  grid-template-rows: 20px 24px;
-  align-items: center;
-  justify-self: end;
-`;
+  display: flex;
 
-const StyledLeaderLabel = styled.p`
-  color: ${COLOR.TEXT_LIGHT};
-  grid-column: 1/3;
-  font-size: 14px;
+  ${media.greaterThan("medium")`
+    grid-row-start: 3;
+  `}
 `;
 
 const StyledLeaderName = styled.p`
   color: ${COLOR.TEXT_LIGHT};
   font-size: 21px;
-`;
-
-const StyledPeopleNum = styled(PeopleNum)`
-  grid-column-start: 2;
-  grid-row: 2/4;
 `;
 
 const StyledBlock = styled.div`
@@ -129,10 +124,9 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
           )}
         </StyledHeader>
 
-        <StyledPeopleNum count={30} />
+        <PeopleNum count={30} />
 
         <StyledLeaderWrapper>
-          <StyledLeaderLabel>リーダー</StyledLeaderLabel>
           <Avatar
             onClick={handleToDetail}
             src={circle.owner?.avatar ?? ""}

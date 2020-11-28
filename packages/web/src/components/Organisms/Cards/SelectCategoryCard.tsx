@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CheckBoxStagesList from "../../Molecules/Lists/CheckBoxStagesList";
 import { useCategoriesQuery } from "../../../generated/graphql";
 import Spinner from "../../Atoms/Indicator/Spinner";
+import media from "styled-media-query";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -13,6 +14,11 @@ const StyledCard = styled.div`
   height: 330px;
   padding: 30px;
   width: 80%;
+
+  ${media.lessThan("medium")`
+    width: 70%;
+    height: 230px;
+  `}
 `;
 
 const StyledH3 = styled.h3`

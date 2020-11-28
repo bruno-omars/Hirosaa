@@ -59,13 +59,16 @@ const CircleEditPage: React.FC = () => {
           whatWeWillDo: circle.whatWeWillDo || "",
           mainRole: circle.mainRole || "",
         });
-        const skills = circle.circleSkills.map((circleSkill) => circleSkill.skill.id) || [];
+        const skills =
+          circle.circleSkills.map((circleSkill) => circleSkill.skill.id) || [];
         const category = circle.subCategory?.id;
         setSkills(skills);
         setInitSkills(skills);
         console.log(category);
         if (!category) {
-          console.log("必須項目カテゴリーが選択されていません。選択してください");
+          console.log(
+            "必須項目カテゴリーが選択されていません。選択してください"
+          );
         } else {
           setCategory(category);
         }
