@@ -35,6 +35,10 @@ const CircleContainer = styled.div`
   `}
 `;
 
+const TopPaginationWraaper = styled.div`
+  margin-bottom: 50px;
+`
+
 export type Pagination = {
   limit: number;
   currentPage: number;
@@ -49,12 +53,12 @@ const CircleListPage: FC = () => {
   const where = useMemo(() => {
     return selectedSubcategories.length
       ? {
-          subCategory: {
-            id: {
-              _in: selectedSubcategories,
-            },
+        subCategory: {
+          id: {
+            _in: selectedSubcategories,
           },
-        }
+        },
+      }
       : {};
   }, [selectedSubcategories]);
 
@@ -89,6 +93,16 @@ const CircleListPage: FC = () => {
       <StyledTitle>サークル一覧</StyledTitle>
       <Grid>
         <CircleContainer>
+          {circles !== undefined && circles.length >= 5 && maxPage > 1 ?
+            (
+              <TopPaginationWraaper>
+                <Pagenation
+                  maxPage={maxPage}
+                  setCurrentPage={setCurrentPage}
+                  currentPage={currentPage}
+                />
+              </TopPaginationWraaper>
+            ) : null}
           {circles}
           <Pagenation
             maxPage={maxPage}
