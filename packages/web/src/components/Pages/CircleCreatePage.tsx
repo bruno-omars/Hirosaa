@@ -15,9 +15,9 @@ const RightButton = styled.div`
 
 export type Input = {
   name: string;
-  recruit_title: string;
-  what_we_will_do: string;
-  main_role: string;
+  recruitTitle: string;
+  whatWeWillDo: string;
+  mainRole: string;
 };
 
 const CircleCreatePage: FC = () => {
@@ -25,15 +25,15 @@ const CircleCreatePage: FC = () => {
   const [selectedCategory, setCategory] = useState<number>(0);
   const [inputs, setInputs] = useState<Input>({
     name: "",
-    recruit_title: "",
-    what_we_will_do: "",
-    main_role: "",
+    recruitTitle: "",
+    whatWeWillDo: "",
+    mainRole: "",
   });
 
   const [buttonText, setText] = useState("作成する");
 
   const skills = selectedSkills.map((skill: number) => ({
-    skills: {
+    skill: {
       data: { id: skill, avatar: "", name: "" },
       on_conflict: {
         constraint: Skills_Constraint.SkillPkey,
@@ -50,10 +50,10 @@ const CircleCreatePage: FC = () => {
         objects: [
           {
             ...inputs,
-            sub_category_id: selectedCategory,
-            circle_skills:{
+            subCategoryId: selectedCategory,
+            circleSkills: {
               data: [...skills],
-            }
+            },
           },
         ],
       },

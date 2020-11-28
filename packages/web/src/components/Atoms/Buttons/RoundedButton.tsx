@@ -18,11 +18,7 @@ const StyledButtonRoude = styled(StyledButton)<RoundedButtonProps>`
 `;
 
 const RoundedButton: FC<Props> = (props) => {
-  return (
-    <StyledButtonRoude {...props}>
-      {props.children}
-    </StyledButtonRoude>
-  );
+  return <StyledButtonRoude {...props}>{props.children}</StyledButtonRoude>;
 };
 
 export default RoundedButton;

@@ -77,6 +77,7 @@ const UserEditCard: FC<Props> = (props) => {
           placeholder="ユーザ名"
           name="name"
           value={props.inputs.name}
+          inputSize="MAX"
         />
       </StyledTop>
       <hr />
@@ -88,6 +89,7 @@ const UserEditCard: FC<Props> = (props) => {
             placeholder="自己紹介を記入してください"
             name="introduction"
             value={props.inputs.introduction}
+            areaSize="MAX"
           />
         </StyledDesc>
       </StyledBlock>
@@ -97,8 +99,9 @@ const UserEditCard: FC<Props> = (props) => {
           <DefaultTextArea
             onChange={handleChange}
             placeholder="自己紹介を記入してください"
-            name="interested_in"
-            value={props.inputs.interested_in}
+            areaSize="MAX"
+            name="interestedIn"
+            value={props.inputs.interestedIn}
           />
         </StyledDesc>
       </StyledBlock>

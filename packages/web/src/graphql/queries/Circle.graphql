@@ -3,29 +3,29 @@ query Circle($id: Int!) {
     id
     avatar
     name
-    main_role
-    what_we_will_do
-    recruit_title
-    owner: users {
+    mainRole
+    whatWeWillDo
+    recruitTitle
+    owner {
       id
       name
       avatar
     }
-    sub_categories {
+    subCategory {
       id
       name
     }
-    circle_skills {
-      skills {
+    circleSkills {
+      skill {
         id
         name
         avatar
       }
     }
-    circle_users {
+    circleUsers {
       id
     }
-    circle_users_aggregate {
+    circleUsers_aggregate {
       aggregate {
         count
       }

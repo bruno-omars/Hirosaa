@@ -8,6 +8,7 @@ import {
 } from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
+import media from "styled-media-query";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -17,10 +18,17 @@ const StyledCard = styled.div`
   grid-template-rows: 40% 60%;
   grid-template-columns: 50px 0.9fr 70px;
   height: 180px;
-  justify-content: center;
   margin-bottom: 50px;
   place-items: center;
   width: 500px;
+  padding: 0 10px;
+
+  ${media.lessThan("medium")`
+    width: 90%;
+    height: 230px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  `}
 `;
 
 const CardTitle = styled.h3`
@@ -57,9 +65,9 @@ type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
   circle: Pick<
     Circles,
-    "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
+    "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole"
   > & {
-    circle_users_aggregate: { __typename?: "circle_users_aggregate" } & {
+    circleUsers_aggregate: { __typename?: "circle_users_aggregate" } & {
       aggregate?: Maybe<
         { __typename?: "circle_users_aggregate_fields" } & Pick<
           Circle_Users_Aggregate_Fields,
@@ -87,9 +95,9 @@ const CircleCard: FC<Props> = ({ circle }) => {
       <CardTitle>{circle.name}</CardTitle>
       <PeopleNum>
         <People height="20px" width="20px" />
-        {circle.circle_users_aggregate.aggregate?.count}
+        {circle.circleUsers_aggregate.aggregate?.count}
       </PeopleNum>
-      <Description>{circle.what_we_will_do}</Description>
+      <Description>{circle.whatWeWillDo}</Description>
     </StyledCard>
   );
 };

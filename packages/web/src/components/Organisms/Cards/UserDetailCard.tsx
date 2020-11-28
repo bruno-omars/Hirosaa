@@ -4,6 +4,7 @@ import { UserQuery } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import SkillCards from "./SkillCards";
+import { CircleList } from "../CircleList";
 
 type Props = {
   data: UserQuery;
@@ -48,16 +49,26 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
+const StyledCircleList = styled.div`
+  margin-top: 20px;
+`;
+
 const UserDetailCard: FC<Props> = ({ data }) => {
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user.user_skills.length / 4) * 75,
+    () => data.user && Math.ceil(data.user.userSkills.length / 4) * 75,
     [data]
   );
 
-  if (!data.user) return <p>ユーザーが存在しません</p>;
+  const circleCardHeight = useMemo(
+    () => (data.user?.circleUsers.length || 0) * 75,
+    [data]
+  );
+
+  if (data.user == null) return <p>ユーザーが存在しません</p>;
 
   const user = data.user;
-  const skills = user.user_skills.map((skill) => skill.skills);
+  const skills = user.userSkills.map((userSkill) => userSkill.skill);
+  const circles = user.circleUsers.map((circleUser) => circleUser.circle);
 
   return (
     <StyledCard>
@@ -72,13 +83,19 @@ const UserDetailCard: FC<Props> = ({ data }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        <StyledDesc>{user.interested_in}</StyledDesc>
+        <StyledDesc>{user.interestedIn}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
           <SkillCards skills={skills} />
         </StyledGrid>
+      </StyledBlock>
+      <StyledBlock>
+        <StyledSubTitle>所属サークル一覧</StyledSubTitle>
+        <StyledCircleList>
+          <CircleList circles={circles} />
+        </StyledCircleList>
       </StyledBlock>
     </StyledCard>
   );

@@ -29,6 +29,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1",
+    "styled-media-query": "^2.1.2",
     "typescript": "~3.7.2"
   },
   "scripts": {
@@ -54,7 +55,8 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.1.5"
+    "@types/react-router-dom": "^5.1.5",
+    "scaffdog": "^0.3.0"
   },
   "lint-staged": {
     "*.{html,css,md,json,yaml}": "prettier --write",
