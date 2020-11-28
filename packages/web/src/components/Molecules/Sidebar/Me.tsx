@@ -64,7 +64,7 @@ const Me: FC<Props> = ({ user, onRedirectDetail }) => {
   return (
     <StyledMe>
       <CircleButton onClick={onRedirectDetail} shadowDepth={"NONE"}>
-        <StyledImage src={user.picture||""} />
+        <StyledImage src={user.picture || ""} />
       </CircleButton>
       <div>
         <StyledText>{user.nickname}</StyledText>

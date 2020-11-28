@@ -6,6 +6,11 @@ query Circles($limit: Int!, $offset: Int!, $where: circles_bool_exp) {
     avatar
     whatWeWillDo
     mainRole
+    circleUsers_aggregate {
+      aggregate {
+        count
+      }
+    }
   }
   circles_aggregate(where: $where) {
     aggregate {

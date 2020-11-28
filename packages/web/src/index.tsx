@@ -5,7 +5,6 @@ import * as serviceWorker from "./serviceWorker";
 import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
 import AuthContextProvider from "./provider/AuthContextProvider";
 
-
 import "./index.css";
 
 ReactDOM.render(
