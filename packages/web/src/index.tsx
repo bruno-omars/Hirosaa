@@ -2,10 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-import "./index.css";
 import Auth0ProviderWithHistory from "./provider/Auth0ProviderWithHistory";
 import AuthContextProvider from "./provider/AuthContextProvider";
+
+import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
