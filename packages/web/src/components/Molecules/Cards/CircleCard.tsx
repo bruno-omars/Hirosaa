@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { Circles } from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
+import media from "styled-media-query";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -13,10 +14,17 @@ const StyledCard = styled.div`
   grid-template-rows: 40% 60%;
   grid-template-columns: 50px 0.9fr 70px;
   height: 180px;
-  justify-content: center;
   margin-bottom: 50px;
   place-items: center;
-  width: 100%;
+  width: 500px;
+  padding: 0 10px;
+
+  ${media.lessThan("medium")`
+    width: 90%;
+    height: 230px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+  `}
 `;
 
 const CardTitle = styled.h3`
@@ -51,10 +59,7 @@ const StyledImage = styled.img`
 
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
-  circle: Pick<
-    Circles,
-    "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
-  >;
+  circle: Pick<Circles, "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole">;
 };
 
 const CircleCard: FC<Props> = ({ circle }) => {
@@ -76,7 +81,7 @@ const CircleCard: FC<Props> = ({ circle }) => {
         <People height="20px" width="20px" />
         30人
       </PeopleNum>
-      <Description>{circle.what_we_will_do}</Description>
+      <Description>{circle.whatWeWillDo}</Description>
     </StyledCard>
   );
 };

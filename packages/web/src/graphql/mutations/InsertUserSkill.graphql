@@ -1,6 +1,6 @@
 mutation InsertUserSkill($userId: String!, $skillId: Int!) {
   insert_user_skills(
-    objects: { user_id: $userId, skill_id: $skillId, level: 1 }
+    objects: { userId: $userId, skillId: $skillId, level: 1 }
   ) {
     affected_rows
   }
