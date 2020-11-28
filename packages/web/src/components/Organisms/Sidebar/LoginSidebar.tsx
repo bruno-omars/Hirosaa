@@ -24,8 +24,7 @@ const LoginSidebar: FC = () => {
 
   const onRedirectDetail = () => {
     history.push({
-      pathname: "/user-detail",
-      state: { userId: me.id },
+      pathname: `/user-detail/${me.id}`,
     });
   };
 

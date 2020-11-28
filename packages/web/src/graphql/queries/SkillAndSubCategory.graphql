@@ -4,7 +4,7 @@ query SkillAndSubCategory {
     avatar
     name
   }
-  sub_categories {
+  subCategories {
     id
     name
   }

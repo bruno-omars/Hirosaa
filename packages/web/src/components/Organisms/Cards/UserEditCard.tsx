@@ -99,9 +99,9 @@ const UserEditCard: FC<Props> = (props) => {
           <DefaultTextArea
             onChange={handleChange}
             placeholder="自己紹介を記入してください"
-            name="interested_in"
-            value={props.inputs.interested_in}
             areaSize="MAX"
+            name="interestedIn"
+            value={props.inputs.interestedIn}
           />
         </StyledDesc>
       </StyledBlock>

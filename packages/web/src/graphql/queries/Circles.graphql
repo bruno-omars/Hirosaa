@@ -2,10 +2,10 @@ query Circles($limit: Int!, $offset: Int!, $where: circles_bool_exp) {
   circles(limit: $limit, offset: $offset, where: $where) {
     id
     name
-    recruit_title
+    recruitTitle
     avatar
-    what_we_will_do
-    main_role
+    whatWeWillDo
+    mainRole
   }
   circles_aggregate(where: $where) {
     aggregate {

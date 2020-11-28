@@ -4,9 +4,16 @@ query User($id: String!) {
     avatar
     name
     introduction
-    interested_in
-    user_skills {
-      skills {
+    interestedIn
+    userSkills {
+      skill {
+        id
+        avatar
+        name
+      }
+    }
+    circleUsers {
+      circle {
         id
         avatar
         name

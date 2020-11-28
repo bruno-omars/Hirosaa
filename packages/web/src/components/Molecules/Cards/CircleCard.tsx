@@ -59,10 +59,7 @@ const StyledImage = styled.img`
 
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
-  circle: Pick<
-    Circles,
-    "id" | "name" | "avatar" | "what_we_will_do" | "main_role"
-  >;
+  circle: Pick<Circles, "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole">;
 };
 
 const CircleCard: FC<Props> = ({ circle }) => {
@@ -84,7 +81,7 @@ const CircleCard: FC<Props> = ({ circle }) => {
         <People height="20px" width="20px" />
         30人
       </PeopleNum>
-      <Description>{circle.what_we_will_do}</Description>
+      <Description>{circle.whatWeWillDo}</Description>
     </StyledCard>
   );
 };

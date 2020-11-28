@@ -96,11 +96,11 @@ const StyledGrid = styled.div<StyleGrid>`
 type Props = {
   circle: Pick<
     Circles,
-    "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
+    "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
   > & {
-    circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[];
+    circleSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
   } & {
-    sub_categories?: Pick<Sub_Categories, "name"> | null;
+    subCategories?: Pick<Sub_Categories, "name"> | null;
   } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
 
@@ -108,8 +108,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   let history = useHistory();
   const handleToDetail = () => {
     history.push({
-      pathname: "/user-detail",
-      state: { userId: circle.owner?.id },
+      pathname: `/user-detail/${circle.owner?.id}`,
     });
   };
 
@@ -119,9 +118,9 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
         <StyledCircleAvatar src={circle.avatar} size={66} />
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
-          <StyledCaption>{circle.recruit_title}</StyledCaption>
-          {circle.sub_categories?.name && (
-            <DefaultTag name={circle.sub_categories.name} />
+          <StyledCaption>{circle.recruitTitle}</StyledCaption>
+          {circle.subCategories?.name && (
+            <DefaultTag name={circle.subCategories.name} />
           )}
         </StyledHeader>
 
@@ -140,20 +139,20 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
 
       <StyledBlock>
         <StyledSubTitle>何をするのか</StyledSubTitle>
-        <StyledDesc>{circle.what_we_will_do}</StyledDesc>
+        <StyledDesc>{circle.whatWeWillDo}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>主な役割</StyledSubTitle>
-        <StyledDesc>{circle.main_role}</StyledDesc>
+        <StyledDesc>{circle.mainRole}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.circle_skills.length / 4) * 85}>
-          {circle.circle_skills?.map((circleSkill) => (
+        <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
+          {circle.circleSkills?.map((circleSkill) => (
             <SkillCard
-              name={circleSkill.skills.name}
-              id={circleSkill.skills.id.toString()}
-              avatar={circleSkill.skills.avatar}
+              name={circleSkill.skill.name}
+              id={circleSkill.skill.id.toString()}
+              avatar={circleSkill.skill.avatar}
             />
           ))}
         </StyledGrid>
