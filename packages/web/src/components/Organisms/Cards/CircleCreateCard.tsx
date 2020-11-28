@@ -85,8 +85,8 @@ const CircleCreateCard: FC<Props> = (props) => {
           <DefaultInput
             onChange={handleChange}
             placeholder="募集の題名"
-            name="recruit_title"
-            value={props.inputs.recruit_title}
+            name="recruitTitle"
+            value={props.inputs.recruitTitle}
           />
           <div>
             <StyledSubTitle>カテゴリを選択</StyledSubTitle>
@@ -95,7 +95,7 @@ const CircleCreateCard: FC<Props> = (props) => {
             ) : (
               <StyledGrid height={30}>
                 <SubCategoryTags
-                  subCategories={data?.sub_categories}
+                  subCategories={data?.subCategories}
                   selectedCategory={props.selectedCategory}
                   setCategory={props.setCategory}
                 />
@@ -110,8 +110,8 @@ const CircleCreateCard: FC<Props> = (props) => {
             <DefaultTextArea
               onChange={handleChange}
               placeholder="あなたのサークルでやることを記入してください"
-              name="what_we_will_do"
-              value={props.inputs.what_we_will_do}
+              name="whatWeWillDo"
+              value={props.inputs.whatWeWillDo}
             />
           </Block>
           <Block>
@@ -119,8 +119,8 @@ const CircleCreateCard: FC<Props> = (props) => {
             <DefaultTextArea
               onChange={handleChange}
               placeholder="歓迎条件をご記入ください"
-              name="main_role"
-              value={props.inputs.main_role}
+              name="mainRole"
+              value={props.inputs.mainRole}
             />
           </Block>
           <Block>
