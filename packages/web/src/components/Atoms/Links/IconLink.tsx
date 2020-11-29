@@ -1,10 +1,11 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Props, StyledLink } from "./Default";
-
+import { useRouteMatch } from "react-router-dom";
+import { isConstructSignatureDeclaration } from "typescript";
 type IconLinkProps = Props & {
   text: string;
-  selectedLinkName?: string;
+  activeOnlyWhenExact?: boolean;
 };
 
 const StyledIconLink = styled(StyledLink)`
@@ -18,9 +19,14 @@ const Center = styled.div`
 `;
 
 const IconLink: FC<IconLinkProps> = (props) => {
+  const selected = useRouteMatch({
+    path: props.to,
+    exact: props.activeOnlyWhenExact,
+  });
+
   return (
     <StyledIconLink
-      bgcolor={props.selectedLinkName === props.text ? "WHITE" : "DARK_GREEN"}
+      bgcolor={selected ? "WHITE" : "DARK_GREEN"}
       size={props.size}
       to={props.to}
       onClick={props.clickHandler}

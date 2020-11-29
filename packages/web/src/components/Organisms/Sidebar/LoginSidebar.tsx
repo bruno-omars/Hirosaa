@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import IconLink from "../../Atoms/Links/IconLink";
@@ -33,9 +33,7 @@ const StyledMe = styled.div`
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
   const { useCase, setMe, me } = useAuthContext();
-  const [selectedLinkName, setSelectedLinkName] = useState<string>(
-    "サークル一覧"
-  );
+
   let history = useHistory();
 
   const onRedirectDetail = () => {
@@ -54,46 +52,25 @@ const LoginSidebar: FC = () => {
         <Me user={user} onRedirectDetail={onRedirectDetail} />
       </StyledMe>
       <StyledList>
-        <IconLink
-          to="/circle"
-          text="サークル一覧"
-          clickHandler={() => setSelectedLinkName("サークル一覧")}
-          selectedLinkName={selectedLinkName}
-        >
+        <IconLink activeOnlyWhenExact to="/circle" text="サークル一覧">
           <Circleci />
         </IconLink>
-        <IconLink
-          to="/circle-new"
-          text="サークル作成"
-          clickHandler={() => setSelectedLinkName("サークル作成")}
-          selectedLinkName={selectedLinkName}
-        >
+        <IconLink activeOnlyWhenExact to="/circle-new" text="サークル作成">
           <Circleci />
         </IconLink>
-        <IconLink
-          to="#"
-          text="トークルーム"
-          clickHandler={() => setSelectedLinkName("トークルーム")}
-          selectedLinkName={selectedLinkName}
-        >
+        <IconLink activeOnlyWhenExact to="#" text="トークルーム">
           <Chat />
         </IconLink>
-        <IconLink
-          to="#"
-          text="プロフィール"
-          clickHandler={() => setSelectedLinkName("プロフィール")}
-          selectedLinkName={selectedLinkName}
-        >
+        <IconLink activeOnlyWhenExact to="#" text="プロフィール">
           <Person />
         </IconLink>
         <IconLink
+          activeOnlyWhenExact
           to="#"
           text="ログアウト"
           clickHandler={() => {
             logout({ returnTo: window.location.origin });
-            setSelectedLinkName("ログアウト");
           }}
-          selectedLinkName={selectedLinkName}
         >
           <Person />
         </IconLink>
