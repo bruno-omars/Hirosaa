@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Props, StyledLink } from "./Default";
 import { useRouteMatch } from "react-router-dom";
-import { isConstructSignatureDeclaration } from "typescript";
+
 type IconLinkProps = Props & {
   text: string;
   activeOnlyWhenExact?: boolean;
