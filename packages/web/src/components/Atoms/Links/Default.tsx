@@ -12,11 +12,10 @@ export const BUTTON_SIZE = {
 };
 
 type ButtonSize = keyof typeof BUTTON_SIZE;
-type Color = keyof typeof COLOR;
 
 export type Props = {
   to: string;
-  bgcolor?: Color;
+  bgcolor?: keyof typeof COLOR;
   onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   size?: ButtonSize;
 };

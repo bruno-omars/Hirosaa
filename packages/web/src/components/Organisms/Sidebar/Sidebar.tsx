@@ -43,7 +43,12 @@ const Sidebar: FC<Props> = ({ items, children }: Props) => {
       {children}
       <StyledList>
         {items.map((item) => (
-          <IconLink to={item.to || "#"} onClick={item.onClick} text={item.text}>
+          <IconLink
+            activeOnlyWhenExact
+            to={item.to || "#"}
+            onClick={item.onClick}
+            text={item.text}
+          >
             <item.icon />
           </IconLink>
         ))}

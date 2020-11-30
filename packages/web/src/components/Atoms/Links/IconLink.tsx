@@ -1,12 +1,15 @@
 import React, { FC } from "react";
 import styled from "styled-components";
+
 import media from "styled-media-query";
 import { useMedia } from "../../../hooks/useMedia";
 
 import { Props, StyledLink } from "./Default";
+import { useRouteMatch } from "react-router-dom";
 
 type IconLinkProps = Props & {
   text: string;
+  activeOnlyWhenExact?: boolean;
 };
 
 const StyledIconLink = styled(StyledLink)`
@@ -25,12 +28,17 @@ const Center = styled.div`
 `;
 
 const IconLink: FC<IconLinkProps> = (props) => {
+  const selected = useRouteMatch({
+    path: props.to,
+    exact: props.activeOnlyWhenExact,
+  });
+
   const { IS_PC } = useMedia();
 
   if (!IS_PC) {
     return (
       <StyledIconLink
-        bgcolor={props.bgcolor}
+        bgcolor={selected ? "WHITE" : "DARK_GREEN"}
         size={props.size}
         to={props.to}
         onClick={props.onClick}
@@ -42,7 +50,7 @@ const IconLink: FC<IconLinkProps> = (props) => {
 
   return (
     <StyledIconLink
-      bgcolor={props.bgcolor}
+      bgcolor={selected ? "WHITE" : "DARK_GREEN"}
       size={props.size}
       to={props.to}
       onClick={props.onClick}

@@ -20,6 +20,7 @@ const StyledMe = styled.div`
 const LoginSidebar: FC = () => {
   const { logout, user } = useAuth0();
   const { useCase, setMe, me } = useAuthContext();
+
   let history = useHistory();
 
   const onRedirectDetail = () => {
