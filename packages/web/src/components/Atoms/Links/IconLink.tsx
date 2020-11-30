@@ -39,9 +39,9 @@ const IconLink: FC<IconLinkProps> = (props) => {
     return (
       <StyledIconLink
         bgcolor={selected ? "WHITE" : "DARK_GREEN"}
-        size={props?.size}
-        to={props?.to}
-        onClick={props?.onClick}
+        size={props.size}
+        to={props.to}
+        onClick={props.onClick}
       >
         <Center>{props.children}</Center>
       </StyledIconLink>
