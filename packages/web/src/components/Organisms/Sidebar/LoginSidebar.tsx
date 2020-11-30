@@ -35,31 +35,26 @@ const LoginSidebar: FC = () => {
 
   const items: ComponentProps<typeof Sidebar>["items"] = [
     {
-      activeOnlyWhenExact,
       to: "/circle",
       text: "サークル一覧",
       icon: Circleci,
     },
     {
-      activeOnlyWhenExact,
       to: "/circle-new",
       text: "サークル作成",
       icon: Circleci,
     },
     {
-      activeOnlyWhenExact,
       to: "#",
       text: "トークルーム",
       icon: Chat,
     },
     {
-      activeOnlyWhenExact,
       to: "#",
       text: "プロフィール",
       icon: Person,
     },
     {
-      activeOnlyWhenExact,
       text: "ログアウト",
       onClick: () => logout({ returnTo: window.location.origin }),
       icon: Logout,

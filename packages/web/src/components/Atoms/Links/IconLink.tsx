@@ -4,7 +4,6 @@ import styled from "styled-components";
 import media from "styled-media-query";
 import { useMedia } from "../../../hooks/useMedia";
 
-
 import { Props, StyledLink } from "./Default";
 import { useRouteMatch } from "react-router-dom";
 
@@ -29,7 +28,6 @@ const Center = styled.div`
 `;
 
 const IconLink: FC<IconLinkProps> = (props) => {
-
   const selected = useRouteMatch({
     path: props.to,
     exact: props.activeOnlyWhenExact,
@@ -41,14 +39,26 @@ const IconLink: FC<IconLinkProps> = (props) => {
     return (
       <StyledIconLink
         bgcolor={selected ? "WHITE" : "DARK_GREEN"}
-        size={props.size}
-        to={props.to}
-        onClick={props.onClick}
+        size={props?.size}
+        to={props?.to}
+        onClick={props?.onClick}
       >
         <Center>{props.children}</Center>
       </StyledIconLink>
     );
   }
+
+  return (
+    <StyledIconLink
+      bgcolor={selected ? "WHITE" : "DARK_GREEN"}
+      size={props.size}
+      to={props.to}
+      onClick={props.onClick}
+    >
+      <Center>{props.children}</Center>
+      {props.text}
+    </StyledIconLink>
+  );
 };
 
 export default IconLink;
