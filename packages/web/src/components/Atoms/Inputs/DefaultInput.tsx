@@ -6,7 +6,8 @@ const SIZE = {
   LARGE: "400px",
   MEDIUM: "380px",
   BASE: "260px",
-  SMALL: "150PX",
+  SMALL: "150px",
+  MAX: "100%",
 };
 
 type Props = {
@@ -14,12 +15,12 @@ type Props = {
   placeholder: string;
   inputSize?: keyof typeof SIZE;
   name?: string;
-  value: string;
+  value?: string;
 };
 
 const StyledInput = styled.input<Omit<Props, "onChange">>`
   box-sizing: border-box;
-  border: 1px solid #707070;
+  border: 1px solid ${COLOR["BORDER_TEXT_INPUT"]};
   border-radius: 4px;
   color: #00000f;
   font: 15px/24px sans-serif;

@@ -12,6 +12,7 @@ import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
+import media from "styled-media-query";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -22,19 +23,26 @@ const StyledCard = styled.div`
 
 const StyledTop = styled.div`
   display: grid;
-  grid-template-columns: 80px 1fr 200px;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 80px 200px;
+  grid-template-rows: 1fr 0.7fr 0.7fr;
+
+  ${media.lessThan("medium")`
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 0.6fr 0.6fr;
+  `}
 `;
 
 const StyledCircleAvatar = styled(Avatar)`
-  grid-row: 1/3;
   align-self: center;
   cursor: default;
 `;
 
 const StyledHeader = styled.div`
-  flex-direction: row;
-  grid-column: 2/4;
+  ${media.greaterThan("medium")`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  `}
 `;
 
 const StyledTitle = styled.h1`
@@ -53,29 +61,16 @@ const StyledDesc = styled.p`
 `;
 
 const StyledLeaderWrapper = styled.div`
-  grid-row-start: 2;
-  grid-column-start: 3;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  grid-template-rows: 20px 24px;
-  align-items: center;
-  justify-self: end;
-`;
+  display: flex;
 
-const StyledLeaderLabel = styled.p`
-  color: ${COLOR.TEXT_LIGHT};
-  grid-column: 1/3;
-  font-size: 14px;
+  ${media.greaterThan("medium")`
+    grid-row-start: 3;
+  `}
 `;
 
 const StyledLeaderName = styled.p`
   color: ${COLOR.TEXT_LIGHT};
   font-size: 21px;
-`;
-
-const StyledPeopleNum = styled(PeopleNum)`
-  grid-column-start: 2;
-  grid-row: 2/4;
 `;
 
 const StyledBlock = styled.div`
@@ -101,11 +96,11 @@ const StyledGrid = styled.div<StyleGrid>`
 type Props = {
   circle: Pick<
     Circles,
-    "avatar" | "name" | "recruit_title" | "main_role" | "what_we_will_do"
+    "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
   > & {
-    circle_skills: { skills: Pick<Skills, "id" | "name" | "avatar"> }[];
+    circleSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
   } & {
-    sub_categories?: Pick<Sub_Categories, "name"> | null;
+    subCategories?: Pick<Sub_Categories, "name"> | null;
   } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
 };
 
@@ -120,45 +115,44 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   return (
     <StyledCard>
       <StyledTop>
-        <StyledCircleAvatar src={circle.avatar} size={66} />
+        <StyledCircleAvatar src={circle?.avatar} size={66} />
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
-          <StyledCaption>{circle.recruit_title}</StyledCaption>
-          {circle.sub_categories?.name && (
-            <DefaultTag name={circle.sub_categories.name} />
+          <StyledCaption>{circle.recruitTitle}</StyledCaption>
+          {circle.subCategories?.name && (
+            <DefaultTag name={circle.subCategories.name} />
           )}
         </StyledHeader>
 
-        <StyledPeopleNum count={30} />
+        <PeopleNum count={30} />
 
         <StyledLeaderWrapper>
-          <StyledLeaderLabel>リーダー</StyledLeaderLabel>
           <Avatar
             onClick={handleToDetail}
-            src={circle.owner?.avatar ?? ""}
+            src={circle?.owner?.avatar ?? ""}
             size={30}
           />
-          <StyledLeaderName>{circle.owner?.name}</StyledLeaderName>
+          <StyledLeaderName>{circle?.owner?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
       </StyledTop>
       <hr />
 
       <StyledBlock>
         <StyledSubTitle>何をするのか</StyledSubTitle>
-        <StyledDesc>{circle.what_we_will_do}</StyledDesc>
+        <StyledDesc>{circle.whatWeWillDo}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>主な役割</StyledSubTitle>
-        <StyledDesc>{circle.main_role}</StyledDesc>
+        <StyledDesc>{circle.mainRole}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.circle_skills.length / 4) * 85}>
-          {circle.circle_skills?.map((circleSkill) => (
+        <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
+          {circle.circleSkills?.map((circleSkill) => (
             <SkillCard
-              name={circleSkill.skills.name}
-              id={circleSkill.skills.id.toString()}
-              avatar={circleSkill.skills.avatar}
+              name={circleSkill.skill.name}
+              id={circleSkill.skill.id.toString()}
+              avatar={circleSkill.skill.avatar}
             />
           ))}
         </StyledGrid>

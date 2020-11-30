@@ -23,7 +23,7 @@ type Params = {
 
 export type UserEditInput = {
   name: string;
-  interested_in: string;
+  interestedIn: string;
   introduction: string;
 };
 
@@ -36,7 +36,7 @@ const UserEditPage: React.FC = () => {
   const userId = state.userId;
   const [inputs, setInputs] = useState<UserEditInput>({
     name: "",
-    interested_in: "",
+    interestedIn: "",
     introduction: "",
   });
   const { data, loading, error } = useUserQuery({
@@ -61,9 +61,10 @@ const UserEditPage: React.FC = () => {
         setInputs({
           name: user.name || "",
           introduction: user.introduction || "",
-          interested_in: user.interested_in || "",
+          interestedIn: user.interestedIn || "",
         });
-        const skills = user.user_skills.map((skill) => skill.skills.id) || [];
+        const skills =
+          user.userSkills.map((user_skill) => user_skill.skill.id) || [];
         setSkills(skills);
         setInitSkills(skills);
       }

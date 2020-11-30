@@ -1,6 +1,6 @@
 mutation DeleteUserSkill($userId: String!, $skillId: Int!) {
   delete_user_skills(
-    where: { user_id: { _eq: $userId }, skill_id: { _eq: $skillId } }
+    where: { userId: { _eq: $userId }, skillId: { _eq: $skillId } }
   ) {
     affected_rows
   }

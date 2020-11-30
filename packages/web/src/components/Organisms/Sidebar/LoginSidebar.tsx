@@ -1,28 +1,15 @@
-import React, { FC, useEffect } from "react";
+import React, { ComponentProps, FC, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import IconLink from "../../Atoms/Links/IconLink";
 import { ReactComponent as Circleci } from "../../../assets/icons/circleci.svg";
 import { ReactComponent as Chat } from "../../../assets/icons/chat.svg";
 import { ReactComponent as Person } from "../../../assets/icons/person.svg";
+import { ReactComponent as Logout } from "../../../assets/icons/logout.svg";
 import styled from "styled-components";
-import { COLOR } from "../../../constants/color";
 import Me from "../../Molecules/Sidebar/Me";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
 import { useHistory } from "react-router-dom";
-
-const StyledSidebar = styled.div`
-  background-color: ${COLOR["DARK_GREEN"]};
-  border-radius: 0 50px 50px 0;
-  padding-top: 50px;
-  width: 100%;
-`;
-
-const StyledList = styled.div`
-  display: grid;
-  grid-template-rows: 80px 80px 80px 80px 80px;
-  justify-content: right;
-`;
+import Sidebar from "./Sidebar";
 
 const StyledMe = styled.div`
   margin: 0 auto;
@@ -46,36 +33,45 @@ const LoginSidebar: FC = () => {
     setMe(useCase.setMe(user));
   }, [user, setMe, useCase]);
 
+  const items: ComponentProps<typeof Sidebar>["items"] = [
+    {
+      activeOnlyWhenExact,
+      to: "/circle",
+      text: "サークル一覧",
+      icon: Circleci,
+    },
+    {
+      activeOnlyWhenExact,
+      to: "/circle-new",
+      text: "サークル作成",
+      icon: Circleci,
+    },
+    {
+      activeOnlyWhenExact,
+      to: "#",
+      text: "トークルーム",
+      icon: Chat,
+    },
+    {
+      activeOnlyWhenExact,
+      to: "#",
+      text: "プロフィール",
+      icon: Person,
+    },
+    {
+      activeOnlyWhenExact,
+      text: "ログアウト",
+      onClick: () => logout({ returnTo: window.location.origin }),
+      icon: Logout,
+    },
+  ];
+
   return (
-    <StyledSidebar>
+    <Sidebar items={items}>
       <StyledMe>
         <Me user={user} onRedirectDetail={onRedirectDetail} />
       </StyledMe>
-      <StyledList>
-        <IconLink activeOnlyWhenExact to="/circle" text="サークル一覧">
-          <Circleci />
-        </IconLink>
-        <IconLink activeOnlyWhenExact to="/circle-new" text="サークル作成">
-          <Circleci />
-        </IconLink>
-        <IconLink activeOnlyWhenExact to="#" text="トークルーム">
-          <Chat />
-        </IconLink>
-        <IconLink activeOnlyWhenExact to="#" text="プロフィール">
-          <Person />
-        </IconLink>
-        <IconLink
-          activeOnlyWhenExact
-          to="#"
-          text="ログアウト"
-          clickHandler={() => {
-            logout({ returnTo: window.location.origin });
-          }}
-        >
-          <Person />
-        </IconLink>
-      </StyledList>
-    </StyledSidebar>
+    </Sidebar>
   );
 };
 
