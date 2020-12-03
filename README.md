@@ -50,3 +50,6 @@ $ yarn web generate
 ```bash
 bin/apply-all
 ```
+
+- yarn.lock に変更があった場合
+  `$ docker-compose exec web yarn`
