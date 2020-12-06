@@ -5,6 +5,7 @@ import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
+import SkillCardList from "./SkillCardList";
 
 type Props = {
   user?: Pick<Users, "avatar" | "introduction" | "name" | "interestedIn"> & {
@@ -85,13 +86,7 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          {skills?.map((skill) => (
-            <SkillCard
-              name={skill.name}
-              id={skill.id.toString()}
-              avatar={skill.avatar}
-            />
-          ))}
+          <SkillCardList skills={skills} />
         </StyledGrid>
       </StyledBlock>
       <StyledBlock>
