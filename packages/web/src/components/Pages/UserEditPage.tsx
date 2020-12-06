@@ -63,7 +63,8 @@ const UserEditPage: React.FC = () => {
           introduction: user.introduction || "",
           interestedIn: user.interestedIn || "",
         });
-        const skills = user.userSkills.map((user_skill) => user_skill.skill.id) || [];
+        const skills =
+          user.userSkills.map((user_skill) => user_skill.skill.id) || [];
         setSkills(skills);
         setInitSkills(skills);
       }

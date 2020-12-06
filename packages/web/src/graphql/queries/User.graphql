@@ -17,6 +17,11 @@ query User($id: String!) {
         id
         avatar
         name
+        circleUsers_aggregate {
+          aggregate {
+            count
+          }
+        }
       }
     }
   }

@@ -51,9 +51,9 @@ const CircleCreatePage: FC = () => {
           {
             ...inputs,
             subCategoryId: selectedCategory,
-            circleSkills:{
+            circleSkills: {
               data: [...skills],
-            }
+            },
           },
         ],
       },

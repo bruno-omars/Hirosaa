@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Pagenation from "../Molecules/Pagenition";
 import SelectCategoryCard from "../Organisms/Cards/SelectCategoryCard";
 import Spinner from "../Atoms/Indicator/Spinner";
+import media from "styled-media-query";
 
 const StyledTitle = styled.h1`
   color: #292929;
@@ -18,6 +19,24 @@ const StyledTitle = styled.h1`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 0.6fr;
+  justify-items: center;
+
+  ${media.lessThan("medium")`
+    grid-template-columns: 1fr;
+    grid-template-rows: 330px 1fr;
+  `}
+`;
+
+const CircleContainer = styled.div`
+  width: 100%;
+
+  ${media.lessThan("medium")`
+    grid-row-start: 2;
+  `}
+`;
+
+const TopPaginationWraaper = styled.div`
+  margin-bottom: 50px;
 `;
 
 export type Pagination = {
@@ -73,14 +92,23 @@ const CircleListPage: FC = () => {
     <>
       <StyledTitle>サークル一覧</StyledTitle>
       <Grid>
-        <div>
+        <CircleContainer>
+          {circles !== undefined && circles.length >= 5 && maxPage > 1 ? (
+            <TopPaginationWraaper>
+              <Pagenation
+                maxPage={maxPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+              />
+            </TopPaginationWraaper>
+          ) : null}
           {circles}
           <Pagenation
             maxPage={maxPage}
             setCurrentPage={setCurrentPage}
             currentPage={currentPage}
           />
-        </div>
+        </CircleContainer>
         <SelectCategoryCard
           selectedSubcategories={selectedSubcategories}
           setSubCategories={setSubCategories}

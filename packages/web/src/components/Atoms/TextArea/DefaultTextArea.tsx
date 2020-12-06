@@ -7,6 +7,7 @@ export const SIZE = {
   MEDIUM: { H: "200px", W: "350px" },
   BASE: { H: "100px", W: "350px" },
   SMALL: { H: "40px", W: "150px" },
+  MAX: { H: "200px", W: "100%" },
 };
 
 type Props = {
@@ -19,7 +20,7 @@ type Props = {
 
 const StyledTextArea = styled.textarea<Omit<Props, "onChange">>`
   box-sizing: border-box;
-  border: 1px solid #707070;
+  border: 1px solid ${COLOR["BORDER_TEXT_INPUT"]};
   border-radius: 4px;
   color: #00000f;
   font: 15px/24px sans-serif;
