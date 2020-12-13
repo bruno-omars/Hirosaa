@@ -1,25 +1,14 @@
 import React from "react";
-import CircleCard from "../../Molecules/Cards/CircleCard";
+import { CircleCard } from "../../Molecules/Cards/CircleCard";
 import {
   Circles,
   Circle_Users_Aggregate_Fields,
   Maybe,
 } from "../../../generated/graphql";
+import { MyCircles, MyObjectArrayCircles } from "../../../types/circle";
 
 type Props = {
-  circles: (Pick<
-    Circles,
-    "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole"
-  > & {
-    circleUsers_aggregate: { __typename?: "circle_users_aggregate" } & {
-      aggregate?: Maybe<
-        { __typename?: "circle_users_aggregate_fields" } & Pick<
-          Circle_Users_Aggregate_Fields,
-          "count"
-        >
-      >;
-    };
-  })[];
+  circles: MyObjectArrayCircles;
 };
 
 export const CircleList: React.FC<Props> = ({ circles }) => {
@@ -27,7 +16,7 @@ export const CircleList: React.FC<Props> = ({ circles }) => {
     <>
       {circles != null
         ? circles?.map((circle) => (
-            <CircleCard circle={circle} key={circle.id} />
+            <CircleCard circle={circle.circle} key={circle.circle.id} />
           ))
         : null}
     </>

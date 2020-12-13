@@ -6,25 +6,22 @@ import {
   Circles,
   Maybe,
   Circle_Users_Aggregate_Fields,
+  UserQuery,
 } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import SkillCardList from "./SkillCardList";
-import { MyObjectArraySkills, MySkill } from "../../../types/skill";
+import { MyObjectArrayCircles } from "../../../types/circle";
+import { MyObjectArraySkills } from "../../../types/skill";
+import { MyUser } from "../../../types/user";
 
 type Props = {
-  user?: Maybe<
-    { __typename?: "users" } & Pick<
-      Users,
-      "id" | "avatar" | "name" | "introduction" | "interestedIn"
-    > & {
-        userSkills: MyObjectArraySkills;
-      } & {
-        circleUsers: any;
-      }
-  >;
+  user: MyUser & {
+    userSkills: MyObjectArraySkills;
+    circleUsers: MyObjectArrayCircles;
+  };
 };
 
 const StyledCard = styled.div`
