@@ -149,11 +149,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
         <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
           {circle.circleSkills?.map((circleSkill) => (
-            <SkillCard
-              name={circleSkill.skill.name}
-              id={circleSkill.skill.id.toString()}
-              avatar={circleSkill.skill.avatar}
-            />
+            <SkillCard skill={circleSkill.skill} />
           ))}
         </StyledGrid>
       </StyledBlock>

@@ -1,17 +1,30 @@
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";
-import { Users, Skills, Circles } from "../../../generated/graphql";
+import {
+  Users,
+  Skills,
+  Circles,
+  Maybe,
+  Circle_Users_Aggregate_Fields,
+} from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import SkillCardList from "./SkillCardList";
+import { MyObjectArraySkills, MySkill } from "../../../types/skill";
 
 type Props = {
-  user?: Pick<Users, "avatar" | "introduction" | "name" | "interestedIn"> & {
-    userSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
-    circleUsers: { circle: Pick<Circles, "id" | "name" | "avatar"> }[];
-  };
+  user?: Maybe<
+    { __typename?: "users" } & Pick<
+      Users,
+      "id" | "avatar" | "name" | "introduction" | "interestedIn"
+    > & {
+        userSkills: MyObjectArraySkills;
+      } & {
+        circleUsers: any;
+      }
+  >;
 };
 
 const StyledCard = styled.div`
@@ -66,7 +79,6 @@ const UserDetailCard: FC<Props> = ({ user }) => {
   if (!user) return <p>ユーザーが存在しません</p>;
 
   const skills = user.userSkills.map((userSkill) => userSkill.skill);
-  const circles = user.circleUsers.map((circleUser) => circleUser.circle);
 
   return (
     <StyledCard>
@@ -92,7 +104,7 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       <StyledBlock>
         <StyledSubTitle>所属サークル一覧</StyledSubTitle>
         <StyledCircleList>
-          <CircleList circles={circles} />
+          <CircleList circles={user.circleUsers} />
         </StyledCircleList>
       </StyledBlock>
     </StyledCard>

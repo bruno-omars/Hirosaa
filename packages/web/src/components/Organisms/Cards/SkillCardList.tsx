@@ -1,20 +1,16 @@
 import React, { FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { Skills } from "../../../generated/graphql";
+import { MySkills } from "../../../types/skill";
 
 type Props = {
-  skills: Pick<Skills, "id" | "name" | "avatar">[] | undefined;
+  skills: MySkills;
 };
 
 const SkillCardList: FC<Props> = ({ skills }) => {
   return (
     <>
       {skills?.map((skill) => (
-        <SkillCard
-          name={skill.name}
-          id={skill.id.toString()}
-          avatar={skill.avatar}
-        />
+        <SkillCard skill={skill} />
       ))}
     </>
   );

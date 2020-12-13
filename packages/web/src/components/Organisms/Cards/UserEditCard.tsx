@@ -61,6 +61,10 @@ const UserEditCard: FC<Props> = (props) => {
     [data]
   );
 
+  if (!data) {
+    return <p>データの取得に失敗しました</p>;
+  }
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
