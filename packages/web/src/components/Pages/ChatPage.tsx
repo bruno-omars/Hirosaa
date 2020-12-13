@@ -1,4 +1,4 @@
-import React, { FC, useState, ComponentProps, useEffect } from "react";
+import React, { FC, useState, ComponentProps, FormEvent } from "react";
 import { useAuthContext } from "../../provider/AuthContextProvider";
 import {
   useMessagesQuery,
@@ -27,7 +27,7 @@ const ChatPage: FC = () => {
     variables: { id: me?.id! },
     skip: !me?.id,
     onCompleted: (data) => {
-      const myFirstJoiningCircleId = data?.user?.circle_users[0]?.circle.id;
+      const myFirstJoiningCircleId = data?.user?.circleUsers[0]?.circle.id;
       setActiveCircleId(myFirstJoiningCircleId);
     },
   });
@@ -84,8 +84,8 @@ const ChatPage: FC = () => {
 
   const [insertMessage] = useInsertMessageMutation();
 
-  const activeCircle = userData?.user?.circle_users.find(
-    (circle) => circle.circle.id === activeCircleId
+  const activeCircle = userData?.user?.circleUsers.find(
+    (circleUser) => circleUser.circle.id === activeCircleId
   )?.circle;
 
   const onChange = (
@@ -96,9 +96,7 @@ const ChatPage: FC = () => {
     setInputs({ ...inputs, ...targetInput });
   };
 
-  const handleSubmit = async (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!inputs.text) return;
     try {
@@ -107,8 +105,8 @@ const ChatPage: FC = () => {
           objects: [
             {
               ...inputs,
-              circle_id: activeCircleId,
-              user_id: me?.id,
+              circleId: activeCircleId,
+              userId: me?.id,
             },
           ],
         },

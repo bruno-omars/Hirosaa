@@ -18,9 +18,9 @@ const RightButton = styled.div`
 
 type Input = {
   name: string;
-  recruit_title: string;
-  what_we_will_do: string;
-  main_role: string;
+  recruitTitle: string;
+  whatWeWillDo: string;
+  mainRole: string;
 };
 
 type Params = {
@@ -36,9 +36,9 @@ const CircleEditPage: React.FC = () => {
   const [selectedCategory, setCategory] = useState<number>(0);
   const [inputs, setInputs] = useState<Input>({
     name: "",
-    recruit_title: "",
-    what_we_will_do: "",
-    main_role: "",
+    recruitTitle: "",
+    whatWeWillDo: "",
+    mainRole: "",
   });
   const [buttonText, setText] = useState("更新する");
 
@@ -55,17 +55,20 @@ const CircleEditPage: React.FC = () => {
       if (circle) {
         setInputs({
           name: circle.name || "",
-          recruit_title: circle.recruit_title || "",
-          what_we_will_do: circle.what_we_will_do || "",
-          main_role: circle.main_role || "",
+          recruitTitle: circle.recruitTitle || "",
+          whatWeWillDo: circle.whatWeWillDo || "",
+          mainRole: circle.mainRole || "",
         });
-        const skills = circle.circle_skills.map((skill) => skill.skills.id) || [];
-        const category = circle.sub_categories?.id;
+        const skills =
+          circle.circleSkills.map((circleSkill) => circleSkill.skill.id) || [];
+        const category = circle.subCategory?.id;
         setSkills(skills);
         setInitSkills(skills);
         console.log(category);
         if (!category) {
-          console.log("必須項目カテゴリーが選択されていません。選択してください");
+          console.log(
+            "必須項目カテゴリーが選択されていません。選択してください"
+          );
         } else {
           setCategory(category);
         }
@@ -128,7 +131,7 @@ const CircleEditPage: React.FC = () => {
         id: circleId,
         inputs: {
           ...inputs,
-          sub_category_id: selectedCategory,
+          subCategoryId: selectedCategory,
         },
       },
     });

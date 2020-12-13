@@ -1,45 +1,66 @@
 - table:
     schema: public
     name: circle_skills
+  configuration:
+    custom_root_fields:
+      select: circleSkills
+    custom_column_names:
+      circle_id: circleId
+      skill_id: skillId
   object_relationships:
-  - name: circles
+  - name: circle
     using:
       foreign_key_constraint_on: circle_id
-  - name: skills
+  - name: skill
     using:
       foreign_key_constraint_on: skill_id
 - table:
     schema: public
     name: circle_users
+  configuration:
+    custom_root_fields:
+      select: circleUsers
+    custom_column_names:
+      circle_id: circleId
+      user_id: userId
   object_relationships:
   - name: circle
     using:
       foreign_key_constraint_on: circle_id
-  - name: users
+  - name: user
     using:
       foreign_key_constraint_on: user_id
 - table:
     schema: public
     name: circles
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      what_we_will_do: whatWeWillDo
+      organization_id: organizationId
+      sub_category_id: subCategoryId
+      recruit_title: recruitTitle
+      main_role: mainRole
+      owner_id: ownerId
   object_relationships:
   - name: organizations
     using:
       foreign_key_constraint_on: organization_id
-  - name: sub_categories
-    using:
-      foreign_key_constraint_on: sub_category_id
-  - name: users
+  - name: owner
     using:
       foreign_key_constraint_on: owner_id
+  - name: subCategory
+    using:
+      foreign_key_constraint_on: sub_category_id
   array_relationships:
-  - name: circle_skills
+  - name: circleSkills
     using:
       foreign_key_constraint_on:
         column: circle_id
         table:
           schema: public
           name: circle_skills
-  - name: circle_users
+  - name: circleUsers
     using:
       foreign_key_constraint_on:
         column: circle_id
@@ -100,6 +121,11 @@
 - table:
     schema: public
     name: messages
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      circle_id: circleId
+      user_id: userId
   object_relationships:
   - name: circles
     using:
@@ -128,8 +154,12 @@
 - table:
     schema: public
     name: parent_categories
+  configuration:
+    custom_root_fields:
+      select: parentCategories
+    custom_column_names: {}
   array_relationships:
-  - name: sub_categories
+  - name: subCategories
     using:
       foreign_key_constraint_on:
         column: parent_category_id
@@ -147,14 +177,14 @@
     schema: public
     name: skills
   array_relationships:
-  - name: circle_skills
+  - name: circleSkills
     using:
       foreign_key_constraint_on:
         column: skill_id
         table:
           schema: public
           name: circle_skills
-  - name: user_skills
+  - name: userSkills
     using:
       foreign_key_constraint_on:
         column: skill_id
@@ -172,11 +202,17 @@
 - table:
     schema: public
     name: sub_categories
+  configuration:
+    custom_root_fields:
+      select_by_pk: subCategory
+      select: subCategories
+    custom_column_names:
+      parent_category_id: parentCategoryId
   object_relationships:
-  - name: parent_categories
+  - name: parentCategories
     using:
       foreign_key_constraint_on: parent_category_id
-  - name: sub_categories
+  - name: subCategories
     using:
       manual_configuration:
         remote_table:
@@ -203,16 +239,29 @@
 - table:
     schema: public
     name: user_skills
+  configuration:
+    custom_root_fields:
+      select: userSkills
+    custom_column_names:
+      skill_id: skillId
+      user_id: userId
   object_relationships:
-  - name: skills
+  - name: skill
     using:
       foreign_key_constraint_on: skill_id
-  - name: users
+  - name: user
     using:
       foreign_key_constraint_on: user_id
 - table:
     schema: public
     name: users
+  configuration:
+    custom_root_fields: {}
+    custom_column_names:
+      interested_in: interestedIn
+      last_seen: lastSeen
+      organization_id: organizationId
+      created_at: createdAt
   object_relationships:
   - name: organizations
     using:
@@ -233,7 +282,7 @@
         table:
           schema: public
           name: circles
-  - name: circle_users
+  - name: circleUsers
     using:
       foreign_key_constraint_on:
         column: user_id
@@ -247,7 +296,7 @@
         table:
           schema: public
           name: messages
-  - name: user_skills
+  - name: userSkills
     using:
       foreign_key_constraint_on:
         column: user_id
@@ -270,9 +319,9 @@
         _or:
         - id:
             _eq: X-Hasura-User-Id
-        - circle_users:
+        - circleUsers:
             circle:
-              circle_users:
+              circleUsers:
                 user_id:
                   _eq: X-Hasura-User-Id
   update_permissions:

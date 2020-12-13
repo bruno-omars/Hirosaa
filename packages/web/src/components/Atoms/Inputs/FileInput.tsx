@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledFileInput = styled.input`
   height: 30px;
-  width: 400px;
+  width: 100%;
 `;
 
 const FileInput: FC = () => {

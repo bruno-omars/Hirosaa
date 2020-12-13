@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import styled from "styled-components";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
-import SkillCards from "./SkillCards";
+import SkillPicker from "./SkillPicker";
 import { UserEditInput } from "../../Pages/UserEditPage";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
@@ -77,6 +77,7 @@ const UserEditCard: FC<Props> = (props) => {
           placeholder="ユーザ名"
           name="name"
           value={props.inputs.name}
+          inputSize="MAX"
         />
       </StyledTop>
       <hr />
@@ -88,6 +89,7 @@ const UserEditCard: FC<Props> = (props) => {
             placeholder="自己紹介を記入してください"
             name="introduction"
             value={props.inputs.introduction}
+            areaSize="MAX"
           />
         </StyledDesc>
       </StyledBlock>
@@ -97,15 +99,16 @@ const UserEditCard: FC<Props> = (props) => {
           <DefaultTextArea
             onChange={handleChange}
             placeholder="自己紹介を記入してください"
-            name="interested_in"
-            value={props.inputs.interested_in}
+            areaSize="MAX"
+            name="interestedIn"
+            value={props.inputs.interestedIn}
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards
+          <SkillPicker
             skills={data?.skills}
             selectedSkills={props.selectedSkills}
             setSkills={props.setSkills}

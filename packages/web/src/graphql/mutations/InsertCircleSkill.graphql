@@ -1,5 +1,5 @@
 mutation InsertCircleSkill($circleId: Int!, $skillId: Int!) {
-  insert_circle_skills(objects: { circle_id: $circleId, skill_id: $skillId }) {
+  insert_circle_skills(objects: { circleId: $circleId, skillId: $skillId }) {
     affected_rows
   }
 }

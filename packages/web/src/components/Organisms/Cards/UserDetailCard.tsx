@@ -1,12 +1,17 @@
 import React, { FC, useMemo } from "react";
 import styled from "styled-components";
-import { UserQuery } from "../../../generated/graphql";
+import { Users, Skills, Circles } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
-import SkillCards from "./SkillCards";
+import { CircleList } from "../CircleList";
+import SkillCard from "../../Molecules/Cards/SkillCard";
+import SkillCardList from "./SkillCardList";
 
 type Props = {
-  data: UserQuery;
+  user?: Pick<Users, "avatar" | "introduction" | "name" | "interestedIn"> & {
+    userSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
+    circleUsers: { circle: Pick<Circles, "id" | "name" | "avatar"> }[];
+  };
 };
 
 const StyledCard = styled.div`
@@ -48,16 +53,20 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
-const UserDetailCard: FC<Props> = ({ data }) => {
+const StyledCircleList = styled.div`
+  margin-top: 20px;
+`;
+
+const UserDetailCard: FC<Props> = ({ user }) => {
   const skillCardHeight = useMemo(
-    () => data.user && Math.ceil(data.user.user_skills.length / 4) * 75,
-    [data]
+    () => user && Math.ceil(user?.userSkills.length / 4) * 75,
+    [user]
   );
 
-  if (!data.user) return <p>ユーザーが存在しません</p>;
+  if (!user) return <p>ユーザーが存在しません</p>;
 
-  const user = data.user;
-  const skills = user.user_skills.map((skill) => skill.skills);
+  const skills = user.userSkills.map((userSkill) => userSkill.skill);
+  const circles = user.circleUsers.map((circleUser) => circleUser.circle);
 
   return (
     <StyledCard>
@@ -72,13 +81,19 @@ const UserDetailCard: FC<Props> = ({ data }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
-        <StyledDesc>{user.interested_in}</StyledDesc>
+        <StyledDesc>{user.interestedIn}</StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
         <StyledGrid height={skillCardHeight || 75}>
-          <SkillCards skills={skills} />
+          <SkillCardList skills={skills} />
         </StyledGrid>
+      </StyledBlock>
+      <StyledBlock>
+        <StyledSubTitle>所属サークル一覧</StyledSubTitle>
+        <StyledCircleList>
+          <CircleList circles={circles} />
+        </StyledCircleList>
       </StyledBlock>
     </StyledCard>
   );

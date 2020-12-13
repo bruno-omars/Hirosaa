@@ -7,6 +7,7 @@ export const SIZE = {
   MEDIUM: { H: "200px", W: "350px" },
   BASE: { H: "100px", W: "350px" },
   SMALL: { H: "40px", W: "150px" },
+  MAX: { H: "200px", W: "100%" },
 };
 
 type Props = {
