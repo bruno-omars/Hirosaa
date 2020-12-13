@@ -5,7 +5,7 @@ import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
-import SkillCards from "./SkillCards";
+import SkillPicker from "./SkillPicker";
 import SubCategoryTags from "../Tags/SubCategoryTags";
 import media from "styled-media-query";
 
@@ -144,7 +144,7 @@ const CircleCreateCard: FC<Props> = (props) => {
               "スキルカードの読み込みに失敗しました。リロードしてください。"
             ) : data?.skills ? (
               <StyledGrid height={skillCardHeight || 75}>
-                <SkillCards
+                <SkillPicker
                   skills={data.skills}
                   selectedSkills={props.selectedSkills}
                   setSkills={props.setSkills}
