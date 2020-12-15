@@ -1,16 +1,21 @@
-import React, { FC, useMemo } from "react";
+import React, { ComponentProps, FC, useMemo } from "react";
 import styled from "styled-components";
-import { Users, Skills, Circles } from "../../../generated/graphql";
+import { Users, Maybe } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import SkillCardList from "./SkillCardList";
+import { CircleCard } from "../../Molecules/Cards/CircleCard";
+
+type User = Maybe<
+  Pick<Users, "id" | "avatar" | "name" | "introduction" | "interestedIn">
+>;
 
 type Props = {
-  user?: Pick<Users, "avatar" | "introduction" | "name" | "interestedIn"> & {
-    userSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
-    circleUsers: { circle: Pick<Circles, "id" | "name" | "avatar"> }[];
+  user: User & {
+    userSkills: { skill: ComponentProps<typeof SkillCard>["skill"] }[];
+    circleUsers: { circle: ComponentProps<typeof CircleCard>["circle"] }[];
   };
 };
 
@@ -63,10 +68,16 @@ const UserDetailCard: FC<Props> = ({ user }) => {
     [user]
   );
 
-  if (!user) return <p>ユーザーが存在しません</p>;
+  const skills = useMemo(
+    () => user.userSkills.map((userSkill) => userSkill.skill),
+    [user.userSkills]
+  );
+  const circles = useMemo(
+    () => user.circleUsers.map((circleUser) => circleUser.circle),
+    [user.circleUsers]
+  );
 
-  const skills = user.userSkills.map((userSkill) => userSkill.skill);
-  const circles = user.circleUsers.map((circleUser) => circleUser.circle);
+  if (!user) return <p>ユーザーが存在しません</p>;
 
   return (
     <StyledCard>

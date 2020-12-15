@@ -78,7 +78,7 @@ type Props = {
   };
 };
 
-const CircleCard: FC<Props> = ({ circle }) => {
+export const CircleCard: FC<Props> = ({ circle }) => {
   let history = useHistory();
   const handleToDetail = () => {
     history.push({
@@ -101,5 +101,3 @@ const CircleCard: FC<Props> = ({ circle }) => {
     </StyledCard>
   );
 };
-
-export default CircleCard;

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ComponentProps, FC } from "react";
 import styled from "styled-components";
 import {
   Circles,
@@ -13,6 +13,7 @@ import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
 import media from "styled-media-query";
+import { CircleCard } from "../../Molecules/Cards/CircleCard";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -93,15 +94,22 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
+type Circle = Pick<
+  Circles,
+  "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
+>;
+
+// TODO: 多分ここ出てきた型はコンポーネととして分離できる
+// SubCategoryList, Owner
+type SubCategories = Pick<Sub_Categories, "name"> | null;
+type Owner = Pick<Users, "id" | "name" | "avatar"> | null;
+
 type Props = {
-  circle: Pick<
-    Circles,
-    "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
-  > & {
-    circleSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
+  circle: Circle & {
+    circleSkills: { skill: ComponentProps<typeof SkillCard>["skill"] }[];
   } & {
-    subCategories?: Pick<Sub_Categories, "name"> | null;
-  } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
+    subCategories?: SubCategories;
+  } & { owner?: Owner };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
@@ -149,11 +157,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
         <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
           {circle.circleSkills?.map((circleSkill) => (
-            <SkillCard
-              name={circleSkill.skill.name}
-              id={circleSkill.skill.id.toString()}
-              avatar={circleSkill.skill.avatar}
-            />
+            <SkillCard skill={circleSkill.skill} />
           ))}
         </StyledGrid>
       </StyledBlock>

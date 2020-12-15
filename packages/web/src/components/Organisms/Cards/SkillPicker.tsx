@@ -1,13 +1,8 @@
-import React, { FC } from "react";
+import React, { ComponentProps, FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { Skills } from "../../../generated/graphql";
 
 type Props = {
-  skills:
-    | ({
-        __typename?: "Skills" | undefined | string;
-      } & Pick<Skills, "id" | "name" | "avatar">)[]
-    | undefined;
+  skills: Array<ComponentProps<typeof SkillCard>["skill"]>;
   selectedSkills: number[];
   setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };
@@ -35,15 +30,13 @@ const SkillPicker: FC<Props> = (props) => {
     return (
       <SkillCard
         handleClick={handleClick}
-        id={skill.id.toString()}
         key={skill.id}
-        name={skill.name}
         bgColor={
           selectedSkills && selectedSkills.includes(skill.id)
             ? "LIGHT_GREEN"
             : "WHITE"
         }
-        avatar={skill.avatar}
+        skill={skill}
       />
     );
   });
