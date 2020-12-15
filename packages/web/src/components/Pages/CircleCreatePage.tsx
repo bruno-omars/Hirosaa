@@ -8,6 +8,8 @@ import {
   Skills_Update_Column,
 } from "../../generated/graphql";
 import TwoColumn from "../Templates/TwoColumn";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthContext } from "../../provider/AuthContextProvider";
 
 const RightButton = styled.div`
   align-self: start;
@@ -21,6 +23,7 @@ export type Input = {
 };
 
 const CircleCreatePage: FC = () => {
+  const { me } = useAuthContext();
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [selectedCategory, setCategory] = useState<number>(0);
   const [inputs, setInputs] = useState<Input>({
@@ -54,6 +57,7 @@ const CircleCreatePage: FC = () => {
             circleSkills: {
               data: [...skills],
             },
+            ownerId: me.id,
           },
         ],
       },
