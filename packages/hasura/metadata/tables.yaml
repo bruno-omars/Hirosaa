@@ -37,15 +37,11 @@
     custom_root_fields: {}
     custom_column_names:
       what_we_will_do: whatWeWillDo
-      organization_id: organizationId
       sub_category_id: subCategoryId
       recruit_title: recruitTitle
       main_role: mainRole
       owner_id: ownerId
   object_relationships:
-  - name: organizations
-    using:
-      foreign_key_constraint_on: organization_id
   - name: owner
     using:
       foreign_key_constraint_on: owner_id
@@ -86,20 +82,6 @@
       - main_role
       - what_we_will_do
       backend_only: false
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - id
-      - organization_id
-      - avatar
-      - name
-      - owner_id
-      - main_role
-      - what_we_will_do
-      filter:
-        organization_id:
-          _eq: X-Hasura-Domain
   update_permissions:
   - role: user
     permission:
@@ -136,21 +118,6 @@
 - table:
     schema: public
     name: organizations
-  array_relationships:
-  - name: circles
-    using:
-      foreign_key_constraint_on:
-        column: organization_id
-        table:
-          schema: public
-          name: circles
-  - name: users
-    using:
-      foreign_key_constraint_on:
-        column: organization_id
-        table:
-          schema: public
-          name: users
 - table:
     schema: public
     name: parent_categories
@@ -260,12 +227,8 @@
     custom_column_names:
       interested_in: interestedIn
       last_seen: lastSeen
-      organization_id: organizationId
       created_at: createdAt
   object_relationships:
-  - name: organizations
-    using:
-      foreign_key_constraint_on: organization_id
   - name: users
     using:
       manual_configuration:
@@ -303,27 +266,6 @@
         table:
           schema: public
           name: user_skills
-  select_permissions:
-  - role: user
-    permission:
-      columns:
-      - avatar
-      - email
-      - id
-      - interested_in
-      - introduction
-      - last_seen
-      - name
-      - organization_id
-      filter:
-        _or:
-        - id:
-            _eq: X-Hasura-User-Id
-        - circleUsers:
-            circle:
-              circleUsers:
-                user_id:
-                  _eq: X-Hasura-User-Id
   update_permissions:
   - role: user
     permission:
