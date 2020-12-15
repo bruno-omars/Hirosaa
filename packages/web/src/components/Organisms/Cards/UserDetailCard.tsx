@@ -1,26 +1,21 @@
-import React, { FC, useMemo } from "react";
+import React, { ComponentProps, FC, useMemo } from "react";
 import styled from "styled-components";
-import {
-  Users,
-  Skills,
-  Circles,
-  Maybe,
-  Circle_Users_Aggregate_Fields,
-  UserQuery,
-} from "../../../generated/graphql";
+import { Users, Maybe } from "../../../generated/graphql";
 import Avatar from "../../Atoms/Avatar/Default";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import SkillCardList from "./SkillCardList";
-import { MyObjectArrayCircles } from "../../../types/circle";
-import { MyObjectArraySkills } from "../../../types/skill";
-import { MyUser } from "../../../types/user";
+import { CircleCard } from "../../Molecules/Cards/CircleCard";
+
+type User = Maybe<
+  Pick<Users, "id" | "avatar" | "name" | "introduction" | "interestedIn">
+>;
 
 type Props = {
-  user: MyUser & {
-    userSkills: MyObjectArraySkills;
-    circleUsers: MyObjectArrayCircles;
+  user: User & {
+    userSkills: { skill: ComponentProps<typeof SkillCard>["skill"] }[];
+    circleUsers: { circle: ComponentProps<typeof CircleCard>["circle"] }[];
   };
 };
 
@@ -73,9 +68,16 @@ const UserDetailCard: FC<Props> = ({ user }) => {
     [user]
   );
 
-  if (!user) return <p>ユーザーが存在しません</p>;
+  const skills = useMemo(
+    () => user.userSkills.map((userSkill) => userSkill.skill),
+    [user.userSkills]
+  );
+  const circles = useMemo(
+    () => user.circleUsers.map((circleUser) => circleUser.circle),
+    [user.circleUsers]
+  );
 
-  const skills = user.userSkills.map((userSkill) => userSkill.skill);
+  if (!user) return <p>ユーザーが存在しません</p>;
 
   return (
     <StyledCard>
@@ -101,7 +103,7 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       <StyledBlock>
         <StyledSubTitle>所属サークル一覧</StyledSubTitle>
         <StyledCircleList>
-          <CircleList circles={user.circleUsers} />
+          <CircleList circles={circles} />
         </StyledCircleList>
       </StyledBlock>
     </StyledCard>

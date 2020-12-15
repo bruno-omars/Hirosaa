@@ -9,7 +9,6 @@ import {
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
 import media from "styled-media-query";
-import { MyCircle } from "../../../types/circle";
 
 const StyledCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -64,7 +63,19 @@ const StyledImage = styled.img`
 
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
-  circle: MyCircle;
+  circle: Pick<
+    Circles,
+    "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole"
+  > & {
+    circleUsers_aggregate: { __typename?: "circle_users_aggregate" } & {
+      aggregate?: Maybe<
+        { __typename?: "circle_users_aggregate_fields" } & Pick<
+          Circle_Users_Aggregate_Fields,
+          "count"
+        >
+      >;
+    };
+  };
 };
 
 export const CircleCard: FC<Props> = ({ circle }) => {

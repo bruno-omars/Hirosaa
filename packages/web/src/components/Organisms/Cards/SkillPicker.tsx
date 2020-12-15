@@ -1,9 +1,8 @@
-import React, { FC } from "react";
+import React, { ComponentProps, FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
-import { MySkills } from "../../../types/skill";
 
 type Props = {
-  skills: MySkills;
+  skills: Array<ComponentProps<typeof SkillCard>["skill"]>;
   selectedSkills: number[];
   setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };

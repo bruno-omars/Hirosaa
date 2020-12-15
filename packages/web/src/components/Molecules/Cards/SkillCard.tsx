@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
-import { MySkill } from "../../../types/skill";
+import { Skills } from "../../../generated/graphql";
 
 type Props = {
   handleClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
   bgColor?: keyof typeof COLOR;
-  skill: MySkill;
+  skill: Pick<Skills, "id" | "avatar" | "name">;
 };
 
 const StyledSkillCard = styled.div<Pick<Props, "bgColor">>`

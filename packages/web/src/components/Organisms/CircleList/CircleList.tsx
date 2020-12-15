@@ -1,14 +1,8 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { CircleCard } from "../../Molecules/Cards/CircleCard";
-import {
-  Circles,
-  Circle_Users_Aggregate_Fields,
-  Maybe,
-} from "../../../generated/graphql";
-import { MyCircles, MyObjectArrayCircles } from "../../../types/circle";
 
 type Props = {
-  circles: MyObjectArrayCircles;
+  circles: Array<ComponentProps<typeof CircleCard>["circle"]>;
 };
 
 export const CircleList: React.FC<Props> = ({ circles }) => {
@@ -16,7 +10,7 @@ export const CircleList: React.FC<Props> = ({ circles }) => {
     <>
       {circles != null
         ? circles?.map((circle) => (
-            <CircleCard circle={circle.circle} key={circle.circle.id} />
+            <CircleCard circle={circle} key={circle.id} />
           ))
         : null}
     </>
