@@ -2,6 +2,7 @@ import React, { ComponentProps, FC, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 import { ReactComponent as Circleci } from "../../../assets/icons/circleci.svg";
+import { ReactComponent as Pen } from "../../../assets/icons/pen.svg";
 import { ReactComponent as Chat } from "../../../assets/icons/chat.svg";
 import { ReactComponent as Person } from "../../../assets/icons/person.svg";
 import { ReactComponent as Logout } from "../../../assets/icons/logout.svg";
@@ -42,15 +43,15 @@ const LoginSidebar: FC = () => {
     {
       to: "/circle-new",
       text: "サークル作成",
-      icon: Circleci,
+      icon: Pen,
     },
     {
-      to: "#",
+      to: "/chat",
       text: "トークルーム",
       icon: Chat,
     },
     {
-      to: "#",
+      to: `/user-detail/${me.id}`,
       text: "プロフィール",
       icon: Person,
     },
