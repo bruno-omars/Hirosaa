@@ -38,14 +38,14 @@ const App: FC = () => {
     <div className="App">
       <ApolloProvider client={createApolloClient(accessToken)}>
         <Router>
-          <Switch>
-            <Route path="/login" component={GuestSidebar}>
-              <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
-                <GuestSidebar />
-                <AboutPage />
-              </TwoColumn>
-            </Route>
+          <Route path="/login" component={GuestSidebar}>
+            <TwoColumn leftColumn="20%" rightColumn="80%" HCenter>
+              <GuestSidebar />
+              <AboutPage />
+            </TwoColumn>
+          </Route>
 
+          <Switch>
             <PrivateRoute path="/circle" component={CircleListPage} exact />
             <PrivateRoute
               path="/circle-new"
