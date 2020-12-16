@@ -9,7 +9,7 @@ import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message
 // import NewMessageButton from "../../Atoms/Buttons/NewMessageButton";
 import DefaultButton from "../../Atoms/Buttons/Default";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
-import Avatar from "../../Atoms/Avatar/Default";
+import { Avatar } from "../../Atoms/Avatar/avatar";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -167,7 +167,7 @@ const ChatCard: FC<Props> = ({
                 return (
                   <MessageLi key={message.id}>
                     <MessageWrapper isMine={isMine}>
-                      <Avatar size={40} src={message.users.avatar ?? ""} />
+                      <Avatar size="md" src={message.users.avatar ?? ""} />
                       <ConversationItem>
                         <MessageContent isMine={isMine}>
                           <Typography>{message.text}</Typography>

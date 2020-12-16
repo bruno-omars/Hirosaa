@@ -1,7 +1,7 @@
 import React, { ComponentProps, FC, useMemo } from "react";
 import styled from "styled-components";
 import { Users, Maybe } from "../../../generated/graphql";
-import Avatar from "../../Atoms/Avatar/Default";
+import { Avatar } from "../../Atoms/Avatar/avatar";
 import { COLOR } from "../../../constants/color";
 import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
@@ -82,7 +82,7 @@ const UserDetailCard: FC<Props> = ({ user }) => {
   return (
     <StyledCard>
       <StyledTop>
-        <Avatar src={(user && user.avatar) || ""} size={66} />
+        <Avatar src={(user && user.avatar) || ""} size="lg" />
         <h2>{user.name}</h2>
       </StyledTop>
       <hr />
