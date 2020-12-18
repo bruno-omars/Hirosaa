@@ -1,6 +1,6 @@
 import React from "react";
-import { Story, Meta } from "@storybook/react/types-6-0";
-import { Avatar, AvatarProps } from "./avatar";
+import { Meta } from "@storybook/react/types-6-0";
+import { Avatar } from "./avatar";
 
 export default {
   title: "Avatar",
@@ -18,5 +18,17 @@ export const WithSizes = () => {
         />
       ))}
     </div>
+  );
+};
+
+/**
+ *  onClickが渡された時, デフォルトでカーソルがポインターに変わる
+ */
+export const WithOnClick = () => {
+  return (
+    <Avatar
+      onClick={() => console.log("Hello")}
+      src="http://flat-icon-design.com/f/f_object_153/s256_f_object_153_0bg.png"
+    />
   );
 };

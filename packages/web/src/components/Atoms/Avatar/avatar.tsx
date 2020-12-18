@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
-import { HTMLStandardType } from "../../system-style";
+import { HTMLStandardType } from "../../system-style-type";
 
 export const avatarSize = {
   "2xs": "1.1rem",
@@ -31,7 +31,9 @@ const StyledSpan = styled.span<AvatarProps>`
   height: ${({ size = "md" }) => avatarSize[size]};
   width: ${({ size = "md" }) => avatarSize[size]};
   background-color: ${COLOR.LIGHT_GREEN};
-  cursor: pointer;
+
+  cursor: ${({ onClick }) => onClick && "pointer"};
+  cursor: ${({ cursor }) => cursor};
 `;
 
 const StyledImage = styled.img`
@@ -51,7 +53,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }
 
   return (
-    <StyledSpan {...rest} cursor="pointer">
+    <StyledSpan {...rest}>
       <StyledImage src={src} />
     </StyledSpan>
   );
