@@ -7,7 +7,7 @@ import {
   Users,
 } from "../../../generated/graphql";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
-import Avatar from "../../Atoms/Avatar/Default";
+import { Avatar } from "../../Atoms/Avatar/avatar";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
@@ -123,7 +123,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   return (
     <StyledCard>
       <StyledTop>
-        <StyledCircleAvatar src={circle?.avatar} size={66} />
+        <StyledCircleAvatar src={circle?.avatar} size="lg" />
         <StyledHeader>
           <StyledTitle>{circle.name}</StyledTitle>
           <StyledCaption>{circle.recruitTitle}</StyledCaption>
@@ -138,7 +138,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
           <Avatar
             onClick={handleToDetail}
             src={circle?.owner?.avatar ?? ""}
-            size={30}
+            size="md"
           />
           <StyledLeaderName>{circle?.owner?.name}</StyledLeaderName>
         </StyledLeaderWrapper>
