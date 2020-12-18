@@ -10,14 +10,18 @@ $ docker-compose up -d
 
 - seeds の作成
 
-Slack に貼ってあります
+```bash
+$ cd packages/hasura
+$ yarn hasura create all
+```
 
 - seeds の適応
 
 最初にサーバを起動した時と、`hasura/seeds`が変更された場合に必要。
 
 ```bash
-$ yarn hasura seeds apply
+$ cd packages/hasura
+$ yarn seeds apply
 ```
 
 - ログイン
