@@ -9,7 +9,7 @@ import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message
 // import NewMessageButton from "../../Atoms/Buttons/NewMessageButton";
 import DefaultButton from "../../Atoms/Buttons/Default";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
-import { Avatar } from "../../Atoms/Avatar/avatar";
+import { Flex, Text, Avatar } from "@chakra-ui/react";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -32,6 +32,7 @@ const Right = styled.div`
 const Top = styled.div`
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
   height: 60px;
+  padding-left: 12px;
 `;
 
 const Bottom = styled.div`
@@ -151,10 +152,14 @@ const ChatCard: FC<Props> = ({
         activeCircleId={activeCircleId}
       />
       <Right>
-        <Top>
-          <StyledTitle>{circle?.name}</StyledTitle>
+        <Flex
+          borderBottom={`1px solid ${COLOR["BORDER_DIVIDER"]}`}
+          alignItems="center"
+          pl="20px"
+        >
+          <Text mr="10px">{circle?.name}</Text>
           <PeopleNum count={30} />
-        </Top>
+        </Flex>
         {hasNewMessage && (
           <NewMessageButton onClick={onClickNewMessage} bgColor="ORANGE">
             新規メッセージがあります。
