@@ -26,17 +26,17 @@ services:
     volumes:
       - ./packages/hasura/migrations:/hasura-migrations
       - ./packages/hasura/metadata:/hasura-metadata
-  web:
-    build:
-      context: ./packages/web
-      dockerfile: Dockerfile.dev
-    environment:
-      REACT_APP_BACKEND_URL: http://localhost:8080
-    ports:
-      - 3000:3000
-    volumes:
-      - ./packages/web/src:/app/src
-      - ./packages/web/public:/app/public
-    stdin_open: true
+  # web:
+  #   build:
+  #     context: ./packages/web
+  #     dockerfile: Dockerfile.dev
+  #   environment:
+  #     REACT_APP_BACKEND_URL: http://localhost:8080
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./packages/web/src:/app/src
+  #     - ./packages/web/public:/app/public
+  #   stdin_open: true
 volumes:
   db_data:

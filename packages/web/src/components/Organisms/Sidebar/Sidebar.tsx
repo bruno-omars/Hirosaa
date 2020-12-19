@@ -1,29 +1,7 @@
 import React, { FC, FunctionComponent, ReactNode } from "react";
-
 import IconLink from "../../Atoms/Links/IconLink";
-import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
-
-const StyledSidebar = styled.div`
-  background-color: ${COLOR["DARK_GREEN"]};
-  border-radius: 0 50px 50px 0;
-  padding-top: 50px;
-  width: 100%;
-`;
-
-const StyledList = styled.div`
-  display: grid;
-  grid-template-rows: 80px 80px 80px 80px 80px;
-  grid-template-columns: 90%;
-  justify-content: right;
-  width: 100%;
-`;
-
-const StyledMe = styled.div`
-  margin: 0 auto;
-  width: 90%;
-  margin-bottom: 20px;
-`;
+import { Box, Grid } from "@chakra-ui/react";
 
 type Item = {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
@@ -39,9 +17,19 @@ type Props = {
 
 const Sidebar: FC<Props> = ({ items, children }: Props) => {
   return (
-    <StyledSidebar>
+    <Box
+      bgColor={COLOR["DARK_GREEN"]}
+      borderRadius="0 50px 50px 0"
+      pt="50px"
+      w="100%"
+    >
       {children}
-      <StyledList>
+      <Grid
+        gridTemplateRows="repeat(5, 80px)"
+        gridTemplateColumns="90%"
+        justifyContent="right"
+        w="100%"
+      >
         {items.map((item) => (
           <IconLink
             activeOnlyWhenExact
@@ -52,8 +40,8 @@ const Sidebar: FC<Props> = ({ items, children }: Props) => {
             <item.icon />
           </IconLink>
         ))}
-      </StyledList>
-    </StyledSidebar>
+      </Grid>
+    </Box>
   );
 };
 

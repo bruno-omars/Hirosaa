@@ -7,6 +7,7 @@ import { CircleList } from "../CircleList";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import SkillCardList from "./SkillCardList";
 import { CircleCard } from "../../Molecules/Cards/CircleCard";
+import { Box } from "@chakra-ui/react";
 
 type User = Maybe<
   Pick<Users, "id" | "avatar" | "name" | "introduction" | "interestedIn">
@@ -18,13 +19,6 @@ type Props = {
     circleUsers: { circle: ComponentProps<typeof CircleCard>["circle"] }[];
   };
 };
-
-const StyledCard = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-`;
 
 const StyledTop = styled.div`
   display: grid;
@@ -47,27 +41,7 @@ const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
 `;
 
-type StyleGrid = {
-  height: number;
-};
-
-const StyledGrid = styled.div<StyleGrid>`
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
-`;
-
-const StyledCircleList = styled.div`
-  margin-top: 20px;
-`;
-
 const UserDetailCard: FC<Props> = ({ user }) => {
-  const skillCardHeight = useMemo(
-    () => user && Math.ceil(user?.userSkills.length / 4) * 75,
-    [user]
-  );
-
   const skills = useMemo(
     () => user.userSkills.map((userSkill) => userSkill.skill),
     [user.userSkills]
@@ -80,7 +54,12 @@ const UserDetailCard: FC<Props> = ({ user }) => {
   if (!user) return <p>ユーザーが存在しません</p>;
 
   return (
-    <StyledCard>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
       <StyledTop>
         <Avatar src={(user && user.avatar) || ""} size="lg" />
         <h2>{user.name}</h2>
@@ -96,17 +75,15 @@ const UserDetailCard: FC<Props> = ({ user }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <StyledGrid height={skillCardHeight || 75}>
-          <SkillCardList skills={skills} />
-        </StyledGrid>
+        <SkillCardList skills={skills} />
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>所属サークル一覧</StyledSubTitle>
-        <StyledCircleList>
+        <Box mt={3}>
           <CircleList circles={circles} />
-        </StyledCircleList>
+        </Box>
       </StyledBlock>
-    </StyledCard>
+    </Box>
   );
 };
 
