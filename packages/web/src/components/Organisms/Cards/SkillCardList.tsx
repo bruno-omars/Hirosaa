@@ -1,3 +1,4 @@
+import { Grid, SimpleGrid } from "@chakra-ui/react";
 import React, { ComponentProps, FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 
@@ -7,11 +8,11 @@ type Props = {
 
 const SkillCardList: FC<Props> = ({ skills }) => {
   return (
-    <>
-      {skills?.map((skill) => (
+    <Grid gridTemplateColumns="repeat(auto-fill, 130px)" gridAutoRows="140px">
+      {skills.map((skill) => (
         <SkillCard skill={skill} />
       ))}
-    </>
+    </Grid>
   );
 };
 

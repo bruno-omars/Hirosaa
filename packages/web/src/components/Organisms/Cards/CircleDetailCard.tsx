@@ -6,19 +6,21 @@ import {
   Sub_Categories,
   Users,
 } from "../../../generated/graphql";
-import { Avatar, Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
-
-const StyledCard = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-`;
+import SkillCardList from "./SkillCardList";
 
 const StyledCircleAvatar = styled(Avatar)`
   align-self: center;
@@ -81,7 +83,12 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   };
 
   return (
-    <Box boxShadow={{ base: "xs", md: "lg" }} p={10} mb={7}>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
       <Grid
         gridTemplateColumns={{ base: "1fr", md: "0.2fr 1fr" }}
         gridTemplateRows={{ base: "0.2fr 1fr 0.2fr 0.2fr", md: "1fr 0.7fr" }}
@@ -123,11 +130,9 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
-          {circle.circleSkills?.map((circleSkill) => (
-            <SkillCard skill={circleSkill.skill} />
-          ))}
-        </StyledGrid>
+        <SkillCardList
+          skills={circle.circleSkills.map((circleSkill) => circleSkill.skill)}
+        />
       </StyledBlock>
     </Box>
   );

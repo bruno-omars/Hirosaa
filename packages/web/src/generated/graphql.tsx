@@ -4,6 +4,10 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K];
 };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+  { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -666,9 +670,6 @@ export type Circles = {
   /** An aggregated array relationship */
   messages_aggregate: Messages_Aggregate;
   name: Scalars["String"];
-  organizationId?: Maybe<Scalars["String"]>;
-  /** An object relationship */
-  organizations?: Maybe<Organizations>;
   /** An object relationship */
   owner?: Maybe<Users>;
   ownerId?: Maybe<Scalars["String"]>;
@@ -808,8 +809,6 @@ export type Circles_Bool_Exp = {
   mainRole?: Maybe<String_Comparison_Exp>;
   messages?: Maybe<Messages_Bool_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  organizationId?: Maybe<String_Comparison_Exp>;
-  organizations?: Maybe<Organizations_Bool_Exp>;
   owner?: Maybe<Users_Bool_Exp>;
   ownerId?: Maybe<String_Comparison_Exp>;
   recruitTitle?: Maybe<String_Comparison_Exp>;
@@ -839,8 +838,6 @@ export type Circles_Insert_Input = {
   mainRole?: Maybe<Scalars["String"]>;
   messages?: Maybe<Messages_Arr_Rel_Insert_Input>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
-  organizations?: Maybe<Organizations_Obj_Rel_Insert_Input>;
   owner?: Maybe<Users_Obj_Rel_Insert_Input>;
   ownerId?: Maybe<Scalars["String"]>;
   recruitTitle?: Maybe<Scalars["String"]>;
@@ -856,7 +853,6 @@ export type Circles_Max_Fields = {
   id?: Maybe<Scalars["Int"]>;
   mainRole?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
   ownerId?: Maybe<Scalars["String"]>;
   recruitTitle?: Maybe<Scalars["String"]>;
   subCategoryId?: Maybe<Scalars["Int"]>;
@@ -869,7 +865,6 @@ export type Circles_Max_Order_By = {
   id?: Maybe<Order_By>;
   mainRole?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
   ownerId?: Maybe<Order_By>;
   recruitTitle?: Maybe<Order_By>;
   subCategoryId?: Maybe<Order_By>;
@@ -883,7 +878,6 @@ export type Circles_Min_Fields = {
   id?: Maybe<Scalars["Int"]>;
   mainRole?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
   ownerId?: Maybe<Scalars["String"]>;
   recruitTitle?: Maybe<Scalars["String"]>;
   subCategoryId?: Maybe<Scalars["Int"]>;
@@ -896,7 +890,6 @@ export type Circles_Min_Order_By = {
   id?: Maybe<Order_By>;
   mainRole?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
   ownerId?: Maybe<Order_By>;
   recruitTitle?: Maybe<Order_By>;
   subCategoryId?: Maybe<Order_By>;
@@ -934,8 +927,6 @@ export type Circles_Order_By = {
   mainRole?: Maybe<Order_By>;
   messages_aggregate?: Maybe<Messages_Aggregate_Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
-  organizations?: Maybe<Organizations_Order_By>;
   owner?: Maybe<Users_Order_By>;
   ownerId?: Maybe<Order_By>;
   recruitTitle?: Maybe<Order_By>;
@@ -960,8 +951,6 @@ export enum Circles_Select_Column {
   /** column name */
   Name = "name",
   /** column name */
-  OrganizationId = "organizationId",
-  /** column name */
   OwnerId = "ownerId",
   /** column name */
   RecruitTitle = "recruitTitle",
@@ -977,7 +966,6 @@ export type Circles_Set_Input = {
   id?: Maybe<Scalars["Int"]>;
   mainRole?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
   ownerId?: Maybe<Scalars["String"]>;
   recruitTitle?: Maybe<Scalars["String"]>;
   subCategoryId?: Maybe<Scalars["Int"]>;
@@ -1046,8 +1034,6 @@ export enum Circles_Update_Column {
   MainRole = "mainRole",
   /** column name */
   Name = "name",
-  /** column name */
-  OrganizationId = "organizationId",
   /** column name */
   OwnerId = "ownerId",
   /** column name */
@@ -1915,52 +1901,8 @@ export enum Order_By {
 /** columns and relationships of "organizations" */
 export type Organizations = {
   __typename?: "organizations";
-  /** An array relationship */
-  circles: Array<Circles>;
-  /** An aggregated array relationship */
-  circles_aggregate: Circles_Aggregate;
   id: Scalars["String"];
   name: Scalars["String"];
-  /** An array relationship */
-  users: Array<Users>;
-  /** An aggregated array relationship */
-  users_aggregate: Users_Aggregate;
-};
-
-/** columns and relationships of "organizations" */
-export type OrganizationsCirclesArgs = {
-  distinct_on?: Maybe<Array<Circles_Select_Column>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
-  order_by?: Maybe<Array<Circles_Order_By>>;
-  where?: Maybe<Circles_Bool_Exp>;
-};
-
-/** columns and relationships of "organizations" */
-export type OrganizationsCircles_AggregateArgs = {
-  distinct_on?: Maybe<Array<Circles_Select_Column>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
-  order_by?: Maybe<Array<Circles_Order_By>>;
-  where?: Maybe<Circles_Bool_Exp>;
-};
-
-/** columns and relationships of "organizations" */
-export type OrganizationsUsersArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
-};
-
-/** columns and relationships of "organizations" */
-export type OrganizationsUsers_AggregateArgs = {
-  distinct_on?: Maybe<Array<Users_Select_Column>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
-  order_by?: Maybe<Array<Users_Order_By>>;
-  where?: Maybe<Users_Bool_Exp>;
 };
 
 /** aggregated selection of "organizations" */
@@ -2002,10 +1944,8 @@ export type Organizations_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Organizations_Bool_Exp>>>;
   _not?: Maybe<Organizations_Bool_Exp>;
   _or?: Maybe<Array<Maybe<Organizations_Bool_Exp>>>;
-  circles?: Maybe<Circles_Bool_Exp>;
   id?: Maybe<String_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  users?: Maybe<Users_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "organizations" */
@@ -2016,10 +1956,8 @@ export enum Organizations_Constraint {
 
 /** input type for inserting data into table "organizations" */
 export type Organizations_Insert_Input = {
-  circles?: Maybe<Circles_Arr_Rel_Insert_Input>;
   id?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
-  users?: Maybe<Users_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -2072,10 +2010,8 @@ export type Organizations_On_Conflict = {
 
 /** ordering options when selecting data from "organizations" */
 export type Organizations_Order_By = {
-  circles_aggregate?: Maybe<Circles_Aggregate_Order_By>;
   id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  users_aggregate?: Maybe<Users_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: "organizations" */
@@ -3962,9 +3898,6 @@ export type Users = {
   /** An aggregated array relationship */
   messages_aggregate: Messages_Aggregate;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
-  /** An object relationship */
-  organizations?: Maybe<Organizations>;
   /** An array relationship */
   userSkills: Array<User_Skills>;
   /** An aggregated array relationship */
@@ -4095,8 +4028,6 @@ export type Users_Bool_Exp = {
   lastSeen?: Maybe<Timestamptz_Comparison_Exp>;
   messages?: Maybe<Messages_Bool_Exp>;
   name?: Maybe<String_Comparison_Exp>;
-  organizationId?: Maybe<String_Comparison_Exp>;
-  organizations?: Maybe<Organizations_Bool_Exp>;
   userSkills?: Maybe<User_Skills_Bool_Exp>;
   users?: Maybe<Circles_Bool_Exp>;
 };
@@ -4120,8 +4051,6 @@ export type Users_Insert_Input = {
   lastSeen?: Maybe<Scalars["timestamptz"]>;
   messages?: Maybe<Messages_Arr_Rel_Insert_Input>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
-  organizations?: Maybe<Organizations_Obj_Rel_Insert_Input>;
   userSkills?: Maybe<User_Skills_Arr_Rel_Insert_Input>;
   users?: Maybe<Circles_Obj_Rel_Insert_Input>;
 };
@@ -4137,7 +4066,6 @@ export type Users_Max_Fields = {
   introduction?: Maybe<Scalars["String"]>;
   lastSeen?: Maybe<Scalars["timestamptz"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
 };
 
 /** order by max() on columns of table "users" */
@@ -4150,7 +4078,6 @@ export type Users_Max_Order_By = {
   introduction?: Maybe<Order_By>;
   lastSeen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -4164,7 +4091,6 @@ export type Users_Min_Fields = {
   introduction?: Maybe<Scalars["String"]>;
   lastSeen?: Maybe<Scalars["timestamptz"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
 };
 
 /** order by min() on columns of table "users" */
@@ -4177,7 +4103,6 @@ export type Users_Min_Order_By = {
   introduction?: Maybe<Order_By>;
   lastSeen?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "users" */
@@ -4215,8 +4140,6 @@ export type Users_Order_By = {
   lastSeen?: Maybe<Order_By>;
   messages_aggregate?: Maybe<Messages_Aggregate_Order_By>;
   name?: Maybe<Order_By>;
-  organizationId?: Maybe<Order_By>;
-  organizations?: Maybe<Organizations_Order_By>;
   userSkills_aggregate?: Maybe<User_Skills_Aggregate_Order_By>;
   users?: Maybe<Circles_Order_By>;
 };
@@ -4244,8 +4167,6 @@ export enum Users_Select_Column {
   LastSeen = "lastSeen",
   /** column name */
   Name = "name",
-  /** column name */
-  OrganizationId = "organizationId",
 }
 
 /** input type for updating data in table "users" */
@@ -4258,7 +4179,6 @@ export type Users_Set_Input = {
   introduction?: Maybe<Scalars["String"]>;
   lastSeen?: Maybe<Scalars["timestamptz"]>;
   name?: Maybe<Scalars["String"]>;
-  organizationId?: Maybe<Scalars["String"]>;
 };
 
 /** update columns of table "users" */
@@ -4279,8 +4199,6 @@ export enum Users_Update_Column {
   LastSeen = "lastSeen",
   /** column name */
   Name = "name",
-  /** column name */
-  OrganizationId = "organizationId",
 }
 
 export type DeleteCircleSkillMutationVariables = Exact<{
@@ -4533,7 +4451,7 @@ export type UserQuery = { __typename?: "query_root" } & {
           { __typename?: "circle_users" } & {
             circle: { __typename?: "circles" } & Pick<
               Circles,
-              "id" | "avatar" | "name"
+              "id" | "avatar" | "name" | "recruitTitle"
             > & {
                 circleUsers_aggregate: {
                   __typename?: "circle_users_aggregate";
@@ -4632,9 +4550,7 @@ export function useDeleteCircleSkillMutation(
 export type DeleteCircleSkillMutationHookResult = ReturnType<
   typeof useDeleteCircleSkillMutation
 >;
-export type DeleteCircleSkillMutationResult = Apollo.MutationResult<
-  DeleteCircleSkillMutation
->;
+export type DeleteCircleSkillMutationResult = Apollo.MutationResult<DeleteCircleSkillMutation>;
 export type DeleteCircleSkillMutationOptions = Apollo.BaseMutationOptions<
   DeleteCircleSkillMutation,
   DeleteCircleSkillMutationVariables
@@ -4685,9 +4601,7 @@ export function useDeleteUserSkillMutation(
 export type DeleteUserSkillMutationHookResult = ReturnType<
   typeof useDeleteUserSkillMutation
 >;
-export type DeleteUserSkillMutationResult = Apollo.MutationResult<
-  DeleteUserSkillMutation
->;
+export type DeleteUserSkillMutationResult = Apollo.MutationResult<DeleteUserSkillMutation>;
 export type DeleteUserSkillMutationOptions = Apollo.BaseMutationOptions<
   DeleteUserSkillMutation,
   DeleteUserSkillMutationVariables
@@ -4735,9 +4649,7 @@ export function useInsertCircleMutation(
 export type InsertCircleMutationHookResult = ReturnType<
   typeof useInsertCircleMutation
 >;
-export type InsertCircleMutationResult = Apollo.MutationResult<
-  InsertCircleMutation
->;
+export type InsertCircleMutationResult = Apollo.MutationResult<InsertCircleMutation>;
 export type InsertCircleMutationOptions = Apollo.BaseMutationOptions<
   InsertCircleMutation,
   InsertCircleMutationVariables
@@ -4786,9 +4698,7 @@ export function useInsertCircleSkillMutation(
 export type InsertCircleSkillMutationHookResult = ReturnType<
   typeof useInsertCircleSkillMutation
 >;
-export type InsertCircleSkillMutationResult = Apollo.MutationResult<
-  InsertCircleSkillMutation
->;
+export type InsertCircleSkillMutationResult = Apollo.MutationResult<InsertCircleSkillMutation>;
 export type InsertCircleSkillMutationOptions = Apollo.BaseMutationOptions<
   InsertCircleSkillMutation,
   InsertCircleSkillMutationVariables
@@ -4838,9 +4748,7 @@ export function useInsertMessageMutation(
 export type InsertMessageMutationHookResult = ReturnType<
   typeof useInsertMessageMutation
 >;
-export type InsertMessageMutationResult = Apollo.MutationResult<
-  InsertMessageMutation
->;
+export type InsertMessageMutationResult = Apollo.MutationResult<InsertMessageMutation>;
 export type InsertMessageMutationOptions = Apollo.BaseMutationOptions<
   InsertMessageMutation,
   InsertMessageMutationVariables
@@ -4891,9 +4799,7 @@ export function useInsertUserSkillMutation(
 export type InsertUserSkillMutationHookResult = ReturnType<
   typeof useInsertUserSkillMutation
 >;
-export type InsertUserSkillMutationResult = Apollo.MutationResult<
-  InsertUserSkillMutation
->;
+export type InsertUserSkillMutationResult = Apollo.MutationResult<InsertUserSkillMutation>;
 export type InsertUserSkillMutationOptions = Apollo.BaseMutationOptions<
   InsertUserSkillMutation,
   InsertUserSkillMutationVariables
@@ -4942,9 +4848,7 @@ export function useUpdateCirlceMutation(
 export type UpdateCirlceMutationHookResult = ReturnType<
   typeof useUpdateCirlceMutation
 >;
-export type UpdateCirlceMutationResult = Apollo.MutationResult<
-  UpdateCirlceMutation
->;
+export type UpdateCirlceMutationResult = Apollo.MutationResult<UpdateCirlceMutation>;
 export type UpdateCirlceMutationOptions = Apollo.BaseMutationOptions<
   UpdateCirlceMutation,
   UpdateCirlceMutationVariables
@@ -4993,9 +4897,7 @@ export function useUpdateUserMutation(
 export type UpdateUserMutationHookResult = ReturnType<
   typeof useUpdateUserMutation
 >;
-export type UpdateUserMutationResult = Apollo.MutationResult<
-  UpdateUserMutation
->;
+export type UpdateUserMutationResult = Apollo.MutationResult<UpdateUserMutation>;
 export type UpdateUserMutationOptions = Apollo.BaseMutationOptions<
   UpdateUserMutation,
   UpdateUserMutationVariables
@@ -5112,7 +5014,7 @@ export const CircleDocument = gql`
  * });
  */
 export function useCircleQuery(
-  baseOptions?: Apollo.QueryHookOptions<CircleQuery, CircleQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<CircleQuery, CircleQueryVariables>
 ) {
   return Apollo.useQuery<CircleQuery, CircleQueryVariables>(
     CircleDocument,
@@ -5175,7 +5077,7 @@ export const CirclesDocument = gql`
  * });
  */
 export function useCirclesQuery(
-  baseOptions?: Apollo.QueryHookOptions<CirclesQuery, CirclesQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<CirclesQuery, CirclesQueryVariables>
 ) {
   return Apollo.useQuery<CirclesQuery, CirclesQueryVariables>(
     CirclesDocument,
@@ -5344,6 +5246,7 @@ export const UserDocument = gql`
           id
           avatar
           name
+          recruitTitle
           circleUsers_aggregate {
             aggregate {
               count
@@ -5372,7 +5275,7 @@ export const UserDocument = gql`
  * });
  */
 export function useUserQuery(
-  baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>
 ) {
   return Apollo.useQuery<UserQuery, UserQueryVariables>(
     UserDocument,
@@ -5422,7 +5325,7 @@ export const UserCirclesDocument = gql`
  * });
  */
 export function useUserCirclesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
+  baseOptions: Apollo.QueryHookOptions<
     UserCirclesQuery,
     UserCirclesQueryVariables
   >
@@ -5487,7 +5390,7 @@ export const NewMessagesDocument = gql`
  * });
  */
 export function useNewMessagesSubscription(
-  baseOptions?: Apollo.SubscriptionHookOptions<
+  baseOptions: Apollo.SubscriptionHookOptions<
     NewMessagesSubscription,
     NewMessagesSubscriptionVariables
   >
@@ -5500,6 +5403,4 @@ export function useNewMessagesSubscription(
 export type NewMessagesSubscriptionHookResult = ReturnType<
   typeof useNewMessagesSubscription
 >;
-export type NewMessagesSubscriptionResult = Apollo.SubscriptionResult<
-  NewMessagesSubscription
->;
+export type NewMessagesSubscriptionResult = Apollo.SubscriptionResult<NewMessagesSubscription>;
