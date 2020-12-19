@@ -10,6 +10,7 @@ import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message
 import DefaultButton from "../../Atoms/Buttons/Default";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
 import { Flex, Text, Avatar } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 const Card = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
@@ -143,7 +144,13 @@ const ChatCard: FC<Props> = ({
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
     setHasNewMessage(false);
   };
+  const history = useHistory();
   const { me } = useAuthContext();
+  const handleMoveToDetail = (userId: string) => {
+    history.push({
+      pathname: `/user-detail/${userId}`,
+    });
+  };
 
   return (
     <Card>
@@ -172,7 +179,12 @@ const ChatCard: FC<Props> = ({
                 return (
                   <MessageLi key={message.id}>
                     <MessageWrapper isMine={isMine}>
-                      <Avatar size="md" src={message.users.avatar ?? ""} />
+                      <Avatar
+                        size="md"
+                        cursor="pointer"
+                        src={message.users.avatar ?? ""}
+                        onClick={() => handleMoveToDetail(message.users.id)}
+                      />
                       <ConversationItem>
                         <MessageContent isMine={isMine}>
                           <Typography>{message.text}</Typography>
