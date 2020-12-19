@@ -6,14 +6,12 @@ import {
   Sub_Categories,
   Users,
 } from "../../../generated/graphql";
+import { Avatar, Box, Flex, Grid, Heading, Text } from "@chakra-ui/react";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
-import { Avatar } from "../../Atoms/Avatar/avatar";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
-import media from "styled-media-query";
-import { CircleCard } from "../../Molecules/Cards/CircleCard";
 
 const StyledCard = styled.div`
   padding: 40px;
@@ -22,51 +20,13 @@ const StyledCard = styled.div`
   margin-bottom: 40px;
 `;
 
-const StyledTop = styled.div`
-  display: grid;
-  grid-template-columns: 80px 200px;
-  grid-template-rows: 1fr 0.7fr 0.7fr;
-
-  ${media.lessThan("medium")`
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 0.6fr 0.6fr;
-  `}
-`;
-
 const StyledCircleAvatar = styled(Avatar)`
   align-self: center;
   cursor: default;
 `;
 
-const StyledHeader = styled.div`
-  ${media.greaterThan("medium")`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  `}
-`;
-
-const StyledTitle = styled.h1`
-  display: inline-block;
-  text-align: center;
-`;
-
-const StyledCaption = styled.h2`
-  margin: 0 12px;
-  font-weight: normal;
-  display: inline-block;
-`;
-
 const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
-`;
-
-const StyledLeaderWrapper = styled.div`
-  display: flex;
-
-  ${media.greaterThan("medium")`
-    grid-row-start: 3;
-  `}
 `;
 
 const StyledLeaderName = styled.p`
@@ -121,28 +81,36 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   };
 
   return (
-    <StyledCard>
-      <StyledTop>
+    <Box boxShadow={{ base: "xs", md: "lg" }} p={10} mb={7}>
+      <Grid
+        gridTemplateColumns={{ base: "1fr", md: "0.2fr 1fr" }}
+        gridTemplateRows={{ base: "0.2fr 1fr 0.2fr 0.2fr", md: "1fr 0.7fr" }}
+        width="100%"
+      >
         <StyledCircleAvatar src={circle?.avatar} size="lg" />
-        <StyledHeader>
-          <StyledTitle>{circle.name}</StyledTitle>
-          <StyledCaption>{circle.recruitTitle}</StyledCaption>
+        <Box>
+          <Heading as="h2" fontWeight="0.5rem" fontSize="1.5rem" mb={3}>
+            {circle.name}
+          </Heading>
+          <Text>{circle.recruitTitle}</Text>
           {circle.subCategories?.name && (
             <DefaultTag name={circle.subCategories.name} />
           )}
-        </StyledHeader>
+        </Box>
 
         <PeopleNum count={30} />
 
-        <StyledLeaderWrapper>
+        <Flex alignItems="center">
           <Avatar
+            mr={3}
+            size="sm"
+            cursor="pointer"
             onClick={handleToDetail}
             src={circle?.owner?.avatar ?? ""}
-            size="md"
           />
           <StyledLeaderName>{circle?.owner?.name}</StyledLeaderName>
-        </StyledLeaderWrapper>
-      </StyledTop>
+        </Flex>
+      </Grid>
       <hr />
 
       <StyledBlock>
@@ -161,7 +129,7 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
           ))}
         </StyledGrid>
       </StyledBlock>
-    </StyledCard>
+    </Box>
   );
 };
 
