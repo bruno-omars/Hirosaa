@@ -1,3 +1,4 @@
+import { Grid } from "@chakra-ui/react";
 import React, { ComponentProps, FC } from "react";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 
@@ -33,15 +34,24 @@ const SkillPicker: FC<Props> = (props) => {
         key={skill.id}
         bgColor={
           selectedSkills && selectedSkills.includes(skill.id)
-            ? "LIGHT_GREEN"
-            : "WHITE"
+            ? "#50B6BB"
+            : "white"
+        }
+        color={
+          selectedSkills && selectedSkills.includes(skill.id)
+            ? "white"
+            : "black"
         }
         skill={skill}
       />
     );
   });
 
-  return <>{skills}</>;
+  return (
+    <Grid gridTemplateColumns="repeat(auto-fill, 130px)" gridAutoRows="140px">
+      {skills}
+    </Grid>
+  );
 };
 
 export default SkillPicker;
