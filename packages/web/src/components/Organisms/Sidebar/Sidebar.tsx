@@ -19,12 +19,6 @@ const StyledList = styled.div`
   width: 100%;
 `;
 
-const StyledMe = styled.div`
-  margin: 0 auto;
-  width: 90%;
-  margin-bottom: 20px;
-`;
-
 type Item = {
   onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
   to?: string;
