@@ -3,28 +3,7 @@ import styled from "styled-components";
 import CheckBoxStagesList from "../../Molecules/Lists/CheckBoxStagesList";
 import { useCategoriesQuery } from "../../../generated/graphql";
 import Spinner from "../../Atoms/Indicator/Spinner";
-import media from "styled-media-query";
-
-const StyledCard = styled.div`
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  border-radius: 3px;
-  display: grid;
-  grid-template-rows: 50px 1fr;
-  grid-template-columns: 1fr;
-  height: 330px;
-  padding: 30px;
-  width: 80%;
-
-  ${media.lessThan("medium")`
-    width: 70%;
-    height: 230px;
-  `}
-`;
-
-const StyledH3 = styled.h3`
-  text-align: center;
-  font-weight: 100;
-`;
+import { Grid, Heading } from "@chakra-ui/react";
 
 type Props = {
   selectedSubcategories: number[];
@@ -41,8 +20,18 @@ const SelectCategoryCard: FC<Props> = ({
   if (error) return <p>Error! ${error.message}</p>;
 
   return (
-    <StyledCard>
-      <StyledH3>カテゴリー選択</StyledH3>
+    <Grid
+      boxShadow="base"
+      gridTemplateRows="40px 1fr"
+      gridTemplateColumns="1fr"
+      p="20px"
+      h="fit-content"
+      w={{ base: "100%", md: "80%" }}
+      mb={{ base: "30px", md: "0" }}
+    >
+      <Heading as="h4" fontSize="1.2rem" textAlign="center">
+        カテゴリー選択
+      </Heading>
       {data?.parentCategories.map((parentCategory) => {
         return (
           <CheckBoxStagesList
@@ -54,7 +43,7 @@ const SelectCategoryCard: FC<Props> = ({
           />
         );
       })}
-    </StyledCard>
+    </Grid>
   );
 };
 

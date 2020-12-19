@@ -1,11 +1,8 @@
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 import React, { FC, useState, useEffect, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import CheckBoxWithText from "../CheckBoxes/CheckBoxWithText";
 import CheckBoxList from "./CheckBoxList";
-
-const ParentUl = styled.ul`
-  list-style: none;
-`;
 
 const StyledLi = styled.li`
   margin-top: 10px;
@@ -64,20 +61,20 @@ const CheckBoxStagesList: FC<Props> = ({
   }, [selectedChildrenIds]);
 
   return (
-    <ParentUl>
-      <StyledLi>
+    <UnorderedList styleType="none">
+      <ListItem>
         <CheckBoxWithText
           checked={parentIsSelected}
           text={parentItem.name}
           onChange={handleClickParent}
         />
-      </StyledLi>
+      </ListItem>
       <CheckBoxList
         items={childrenItems}
         selectedItems={selectedChildrenIds}
         setSelectedItems={setChildrenIds}
       />
-    </ParentUl>
+    </UnorderedList>
   );
 };
 
