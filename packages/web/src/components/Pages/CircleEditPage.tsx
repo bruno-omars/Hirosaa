@@ -11,17 +11,15 @@ import {
 import { useLocation, useHistory } from "react-router-dom";
 import TwoColumn from "../Templates/TwoColumn";
 import { extractAdded, extractRemoved } from "../../utils/filtering";
+import {
+  CircleCreateForm,
+  useCreateCircleFrom,
+} from "../../hooks/useCreateCircleForm";
+import { Button } from "@chakra-ui/react";
 
 const RightButton = styled.div`
   align-self: start;
 `;
-
-type Input = {
-  name: string;
-  recruitTitle: string;
-  whatWeWillDo: string;
-  mainRole: string;
-};
 
 type Params = {
   circleId: number;
@@ -34,12 +32,7 @@ const CircleEditPage: React.FC = () => {
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [initSkills, setInitSkills] = useState<number[]>([]);
   const [selectedCategory, setCategory] = useState<number>(0);
-  const [inputs, setInputs] = useState<Input>({
-    name: "",
-    recruitTitle: "",
-    whatWeWillDo: "",
-    mainRole: "",
-  });
+  const formState = useCreateCircleFrom();
   const [buttonText, setText] = useState("更新する");
 
   const { data: circleData, loading, error } = useCircleQuery({
@@ -53,7 +46,7 @@ const CircleEditPage: React.FC = () => {
     if (!loading && !error) {
       const circle = circleData?.circle;
       if (circle) {
-        setInputs({
+        formState.reset({
           name: circle.name || "",
           recruitTitle: circle.recruitTitle || "",
           whatWeWillDo: circle.whatWeWillDo || "",
@@ -106,8 +99,7 @@ const CircleEditPage: React.FC = () => {
     }
   }, [updateCircleData, insertCircleSkillData]);
 
-  const handleUpdate = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
+  const onSubmit = (data: CircleCreateForm) => {
     const deletedSkills = extractRemoved(initSkills, selectedSkills);
     const addedSkills = extractAdded(initSkills, selectedSkills);
     addedSkills.forEach((id) => {
@@ -130,7 +122,7 @@ const CircleEditPage: React.FC = () => {
       variables: {
         id: circleId,
         inputs: {
-          ...inputs,
+          ...data,
           subCategoryId: selectedCategory,
         },
       },
@@ -140,21 +132,23 @@ const CircleEditPage: React.FC = () => {
   };
 
   return (
-    <TwoColumn defaultStyle>
-      <CircleCreateCard
-        inputs={inputs}
-        setInputs={setInputs}
-        selectedSkills={selectedSkills}
-        setSkills={setSkills}
-        selectedCategory={selectedCategory}
-        setCategory={setCategory}
-      />
-      <RightButton>
-        <RoundedButton onClick={handleUpdate} buttonSize="SMALL">
-          {buttonText}
-        </RoundedButton>
-      </RightButton>
-    </TwoColumn>
+    <form>
+      <TwoColumn defaultStyle>
+        <CircleCreateCard {...formState} />
+        <RightButton>
+          <Button
+            isLoading={formState.isLoading}
+            shadow="md"
+            w="120px"
+            colorScheme="teal"
+            type="submit"
+            buttonSize="SMALL"
+          >
+            {buttonText}
+          </Button>
+        </RightButton>
+      </TwoColumn>
+    </form>
   );
 };
 
