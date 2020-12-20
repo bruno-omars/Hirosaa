@@ -1,6 +1,9 @@
-query Messages($last_received_ts: timestamptz) {
+query Messages($circleId: Int!, $last_received_ts: timestamptz) {
   messages(
-    where: { timestamp: { _lt: $last_received_ts } }
+    where: {
+      timestamp: { _lt: $last_received_ts }
+      circleId: { _eq: $circleId }
+    }
     order_by: { timestamp: desc }
     limit: 20
   ) {

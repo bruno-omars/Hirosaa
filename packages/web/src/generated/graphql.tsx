@@ -4403,6 +4403,7 @@ export type CirclesQuery = { __typename?: "query_root" } & {
 };
 
 export type MessagesQueryVariables = Exact<{
+  circleId: Scalars["Int"];
   last_received_ts?: Maybe<Scalars["timestamptz"]>;
 }>;
 
@@ -5098,9 +5099,12 @@ export type CirclesQueryResult = Apollo.QueryResult<
   CirclesQueryVariables
 >;
 export const MessagesDocument = gql`
-  query Messages($last_received_ts: timestamptz) {
+  query Messages($circleId: Int!, $last_received_ts: timestamptz) {
     messages(
-      where: { timestamp: { _lt: $last_received_ts } }
+      where: {
+        timestamp: { _lt: $last_received_ts }
+        circleId: { _eq: $circleId }
+      }
       order_by: { timestamp: desc }
       limit: 20
     ) {
@@ -5128,12 +5132,13 @@ export const MessagesDocument = gql`
  * @example
  * const { data, loading, error } = useMessagesQuery({
  *   variables: {
+ *      circleId: // value for 'circleId'
  *      last_received_ts: // value for 'last_received_ts'
  *   },
  * });
  */
 export function useMessagesQuery(
-  baseOptions?: Apollo.QueryHookOptions<MessagesQuery, MessagesQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<MessagesQuery, MessagesQueryVariables>
 ) {
   return Apollo.useQuery<MessagesQuery, MessagesQueryVariables>(
     MessagesDocument,

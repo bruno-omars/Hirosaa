@@ -7,7 +7,12 @@ import React, {
   useState,
 } from "react";
 import styled from "styled-components";
-import { Circles, Messages, Users } from "../../../generated/graphql";
+import {
+  Circles,
+  Messages,
+  MessagesQuery,
+  Users,
+} from "../../../generated/graphql";
 import ChatSidebar from "../../Molecules/Sidebar/ChatSidebar";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
@@ -38,21 +43,11 @@ const Right = styled.div`
   position: relative;
 `;
 
-const Top = styled.div`
-  border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
-  height: 60px;
-  padding-left: 12px;
-`;
-
 const Bottom = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   margin: 5px 12px;
-`;
-
-const StyledTitle = styled.h2`
-  display: inline-block;
 `;
 
 const StyledSendIcon = styled(MessageSendIcon)`
@@ -154,30 +149,32 @@ const ChatCard: FC<Props> = ({
   const messageEndRef = useRef<HTMLHeadingElement>(null);
   const scrollRef = useRef(null);
   const [isFetching, setIsFetching] = useState(false);
-
-  const handleScrollToBottom = (behavior: "smooth" | "auto" | undefined) => {
-    messageEndRef.current?.scrollIntoView({
-      behavior: behavior,
-    });
-  };
-  const onClickNewMessage = () => {
-    handleScrollToBottom("smooth");
-    setHasNewMessage(false);
-  };
   const history = useHistory();
   const { me } = useAuthContext();
+
   const handleMoveToDetail = (userId: string) => {
     history.push({
       pathname: `/user-detail/${userId}`,
     });
   };
 
+  const handleScrollToBottom = (behavior: "smooth" | "auto" | undefined) => {
+    messageEndRef.current?.scrollIntoView({
+      behavior: behavior,
+    });
+  };
+
+  const onClickNewMessage = () => {
+    handleScrollToBottom("smooth");
+    setHasNewMessage(false);
+  };
+
   const handleScroll = async (
     isBottom: boolean,
     isTop: boolean,
-    messages: any
+    messages: MessagesQuery["messages"]
   ) => {
-    console.warn("scrollRef", scrollRef.current);
+    console.log("scrollRef", scrollRef.current);
     if (isBottom) {
       setHasNewMessage(false);
     } else if (isTop) {
@@ -200,7 +197,6 @@ const ChatCard: FC<Props> = ({
     const { scrollHeight, scrollTop, clientHeight } = e.currentTarget;
     const isBottom = scrollHeight - scrollTop <= clientHeight + 25;
     const isTop = scrollTop < 25;
-    // handleScroll(isBottom, isTop);
     callbackHandleScroll(isBottom, isTop, messages);
   };
 
