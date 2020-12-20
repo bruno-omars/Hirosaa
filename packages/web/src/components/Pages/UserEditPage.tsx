@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import styled from "styled-components";
@@ -141,9 +142,9 @@ const UserEditPage: React.FC = () => {
         setSkills={setSkills}
       />
       <RightButton>
-        <RoundedButton onClick={handleUpdate} buttonSize="SMALL">
+        <Button shadow="md" w="120px" colorScheme="teal" onClick={handleUpdate}>
           {buttonText}
-        </RoundedButton>
+        </Button>
       </RightButton>
     </TwoColumn>
   );

@@ -2,18 +2,14 @@ import React, { FC, useCallback, useMemo } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useUserQuery } from "../../generated/graphql";
 import styled from "styled-components";
-import RoundedButton from "../Atoms/Buttons/RoundedButton";
 import UserDetailCard from "../Organisms/Cards/UserDetailCard";
 import { useAuthContext } from "../../provider/AuthContextProvider";
 import TwoColumn from "../Templates/TwoColumn";
 import Spinner from "../Atoms/Indicator/Spinner";
+import { Button } from "@chakra-ui/react";
 
 const StyledRightButtons = styled.div`
   align-self: start;
-`;
-
-const StyledRoundedButton = styled(RoundedButton)`
-  margin-bottom: 24px;
 `;
 
 const UserDetailPage: FC = () => {
@@ -47,13 +43,18 @@ const UserDetailPage: FC = () => {
       <UserDetailCard user={data.user} />
       <StyledRightButtons>
         {isMe ? (
-          <StyledRoundedButton onClick={toEditPage} buttonSize="SMALL">
+          <Button shadow="md" w="120px" colorScheme="teal" onClick={toEditPage}>
             編集する
-          </StyledRoundedButton>
+          </Button>
         ) : (
-          <StyledRoundedButton onClick={onSubmitMessage} buttonSize="BASE">
+          <Button
+            shadow="md"
+            w="120px"
+            colorScheme="teal"
+            onClick={onSubmitMessage}
+          >
             メッセージを送信する
-          </StyledRoundedButton>
+          </Button>
         )}
       </StyledRightButtons>
     </TwoColumn>

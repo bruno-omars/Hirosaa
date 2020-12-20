@@ -7,6 +7,7 @@ import { UserEditInput } from "../../Pages/UserEditPage";
 import FileInput from "../../Atoms/Inputs/FileInput";
 import DefaultInput from "../../Atoms/Inputs/DefaultInput";
 import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
+import { Box } from "@chakra-ui/react";
 
 type Props = {
   inputs: UserEditInput;
@@ -14,13 +15,6 @@ type Props = {
   selectedSkills: number[];
   setSkills: React.Dispatch<React.SetStateAction<number[]>>;
 };
-
-const StyledCard = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-`;
 
 const StyledTop = styled.div`
   display: grid;
@@ -47,19 +41,8 @@ type StyleGrid = {
   height: number;
 };
 
-const StyledGrid = styled.div<StyleGrid>`
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
-`;
-
 const UserEditCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
-  const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.skills.length / 4) * 75,
-    [data]
-  );
 
   if (!data) {
     return <p>データの取得に失敗しました</p>;
@@ -73,7 +56,12 @@ const UserEditCard: FC<Props> = (props) => {
   };
 
   return (
-    <StyledCard>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
       <StyledTop>
         <FileInput />
         <DefaultInput
@@ -111,15 +99,13 @@ const UserEditCard: FC<Props> = (props) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <StyledGrid height={skillCardHeight || 75}>
-          <SkillPicker
-            skills={data?.skills}
-            selectedSkills={props.selectedSkills}
-            setSkills={props.setSkills}
-          />
-        </StyledGrid>
+        <SkillPicker
+          skills={data?.skills}
+          selectedSkills={props.selectedSkills}
+          setSkills={props.setSkills}
+        />
       </StyledBlock>
-    </StyledCard>
+    </Box>
   );
 };
 
