@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import CircleCreateCard from "../Organisms/Cards/CircleCreateCard";
 import styled from "styled-components";
 
@@ -24,7 +24,6 @@ const CircleCreatePage: FC = () => {
             w="120px"
             colorScheme="teal"
             type="submit"
-            buttonSize="SMALL"
           >
             作成する
           </Button>

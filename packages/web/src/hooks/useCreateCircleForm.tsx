@@ -8,15 +8,15 @@ import {
 } from "../generated/graphql";
 import { useAuthContext } from "../provider/AuthContextProvider";
 
-export type CircleCreateForm = {
+export type CircleForm = {
   name: string;
   recruitTitle: string;
   whatWeWillDo: string;
   mainRole: string;
 };
 
-export type CircleCreateFormReturn = UseFormMethods<CircleCreateForm> & {
-  onSubmit: (data: CircleCreateForm) => Promise<void>;
+export type CircleFormReturn = UseFormMethods<CircleForm> & {
+  onSubmit: (data: CircleForm) => Promise<void>;
   selectedSkills: number[];
   setSkills: Dispatch<SetStateAction<number[]>>;
   selectedCategory: number;
@@ -24,7 +24,7 @@ export type CircleCreateFormReturn = UseFormMethods<CircleCreateForm> & {
   isLoading: boolean;
 };
 
-export const useCreateCircleFrom = (): CircleCreateFormReturn => {
+export const useCreateCircleFrom = (): CircleFormReturn => {
   const { me } = useAuthContext();
   const [selectedSkills, setSkills] = useState<number[]>([]);
   const [selectedCategory, setCategory] = useState<number>(0);
@@ -32,7 +32,7 @@ export const useCreateCircleFrom = (): CircleCreateFormReturn => {
   const [insertCircle, { data }] = useInsertCircleMutation();
   const history = useHistory();
 
-  const onSubmit = async (data: CircleCreateForm) => {
+  const onSubmit = async (data: CircleForm) => {
     setIsLoading(true);
     try {
       await insertCircle({
@@ -68,7 +68,7 @@ export const useCreateCircleFrom = (): CircleCreateFormReturn => {
   }));
 
   return {
-    ...useForm<CircleCreateForm>(),
+    ...useForm<CircleForm>(),
     onSubmit,
     selectedSkills,
     setSkills,

@@ -41,7 +41,6 @@ const CircleDetailPage: FC = (props) => {
     pollInterval: 500,
   });
 
-  console.log("data.circle: ", data);
   if (!data?.circle || loading) return <Spinner />;
   if (error) return <p>Error! ${error.message}</p>;
 

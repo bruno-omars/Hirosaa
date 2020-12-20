@@ -12,8 +12,8 @@ import {
   UseFormMethods,
 } from "react-hook-form/dist/types";
 import {
-  CircleCreateForm,
-  CircleCreateFormReturn,
+  CircleForm,
+  CircleFormReturn,
 } from "../../../hooks/useCreateCircleForm";
 
 const Block = styled(Box)`
@@ -27,13 +27,13 @@ const StyledSubTitle = styled(Heading)`
   margin-bottom: 8px;
 `;
 
-type Props = CircleCreateFormReturn;
+type Props = CircleFormReturn;
 
 const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
   const inputAttrs = useCallback(
-    (name: keyof CircleCreateForm) => ({
+    (name: keyof CircleForm) => ({
       ref: props.register({ required: true }),
       isInvalid: Boolean(props.errors[name]),
       name: name,
@@ -43,8 +43,6 @@ const CircleCreateCard: FC<Props> = (props) => {
     }),
     [props]
   );
-
-  console.log("errors", props.errors);
 
   return (
     <Box
