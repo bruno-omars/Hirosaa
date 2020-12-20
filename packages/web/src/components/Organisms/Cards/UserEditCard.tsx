@@ -3,21 +3,14 @@ import styled from "styled-components";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
 import SkillPicker from "./SkillPicker";
-import FileInput from "../../Atoms/Inputs/FileInput";
-import { Box, Input, Textarea, Text } from "@chakra-ui/react";
+import { Box, Input, Textarea, Text, Grid } from "@chakra-ui/react";
 import {
   UserEditFormReturn,
   UserEditInput,
 } from "../../../hooks/useEditUserForm";
+import { FileUpload } from "../../Molecules/FileUpload";
 
 type Props = UserEditFormReturn;
-
-const StyledTop = styled.div`
-  display: grid;
-  grid-template-rows: 80px 1fr;
-  align-items: center;
-  margin-bottom: 20px;
-`;
 
 const StyledBlock = styled.div`
   margin-top: 40px;
@@ -55,10 +48,10 @@ const UserEditCard: FC<Props> = (props) => {
       mb={7}
       w={{ base: "95%", md: "80%" }}
     >
-      <StyledTop>
-        <FileInput />
+      <Grid gridTemplateRows="1fr 1fr" alignItems="center" mb="20px">
+        <FileUpload title="アイコン" namae={props.getValues("name")} />
         <Input {...inputAttrs("name")} placeholder="ユーザ名" name="name" />
-      </StyledTop>
+      </Grid>
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
