@@ -1,20 +1,16 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
 import SkillPicker from "./SkillPicker";
-import { UserEditInput } from "../../Pages/UserEditPage";
 import FileInput from "../../Atoms/Inputs/FileInput";
-import DefaultInput from "../../Atoms/Inputs/DefaultInput";
-import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
-import { Box } from "@chakra-ui/react";
+import { Box, Input, Textarea, Text } from "@chakra-ui/react";
+import {
+  UserEditFormReturn,
+  UserEditInput,
+} from "../../../hooks/useEditUserForm";
 
-type Props = {
-  inputs: UserEditInput;
-  setInputs: React.Dispatch<React.SetStateAction<UserEditInput>>;
-  selectedSkills: number[];
-  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
-};
+type Props = UserEditFormReturn;
 
 const StyledTop = styled.div`
   display: grid;
@@ -37,23 +33,20 @@ const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
 `;
 
-type StyleGrid = {
-  height: number;
-};
-
 const UserEditCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
-  if (!data) {
-    return <p>データの取得に失敗しました</p>;
-  }
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
-  };
+  const inputAttrs = useCallback(
+    (name: keyof UserEditInput) => ({
+      ref: props.register({ required: true }),
+      isInvalid: Boolean(props.errors[name]),
+      name: name,
+      borderColor: COLOR["BORDER_TEXT_INPUT"],
+      focusBorderColor: COLOR["LIGHT_GREEN"],
+      errorBorderColor: "crimson",
+    }),
+    [props]
+  );
 
   return (
     <Box
@@ -64,46 +57,39 @@ const UserEditCard: FC<Props> = (props) => {
     >
       <StyledTop>
         <FileInput />
-        <DefaultInput
-          onChange={handleChange}
-          placeholder="ユーザ名"
-          name="name"
-          value={props.inputs.name}
-          inputSize="MAX"
-        />
+        <Input {...inputAttrs("name")} placeholder="ユーザ名" name="name" />
       </StyledTop>
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea
-            onChange={handleChange}
+          <Textarea
+            {...inputAttrs("introduction")}
             placeholder="自己紹介を記入してください"
-            name="introduction"
-            value={props.inputs.introduction}
-            areaSize="MAX"
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea
-            onChange={handleChange}
+          <Textarea
+            {...inputAttrs("interestedIn")}
             placeholder="自己紹介を記入してください"
-            areaSize="MAX"
             name="interestedIn"
-            value={props.inputs.interestedIn}
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <SkillPicker
-          skills={data?.skills}
-          selectedSkills={props.selectedSkills}
-          setSkills={props.setSkills}
-        />
+        {data?.skills ? (
+          <SkillPicker
+            skills={data?.skills}
+            selectedSkills={props.selectedSkills}
+            setSkills={props.setSkills}
+          />
+        ) : (
+          <Text>スキルの取得に失敗しました。リロードしてください</Text>
+        )}
       </StyledBlock>
     </Box>
   );
