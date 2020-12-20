@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
 import { useUserCirclesQuery } from "../../../generated/graphql";
+import { Img } from "@chakra-ui/react";
 
 const StyledSidebar = styled.div`
   border-right: 1px solid ${COLOR["BORDER_DIVIDER"]};
@@ -15,7 +16,9 @@ const StyledCircleIcon = styled.div<{ active: boolean }>`
   height: 64px;
   background-color: ${COLOR["LIGHT_GRAY"]};
   margin: 12px auto;
-  ${({ active }) => active && `border:1px solid ${COLOR.TRANSLUCENT_ORANGE}`};
+  overflow: hidden;
+  border: ${({ active }) => active && `2px solid ${COLOR.TRANSLUCENT_ORANGE}`};
+  cursor: pointer;
 `;
 
 type Props = {
@@ -44,7 +47,7 @@ const ChatSidebar: FC<Props> = ({ setActiveCircleId, activeCircleId }) => {
             onClick={() => handleClickCircle(circle.id)}
             active={activeCircleId == circle.id}
           >
-            <img height="64px" src={circle.avatar || ""} />
+            <Img height="64px" src={circle.avatar || ""} />
           </StyledCircleIcon>
         );
       })}

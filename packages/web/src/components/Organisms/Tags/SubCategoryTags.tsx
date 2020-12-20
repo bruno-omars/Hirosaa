@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import DefaultTag from "../../Atoms/Tags/DefaultTag";
 import { Sub_Categories } from "../../../generated/graphql";
+import { Grid, Tag, TagLabel } from "@chakra-ui/react";
 
 type Props = {
   subCategories: Pick<Sub_Categories, "name" | "id">[] | undefined;
@@ -8,29 +8,39 @@ type Props = {
   setCategory: React.Dispatch<React.SetStateAction<number>>;
 };
 
-const SubCategoryTags: FC<Props> = (props) => {
-  const handleClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+const SubCategoryTags: FC<Props> = ({
+  subCategories,
+  selectedCategory,
+  setCategory,
+}) => {
+  const onClick = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
     e.preventDefault();
-    props.setCategory(Number(e.currentTarget.id));
+    setCategory(Number(e.currentTarget.id));
   };
 
-  const categories =
-    props.subCategories &&
-    props.subCategories.map((subCategory) => {
-      return (
-        <DefaultTag
-          name={subCategory.name}
-          key={subCategory.id}
-          id={subCategory.id.toString()}
-          handleClick={handleClick}
-          bgColor={
-            props.selectedCategory === subCategory.id ? "ORANGE" : "WHITE"
-          }
-        />
-      );
-    });
-
-  return <>{categories}</>;
+  return (
+    <Grid gridTemplateColumns="repeat(auto-fill, 140px)" gridAutoRows="40px">
+      {subCategories &&
+        subCategories.map((subCategory) => {
+          return (
+            <Tag
+              cursor="pointer"
+              borderRadius="full"
+              colorScheme="orange"
+              w="120px"
+              h="30px"
+              id={subCategory.id.toString()}
+              onClick={onClick}
+              variant={
+                selectedCategory === subCategory.id ? "solid" : "outline"
+              }
+            >
+              <TagLabel>{subCategory.name}</TagLabel>
+            </Tag>
+          );
+        })}
+    </Grid>
+  );
 };
 
 export default SubCategoryTags;

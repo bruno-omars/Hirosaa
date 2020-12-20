@@ -1,37 +1,34 @@
+import { Box, Flex, Img } from "@chakra-ui/react";
 import React, { FC } from "react";
 import styled from "styled-components";
 import { COLOR } from "../../../constants/color";
+import { Skills } from "../../../generated/graphql";
 
 type Props = {
   handleClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
-  bgColor?: keyof typeof COLOR;
-  name: string;
-  id: string;
-  avatar?: string;
+  bgColor?: string;
+  color?: string;
+  skill: Pick<Skills, "id" | "avatar" | "name">;
 };
 
-const StyledSkillCard = styled.div<Pick<Props, "bgColor">>`
-  align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  background-color: ${({ bgColor = "WHITE" }) => COLOR[bgColor]};
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  height: 80px;
-  padding: 20px;
-  width: 70px;
-`;
-
-const SkillCard: FC<Props> = (props) => {
+const SkillCard: FC<Props> = ({ skill, handleClick, bgColor, color }) => {
   return (
-    <StyledSkillCard
-      onClick={props.handleClick}
-      id={props.id}
-      bgColor={props.bgColor}
+    <Flex
+      alignItems="center"
+      direction="column"
+      boxShadow="md"
+      bgColor={bgColor}
+      color={color}
+      cursor="pointer"
+      p={30}
+      w={100}
+      h={120}
+      onClick={handleClick}
+      id={skill.id.toString()}
     >
-      <img height="50px" src={props.avatar || ""} />
-      {props.name}
-    </StyledSkillCard>
+      <Img h={50} src={skill.avatar} />
+      {skill.name}
+    </Flex>
   );
 };
 

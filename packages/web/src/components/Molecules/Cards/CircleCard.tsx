@@ -8,33 +8,8 @@ import {
 } from "../../../generated/graphql";
 import CircleButton from "../../Atoms/Buttons/CircleButton";
 import { ReactComponent as People } from "../../../assets/icons/people.svg";
-import media from "styled-media-query";
-
-const StyledCard = styled.div`
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  border-radius: 3px;
-  cursor: pointer;
-  display: grid;
-  grid-template-rows: 40% 60%;
-  grid-template-columns: 50px 0.9fr 70px;
-  height: 180px;
-  margin-bottom: 50px;
-  place-items: center;
-  width: 500px;
-  padding: 0 10px;
-
-  ${media.lessThan("medium")`
-    width: 90%;
-    height: 230px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-  `}
-`;
-
-const CardTitle = styled.h3`
-  font-weight: normal;
-  justify-self: left;
-`;
+import { TextWithDots } from "../../Atoms/TextWithDots";
+import { Grid } from "@chakra-ui/react";
 
 const PeopleNum = styled.div`
   align-items: center;
@@ -63,10 +38,7 @@ const StyledImage = styled.img`
 
 type Props = {
   // TODO: クエリ変更したら自動でタイプ変換できるようにしたい
-  circle: Pick<
-    Circles,
-    "id" | "name" | "avatar" | "whatWeWillDo" | "mainRole"
-  > & {
+  circle: Pick<Circles, "id" | "name" | "avatar" | "recruitTitle"> & {
     circleUsers_aggregate: { __typename?: "circle_users_aggregate" } & {
       aggregate?: Maybe<
         { __typename?: "circle_users_aggregate_fields" } & Pick<
@@ -78,7 +50,7 @@ type Props = {
   };
 };
 
-const CircleCard: FC<Props> = ({ circle }) => {
+export const CircleCard: FC<Props> = ({ circle }) => {
   let history = useHistory();
   const handleToDetail = () => {
     history.push({
@@ -88,18 +60,28 @@ const CircleCard: FC<Props> = ({ circle }) => {
   };
 
   return (
-    <StyledCard onClick={handleToDetail}>
+    <Grid
+      gridTemplateColumns="50px 0.9fr 70px"
+      gridTemplateRows="0.4fr 1fr"
+      alignItems="center"
+      boxShadow="base"
+      cursor="pointer"
+      mb="50px"
+      p="20px"
+      minH="200px"
+      onClick={handleToDetail}
+    >
       <CircleButton onClick={() => {}} shadowDepth={"NONE"}>
         <StyledImage src={circle.avatar} />
       </CircleButton>
-      <CardTitle>{circle.name}</CardTitle>
+      <TextWithDots as="h3" w="100%">
+        {circle.name}
+      </TextWithDots>
       <PeopleNum>
         <People height="20px" width="20px" />
         {circle.circleUsers_aggregate.aggregate?.count}
       </PeopleNum>
-      <Description>{circle.whatWeWillDo}</Description>
-    </StyledCard>
+      <Description>{circle.recruitTitle}</Description>
+    </Grid>
   );
 };
-
-export default CircleCard;

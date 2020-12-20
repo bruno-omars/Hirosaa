@@ -7,19 +7,7 @@ import { Input } from "../../Pages/CircleCreatePage";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillPicker from "./SkillPicker";
 import SubCategoryTags from "../Tags/SubCategoryTags";
-import media from "styled-media-query";
-
-const Card = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-
-  ${media.lessThan("medium")`
-    width: 100%;
-    padding: 10px;
-  `}
-`;
+import { Box } from "@chakra-ui/react";
 
 const Block = styled.div`
   margin-top: 40px;
@@ -44,20 +32,6 @@ const StyledSubTitle = styled.h3`
   margin-bottom: 8px;
 `;
 
-type StyleGrid = {
-  height: number;
-};
-
-const StyledGrid = styled.div<StyleGrid>`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
-
-  ${media.lessThan("medium")`
-    grid-template-columns: repeat(2, 1fr);
-  `}
-`;
-
 type Props = {
   inputs: Input;
   setInputs: React.Dispatch<React.SetStateAction<Input>>;
@@ -70,11 +44,6 @@ type Props = {
 const CircleCreateCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
 
-  const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.skills.length / 4) * 75,
-    [data]
-  );
-
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -83,7 +52,12 @@ const CircleCreateCard: FC<Props> = (props) => {
   };
 
   return (
-    <Card>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
       <StyledForm>
         <Top>
           <FileInput />
@@ -106,13 +80,11 @@ const CircleCreateCard: FC<Props> = (props) => {
             {error ? (
               "カテゴリーの読み込みに失敗しました。リロードしてください。"
             ) : (
-              <StyledGrid height={30}>
-                <SubCategoryTags
-                  subCategories={data?.subCategories}
-                  selectedCategory={props.selectedCategory}
-                  setCategory={props.setCategory}
-                />
-              </StyledGrid>
+              <SubCategoryTags
+                subCategories={data?.subCategories}
+                selectedCategory={props.selectedCategory}
+                setCategory={props.setCategory}
+              />
             )}
           </div>
         </Top>
@@ -143,20 +115,18 @@ const CircleCreateCard: FC<Props> = (props) => {
             {error ? (
               "スキルカードの読み込みに失敗しました。リロードしてください。"
             ) : data?.skills ? (
-              <StyledGrid height={skillCardHeight || 75}>
-                <SkillPicker
-                  skills={data.skills}
-                  selectedSkills={props.selectedSkills}
-                  setSkills={props.setSkills}
-                />
-              </StyledGrid>
+              <SkillPicker
+                skills={data.skills}
+                selectedSkills={props.selectedSkills}
+                setSkills={props.setSkills}
+              />
             ) : (
               <></>
             )}
           </Block>
         </Buttom>
       </StyledForm>
-    </Card>
+    </Box>
   );
 };
 

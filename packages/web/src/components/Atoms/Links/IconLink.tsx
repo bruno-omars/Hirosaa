@@ -15,7 +15,7 @@ type IconLinkProps = Props & {
 const StyledIconLink = styled(StyledLink)`
   display: grid;
   grid-template-columns: 30% 70%;
-  width: calc(100% - 20px);
+  width: 100%;
 
   ${media.lessThan("medium")`
     grid-template-columns: 1fr;

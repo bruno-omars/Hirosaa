@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { ComponentProps, FC } from "react";
 import styled from "styled-components";
 import {
   Circles,
@@ -6,66 +6,29 @@ import {
   Sub_Categories,
   Users,
 } from "../../../generated/graphql";
+import {
+  Avatar,
+  Box,
+  Flex,
+  Grid,
+  Heading,
+  SimpleGrid,
+  Text,
+} from "@chakra-ui/react";
 import DefaultTag from "../../Atoms/Tags/DefaultTag";
-import Avatar from "../../Atoms/Avatar/Default";
 import PeopleNum from "../../Atoms/Icon/PeopleNum";
 import { COLOR } from "../../../constants/color";
 import SkillCard from "../../Molecules/Cards/SkillCard";
 import { useHistory } from "react-router-dom";
-import media from "styled-media-query";
-
-const StyledCard = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-`;
-
-const StyledTop = styled.div`
-  display: grid;
-  grid-template-columns: 80px 200px;
-  grid-template-rows: 1fr 0.7fr 0.7fr;
-
-  ${media.lessThan("medium")`
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 0.6fr 0.6fr;
-  `}
-`;
+import SkillCardList from "./SkillCardList";
 
 const StyledCircleAvatar = styled(Avatar)`
   align-self: center;
   cursor: default;
 `;
 
-const StyledHeader = styled.div`
-  ${media.greaterThan("medium")`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  `}
-`;
-
-const StyledTitle = styled.h1`
-  display: inline-block;
-  text-align: center;
-`;
-
-const StyledCaption = styled.h2`
-  margin: 0 12px;
-  font-weight: normal;
-  display: inline-block;
-`;
-
 const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
-`;
-
-const StyledLeaderWrapper = styled.div`
-  display: flex;
-
-  ${media.greaterThan("medium")`
-    grid-row-start: 3;
-  `}
 `;
 
 const StyledLeaderName = styled.p`
@@ -93,15 +56,22 @@ const StyledGrid = styled.div<StyleGrid>`
   grid-auto-rows: minmax(${({ height }) => height}px, max-content);
 `;
 
+type Circle = Pick<
+  Circles,
+  "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
+>;
+
+// TODO: 多分ここ出てきた型はコンポーネととして分離できる
+// SubCategoryList, Owner
+type SubCategories = Pick<Sub_Categories, "name"> | null;
+type Owner = Pick<Users, "id" | "name" | "avatar"> | null;
+
 type Props = {
-  circle: Pick<
-    Circles,
-    "avatar" | "name" | "recruitTitle" | "mainRole" | "whatWeWillDo"
-  > & {
-    circleSkills: { skill: Pick<Skills, "id" | "name" | "avatar"> }[];
+  circle: Circle & {
+    circleSkills: { skill: ComponentProps<typeof SkillCard>["skill"] }[];
   } & {
-    subCategories?: Pick<Sub_Categories, "name"> | null;
-  } & { owner?: Pick<Users, "id" | "name" | "avatar"> | null };
+    subCategories?: SubCategories;
+  } & { owner?: Owner };
 };
 
 const CircleDetailCard: FC<Props> = ({ circle }) => {
@@ -113,28 +83,41 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
   };
 
   return (
-    <StyledCard>
-      <StyledTop>
-        <StyledCircleAvatar src={circle?.avatar} size={66} />
-        <StyledHeader>
-          <StyledTitle>{circle.name}</StyledTitle>
-          <StyledCaption>{circle.recruitTitle}</StyledCaption>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
+      <Grid
+        gridTemplateColumns={{ base: "1fr", md: "0.2fr 1fr" }}
+        gridTemplateRows={{ base: "0.2fr 1fr 0.2fr 0.2fr", md: "1fr 0.7fr" }}
+        width="100%"
+      >
+        <StyledCircleAvatar src={circle?.avatar} size="lg" />
+        <Box>
+          <Heading as="h2" fontWeight="0.5rem" fontSize="1.5rem" mb={3}>
+            {circle.name}
+          </Heading>
+          <Text>{circle.recruitTitle}</Text>
           {circle.subCategories?.name && (
             <DefaultTag name={circle.subCategories.name} />
           )}
-        </StyledHeader>
+        </Box>
 
         <PeopleNum count={30} />
 
-        <StyledLeaderWrapper>
+        <Flex alignItems="center">
           <Avatar
+            mr={3}
+            size="sm"
+            cursor="pointer"
             onClick={handleToDetail}
             src={circle?.owner?.avatar ?? ""}
-            size={30}
           />
           <StyledLeaderName>{circle?.owner?.name}</StyledLeaderName>
-        </StyledLeaderWrapper>
-      </StyledTop>
+        </Flex>
+      </Grid>
       <hr />
 
       <StyledBlock>
@@ -147,17 +130,11 @@ const CircleDetailCard: FC<Props> = ({ circle }) => {
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>使用する技術やアプリ</StyledSubTitle>
-        <StyledGrid height={Math.ceil(circle.circleSkills.length / 4) * 85}>
-          {circle.circleSkills?.map((circleSkill) => (
-            <SkillCard
-              name={circleSkill.skill.name}
-              id={circleSkill.skill.id.toString()}
-              avatar={circleSkill.skill.avatar}
-            />
-          ))}
-        </StyledGrid>
+        <SkillCardList
+          skills={circle.circleSkills.map((circleSkill) => circleSkill.skill)}
+        />
       </StyledBlock>
-    </StyledCard>
+    </Box>
   );
 };
 

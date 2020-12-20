@@ -15,7 +15,8 @@ import IconRightInput from "../../Atoms/Inputs/IconRightInput";
 import { ReactComponent as MessageSendIcon } from "../../../assets/icons/message-send.svg";
 import DefaultButton from "../../Atoms/Buttons/Default";
 import { useAuthContext } from "../../../provider/AuthContextProvider";
-import Avatar from "../../Atoms/Avatar/Default";
+import { Flex, Text, Avatar } from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
 
 import _ from "lodash";
 
@@ -40,6 +41,7 @@ const Right = styled.div`
 const Top = styled.div`
   border-bottom: 1px solid ${COLOR["BORDER_DIVIDER"]};
   height: 60px;
+  padding-left: 12px;
 `;
 
 const Bottom = styled.div`
@@ -162,7 +164,13 @@ const ChatCard: FC<Props> = ({
     handleScrollToBottom("smooth");
     setHasNewMessage(false);
   };
+  const history = useHistory();
   const { me } = useAuthContext();
+  const handleMoveToDetail = (userId: string) => {
+    history.push({
+      pathname: `/user-detail/${userId}`,
+    });
+  };
 
   const handleScroll = async (
     isBottom: boolean,
@@ -221,10 +229,14 @@ const ChatCard: FC<Props> = ({
         activeCircleId={activeCircleId}
       />
       <Right>
-        <Top>
-          <StyledTitle>{circle?.name}</StyledTitle>
+        <Flex
+          borderBottom={`1px solid ${COLOR["BORDER_DIVIDER"]}`}
+          alignItems="center"
+          pl="20px"
+        >
+          <Text mr="10px">{circle?.name}</Text>
           <PeopleNum count={30} />
-        </Top>
+        </Flex>
         {hasNewMessage && (
           <NewMessageButton onClick={onClickNewMessage} bgColor="ORANGE">
             新規メッセージがあります。
@@ -247,7 +259,12 @@ const ChatCard: FC<Props> = ({
                   return (
                     <MessageLi key={message.id}>
                       <MessageWrapper isMine={isMine}>
-                        <Avatar size={40} src={message.users.avatar ?? ""} />
+                        <Avatar
+                          size="md"
+                          cursor="pointer"
+                          src={message.users.avatar ?? ""}
+                          onClick={() => handleMoveToDetail(message.users.id)}
+                        />
                         <ConversationItem>
                           <MessageContent isMine={isMine}>
                             <Typography>{message.text}</Typography>

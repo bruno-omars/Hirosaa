@@ -17,6 +17,7 @@ query User($id: String!) {
         id
         avatar
         name
+        recruitTitle
         circleUsers_aggregate {
           aggregate {
             count
