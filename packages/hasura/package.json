@@ -8,6 +8,6 @@
     "metadata": "hasura metadata",
     "console": "hasura console",
     "seeds": "hasura seeds",
-    "seeds create all": "hasura seeds create all_seeds --from-table organizations --from-table parent_categories --from-table sub_categories --from-table users --from-table circles --from-table skills --from-table circle_skills --from-table circle_users --from-table messages --from-table user_skills --from-table"
+    "seeds create all": "hasura seeds create all_seeds --from-table organizations --from-table parent_categories --from-table sub_categories --from-table users --from-table circles --from-table skills --from-table circle_skills --from-table circle_users --from-table messages --from-table user_skills"
   }
 }
