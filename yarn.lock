@@ -3960,9 +3960,6 @@
   dependencies:
     "@types/node" "*"
 
-<<<<<<< HEAD
-"@types/lodash@^4.14.165":
-=======
 "@types/lodash.mergewith@4.6.6":
   version "4.6.6"
   resolved "https://registry.yarnpkg.com/@types/lodash.mergewith/-/lodash.mergewith-4.6.6.tgz#c4698f5b214a433ff35cb2c75ee6ec7f99d79f10"
@@ -3970,14 +3967,11 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash@*":
->>>>>>> 83b9f124081034eb3450171173eb4b1eea2acf55
+"@types/lodash@*", "@types/lodash@^4.14.165":
   version "4.14.165"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.165.tgz#74d55d947452e2de0742bad65270433b63a8c30f"
   integrity sha512-tjSSOTHhI5mCHTy/OOXYIhi2Wt1qcbHmuXD1Ha7q70CgI/I71afO4XtLb/cVexki1oVYchpul/TOuu3Arcdxrg==
 
-<<<<<<< HEAD
-=======
 "@types/markdown-to-jsx@^6.11.0":
   version "6.11.3"
   resolved "https://registry.yarnpkg.com/@types/markdown-to-jsx/-/markdown-to-jsx-6.11.3.tgz#cdd1619308fecbc8be7e6a26f3751260249b020e"
@@ -3999,7 +3993,6 @@
   dependencies:
     "@types/braces" "*"
 
->>>>>>> 83b9f124081034eb3450171173eb4b1eea2acf55
 "@types/minimatch@*", "@types/minimatch@^3.0.3":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -16547,6 +16540,11 @@ react-helmet-async@^1.0.2:
     react-fast-compare "^3.2.0"
     shallowequal "^1.1.0"
 
+react-hook-form@^6.13.1:
+  version "6.13.1"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.13.1.tgz#b9c0aa61f746db8169ed5e1050de21cacb1947d6"
+  integrity sha512-Q0N7MYcbA8SigYufb02h9z97ZKCpIbe62rywOTPsK4Ntvh6fRTGDXSuzWuRhLHhArLoWbGrWYSNSS4tlb+OFXg==
+
 react-hotkeys@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-hotkeys/-/react-hotkeys-2.0.0.tgz#a7719c7340cbba888b0e9184f806a9ec0ac2c53f"
@@ -18702,16 +18700,12 @@ stylehacks@^4.0.0:
     postcss "^7.0.0"
     postcss-selector-parser "^3.0.0"
 
-<<<<<<< HEAD
-subscriptions-transport-ws@0.9.18, subscriptions-transport-ws@^0.9.18:
-=======
 stylis@^4.0.3:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-4.0.6.tgz#0d8b97b6bc4748bea46f68602b6df27641b3c548"
   integrity sha512-1igcUEmYFBEO14uQHAJhCUelTR5jPztfdVKrYxRnDa5D5Dn3w0NxXupJNPr/VV/yRfZYEAco8sTIRZzH3sRYKg==
 
 subscriptions-transport-ws@^0.9.18:
->>>>>>> 83b9f124081034eb3450171173eb4b1eea2acf55
   version "0.9.18"
   resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.18.tgz#bcf02320c911fbadb054f7f928e51c6041a37b97"
   integrity sha512-tztzcBTNoEbuErsVQpTN2xUNN/efAZXyCyL5m3x4t6SKrEiTL2N8SaKWBFWM4u56pL79ULif3zjyeq+oV+nOaA==

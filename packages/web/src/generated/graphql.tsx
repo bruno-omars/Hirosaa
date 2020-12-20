@@ -5296,7 +5296,7 @@ export const UserCirclesDocument = gql`
   query UserCircles($id: String!) {
     user: users_by_pk(id: $id) {
       id
-      circleUsers {
+      circleUsers(order_by: { circleId: asc }) {
         circle {
           id
           name
