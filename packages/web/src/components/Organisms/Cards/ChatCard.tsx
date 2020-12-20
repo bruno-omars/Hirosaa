@@ -246,7 +246,7 @@ const ChatCard: FC<Props> = ({
           >
             <div />
           </ReactVisibilitySensor> */}
-          {messages
+          {messages && messages.length !== 0
             ? messages
                 .slice()
                 .reverse()
