@@ -1,6 +1,12 @@
 import { ApolloClient, HttpLink, InMemoryCache, split } from "@apollo/client";
 import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "@apollo/client/utilities";
+import { concatPagination, getMainDefinition } from "@apollo/client/utilities";
+import {
+  relayStylePagination,
+  offsetLimitPagination,
+} from "@apollo/client/utilities";
+import { merge } from "lodash";
+import { Messages } from "../generated/graphql";
 
 const httpLink = (accessToken: string) =>
   new HttpLink({
@@ -44,5 +50,19 @@ const link = (accessToken: string) =>
 export const createApolloClient = (accessToken: string) =>
   new ApolloClient({
     link: link(accessToken),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            Messages: {
+              merge(existing = [], incoming: any[]) {
+                console.warn("incoming", incoming);
+                return [...existing, ...incoming];
+              },
+            },
+            // Messages: concatPagination(),
+          },
+        },
+      },
+    }),
   });
