@@ -33,7 +33,7 @@ export const useChat = () => {
     variables: { id: me?.id! },
     skip: !me?.id,
     onCompleted: (data) => {
-      // 最初に所属したサークルをactiveCircleにセットする
+      // 所属するサークルの中で一番小さいサークルIDをセット
       const myFirstJoiningCircleId = data?.user?.circleUsers[0]?.circle.id;
       setActiveCircleId(myFirstJoiningCircleId);
     },
