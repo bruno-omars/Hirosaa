@@ -50,7 +50,7 @@ const UserEditCard: FC<Props> = (props) => {
     >
       <Grid gridTemplateRows="1fr 1fr" alignItems="center" mb="20px">
         <FileUpload title="アイコン" namae={props.getValues("name")} />
-        <Input {...inputAttrs("name")} placeholder="ユーザ名" name="name" />
+        <Input {...inputAttrs("name")} placeholder="ユーザ名" />
       </Grid>
       <hr />
       <StyledBlock>
@@ -68,7 +68,6 @@ const UserEditCard: FC<Props> = (props) => {
           <Textarea
             {...inputAttrs("interestedIn")}
             placeholder="自己紹介を記入してください"
-            name="interestedIn"
           />
         </StyledDesc>
       </StyledBlock>
