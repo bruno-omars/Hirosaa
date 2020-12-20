@@ -68,7 +68,7 @@ export const useCreateCircleFrom = (): CircleFormReturn => {
   }));
 
   return {
-    ...useForm<CircleForm>(),
+    ...useForm<CircleForm>({ mode: "onChange" }),
     onSubmit,
     selectedSkills,
     setSkills,

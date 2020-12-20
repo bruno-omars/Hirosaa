@@ -1,33 +1,16 @@
-import React, { FC, useMemo } from "react";
+import React, { FC, useCallback } from "react";
 import styled from "styled-components";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import { COLOR } from "../../../constants/color";
 import SkillPicker from "./SkillPicker";
-import { UserEditInput } from "../../Pages/UserEditPage";
-import FileInput from "../../Atoms/Inputs/FileInput";
-import DefaultInput from "../../Atoms/Inputs/DefaultInput";
-import DefaultTextArea from "../../Atoms/TextArea/DefaultTextArea";
+import { Box, Input, Textarea, Text, Grid } from "@chakra-ui/react";
+import {
+  UserEditFormReturn,
+  UserEditInput,
+} from "../../../hooks/useEditUserForm";
+import { FileUpload } from "../../Molecules/FileUpload";
 
-type Props = {
-  inputs: UserEditInput;
-  setInputs: React.Dispatch<React.SetStateAction<UserEditInput>>;
-  selectedSkills: number[];
-  setSkills: React.Dispatch<React.SetStateAction<number[]>>;
-};
-
-const StyledCard = styled.div`
-  padding: 40px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);
-  width: 70%;
-  margin-bottom: 40px;
-`;
-
-const StyledTop = styled.div`
-  display: grid;
-  grid-template-rows: 80px 1fr;
-  align-items: center;
-  margin-bottom: 20px;
-`;
+type Props = UserEditFormReturn;
 
 const StyledBlock = styled.div`
   margin-top: 40px;
@@ -43,83 +26,64 @@ const StyledDesc = styled.p`
   color: ${COLOR.TEXT_DARK};
 `;
 
-type StyleGrid = {
-  height: number;
-};
-
-const StyledGrid = styled.div<StyleGrid>`
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(${({ height }) => height}px, max-content);
-`;
-
 const UserEditCard: FC<Props> = (props) => {
   const { data, error } = useSkillAndSubCategoryQuery();
-  const skillCardHeight = useMemo(
-    () => data && Math.ceil(data.skills.length / 4) * 75,
-    [data]
+
+  const inputAttrs = useCallback(
+    (name: keyof UserEditInput) => ({
+      ref: props.register({ required: true }),
+      isInvalid: Boolean(props.errors[name]),
+      name: name,
+      borderColor: COLOR["BORDER_TEXT_INPUT"],
+      focusBorderColor: COLOR["LIGHT_GREEN"],
+      errorBorderColor: "crimson",
+    }),
+    [props]
   );
 
-  if (!data) {
-    return <p>データの取得に失敗しました</p>;
-  }
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    props.setInputs({ ...props.inputs, [e.target.name]: e.target.value });
-  };
-
   return (
-    <StyledCard>
-      <StyledTop>
-        <FileInput />
-        <DefaultInput
-          onChange={handleChange}
-          placeholder="ユーザ名"
-          name="name"
-          value={props.inputs.name}
-          inputSize="MAX"
-        />
-      </StyledTop>
+    <Box
+      boxShadow={{ base: "xs", md: "lg" }}
+      p={10}
+      mb={7}
+      w={{ base: "95%", md: "80%" }}
+    >
+      <Grid gridTemplateRows="1fr 1fr" alignItems="center" mb="20px">
+        <FileUpload title="アイコン" namae={props.getValues("name")} />
+        <Input {...inputAttrs("name")} placeholder="ユーザ名" />
+      </Grid>
       <hr />
       <StyledBlock>
         <StyledSubTitle>自己紹介</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea
-            onChange={handleChange}
+          <Textarea
+            {...inputAttrs("introduction")}
             placeholder="自己紹介を記入してください"
-            name="introduction"
-            value={props.inputs.introduction}
-            areaSize="MAX"
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>興味のあること</StyledSubTitle>
         <StyledDesc>
-          <DefaultTextArea
-            onChange={handleChange}
+          <Textarea
+            {...inputAttrs("interestedIn")}
             placeholder="自己紹介を記入してください"
-            areaSize="MAX"
-            name="interestedIn"
-            value={props.inputs.interestedIn}
           />
         </StyledDesc>
       </StyledBlock>
       <StyledBlock>
         <StyledSubTitle>スキル一覧</StyledSubTitle>
-        <StyledGrid height={skillCardHeight || 75}>
+        {data?.skills ? (
           <SkillPicker
             skills={data?.skills}
             selectedSkills={props.selectedSkills}
             setSkills={props.setSkills}
           />
-        </StyledGrid>
+        ) : (
+          <Text>スキルの取得に失敗しました。リロードしてください</Text>
+        )}
       </StyledBlock>
-    </StyledCard>
+    </Box>
   );
 };
 

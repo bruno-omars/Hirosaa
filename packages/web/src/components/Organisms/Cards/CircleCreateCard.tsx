@@ -1,20 +1,15 @@
 import React, { FC, useCallback } from "react";
 import styled from "styled-components";
-import FileInput from "../../Atoms/Inputs/FileInput";
 import { useSkillAndSubCategoryQuery } from "../../../generated/graphql";
 import SkillPicker from "./SkillPicker";
 import SubCategoryTags from "../Tags/SubCategoryTags";
 import { Box, Grid, Heading, Input, Textarea } from "@chakra-ui/react";
 import { COLOR } from "../../../constants/color";
 import {
-  DeepMap,
-  FieldError,
-  UseFormMethods,
-} from "react-hook-form/dist/types";
-import {
   CircleForm,
   CircleFormReturn,
 } from "../../../hooks/useCreateCircleForm";
+import { FileUpload } from "../../Molecules/FileUpload";
 
 const Block = styled(Box)`
   margin-top: 40px;
@@ -51,8 +46,8 @@ const CircleCreateCard: FC<Props> = (props) => {
       mb={7}
       w={{ base: "95%", md: "80%" }}
     >
-      <Grid gridTemplateRows="20% 20% 20% 40%" h="300px">
-        <FileInput />
+      <Grid gridTemplateRows="1.4fr 0.7fr 0.7fr 1.2fr" p="20px">
+        <FileUpload title="アイコン" namae={props.getValues("name")} />
         <Input {...inputAttrs("name")} placeholder="サークル名" />
         <Input {...inputAttrs("recruitTitle")} placeholder="募集の題名" />
         <div>

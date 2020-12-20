@@ -22,7 +22,7 @@ export const useEditCircleFrom = (): CircleFormReturn => {
   const [selectedCategory, setCategory] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const { reset, ...rest } = useForm<CircleForm>();
+  const { reset, ...rest } = useForm<CircleForm>({ mode: "onChange" });
 
   const { data: circleData, loading, error } = useCircleQuery({
     variables: {
